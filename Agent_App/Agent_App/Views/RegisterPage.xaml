@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Agent_App.Views.RegisterPage"
+             xmlns:vm="clr-namespace:Agent_App.ViewModels">
+    <ContentPage.BindingContext>
+        <vm:RegisterViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout Padding="15" Spacing="2" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                    <Label Text="Email" TextColor="#555" FontSize="20" FontAttributes="Bold" />
+                    <Entry Text="{Binding Email}" Placeholder="Enter Email" PlaceholderColor="#CCC" TextColor="#555" />
+                    <Label Text="Password" TextColor="#555" FontSize="20" FontAttributes="Bold" />
+                    <Entry Text="{Binding Password}" Placeholder="Enter Password" IsPassword="True" FontSize="20" PlaceholderColor="#CCC" TextColor="#555"/>
+                    <Label Text="Confirm Password" TextColor="#555" FontSize="20" FontAttributes="Bold" />
+                    <Entry Text="{Binding ConfirmPassword}" Placeholder="Confirm Password" IsPassword="True" FontSize="20" PlaceholderColor="#CCC" TextColor="#555"/>
+                    <Label Text="{Binding Message}" TextColor="Green" FontSize="20"  HorizontalTextAlignment="Center"/>
+                    <Button x:Name="BtnRegister" Command="{Binding RegisterCommand}" Text="Register" BorderColor="#C89400" BackgroundColor="#F4B400"/>
+                    <Button Text="Go to Login" Clicked="Button_Clicked" IsVisible="{Binding RegSuccess}" BorderColor="#C89400" BackgroundColor="#F4B400"/>
+                    
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+        <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
+                           BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="Center">
+            <ActivityIndicator.Scale>
+                <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
+            </ActivityIndicator.Scale>
+        </ActivityIndicator>
+
+
+    </Grid>
+
+</ContentPage>
