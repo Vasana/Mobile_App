@@ -13,6 +13,9 @@ namespace Agent_App
 		{
 			InitializeComponent();
 
+            Settings.Username = "Rani@gmail.com";
+            Settings.Password = "Rani@123";
+
             setMainPage();
 			//MainPage = new NavigationPage(new RegisterPage());
 		}
