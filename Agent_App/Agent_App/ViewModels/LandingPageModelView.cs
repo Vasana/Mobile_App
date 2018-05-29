@@ -9,7 +9,33 @@ namespace Agent_App.ViewModels
 {
     public class LandingPageModelView
     {
-        public ICommand ProfileCommand
+        public ICommand CustomersProfilesCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    //Application.Current.MainPage = new NavigationPage(new ExampleList());
+
+                    await Application.Current.MainPage.Navigation.PushAsync(new ExampleList());
+                });
+            }
+        }
+
+        public ICommand GetQuotationCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    //Application.Current.MainPage = new NavigationPage(new ExampleList());
+
+                    await Application.Current.MainPage.Navigation.PushAsync(new ExampleList());
+                });
+            }
+        }
+
+        public ICommand GetUserProfCommand
         {
             get
             {
