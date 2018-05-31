@@ -17,7 +17,7 @@ namespace Agent_App.ViewModels
                 {
                     //Application.Current.MainPage = new NavigationPage(new ExampleList());
 
-                    await Application.Current.MainPage.Navigation.PushAsync(new ExampleList());
+                    await Application.Current.MainPage.Navigation.PushAsync(new PolicyList());
                 });
             }
         }

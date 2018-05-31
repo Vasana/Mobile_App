@@ -98,5 +98,19 @@ namespace Agent_App.Services
             return ideas;
 
         }
+
+        public async Task<List<Cust_Policy>> GetPoliciesAsync(string accessToken)
+        {
+            var client = new HttpClient();
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+            var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/CustPolicies");
+
+            var custPolicies = JsonConvert.DeserializeObject<List<Cust_Policy>>(json);
+
+            return custPolicies;
+
+        }
     }
 }
