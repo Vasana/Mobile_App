@@ -47,5 +47,18 @@ namespace Agent_App.ViewModels
                 });
             }
         }
+
+        public ICommand GetSettingsCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    //Application.Current.MainPage = new NavigationPage(new ExampleList());
+
+                    await Application.Current.MainPage.Navigation.PushAsync(new ExampleList());
+                });
+            }
+        }
     }
 }
