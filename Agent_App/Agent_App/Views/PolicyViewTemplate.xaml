@@ -45,8 +45,15 @@
                     <controls:CircleImage Source="{Binding PolStatusImage}" VerticalOptions="Start" HeightRequest="30" WidthRequest="30"></controls:CircleImage>
                     <controls:CircleImage Source="{Binding ClaimStatusImage}" VerticalOptions="Start" HeightRequest="30" WidthRequest="30"></controls:CircleImage>
                 </StackLayout>
-                
-                
+
+                <Label FontAttributes="None"
+                   Grid.Row="1"
+                   HorizontalTextAlignment="Start"
+                   VerticalTextAlignment="Start"
+                   FontSize="14"
+                   Text="{Binding PolicyNumber}" TextColor="Black">
+                </Label>
+
             </Grid>
         </StackLayout>
 
