@@ -8,7 +8,7 @@
     </ContentPage.BindingContext>
     <!--  main page grid  -->
     <Grid RowSpacing="0">
-        <Grid.RowDefinitions>
+        <Grid.RowDefinitions> 
             <RowDefinition Height="100" />
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
