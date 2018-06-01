@@ -44,6 +44,7 @@
                Text="{Binding HeadTitle , Mode = TwoWay}" TextColor="Gray" >
                     </Label>
                 </StackLayout>
+                
                 <Grid Grid.Row="1">
                     <StackLayout Orientation="Horizontal">
                         <Label FontAttributes="None"
