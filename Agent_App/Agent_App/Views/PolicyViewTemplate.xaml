@@ -47,8 +47,13 @@
                 </StackLayout
                              
                 <Grid Grid.Row="1">
-                    
-                    
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
             </Grid>
 
                 <Label FontAttributes="None"
