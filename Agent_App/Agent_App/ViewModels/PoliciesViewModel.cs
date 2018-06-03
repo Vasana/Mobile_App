@@ -13,8 +13,8 @@ namespace Agent_App.ViewModels
     public class PoliciesViewModel : INotifyPropertyChanged
     {
         ApiServices _apiServices = new ApiServices();
-        public Cust_Policy _previousPolicy;
-        public ObservableCollection<Cust_Policy> PoliciesCollection
+        public CustPolicy _previousPolicy;
+        public ObservableCollection<CustPolicy> PoliciesCollection
         {
             get { return _policies; }
             set
@@ -36,7 +36,7 @@ namespace Agent_App.ViewModels
         //    }
         //}
 
-        public ObservableCollection<Cust_Policy> _policies;
+        public ObservableCollection<CustPolicy> _policies;
 
         public object SelectedItem { get; set; }
                 
@@ -49,9 +49,9 @@ namespace Agent_App.ViewModels
         {
             // for (var i = 0; i < 10; i++)
             {
-                PoliciesCollection = new ObservableCollection<Cust_Policy>
+                PoliciesCollection = new ObservableCollection<CustPolicy>
                 {
-                    new Cust_Policy
+                    new CustPolicy
                     {
                          PolicyNumber = "VM1115003410000506",
                          AgentCode="111558" ,
@@ -69,7 +69,7 @@ namespace Agent_App.ViewModels
                          MotorPolicy = true,
                     },
 
-                     new Cust_Policy
+                     new CustPolicy
                     {
                          PolicyNumber = "G/010/AMP/17/00577",
                          AgentCode="111558" ,
@@ -86,7 +86,7 @@ namespace Agent_App.ViewModels
                          MobileNumber = "0766980982",
                      },
 
-					  new Cust_Policy
+					  new CustPolicy
 					{
 						PolicyNumber = "VM1115033710005662",
 						AgentCode="111558" ,
@@ -104,7 +104,7 @@ namespace Agent_App.ViewModels
                         MotorPolicy = true,
             },
 
-                       new Cust_Policy
+                       new CustPolicy
                      {
                         PolicyNumber = "A/11/0484596/010/P",
                         AgentCode="111558" ,
@@ -122,7 +122,7 @@ namespace Agent_App.ViewModels
                         MotorPolicy = true,
             },
 
-                    new Cust_Policy
+                    new CustPolicy
                     {
                         PolicyNumber = "G/010/PA/37241",
                         AgentCode="111558" ,
@@ -139,7 +139,7 @@ namespace Agent_App.ViewModels
                         MobileNumber = "0766980982",
                     },
 
-                        new Cust_Policy
+                        new CustPolicy
                     {
                         PolicyNumber = "G/094/AMP/17/00559",
                         AgentCode="111558" ,
@@ -156,7 +156,7 @@ namespace Agent_App.ViewModels
                         MobileNumber = "0766980982",
                      },
 
-                     new Cust_Policy
+                     new CustPolicy
                     {
                         PolicyNumber = "VM1116001110000602",
                         AgentCode="111558" ,
@@ -174,7 +174,7 @@ namespace Agent_App.ViewModels
                         MotorPolicy = true,
                     },
 
-                      new Cust_Policy
+                      new CustPolicy
                     {
                         PolicyNumber = "FFBP170101000287",
                         AgentCode="111558" ,
@@ -191,7 +191,7 @@ namespace Agent_App.ViewModels
                         MobileNumber = "0766980982",
                      },
 
-                     new Cust_Policy
+                     new CustPolicy
                      {
                         PolicyNumber = "GHC170101000031",
                         AgentCode="111558" ,
@@ -208,7 +208,7 @@ namespace Agent_App.ViewModels
                         MobileNumber = "0766980982",
                      },
 
-                     new Cust_Policy
+                     new CustPolicy
                      {
                         PolicyNumber = "VM1115003410000519",
                         AgentCode="111558" ,
@@ -230,9 +230,9 @@ namespace Agent_App.ViewModels
                 };
 
             }
-        }
+        }       
 
-        public void HideOrShowPolicy(Cust_Policy policy)
+        public void HideOrShowPolicy(CustPolicy policy)
         {
 
             if (_previousPolicy == policy)
@@ -257,7 +257,7 @@ namespace Agent_App.ViewModels
             _previousPolicy = policy;
         }
 
-        private void UpdatePolicies(Cust_Policy policy)
+        private void UpdatePolicies(CustPolicy policy)
         {
             var index = PoliciesCollection.IndexOf(policy);
             PoliciesCollection.Remove(policy);
@@ -272,15 +272,14 @@ namespace Agent_App.ViewModels
         }
 
         public void SearchPolicies()
-        {
-            Cust_Policy policy = PoliciesCollection.First(p => p.PolicyNumber == "xy");
+        {     
 
             if (SearchCriteria.Instance.PremiumsPending)
             {
-                PoliciesCollection = new ObservableCollection<Cust_Policy>
+                PoliciesCollection = new ObservableCollection<CustPolicy>
                 {
 
-                    new Cust_Policy
+                    new CustPolicy
                     {
                         PolicyNumber = "G/010/PA/37241",
                         AgentCode="111558" ,
@@ -297,7 +296,7 @@ namespace Agent_App.ViewModels
                         MobileNumber = "0766980982",
                     },
 
-                     new Cust_Policy
+                     new CustPolicy
                      {
                         PolicyNumber = "GHC170101000031",
                         AgentCode="111558" ,
@@ -314,7 +313,7 @@ namespace Agent_App.ViewModels
                         MobileNumber = "0766980982",
                      },
 
-                     new Cust_Policy
+                     new CustPolicy
                      {
                         PolicyNumber = "VM1115003410000519",
                         AgentCode="111558" ,
@@ -341,5 +340,7 @@ namespace Agent_App.ViewModels
             }
 
         }
+
+       
     }
 }

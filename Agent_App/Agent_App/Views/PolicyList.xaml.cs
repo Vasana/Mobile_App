@@ -23,7 +23,7 @@ namespace Agent_App.Views
         private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var vm = BindingContext as PoliciesViewModel;
-            var policy = e.Item as Cust_Policy;
+            var policy = e.Item as CustPolicy;
 
             vm.HideOrShowPolicy(policy);
         }

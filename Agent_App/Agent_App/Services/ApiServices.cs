@@ -99,7 +99,7 @@ namespace Agent_App.Services
 
         }
 
-        public async Task<List<Cust_Policy>> GetPoliciesAsync(string accessToken)
+        public async Task<List<CustPolicy>> GetPoliciesAsync(string accessToken)
         {
             var client = new HttpClient();
 
@@ -107,7 +107,7 @@ namespace Agent_App.Services
 
             var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/CustPolicies");
 
-            var custPolicies = JsonConvert.DeserializeObject<List<Cust_Policy>>(json);
+            var custPolicies = JsonConvert.DeserializeObject<List<CustPolicy>>(json);
 
             return custPolicies;
 
