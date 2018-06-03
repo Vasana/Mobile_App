@@ -15,9 +15,11 @@ namespace Agent_App.Models
         public string PolicyType { get; set; }
         public string PolTypeDesc { get; set; }
         public string VehicleNumber { get; set; }
-        public bool IsVisible { get; set; }
+        public bool IsSelected { get; set; }
         public string PolTypeImage { get; set; }
         public string PolStatusImage { get; set; }
         public string ClaimStatusImage { get; set; }
+        public string MobileNumber { get; set; }
+        public bool MotorPolicy { get; set; }
     }
 }

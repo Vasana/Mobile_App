@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Agent_App.ViewModels
 {
@@ -19,7 +20,7 @@ namespace Agent_App.ViewModels
             set
             {
                 _policies = value;
-                //OnPropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -38,7 +39,7 @@ namespace Agent_App.ViewModels
         public ObservableCollection<Cust_Policy> _policies;
 
         public object SelectedItem { get; set; }
-
+                
         public PoliciesViewModel()
         {
             GeneratePolicies();
@@ -64,23 +65,25 @@ namespace Agent_App.ViewModels
                          PolTypeImage = "car.png",
                          PolStatusImage = "tick.png",
                          ClaimStatusImage = "claim_pending.png",
-
+                         MobileNumber = "",
+                         MotorPolicy = true,
                     },
-                    
-					 new Cust_Policy
-					{
-					     PolicyNumber = "G/010/AMP/17/00577",
-					     AgentCode="111558" ,
-					     InsuredName = "H.L.DIAS",
-					     StartDate = "13-JUN-18",
-					     EndDate = "12-JUN-19",
-					     Department = "G",
-					     PolicyType = "AMP",
-					     PolTypeDesc = "Annual Medical Plan",
-					     VehicleNumber = "",
+
+                     new Cust_Policy
+                    {
+                         PolicyNumber = "G/010/AMP/17/00577",
+                         AgentCode="111558" ,
+                         InsuredName = "H.L.DIAS",
+                         StartDate = "13-JUN-18",
+                         EndDate = "12-JUN-19",
+                         Department = "G",
+                         PolicyType = "AMP",
+                         PolTypeDesc = "Annual Medical Plan",
+                         VehicleNumber = "",
                          PolTypeImage = "health.png",
                          PolStatusImage = "tick.png",
                          ClaimStatusImage = "tick.png",
+                         MobileNumber = "0766980982",
                      },
 
 					  new Cust_Policy
@@ -97,7 +100,9 @@ namespace Agent_App.ViewModels
                         PolTypeImage = "car.png",
                         PolStatusImage = "alert_red.png",
                         ClaimStatusImage = "tick.png",
-                     },
+                        MobileNumber = "0766980982",
+                        MotorPolicy = true,
+            },
 
                        new Cust_Policy
                      {
@@ -113,7 +118,9 @@ namespace Agent_App.ViewModels
                         PolTypeImage = "car.png",
                         PolStatusImage = "tick.png",
                         ClaimStatusImage = "claim_pending.png",
-                    },
+                        MobileNumber = "0766980982",
+                        MotorPolicy = true,
+            },
 
                     new Cust_Policy
                     {
@@ -129,6 +136,7 @@ namespace Agent_App.ViewModels
                         PolTypeImage = "life.png",
                         PolStatusImage = "alert_yellow.png",
                         ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
                     },
 
                         new Cust_Policy
@@ -145,6 +153,7 @@ namespace Agent_App.ViewModels
                         PolTypeImage = "health.png",
                         PolStatusImage = "tick.png",
                         ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
                      },
 
                      new Cust_Policy
@@ -161,6 +170,8 @@ namespace Agent_App.ViewModels
                         PolTypeImage = "car.png",
                         PolStatusImage = "tick.png",
                         ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        MotorPolicy = true,
                     },
 
                       new Cust_Policy
@@ -177,6 +188,7 @@ namespace Agent_App.ViewModels
                         PolTypeImage = "car.png",
                         PolStatusImage = "alert_red.png",
                         ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
                      },
 
                      new Cust_Policy
@@ -193,6 +205,7 @@ namespace Agent_App.ViewModels
                         PolTypeImage = "home.png",
                         PolStatusImage = "tick.png",
                         ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
                      },
 
                      new Cust_Policy
@@ -209,6 +222,8 @@ namespace Agent_App.ViewModels
                         PolTypeImage = "car.png",
                         PolStatusImage = "tick.png",
                         ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        MotorPolicy = true,
                      },
                    
                  //   AlertColor =  Color.Green : Color.Blue,    This can be added to set alert dialog inside card data model
@@ -223,7 +238,7 @@ namespace Agent_App.ViewModels
             if (_previousPolicy == policy)
             {
                 //clicking twice on same item will hide it
-                policy.IsVisible = !policy.IsVisible;
+                policy.IsSelected = !policy.IsSelected;
                 UpdatePolicies(policy);
             }
             else
@@ -231,11 +246,11 @@ namespace Agent_App.ViewModels
                 if (_previousPolicy != null)
                 {
                     //hide previous selected item
-                    _previousPolicy.IsVisible = false;
+                    _previousPolicy.IsSelected = false;
                     UpdatePolicies(_previousPolicy);
                 }
                 //show selected item
-                policy.IsVisible = true;
+                policy.IsSelected = true;
                 UpdatePolicies(policy);
             }
 
@@ -254,6 +269,77 @@ namespace Agent_App.ViewModels
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void SearchPolicies()
+        {
+            Cust_Policy policy = PoliciesCollection.First(p => p.PolicyNumber == "xy");
+
+            if (SearchCriteria.Instance.PremiumsPending)
+            {
+                PoliciesCollection = new ObservableCollection<Cust_Policy>
+                {
+
+                    new Cust_Policy
+                    {
+                        PolicyNumber = "G/010/PA/37241",
+                        AgentCode="111558" ,
+                        InsuredName = "H.K.K.T.DUMINDA",
+                        StartDate = "22-JUN-17",
+                        EndDate = "22-JUN-18",
+                        Department = "G",
+                        PolicyType = "PA",
+                        PolTypeDesc = "Personal Accident",
+                        VehicleNumber = "",
+                        PolTypeImage = "life.png",
+                        PolStatusImage = "alert_yellow.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                    },
+
+                     new Cust_Policy
+                     {
+                        PolicyNumber = "GHC170101000031",
+                        AgentCode="111558" ,
+                        InsuredName = "W.A.D.N PERERA",
+                        StartDate = "02-JUN-18",
+                        EndDate = "02-JUN-19",
+                        Department = "G",
+                        PolicyType = "HC",
+                        PolTypeDesc = "Home Protect",
+                        VehicleNumber = "",
+                        PolTypeImage = "home.png",
+                        PolStatusImage = "alert_yellow.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                     },
+
+                     new Cust_Policy
+                     {
+                        PolicyNumber = "VM1115003410000519",
+                        AgentCode="111558" ,
+                        InsuredName = "Mr. S.L.S.GUNARATHNA",
+                        StartDate = "16-JUN-18",
+                        EndDate = "15-JUN-19",
+                        Department = "M",
+                        PolicyType = "M11",
+                        PolTypeDesc = "Motor - Comprehensive",
+                        VehicleNumber = "CAH 0945",
+                        PolTypeImage = "car.png",
+                        PolStatusImage = "alert_yellow.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        MotorPolicy = true,
+                     },
+
+                    //   AlertColor =  Color.Green : Color.Blue,    This can be added to set alert dialog inside card data model
+                };
+            }
+            else
+            {
+                GeneratePolicies();
+            }
+
         }
     }
 }

@@ -8,8 +8,15 @@
     <ContentPage.BindingContext>
         <viewModel:PoliciesViewModel/>
     </ContentPage.BindingContext>
-
+    
+    
     <StackLayout Orientation="Vertical">
+        <StackLayout Spacing="18"
+                 VerticalOptions="Center">
+            <Button x:Name="btnSearch" Clicked="btnSearch_Clicked"  BackgroundColor="DeepPink" TextColor="White" VerticalOptions="Center"
+                    Text="Search" />            
+        </StackLayout>
+        
         <Label Text="Policy List"
              VerticalOptions="Start"
              HorizontalTextAlignment="Center"
