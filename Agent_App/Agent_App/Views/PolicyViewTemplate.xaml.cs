@@ -46,6 +46,7 @@ namespace Agent_App.Views
         {
             var policy = BindingContext as CustPolicy;
             policy.SetFlag();
+            btnReminder.Source = "filledStar.jpg";
             ((PolicyFlagView)sender).Disappearing -= FlagView_Disappearing;
         }
 

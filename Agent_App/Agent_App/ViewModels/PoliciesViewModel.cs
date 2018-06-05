@@ -67,6 +67,7 @@ namespace Agent_App.ViewModels
                          ClaimStatusImage = "claim_pending.png",
                          MobileNumber = "",
                          MotorPolicy = true,
+                         FlagImage = "starFrame.png",
                     },
 
                      new CustPolicy
@@ -84,6 +85,7 @@ namespace Agent_App.ViewModels
                          PolStatusImage = "tick.png",
                          ClaimStatusImage = "tick.png",
                          MobileNumber = "0766980982",
+                         FlagImage = "starFrame.png",
                      },
 
 					  new CustPolicy
@@ -102,6 +104,7 @@ namespace Agent_App.ViewModels
                         ClaimStatusImage = "tick.png",
                         MobileNumber = "0766980982",
                         MotorPolicy = true,
+                        FlagImage = "starFrame.png",
             },
 
                        new CustPolicy
@@ -120,6 +123,7 @@ namespace Agent_App.ViewModels
                         ClaimStatusImage = "claim_pending.png",
                         MobileNumber = "0766980982",
                         MotorPolicy = true,
+                        FlagImage = "starFrame.png",
             },
 
                     new CustPolicy
@@ -137,6 +141,7 @@ namespace Agent_App.ViewModels
                         PolStatusImage = "alert_yellow.png",
                         ClaimStatusImage = "tick.png",
                         MobileNumber = "0766980982",
+                        FlagImage = "starFrame.png",
                     },
 
                         new CustPolicy
@@ -154,6 +159,7 @@ namespace Agent_App.ViewModels
                         PolStatusImage = "tick.png",
                         ClaimStatusImage = "tick.png",
                         MobileNumber = "0766980982",
+                        FlagImage = "starFrame.png",
                      },
 
                      new CustPolicy
@@ -172,6 +178,7 @@ namespace Agent_App.ViewModels
                         ClaimStatusImage = "tick.png",
                         MobileNumber = "0766980982",
                         MotorPolicy = true,
+                        FlagImage = "starFrame.png",
                     },
 
                       new CustPolicy
@@ -189,6 +196,7 @@ namespace Agent_App.ViewModels
                         PolStatusImage = "alert_red.png",
                         ClaimStatusImage = "tick.png",
                         MobileNumber = "0766980982",
+                        FlagImage = "starFrame.png",
                      },
 
                      new CustPolicy
@@ -206,6 +214,7 @@ namespace Agent_App.ViewModels
                         PolStatusImage = "tick.png",
                         ClaimStatusImage = "tick.png",
                         MobileNumber = "0766980982",
+                        FlagImage = "starFrame.png",
                      },
 
                      new CustPolicy
@@ -224,6 +233,7 @@ namespace Agent_App.ViewModels
                         ClaimStatusImage = "tick.png",
                         MobileNumber = "0766980982",
                         MotorPolicy = true,
+                        FlagImage = "starFrame.png",
                      },
                    
                  //   AlertColor =  Color.Green : Color.Blue,    This can be added to set alert dialog inside card data model
@@ -234,7 +244,6 @@ namespace Agent_App.ViewModels
 
         public void HideOrShowPolicy(CustPolicy policy)
         {
-
             if (_previousPolicy == policy)
             {
                 //clicking twice on same item will hide it
@@ -276,9 +285,11 @@ namespace Agent_App.ViewModels
 
             if (SearchCriteria.Instance.PremiumsPending)
             {
+                //CustPolicy policy1 = PoliciesCollection.First(p => p.PolicyNumber == "G/010/PA/37241");
+                _previousPolicy = null;  // this should be done whenever policy collection regenerated.
+                PoliciesCollection = null;
                 PoliciesCollection = new ObservableCollection<CustPolicy>
-                {
-
+                {                    
                     new CustPolicy
                     {
                         PolicyNumber = "G/010/PA/37241",
@@ -294,6 +305,7 @@ namespace Agent_App.ViewModels
                         PolStatusImage = "alert_yellow.png",
                         ClaimStatusImage = "tick.png",
                         MobileNumber = "0766980982",
+                        FlagImage = "starFrame.png",
                     },
 
                      new CustPolicy
@@ -311,6 +323,7 @@ namespace Agent_App.ViewModels
                         PolStatusImage = "alert_yellow.png",
                         ClaimStatusImage = "tick.png",
                         MobileNumber = "0766980982",
+                        FlagImage = "starFrame.png",
                      },
 
                      new CustPolicy
@@ -329,6 +342,7 @@ namespace Agent_App.ViewModels
                         ClaimStatusImage = "tick.png",
                         MobileNumber = "0766980982",
                         MotorPolicy = true,
+                        FlagImage = "starFrame.png",
                      },
 
                     //   AlertColor =  Color.Green : Color.Blue,    This can be added to set alert dialog inside card data model

@@ -23,21 +23,27 @@ namespace Agent_App.Models
         public bool MotorPolicy { get; set; }
         public string AgentComment { get; set; }
         public bool Flagged { get; set; }
+        public string FlagImage { get; set; }
 
 
         internal void SetFlag()
         {
             string policyNo = PolicyFlag.Instance.PolicyNumber;
             string comment = PolicyFlag.Instance.Comment;
-            bool flagged = PolicyFlag.Instance.Flagged;
-            //CustPolicy policy = PoliciesCollection.First(p => p.PolicyNumber == policyNo);
+            bool flagged = PolicyFlag.Instance.Flagged;            
 
             //string polNo = policy.PolicyNumber;
             if (this.PolicyNumber == policyNo)
             {
                 this.AgentComment = comment;
                 this.Flagged = flagged;
+                this.FlagImage = "filledStar.jpg";                
             }
+
+            PolicyFlag.Instance.PolicyNumber = null;
+            PolicyFlag.Instance.Comment = null;
+            PolicyFlag.Instance.Flagged = false;
         }
+        
     }
 }
