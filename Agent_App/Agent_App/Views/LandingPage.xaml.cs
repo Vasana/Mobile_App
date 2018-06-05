@@ -15,6 +15,7 @@ namespace Agent_App.Views
 		public LandingPage ()
 		{
 			InitializeComponent ();
-		}
+            Title = "Menu";
+        }
 	}
 }

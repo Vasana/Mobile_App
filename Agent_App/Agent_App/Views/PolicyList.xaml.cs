@@ -17,7 +17,14 @@ namespace Agent_App.Views
 	{
         public PolicyList()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            Title = "Policy List";
+
+            NavigationPage.SetHasBackButton(this, true);
+
+            //((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.FromHex("#1464F4");
+            ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.LightGray;
+            
         }
 
         private void listView_ItemTapped(object sender, ItemTappedEventArgs e)

@@ -15,7 +15,8 @@ namespace Agent_App.Views
 		public LoginPage ()
 		{
 			InitializeComponent ();
-		}
+            Title = "Login";
+        }
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
