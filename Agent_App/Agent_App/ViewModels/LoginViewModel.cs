@@ -66,8 +66,7 @@ namespace Agent_App.ViewModels
                    {
                        IsBusy = false;
                        LoginSuccess = false;
-                       Message = "Login failed";
-                       await Application.Current.MainPage.Navigation.PushAsync(new LandingPage()); // to be commented
+                       Message = "Login failed";                       
                    }
                    else
                    {                   

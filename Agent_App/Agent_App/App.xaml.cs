@@ -22,12 +22,11 @@ namespace Agent_App
 
         private void setMainPage()
         {
-            /*if (!string.IsNullOrEmpty(Settings.AccessToken))
+            if (!string.IsNullOrEmpty(Settings.AccessToken))
             {
-                MainPage = new NavigationPage(new IdeasPage());
+                MainPage = new NavigationPage(new LandingPage());
             }
-            else
-            */if (!string.IsNullOrEmpty(Settings.Username) && !string.IsNullOrEmpty(Settings.Password))
+            else if (!string.IsNullOrEmpty(Settings.Username) && !string.IsNullOrEmpty(Settings.Password))
             {
                 MainPage = new NavigationPage(new LoginPage());
             }
