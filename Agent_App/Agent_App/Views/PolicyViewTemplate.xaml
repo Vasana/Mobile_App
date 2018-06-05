@@ -40,12 +40,12 @@
                    HorizontalTextAlignment="Start"
                    VerticalTextAlignment="Center"
                    FontSize="16" FontAttributes="Bold"
-                   Text="{Binding PolTypeDesc}" TextColor="Black" >    
+                   Text="{Binding PolTypeDesc}" TextColor="Black" >
                     </Label>
                     <controls:CircleImage Source="{Binding PolStatusImage}" VerticalOptions="Start" HeightRequest="30" WidthRequest="30"></controls:CircleImage>
                     <controls:CircleImage Source="{Binding ClaimStatusImage}" VerticalOptions="Start" HeightRequest="30" WidthRequest="30"></controls:CircleImage>
-                </StackLayout
-                             
+                </StackLayout>
+
                 <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
