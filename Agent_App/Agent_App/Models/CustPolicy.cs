@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 namespace Agent_App.Models
 {
     public class CustPolicy
@@ -25,6 +26,17 @@ namespace Agent_App.Models
         public bool Flagged { get; set; }
         public string FlagImage { get; set; }
 
+
+        public Color BackgroundColor
+        {
+            get
+            {
+                if (IsSelected)
+                    return Color.FromHex("#FAEBD7"); 
+                else
+                    return Color.Transparent;
+            }
+        }
 
         internal void SetFlag()
         {

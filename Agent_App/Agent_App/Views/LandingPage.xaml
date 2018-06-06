@@ -6,6 +6,9 @@
     <ContentPage.BindingContext>
         <viewModels:LandingPageModelView />
     </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="car.png" Text="Search" />
+    </ContentPage.ToolbarItems>
     <!--  main page grid  -->
     <Grid RowSpacing="0">
         <Grid.RowDefinitions> 
