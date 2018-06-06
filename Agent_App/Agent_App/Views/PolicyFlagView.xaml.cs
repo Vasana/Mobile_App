@@ -33,13 +33,21 @@ namespace Agent_App.Views
         private void btnSubmit_Clicked(object sender, EventArgs e)
         {
             PolicyFlag.Instance.PolicyNumber = PolicyNumber.Trim();
-
             
-            if (entComment.Text != "Enter your comment")
+            if (entComment.Text != null)
             {
                 PolicyFlag.Instance.Comment = entComment.Text.Trim();
             }
             PolicyFlag.Instance.Flagged = true;
+
+            PopupNavigation.Instance.PopAsync(true);
+        }
+
+        private void btnUnflag_Clicked(object sender, EventArgs e)
+        {
+            PolicyFlag.Instance.PolicyNumber = PolicyNumber.Trim();
+            
+            PolicyFlag.Instance.Flagged = false;
 
             PopupNavigation.Instance.PopAsync(true);
         }

@@ -37,7 +37,14 @@ namespace Agent_App.Models
             {
                 this.AgentComment = comment;
                 this.Flagged = flagged;
-                this.FlagImage = "filledStar.jpg";                
+                if (flagged)
+                {
+                    this.FlagImage = "filledStar.jpg";
+                }
+                else
+                {
+                    this.FlagImage = "starFrame.png";
+                }
             }
 
             PolicyFlag.Instance.PolicyNumber = null;

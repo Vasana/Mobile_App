@@ -287,7 +287,7 @@ namespace Agent_App.ViewModels
             {
                 //CustPolicy policy1 = PoliciesCollection.First(p => p.PolicyNumber == "G/010/PA/37241");
                 _previousPolicy = null;  // this should be done whenever policy collection regenerated.
-                PoliciesCollection = null;
+                
                 PoliciesCollection = new ObservableCollection<CustPolicy>
                 {                    
                     new CustPolicy

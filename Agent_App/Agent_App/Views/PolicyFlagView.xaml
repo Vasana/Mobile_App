@@ -24,24 +24,40 @@
                  HorizontalOptions="Center"
                  VerticalOptions="Center">
 
-        <Grid VerticalOptions="End" HorizontalOptions="Start" Padding="15">
+        <Grid VerticalOptions="End" HorizontalOptions="Start">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="*" />                
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="*" />               
             </Grid.ColumnDefinitions>
+            <Entry x:Name="entComment" Grid.Row="0" Grid.Column="0" VerticalOptions="End" Placeholder="Enter your comment"/>
 
-            <Entry x:Name="entComment" Grid.Row="0" Grid.Column="1" VerticalOptions="End" Text="Enter your comment"/>
- 
         </Grid>
-        <Button x:Name="btnSubmit"
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="0.5*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="0" Grid.Column="1" x:Name="btnSubmit"
                 BackgroundColor="DodgerBlue"
-                Text="Submit"
+                Text="Done"
                 TextColor="White" 
                 Clicked="btnSubmit_Clicked"/>
+            <Button Grid.Row="2" Grid.Column="1" x:Name="btnUnflag"
+                BackgroundColor="DeepPink"
+                Text="UnFlag"
+                TextColor="White" 
+                Clicked="btnUnflag_Clicked"/>            
+        </Grid>
+        
     </StackLayout>
 
 </pages:PopupPage>
