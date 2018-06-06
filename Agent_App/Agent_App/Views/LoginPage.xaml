@@ -7,7 +7,9 @@
     <ContentPage.BindingContext>
         <viewModels:LoginViewModel />
     </ContentPage.BindingContext>
-
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="car.png" Text="Search" />
+    </ContentPage.ToolbarItems>
     <Grid>
         <ScrollView>
             <StackLayout Spacing="20" Padding="50">

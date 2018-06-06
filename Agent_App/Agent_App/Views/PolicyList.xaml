@@ -29,7 +29,9 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <views:PolicyViewTemplate/>
+                        <ContentView Padding="10" BackgroundColor="{Binding BackgroundColor}">
+                            <views:PolicyViewTemplate/>
+                        </ContentView>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

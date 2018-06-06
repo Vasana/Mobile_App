@@ -249,6 +249,7 @@ namespace Agent_App.ViewModels
                 //clicking twice on same item will hide it
                 policy.IsSelected = !policy.IsSelected;
                 UpdatePolicies(policy);
+
             }
             else
             {

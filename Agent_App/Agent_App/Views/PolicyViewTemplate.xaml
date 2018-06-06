@@ -21,11 +21,11 @@
                   Android="5" iOS="5"/>
         </Frame.Padding>
 
-        <StackLayout Orientation="Horizontal">            
-            <Grid VerticalOptions="CenterAndExpand"
+        <StackLayout Orientation="Horizontal">
+            <Grid VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" 
             Padding="0"
             HorizontalOptions="FillAndExpand"
-            BackgroundColor="Transparent">
+            >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -50,7 +50,7 @@
 
                 </StackLayout>
 
-                <Grid Grid.Row="1" VerticalOptions="CenterAndExpand"
+                <Grid Grid.Row="1" VerticalOptions="CenterAndExpand" 
                       Padding="0"  HorizontalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
