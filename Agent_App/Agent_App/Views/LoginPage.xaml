@@ -8,7 +8,7 @@
         <viewModels:LoginViewModel />
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="car.png" Text="Search" />
+        <ToolbarItem Icon="logo.png" Text="Search" />
     </ContentPage.ToolbarItems>
     <Grid>
         <ScrollView>
