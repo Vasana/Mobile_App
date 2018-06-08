@@ -27,35 +27,32 @@
         <Grid VerticalOptions="End" HorizontalOptions="Start">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="0.5*" />
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
-            </Grid.ColumnDefinitions>
-            <Entry x:Name="entComment" Grid.Row="0" Grid.Column="0" VerticalOptions="End" Placeholder="Enter your comment"/>
+            
+            
+            <Image x:Name="btnExit" Grid.Row="0" HorizontalOptions="End"  Source="close.jpg" HeightRequest="30" WidthRequest="30"></Image>
+            <Entry x:Name="entComment" Grid.Row="1" VerticalOptions="End" Placeholder="Enter your comment"/>
 
         </Grid>
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="0.5*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid Padding="7">            
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-            </Grid.ColumnDefinitions>
-            <Button Grid.Row="0" Grid.Column="1" x:Name="btnSubmit"
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>            
+            <Button Grid.Column="0" x:Name="btnUnflag"
+                BackgroundColor="DeepPink"
+                Text="UnFlag"
+                TextColor="White" 
+                Clicked="btnUnflag_Clicked"/>
+            <Button Grid.Column="2" x:Name="btnSubmit"
                 BackgroundColor="DodgerBlue"
                 Text="Done"
                 TextColor="White" 
                 Clicked="btnSubmit_Clicked"/>
-            <Button Grid.Row="2" Grid.Column="1" x:Name="btnUnflag"
-                BackgroundColor="DeepPink"
-                Text="UnFlag"
-                TextColor="White" 
-                Clicked="btnUnflag_Clicked"/>            
         </Grid>
         
     </StackLayout>

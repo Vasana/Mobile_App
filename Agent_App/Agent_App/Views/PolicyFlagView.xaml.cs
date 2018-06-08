@@ -21,13 +21,21 @@ namespace Agent_App.Views
 		{
 			InitializeComponent ();
 
+            var closeImage = new TapGestureRecognizer();
+            closeImage.Tapped += CloseImage_Tapped;
+            btnExit.GestureRecognizers.Add(closeImage);
+
             PolicyNumber = policyNum;
             Agentcomment = comment;
             if (Agentcomment != null)
             {
                 entComment.Text = Agentcomment;
             }
+        }
 
+        private void CloseImage_Tapped(object sender, EventArgs e)
+        {
+            PopupNavigation.Instance.PopAsync(true);
         }
 
         private void btnSubmit_Clicked(object sender, EventArgs e)
