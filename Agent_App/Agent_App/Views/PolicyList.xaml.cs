@@ -50,7 +50,7 @@ namespace Agent_App.Views
         private void SearchView_Disappearing(object sender, EventArgs e)
         {
             var vm = BindingContext as PoliciesViewModel;
-            vm.SearchPolicies();
+            vm.DownloadPoliciesAsync();
             ((PolicySearchView)sender).Disappearing -= SearchView_Disappearing;
         }
 

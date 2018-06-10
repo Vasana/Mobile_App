@@ -7,14 +7,18 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
+using Xamarin.Forms.Extended;
+using Agent_App.Helpers;
 
 namespace Agent_App.ViewModels
 {
     public class PoliciesViewModel : INotifyPropertyChanged
     {
+        private const int PageSize = 10;        
         ApiServices _apiServices = new ApiServices();
         public CustPolicy _previousPolicy;
-        public ObservableCollection<CustPolicy> PoliciesCollection
+        public InfiniteScrollCollection<CustPolicy> PoliciesCollection
         {
             get { return _policies; }
             set
@@ -24,223 +28,70 @@ namespace Agent_App.ViewModels
             }
         }
 
-        //public ICommand GetIdeasCommand
-        //{
-        //    get
-        //    {
-        //        return new Command(async () =>
-        //        {
-        //            var accessToken = Settings.AccessToken;
-        //            Ideas = await _apiServices.GetIdeasAsync(accessToken);
-        //        });
-        //    }
-        //}
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set
+            {
+                _isBusy = value;
+                OnPropertyChanged();
+            }
+        }
+        private bool _isBusy;
 
-        public ObservableCollection<CustPolicy> _policies;
+        public bool IsBusy2
+        {
+            get { return _isBusy2; }
+            set
+            {
+                _isBusy2 = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool _isBusy2;
+        
+        public InfiniteScrollCollection<CustPolicy> _policies;
 
         public object SelectedItem { get; set; }
                 
         public PoliciesViewModel()
         {
-            GeneratePolicies();
+            
+
+            DownloadPoliciesAsync();
         }
 
-        private void GeneratePolicies()
+        public async Task DownloadPoliciesAsync()
         {
-            // for (var i = 0; i < 10; i++)
+            PoliciesCollection = new InfiniteScrollCollection<CustPolicy>
             {
-                PoliciesCollection = new ObservableCollection<CustPolicy>
+                OnLoadMore = async () =>
                 {
-                    new CustPolicy
-                    {
-                         PolicyNumber = "VM1115003410000506",
-                         AgentCode="111558" ,
-                         InsuredName = "Mr. N.A.A.R. NEHTHASINGHE",
-                         StartDate = "12-JUN-18",
-                         EndDate = "11-JUN-19",
-                         Department = "M",
-                         PolicyType = "M11",
-                         PolTypeDesc = "Motor - Comprehensive",
-                         VehicleNumber = "CAG 8842",
-                         PolTypeImage = "car.png",
-                         PolStatusImage = "tick.png",
-                         ClaimStatusImage = "claim_pending.png",
-                         MobileNumber = "",
-                         MotorPolicy = true,
-                         FlagImage = "starFrame.png",
-                    },
+                    IsBusy = true;
 
-                     new CustPolicy
-                    {
-                         PolicyNumber = "G/010/AMP/17/00577",
-                         AgentCode="111558" ,
-                         InsuredName = "H.L.DIAS",
-                         StartDate = "13-JUN-18",
-                         EndDate = "12-JUN-19",
-                         Department = "G",
-                         PolicyType = "AMP",
-                         PolTypeDesc = "Annual Medical Plan",
-                         VehicleNumber = "",
-                         PolTypeImage = "health.png",
-                         PolStatusImage = "tick.png",
-                         ClaimStatusImage = "tick.png",
-                         MobileNumber = "0766980982",
-                         FlagImage = "starFrame.png",
-                     },
+                    // load the next page
+                    var page = PoliciesCollection.Count / PageSize;
 
-					  new CustPolicy
-					{
-						PolicyNumber = "VM1115033710005662",
-						AgentCode="111558" ,
-						InsuredName = "Mr. S.M.W.S.B. KARUNAWARDENA",
-						StartDate = "25-FEB-17",
-						EndDate = "24-FEB-18",
-						Department = "M",
-						PolicyType = "M11",
-						PolTypeDesc = "Motor - Comprehensive",
-						VehicleNumber = "CAE 5077",
-                        PolTypeImage = "car.png",
-                        PolStatusImage = "alert_red.png",
-                        ClaimStatusImage = "tick.png",
-                        MobileNumber = "0766980982",
-                        MotorPolicy = true,
-                        FlagImage = "starFrame.png",
-            },
+                    var items = await _apiServices.GetPoliciesAsync(Settings.AccessToken, page, PageSize);
 
-                       new CustPolicy
-                     {
-                        PolicyNumber = "A/11/0484596/010/P",
-                        AgentCode="111558" ,
-                        InsuredName = "Dr. T.R.C. RUBERU",
-                        StartDate = "14-MAY-18",
-                        EndDate = "13-MAY-19",
-                        Department = "M",
-                        PolicyType = "M11",
-                        PolTypeDesc = "Motor - Comprehensive",
-                        VehicleNumber = "KJ  7030",
-                        PolTypeImage = "car.png",
-                        PolStatusImage = "tick.png",
-                        ClaimStatusImage = "claim_pending.png",
-                        MobileNumber = "0766980982",
-                        MotorPolicy = true,
-                        FlagImage = "starFrame.png",
-            },
+                    IsBusy = false;
 
-                    new CustPolicy
-                    {
-                        PolicyNumber = "G/010/PA/37241",
-                        AgentCode="111558" ,
-                        InsuredName = "H.K.K.T.DUMINDA",
-                        StartDate = "22-JUN-17",
-                        EndDate = "22-JUN-18",
-                        Department = "G",
-                        PolicyType = "PA",
-                        PolTypeDesc = "Personal Accident",
-                        VehicleNumber = "",
-                        PolTypeImage = "life.png",
-                        PolStatusImage = "alert_yellow.png",
-                        ClaimStatusImage = "tick.png",
-                        MobileNumber = "0766980982",
-                        FlagImage = "starFrame.png",
-                    },
-
-                        new CustPolicy
-                    {
-                        PolicyNumber = "G/094/AMP/17/00559",
-                        AgentCode="111558" ,
-                        InsuredName = "H.M.L.ANURADHA KARUNATHILAKE",
-                        StartDate = "17-MAY-18",
-                        EndDate = "16-MAY-19",
-                        Department = "G",
-                        PolicyType = "AMP",
-                        PolTypeDesc = "Annual Medical Plan",
-                        VehicleNumber = "",
-                        PolTypeImage = "health.png",
-                        PolStatusImage = "tick.png",
-                        ClaimStatusImage = "tick.png",
-                        MobileNumber = "0766980982",
-                        FlagImage = "starFrame.png",
-                     },
-
-                     new CustPolicy
-                    {
-                        PolicyNumber = "VM1116001110000602",
-                        AgentCode="111558" ,
-                        InsuredName = "Mr. B.C.R.D.S DE SILVA",
-                        StartDate = "08-JUN-18",
-                        EndDate = "07-JUN-19",
-                        Department = "M",
-                        PolicyType = "M11",
-                        PolTypeDesc = "Motor - Comprehensive",
-                        VehicleNumber = "KY  5427",
-                        PolTypeImage = "car.png",
-                        PolStatusImage = "tick.png",
-                        ClaimStatusImage = "tick.png",
-                        MobileNumber = "0766980982",
-                        MotorPolicy = true,
-                        FlagImage = "starFrame.png",
-                    },
-
-                      new CustPolicy
-                    {
-                        PolicyNumber = "FFBP170101000287",
-                        AgentCode="111558" ,
-                        InsuredName = "F.R.N Leitan",
-                        StartDate = "10-MAY-17",
-                        EndDate = "09-MAY-18",
-                        Department = "F",
-                        PolicyType = "FBP",
-                        PolTypeDesc = "Fire Policy",
-                        VehicleNumber = "",
-                        PolTypeImage = "car.png",
-                        PolStatusImage = "alert_red.png",
-                        ClaimStatusImage = "tick.png",
-                        MobileNumber = "0766980982",
-                        FlagImage = "starFrame.png",
-                     },
-
-                     new CustPolicy
-                     {
-                        PolicyNumber = "GHC170101000031",
-                        AgentCode="111558" ,
-                        InsuredName = "W.A.D.N PERERA",
-                        StartDate = "02-JUN-18",
-                        EndDate = "02-JUN-19",
-                        Department = "G",
-                        PolicyType = "HC",
-                        PolTypeDesc = "Home Protect",
-                        VehicleNumber = "",
-                        PolTypeImage = "home.png",
-                        PolStatusImage = "tick.png",
-                        ClaimStatusImage = "tick.png",
-                        MobileNumber = "0766980982",
-                        FlagImage = "starFrame.png",
-                     },
-
-                     new CustPolicy
-                     {
-                        PolicyNumber = "VM1115003410000519",
-                        AgentCode="111558" ,
-                        InsuredName = "Mr. S.L.S.GUNARATHNA",
-                        StartDate = "16-JUN-18",
-                        EndDate = "15-JUN-19",
-                        Department = "M",
-                        PolicyType = "M11",
-                        PolTypeDesc = "Motor - Comprehensive",
-                        VehicleNumber = "CAH 0945",
-                        PolTypeImage = "car.png",
-                        PolStatusImage = "tick.png",
-                        ClaimStatusImage = "tick.png",
-                        MobileNumber = "0766980982",
-                        MotorPolicy = true,
-                        FlagImage = "starFrame.png",
-                     },
-                   
-                 //   AlertColor =  Color.Green : Color.Blue,    This can be added to set alert dialog inside card data model
-                };
-
-            }
-        }       
+                    // return the items that need to be added
+                    return items;
+                },
+                OnCanLoadMore = () =>
+                {
+                    return PoliciesCollection.Count < _apiServices.policyCount;
+                }
+            };
+            _previousPolicy = null;
+            IsBusy2 = true;
+            var items2 = await _apiServices.GetPoliciesAsync(accessToken: Settings.AccessToken, pageIndex: 0, pageSize: PageSize);
+            IsBusy2 = false;
+            PoliciesCollection.AddRange(items2);
+            //PoliciesCollection = new InfiniteScrollCollection<CustPolicy>(items);
+            
+        }
 
         public void HideOrShowPolicy(CustPolicy policy)
         {
@@ -289,7 +140,7 @@ namespace Agent_App.ViewModels
                 //CustPolicy policy1 = PoliciesCollection.First(p => p.PolicyNumber == "G/010/PA/37241");
                 _previousPolicy = null;  // this should be done whenever policy collection regenerated.
                 
-                PoliciesCollection = new ObservableCollection<CustPolicy>
+                PoliciesCollection = new InfiniteScrollCollection<CustPolicy>
                 {                    
                     new CustPolicy
                     {
@@ -351,7 +202,7 @@ namespace Agent_App.ViewModels
             }
             else
             {
-                GeneratePolicies();
+                DownloadPoliciesAsync();
             }
 
         }
