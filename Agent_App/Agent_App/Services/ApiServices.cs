@@ -115,16 +115,23 @@ namespace Agent_App.Services
              var custPolicies = JsonConvert.DeserializeObject<List<CustPolicy>>(json);*/// Original code
 
             //---------------------only for testing---------------------------------------
-            if (SearchCriteria.Instance.PremiumsPending)
+
+            if (SearchCriteria.Instance.NewSearch)
             {
-                GeneratePoliciesPending();
+                if (SearchCriteria.Instance.PremiumsPending)
+                {
+                    GeneratePoliciesPending();
+                }
+                else
+                {
+                    GeneratePolicies();
+                }
+                await Task.Delay(2000);
+                policyCount = _policyList.Count;
+                SearchCriteria.Instance.NewSearch = false;
             }
-            else
-            {
-                GeneratePolicies();
-            }
-            await Task.Delay(2000);
-            policyCount = _policyList.Count;
+            
+            
             if (policyCount >= pageSize)
             {
                 return _policyList.Skip(pageIndex * pageSize).Take(pageSize).ToList();

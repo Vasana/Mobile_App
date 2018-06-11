@@ -31,6 +31,9 @@ namespace Agent_App
             {
                 SearchCriteria.Instance.PremiumsPending = false;
             }
+
+            SearchCriteria.Instance.NewSearch = true;
+
             //MessagingCenter.Send<MainPage, string>(, "SearchPolicy", "John");
             PopupNavigation.Instance.PopAsync(true);
         }

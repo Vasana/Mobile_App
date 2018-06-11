@@ -8,6 +8,7 @@ namespace Agent_App.Models
     {
         private static readonly SearchCriteria instance = new SearchCriteria();
 
+        public bool NewSearch { get; set; }
         public bool PremiumsPending { get; set; }
 
         private SearchCriteria() { }
