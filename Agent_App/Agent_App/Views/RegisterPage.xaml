@@ -17,9 +17,7 @@
                     <Entry Text="{Binding Password}" Placeholder="Enter Password" IsPassword="True" FontSize="20" PlaceholderColor="#CCC" TextColor="#555"/>
                     <Label Text="Confirm Password" TextColor="#555" FontSize="20" FontAttributes="Bold" />
                     <Entry Text="{Binding ConfirmPassword}" Placeholder="Confirm Password" IsPassword="True" FontSize="20" PlaceholderColor="#CCC" TextColor="#555"/>
-                    <Label Text="{Binding Message}" TextColor="Green" FontSize="20"  HorizontalTextAlignment="Center"/>
-                    <Button x:Name="BtnRegister" Command="{Binding RegisterCommand}" Text="Register" BorderColor="#C89400" BackgroundColor="#F4B400"/>
-                    <Button Text="Go to Login" Clicked="Button_Clicked" IsVisible="{Binding RegSuccess}" BorderColor="#C89400" BackgroundColor="#F4B400"/>
+                    <Button x:Name="BtnRegister" Command="{Binding RegisterCommand}" Clicked="BtnRegister_Clicked" Text="Register" BorderColor="#C89400" BackgroundColor="#F4B400"/>
                     
                 </StackLayout>
             </StackLayout>

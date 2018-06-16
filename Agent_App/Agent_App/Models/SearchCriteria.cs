@@ -10,6 +10,8 @@ namespace Agent_App.Models
 
         public bool NewSearch { get; set; }
         public bool PremiumsPending { get; set; }
+        public bool ClaimPending { get; set; }
+        public bool Flagged { get; set; }
 
         private SearchCriteria() { }
 

@@ -17,10 +17,9 @@
                     <Label Text="Username (Email)" TextColor="#555" FontSize="20" FontAttributes="Bold" />
                     <Entry Text="{Binding Username}" Placeholder="Enter Email" PlaceholderColor="#CCC" TextColor="#555" />
                     <Label Text="Password" TextColor="#555" FontSize="20" FontAttributes="Bold" />
-                    <Entry Text="{Binding Password}" Placeholder="Enter Password" IsPassword="True" FontSize="20" PlaceholderColor="#CCC" TextColor="#555"/>
-                    <Label Text="{Binding Message}" TextColor="Green" FontSize="20"  HorizontalTextAlignment="Center"/>
-                    <Button x:Name="BtnLogin" Command="{Binding LoginCommand}" Text="Login" BorderColor="#C89400" BackgroundColor="#F4B400"/>
-                    <Button Text="Go to Ideas page" Clicked="Button_Clicked" IsVisible="{Binding LoginSuccess}"/>
+                    <Entry Text="{Binding Password}" Placeholder="Enter Password" IsPassword="True" FontSize="20" PlaceholderColor="#CCC" TextColor="#555"/>                    
+                    <Button x:Name="BtnLogin" Command="{Binding LoginCommand}" Clicked="BtnLogin_Clicked" Text="Login" BorderColor="#C89400" BackgroundColor="#F4B400"/>
+                    
                 </StackLayout>
             </StackLayout>
         </ScrollView>
