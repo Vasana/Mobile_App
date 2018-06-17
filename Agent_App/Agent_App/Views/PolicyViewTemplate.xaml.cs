@@ -77,5 +77,22 @@ namespace Agent_App.Views
                 Application.Current.MainPage.DisplayAlert("Alert", "Error occured while performing function", "OK");
             }
         }
+
+        private async void btnPolicy_Clicked(object sender, EventArgs e)
+        {
+            var policy = BindingContext as CustPolicy;
+            var genPolVM = new GenPolViewModel(policy);
+
+            var genPolicyPage = new GenPolicyDetails
+            {
+                BindingContext = genPolVM
+            };
+
+            if (App.Current.MainPage is NavigationPage)
+            {
+                await (App.Current.MainPage as NavigationPage).PushAsync(genPolicyPage);
+            }
+                       
+        }
     }
 }

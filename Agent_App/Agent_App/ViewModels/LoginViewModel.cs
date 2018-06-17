@@ -75,7 +75,7 @@ namespace Agent_App.ViewModels
                        Message = "Logged in Successfully";
                        LoginSuccess = true;
                        //Application.Current.MainPage = new NavigationPage(new ExampleList());
-                       await Application.Current.MainPage.Navigation.PushAsync(new LandingPage());
+                       
 
                    }
                });

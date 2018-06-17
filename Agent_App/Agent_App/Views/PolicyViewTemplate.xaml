@@ -149,7 +149,7 @@
                         </Grid.RowDefinitions>
                         <Image x:Name="btnCall" Grid.Column="0" HorizontalOptions="Center" Source="call.png"></Image>
                         <Image x:Name="btnEmail" Grid.Column="1" HorizontalOptions="Center" Source="email.png"></Image>
-                        <Button Grid.Column="2" HorizontalOptions="Center" Text="Go to Policy" HeightRequest="30"/>
+                        <Button x:Name="btnPolicy" Clicked="btnPolicy_Clicked" Grid.Column="2"  HorizontalOptions="Center" Text="Go to Policy" HeightRequest="30"/>
                         <Image x:Name="btnReminder" Grid.Column="3" HorizontalOptions="Center" Source="{Binding FlagImage}"></Image>
                     </Grid>
                     <Label x:Name="lblMobileNo" Grid.Column="2" Text="{Binding MobileNumber}" IsVisible="False" />

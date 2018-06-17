@@ -16,11 +16,11 @@ namespace Agent_App.Views
 		{
 			InitializeComponent ();
             Title = "Login";
-        }
+        }        
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        private async void BtnLogin_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new IdeasPage());
+            await Navigation.PushAsync(new LandingPage());
         }
     }
 }

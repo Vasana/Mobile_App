@@ -9,11 +9,18 @@ using System.Net.Http.Headers;
 using System.Diagnostics;
 using Newtonsoft.Json.Linq;
 using Microsoft.CSharp.RuntimeBinder;
+using System.Linq;
 
 namespace Agent_App.Services
 {
     public class ApiServices
     {
+        private List<CustPolicy> _policyList;
+
+        public int policyCount = 0;
+
+        private GeneralPolicy _genPolicy;
+
         internal async Task<bool> RegisterAsync(string email, string password, string confirmPassword)
         {
             bool ret = false;
@@ -44,7 +51,7 @@ namespace Agent_App.Services
                 Console.WriteLine(e);
                 //throw;
             }
-            
+
             return ret;
         }
 
@@ -75,7 +82,7 @@ namespace Agent_App.Services
 
                 Debug.WriteLine(jwtResponse);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
                 //throw;
@@ -99,18 +106,679 @@ namespace Agent_App.Services
 
         }
 
-        public async Task<List<CustPolicy>> GetPoliciesAsync(string accessToken)
+        public async Task<List<CustPolicy>> GetPoliciesAsync(string accessToken, int pageIndex, int pageSize)
         {
-            var client = new HttpClient();
+            /* var client = new HttpClient();
 
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
-            var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/CustPolicies");
+             var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/CustPolicies");
 
-            var custPolicies = JsonConvert.DeserializeObject<List<CustPolicy>>(json);
+             var custPolicies = JsonConvert.DeserializeObject<List<CustPolicy>>(json);*/// Original code
 
-            return custPolicies;
+            //---------------------only for testing---------------------------------------
+
+            if (SearchCriteria.Instance.NewSearch)
+            {
+                if (SearchCriteria.Instance.PremiumsPending)
+                {
+                    GeneratePoliciesPending();
+                }
+                else if (SearchCriteria.Instance.ClaimPending)
+                {
+                    GenerateClaimPending();
+                }
+                else if (SearchCriteria.Instance.Flagged)
+                {
+                    GenerateFlagged();
+                }
+                else
+                {
+                    GeneratePolicies();
+                }
+
+                await Task.Delay(2000);
+                policyCount = _policyList.Count;
+
+                SearchCriteria.Instance.NewSearch = false;
+                SearchCriteria.Instance.PremiumsPending = false;
+                SearchCriteria.Instance.ClaimPending = false;
+                SearchCriteria.Instance.Flagged = false;
+
+            }
+
+            if (policyCount >= pageSize)
+            {
+                return _policyList.Skip(pageIndex * pageSize).Take(pageSize).ToList();
+            }
+            else
+            {
+                return _policyList;
+            }
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
 
         }
+
+        public async Task<GeneralPolicy> GetGenPolicyAsync(string accessToken, string dept, string policyNumber)
+        {
+            /* var client = new HttpClient();
+
+             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+             var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/CustPolicies");
+
+             var custPolicies = JsonConvert.DeserializeObject<List<CustPolicy>>(json);*/// Original code
+
+            //---------------------only for testing---------------------------------------
+            _genPolicy = new GeneralPolicy
+            {
+                PolicyNumber = "VM1115003410000519",
+                InsuredName = "H.K.K.T.DUMINDA",
+                Address = new List<string> { "No 2", "Temple Road", "Colombo 03" },
+                VehicleNumber = "DH 1234",
+                StartDate = "22-JUN-17",
+                EndDate = "22-JUN-18",
+                SumInsured = "G",
+                AdditionalCovers = new List<string> { "Cover 1", "Cover 2", "Cover 3" }
+            };
+
+            await Task.Delay(2000);
+            return _genPolicy;
+
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
+
+        }
+
+        public GeneralPolicy GenerateGenPolicy()
+        {
+            GeneralPolicy genPolicy = new GeneralPolicy
+            {
+                PolicyNumber = "VM1115003410000519",
+                InsuredName = "H.K.K.T.DUMINDA",
+                Address = { "No 2", "Temple Road", "Colombo 03" },
+                VehicleNumber = "DH 1234",
+                StartDate = "22-JUN-17",
+                EndDate = "22-JUN-18",
+                SumInsured = "G",
+                AdditionalCovers = { "Cover 1", "Cover 2", "Cover 3" },
+            };
+
+            return genPolicy;
+        }
+
+
+        private void GeneratePolicies()
+        {
+            // for (var i = 0; i < 10; i++)
+            {
+                _policyList = new List<CustPolicy>
+                {
+                    new CustPolicy
+                    {
+                         PolicyNumber = "VM1115003410000506",
+                         AgentCode="111558" ,
+                         InsuredName = "Mr. N.A.A.R. NEHTHASINGHE",
+                         StartDate = "12-JUN-18",
+                         EndDate = "11-JUN-19",
+                         Department = "M",
+                         PolicyType = "M11",
+                         PolTypeDesc = "Motor - Comprehensive",
+                         VehicleNumber = "CAG 8842",
+                         PolTypeImage = "car.png",
+                         PolStatusImage = "tick.png",
+                         ClaimStatusImage = "claim_pending.png",
+                         MobileNumber = "",
+                         MotorPolicy = true,
+                         FlagImage = "starFrame.png",
+                    },
+
+                     new CustPolicy
+                    {
+                         PolicyNumber = "G/010/AMP/17/00577",
+                         AgentCode="111558" ,
+                         InsuredName = "H.L.DIAS",
+                         StartDate = "13-JUN-18",
+                         EndDate = "12-JUN-19",
+                         Department = "G",
+                         PolicyType = "AMP",
+                         PolTypeDesc = "Annual Medical Plan",
+                         VehicleNumber = "",
+                         PolTypeImage = "health.png",
+                         PolStatusImage = "tick.png",
+                         ClaimStatusImage = "tick.png",
+                         MobileNumber = "0766980982",
+                         FlagImage = "starFrame.png",
+                     },
+
+                      new CustPolicy
+                    {
+                        PolicyNumber = "VM1115033710005662",
+                        AgentCode="111558" ,
+                        InsuredName = "Mr. S.M.W.S.B. KARUNAWARDENA",
+                        StartDate = "25-FEB-17",
+                        EndDate = "24-FEB-18",
+                        Department = "M",
+                        PolicyType = "M11",
+                        PolTypeDesc = "Motor - Comprehensive",
+                        VehicleNumber = "CAE 5077",
+                        PolTypeImage = "car.png",
+                        PolStatusImage = "alert_red.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        MotorPolicy = true,
+                        FlagImage = "starFrame.png",
+            },
+
+                       new CustPolicy
+                     {
+                        PolicyNumber = "A/11/0484596/010/P",
+                        AgentCode="111558" ,
+                        InsuredName = "Dr. T.R.C. RUBERU",
+                        StartDate = "14-MAY-18",
+                        EndDate = "13-MAY-19",
+                        Department = "M",
+                        PolicyType = "M11",
+                        PolTypeDesc = "Motor - Comprehensive",
+                        VehicleNumber = "KJ  7030",
+                        PolTypeImage = "car.png",
+                        PolStatusImage = "tick.png",
+                        ClaimStatusImage = "claim_pending.png",
+                        MobileNumber = "0766980982",
+                        MotorPolicy = true,
+                        FlagImage = "starFrame.png",
+            },
+
+                    new CustPolicy
+                    {
+                        PolicyNumber = "G/010/PA/37241",
+                        AgentCode="111558" ,
+                        InsuredName = "H.K.K.T.DUMINDA",
+                        StartDate = "22-JUN-17",
+                        EndDate = "22-JUN-18",
+                        Department = "G",
+                        PolicyType = "PA",
+                        PolTypeDesc = "Personal Accident",
+                        VehicleNumber = "",
+                        PolTypeImage = "life.png",
+                        PolStatusImage = "alert_yellow.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        FlagImage = "starFrame.png",
+                    },
+
+                        new CustPolicy
+                    {
+                        PolicyNumber = "G/094/AMP/17/00559",
+                        AgentCode="111558" ,
+                        InsuredName = "H.M.L.ANURADHA KARUNATHILAKE",
+                        StartDate = "17-MAY-18",
+                        EndDate = "16-MAY-19",
+                        Department = "G",
+                        PolicyType = "AMP",
+                        PolTypeDesc = "Annual Medical Plan",
+                        VehicleNumber = "",
+                        PolTypeImage = "health.png",
+                        PolStatusImage = "tick.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        FlagImage = "starFrame.png",
+                     },
+
+                     new CustPolicy
+                    {
+                        PolicyNumber = "VM1116001110000602",
+                        AgentCode="111558" ,
+                        InsuredName = "Mr. B.C.R.D.S DE SILVA",
+                        StartDate = "08-JUN-18",
+                        EndDate = "07-JUN-19",
+                        Department = "M",
+                        PolicyType = "M11",
+                        PolTypeDesc = "Motor - Comprehensive",
+                        VehicleNumber = "KY  5427",
+                        PolTypeImage = "car.png",
+                        PolStatusImage = "tick.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        MotorPolicy = true,
+                        FlagImage = "starFrame.png",
+                    },
+
+                      new CustPolicy
+                    {
+                        PolicyNumber = "FFBP170101000287",
+                        AgentCode="111558" ,
+                        InsuredName = "F.R.N Leitan",
+                        StartDate = "10-MAY-17",
+                        EndDate = "09-MAY-18",
+                        Department = "F",
+                        PolicyType = "FBP",
+                        PolTypeDesc = "Fire Policy",
+                        VehicleNumber = "",
+                        PolTypeImage = "car.png",
+                        PolStatusImage = "alert_red.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        FlagImage = "starFrame.png",
+                     },
+
+                     new CustPolicy
+                     {
+                        PolicyNumber = "GHC170101000031",
+                        AgentCode="111558" ,
+                        InsuredName = "W.A.D.N PERERA",
+                        StartDate = "02-JUN-18",
+                        EndDate = "02-JUN-19",
+                        Department = "G",
+                        PolicyType = "HC",
+                        PolTypeDesc = "Home Protect",
+                        VehicleNumber = "",
+                        PolTypeImage = "home.png",
+                        PolStatusImage = "tick.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        FlagImage = "starFrame.png",
+                     },
+
+                     new CustPolicy
+                     {
+                        PolicyNumber = "VM1115003410000519",
+                        AgentCode="111558" ,
+                        InsuredName = "Mr. S.L.S.GUNARATHNA",
+                        StartDate = "16-JUN-18",
+                        EndDate = "15-JUN-19",
+                        Department = "M",
+                        PolicyType = "M11",
+                        PolTypeDesc = "Motor - Comprehensive",
+                        VehicleNumber = "CAH 0945",
+                        PolTypeImage = "car.png",
+                        PolStatusImage = "tick.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        MotorPolicy = true,
+                        FlagImage = "starFrame.png",
+                     },
+
+
+                     new CustPolicy
+                    {
+                         PolicyNumber = "VM111500341000066765",
+                         AgentCode="111558" ,
+                         InsuredName = "Mr. N.A.A.R. NEHTHASINGHE",
+                         StartDate = "12-JUN-18",
+                         EndDate = "11-JUN-19",
+                         Department = "M",
+                         PolicyType = "M11",
+                         PolTypeDesc = "Motor - Comprehensive",
+                         VehicleNumber = "CAG 8842",
+                         PolTypeImage = "car.png",
+                         PolStatusImage = "tick.png",
+                         ClaimStatusImage = "claim_pending.png",
+                         MobileNumber = "",
+                         MotorPolicy = true,
+                         FlagImage = "starFrame.png",
+                    },
+
+                     new CustPolicy
+                    {
+                         PolicyNumber = "G/010/AMP/17/677887",
+                         AgentCode="111558" ,
+                         InsuredName = "H.L.DIAS",
+                         StartDate = "13-JUN-18",
+                         EndDate = "12-JUN-19",
+                         Department = "G",
+                         PolicyType = "AMP",
+                         PolTypeDesc = "Annual Medical Plan",
+                         VehicleNumber = "",
+                         PolTypeImage = "health.png",
+                         PolStatusImage = "tick.png",
+                         ClaimStatusImage = "tick.png",
+                         MobileNumber = "0766980982",
+                         FlagImage = "starFrame.png",
+                     },
+
+                      new CustPolicy
+                    {
+                        PolicyNumber = "VM11150337100011123",
+                        AgentCode="111558" ,
+                        InsuredName = "Mr. S.M.W.S.B. KARUNAWARDENA",
+                        StartDate = "25-FEB-17",
+                        EndDate = "24-FEB-18",
+                        Department = "M",
+                        PolicyType = "M11",
+                        PolTypeDesc = "Motor - Comprehensive",
+                        VehicleNumber = "CAE 5077",
+                        PolTypeImage = "car.png",
+                        PolStatusImage = "alert_red.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        MotorPolicy = true,
+                        FlagImage = "starFrame.png",
+            },
+
+                       new CustPolicy
+                     {
+                        PolicyNumber = "A/11/034665/010/P",
+                        AgentCode="111558" ,
+                        InsuredName = "Dr. T.R.C. RUBERU",
+                        StartDate = "14-MAY-18",
+                        EndDate = "13-MAY-19",
+                        Department = "M",
+                        PolicyType = "M11",
+                        PolTypeDesc = "Motor - Comprehensive",
+                        VehicleNumber = "KJ  7030",
+                        PolTypeImage = "car.png",
+                        PolStatusImage = "tick.png",
+                        ClaimStatusImage = "claim_pending.png",
+                        MobileNumber = "0766980982",
+                        MotorPolicy = true,
+                        FlagImage = "starFrame.png",
+            },
+
+                    new CustPolicy
+                    {
+                        PolicyNumber = "G/010/PA/344565",
+                        AgentCode="111558" ,
+                        InsuredName = "H.K.K.T.DUMINDA",
+                        StartDate = "22-JUN-17",
+                        EndDate = "22-JUN-18",
+                        Department = "G",
+                        PolicyType = "PA",
+                        PolTypeDesc = "Personal Accident",
+                        VehicleNumber = "",
+                        PolTypeImage = "life.png",
+                        PolStatusImage = "alert_yellow.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        FlagImage = "starFrame.png",
+                    },
+
+                        new CustPolicy
+                    {
+                        PolicyNumber = "G/094/AMP/17/034565",
+                        AgentCode="111558" ,
+                        InsuredName = "H.M.L.ANURADHA KARUNATHILAKE",
+                        StartDate = "17-MAY-18",
+                        EndDate = "16-MAY-19",
+                        Department = "G",
+                        PolicyType = "AMP",
+                        PolTypeDesc = "Annual Medical Plan",
+                        VehicleNumber = "",
+                        PolTypeImage = "health.png",
+                        PolStatusImage = "tick.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        FlagImage = "starFrame.png",
+                     },
+
+                     new CustPolicy
+                    {
+                        PolicyNumber = "VM11160011100045655",
+                        AgentCode="111558" ,
+                        InsuredName = "Mr. B.C.R.D.S DE SILVA",
+                        StartDate = "08-JUN-18",
+                        EndDate = "07-JUN-19",
+                        Department = "M",
+                        PolicyType = "M11",
+                        PolTypeDesc = "Motor - Comprehensive",
+                        VehicleNumber = "KY  5427",
+                        PolTypeImage = "car.png",
+                        PolStatusImage = "tick.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        MotorPolicy = true,
+                        FlagImage = "starFrame.png",
+                    },
+
+                      new CustPolicy
+                    {
+                        PolicyNumber = "FFBP17010100056776",
+                        AgentCode="111558" ,
+                        InsuredName = "F.R.N Leitan",
+                        StartDate = "10-MAY-17",
+                        EndDate = "09-MAY-18",
+                        Department = "F",
+                        PolicyType = "FBP",
+                        PolTypeDesc = "Fire Policy",
+                        VehicleNumber = "",
+                        PolTypeImage = "car.png",
+                        PolStatusImage = "alert_red.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        FlagImage = "starFrame.png",
+                     },
+
+                     new CustPolicy
+                     {
+                        PolicyNumber = "GHC170101000063",
+                        AgentCode="111558" ,
+                        InsuredName = "W.A.D.N PERERA",
+                        StartDate = "02-JUN-18",
+                        EndDate = "02-JUN-19",
+                        Department = "G",
+                        PolicyType = "HC",
+                        PolTypeDesc = "Home Protect",
+                        VehicleNumber = "",
+                        PolTypeImage = "home.png",
+                        PolStatusImage = "tick.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        FlagImage = "starFrame.png",
+                     },
+
+                     new CustPolicy
+                     {
+                        PolicyNumber = "VM1115003410007865",
+                        AgentCode="111558" ,
+                        InsuredName = "Mr. S.L.S.GUNARATHNA",
+                        StartDate = "16-JUN-18",
+                        EndDate = "15-JUN-19",
+                        Department = "M",
+                        PolicyType = "M11",
+                        PolTypeDesc = "Motor - Comprehensive",
+                        VehicleNumber = "CAH 0945",
+                        PolTypeImage = "car.png",
+                        PolStatusImage = "tick.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        MotorPolicy = true,
+                        FlagImage = "starFrame.png",
+                     },
+                   
+                 //   AlertColor =  Color.Green : Color.Blue,    This can be added to set alert dialog inside card data model
+                };
+
+            }
+        }
+
+        public void GeneratePoliciesPending()
+        {
+            _policyList = new List<CustPolicy>
+                {
+                    new CustPolicy
+                    {
+                        PolicyNumber = "G/010/PA/37241",
+                        AgentCode="111558" ,
+                        InsuredName = "H.K.K.T.DUMINDA",
+                        StartDate = "22-JUN-17",
+                        EndDate = "22-JUN-18",
+                        Department = "G",
+                        PolicyType = "PA",
+                        PolTypeDesc = "Personal Accident",
+                        VehicleNumber = "",
+                        PolTypeImage = "life.png",
+                        PolStatusImage = "alert_yellow.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        FlagImage = "starFrame.png",
+                    },
+
+                     new CustPolicy
+                     {
+                        PolicyNumber = "GHC170101000031",
+                        AgentCode="111558" ,
+                        InsuredName = "W.A.D.N PERERA",
+                        StartDate = "02-JUN-18",
+                        EndDate = "02-JUN-19",
+                        Department = "G",
+                        PolicyType = "HC",
+                        PolTypeDesc = "Home Protect",
+                        VehicleNumber = "",
+                        PolTypeImage = "home.png",
+                        PolStatusImage = "alert_yellow.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        FlagImage = "starFrame.png",
+                     },
+
+                     new CustPolicy
+                     {
+                        PolicyNumber = "VM1115003410000519",
+                        AgentCode="111558" ,
+                        InsuredName = "Mr. S.L.S.GUNARATHNA",
+                        StartDate = "16-JUN-18",
+                        EndDate = "15-JUN-19",
+                        Department = "M",
+                        PolicyType = "M11",
+                        PolTypeDesc = "Motor - Comprehensive",
+                        VehicleNumber = "CAH 0945",
+                        PolTypeImage = "car.png",
+                        PolStatusImage = "alert_yellow.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        MotorPolicy = true,
+                        FlagImage = "starFrame.png",
+                     },
+            };
+        }
+
+        public void GenerateClaimPending()
+        {
+            _policyList = new List<CustPolicy>
+                {
+                    new CustPolicy
+                    {
+                        PolicyNumber = "G/010/PA/37241",
+                        AgentCode="111558" ,
+                        InsuredName = "H.K.K.T.DUMINDA",
+                        StartDate = "22-JUN-17",
+                        EndDate = "22-JUN-18",
+                        Department = "G",
+                        PolicyType = "PA",
+                        PolTypeDesc = "Personal Accident",
+                        VehicleNumber = "",
+                        PolTypeImage = "life.png",
+                        PolStatusImage = "claim_pending.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        FlagImage = "starFrame.png",
+                    },
+
+                     new CustPolicy
+                     {
+                        PolicyNumber = "GHC170101000031",
+                        AgentCode="111558" ,
+                        InsuredName = "W.A.D.N PERERA",
+                        StartDate = "02-JUN-18",
+                        EndDate = "02-JUN-19",
+                        Department = "G",
+                        PolicyType = "HC",
+                        PolTypeDesc = "Home Protect",
+                        VehicleNumber = "",
+                        PolTypeImage = "home.png",
+                        PolStatusImage = "claim_pending.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        FlagImage = "starFrame.png",
+                     },
+
+                     new CustPolicy
+                     {
+                        PolicyNumber = "VM1115003410000519",
+                        AgentCode="111558" ,
+                        InsuredName = "Mr. S.L.S.GUNARATHNA",
+                        StartDate = "16-JUN-18",
+                        EndDate = "15-JUN-19",
+                        Department = "M",
+                        PolicyType = "M11",
+                        PolTypeDesc = "Motor - Comprehensive",
+                        VehicleNumber = "CAH 0945",
+                        PolTypeImage = "car.png",
+                        PolStatusImage = "claim_pending.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        MotorPolicy = true,
+                        FlagImage = "starFrame.png",
+                     },
+            };
+        }
+
+        public void GenerateFlagged()
+        {
+            _policyList = new List<CustPolicy>
+                {
+                    new CustPolicy
+                    {
+                        PolicyNumber = "G/010/PA/37241",
+                        AgentCode="111558" ,
+                        InsuredName = "H.K.K.T.DUMINDA",
+                        StartDate = "22-JUN-17",
+                        EndDate = "22-JUN-18",
+                        Department = "G",
+                        PolicyType = "PA",
+                        PolTypeDesc = "Personal Accident",
+                        VehicleNumber = "",
+                        PolTypeImage = "life.png",
+                        PolStatusImage = "tick.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        FlagImage = "filledStar.png",
+                        Flagged = true,
+                    },
+
+                     new CustPolicy
+                     {
+                        PolicyNumber = "GHC170101000031",
+                        AgentCode="111558" ,
+                        InsuredName = "W.A.D.N PERERA",
+                        StartDate = "02-JUN-18",
+                        EndDate = "02-JUN-19",
+                        Department = "G",
+                        PolicyType = "HC",
+                        PolTypeDesc = "Home Protect",
+                        VehicleNumber = "",
+                        PolTypeImage = "home.png",
+                        PolStatusImage = "tick.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        FlagImage = "filledStar.png",
+                        Flagged = true,
+                     },
+
+                     new CustPolicy
+                     {
+                        PolicyNumber = "VM1115003410000519",
+                        AgentCode="111558" ,
+                        InsuredName = "Mr. S.L.S.GUNARATHNA",
+                        StartDate = "16-JUN-18",
+                        EndDate = "15-JUN-19",
+                        Department = "M",
+                        PolicyType = "M11",
+                        PolTypeDesc = "Motor - Comprehensive",
+                        VehicleNumber = "CAH 0945",
+                        PolTypeImage = "car.png",
+                        PolStatusImage = "tick.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        MotorPolicy = true,
+                        FlagImage = "filledStar.png",
+                        Flagged = true,
+                     },
+            };
+        }
+
     }
 }
