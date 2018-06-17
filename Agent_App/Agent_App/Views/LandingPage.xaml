@@ -5,9 +5,9 @@
              x:Class="Agent_App.Views.LandingPage">
     <ContentPage.BindingContext>
         <viewModels:LandingPageModelView />
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext> 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="car.png" Text="Search" />
+        <ToolbarItem Icon="car.png" Text="Search" /> 
     </ContentPage.ToolbarItems>
     <!--  main page grid  -->
     <Grid RowSpacing="0">
