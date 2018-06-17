@@ -17,7 +17,7 @@ namespace Agent_App
             Settings.Password = "Rani@123";
 
             //setMainPage();
-			//MainPage = new NavigationPage(new LoginPage());
+			MainPage = new NavigationPage(new LoginPage());
 		}
 
         private void setMainPage()
