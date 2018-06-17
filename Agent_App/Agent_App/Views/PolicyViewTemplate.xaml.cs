@@ -25,12 +25,9 @@ namespace Agent_App.Views
             callImage.Tapped += CallImage_Tapped;
             //Associating tap events to the image buttons
             btnCall.GestureRecognizers.Add(callImage);
-
             
             var flagImage = new TapGestureRecognizer();
-
-            flagImage.Tapped += flagImage_Tapped;
-            
+            flagImage.Tapped += flagImage_Tapped;            
             btnReminder.GestureRecognizers.Add(flagImage);
         }
 
@@ -40,6 +37,8 @@ namespace Agent_App.Views
             PolicyFlagView flagView = new PolicyFlagView(policy.PolicyNumber, policy.AgentComment);
             flagView.Disappearing += FlagView_Disappearing;
             PopupNavigation.Instance.PushAsync(flagView);
+
+            //Device.BeginInvokeOnMainThread(async () => await PopupNavigation.Instance.PushAsync(flagView));
         }
 
         private void FlagView_Disappearing(object sender, EventArgs e)
