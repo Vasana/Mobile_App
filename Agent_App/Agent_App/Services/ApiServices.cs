@@ -10,6 +10,7 @@ using System.Diagnostics;
 using Newtonsoft.Json.Linq;
 using Microsoft.CSharp.RuntimeBinder;
 using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace Agent_App.Services
 {
@@ -186,6 +187,28 @@ namespace Agent_App.Services
 
             await Task.Delay(2000);
             return _genPolicy;
+
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
+
+        }
+
+        public async Task<ObservableCollection<CustPolicy>> GetTodaysGenrlRemindsAsync(string accessToken)
+        {
+            /* var client = new HttpClient();
+
+             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+             var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/CustPolicies");
+
+             var custPolicies = JsonConvert.DeserializeObject<List<CustPolicy>>(json);*/// Original code
+
+            //---------------------only for testing---------------------------------------
+            var remindList = GenerateFlaggedForToday();
+
+            await Task.Delay(2000);
+            return remindList;
 
             //-----------------------------------------------------------------------------------
 
@@ -778,6 +801,75 @@ namespace Agent_App.Services
                         Flagged = true,
                      },
             };
+        }
+
+        public ObservableCollection<CustPolicy> GenerateFlaggedForToday()
+        {
+            var polList = new ObservableCollection<CustPolicy>
+                {
+                    new CustPolicy
+                    {
+                        PolicyNumber = "G/010/PA/37241",
+                        AgentCode="111558" ,
+                        InsuredName = "H.K.K.T.DUMINDA",
+                        StartDate = "22-JUN-17",
+                        EndDate = "22-JUN-18",
+                        Department = "G",
+                        PolicyType = "PA",
+                        PolTypeDesc = "Personal Accident",
+                        VehicleNumber = "",
+                        PolTypeImage = "life.png",
+                        PolStatusImage = "tick.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        FlagImage = "filledStar.png",
+                        Flagged = true,
+                        AgentComment = "Have to call the customer and find out the issue in claim. need to know if all documents submitted and requirements completed.",
+                    },
+
+                     new CustPolicy
+                     {
+                        PolicyNumber = "GHC170101000031",
+                        AgentCode="111558" ,
+                        InsuredName = "W.A.D.N PERERA",
+                        StartDate = "02-JUN-18",
+                        EndDate = "02-JUN-19",
+                        Department = "G",
+                        PolicyType = "HC",
+                        PolTypeDesc = "Home Protect",
+                        VehicleNumber = "",
+                        PolTypeImage = "home.png",
+                        PolStatusImage = "tick.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        FlagImage = "filledStar.png",
+                        Flagged = true,
+                        AgentComment = "test comment, have to look into the claim pending",
+                     },
+
+                     new CustPolicy
+                     {
+                        PolicyNumber = "VM1115003410000519",
+                        AgentCode="111558" ,
+                        InsuredName = "Mr. S.L.S.GUNARATHNA",
+                        StartDate = "16-JUN-18",
+                        EndDate = "15-JUN-19",
+                        Department = "M",
+                        PolicyType = "M11",
+                        PolTypeDesc = "Motor - Comprehensive",
+                        VehicleNumber = "CAH 0945",
+                        PolTypeImage = "car.png",
+                        PolStatusImage = "tick.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        MotorPolicy = true,
+                        FlagImage = "filledStar.png",
+                        Flagged = true,
+
+                     },
+            };
+
+            return polList;
         }
 
     }

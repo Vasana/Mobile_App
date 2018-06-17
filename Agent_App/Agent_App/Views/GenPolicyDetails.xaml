@@ -12,6 +12,13 @@
             <Label Text="{Binding GenPolicy.PolicyNumber}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+
+            <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
+                            HorizontalOptions="Center" VerticalOptions="Center">
+                <ActivityIndicator.Scale>
+                    <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
+                </ActivityIndicator.Scale>
+            </ActivityIndicator>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

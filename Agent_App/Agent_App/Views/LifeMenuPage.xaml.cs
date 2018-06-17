@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -11,14 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace Agent_App.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LandingPage : CarouselPage
+	public partial class LifeMenuPage : ContentPage
 	{
-		public LandingPage ()
+		public LifeMenuPage ()
 		{
-            InitializeComponent();
-            Title = "Sales App";
-          
-        }
-
+			InitializeComponent ();
+            
+		}
 	}
 }
