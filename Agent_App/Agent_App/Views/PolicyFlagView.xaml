@@ -40,7 +40,7 @@
             <Image x:Name="btnExit" Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="End"  Source="close.jpg" HeightRequest="30" WidthRequest="30"></Image>
             <Entry x:Name="entComment" Grid.Row="1" Grid.ColumnSpan="2" VerticalOptions="End" Placeholder="Enter your comment"/>
             <Label Grid.Row="2" Grid.Column="0" VerticalTextAlignment="End" Text="Remind me On" FontSize="Medium"/>
-            <DatePicker Grid.Row="2" Grid.Column="1" x:Name="stFromDtPicker" VerticalOptions="End"/>
+            <DatePicker Grid.Row="2" Grid.Column="1" x:Name="remindDtPicker" VerticalOptions="End"/>
         </Grid>
 
         <Grid Padding="7">            

@@ -2,6 +2,7 @@
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace Agent_App.Views
         private string PolicyNumber { get; set; }
         private string Agentcomment { get; set; }
 
-        public PolicyFlagView (string policyNum, string comment)
+        public PolicyFlagView (string policyNum, string comment, string remindDate)
 		{
 			InitializeComponent ();
 
@@ -30,6 +31,11 @@ namespace Agent_App.Views
             if (Agentcomment != null)
             {
                 entComment.Text = Agentcomment;
+            }
+
+            if (remindDate != null)
+            {
+                remindDtPicker.Date = DateTime.ParseExact(remindDate, "dd-MMM-yyyy", CultureInfo.InvariantCulture);
             }
         }
 
@@ -47,6 +53,7 @@ namespace Agent_App.Views
                 PolicyFlag.Instance.Comment = entComment.Text.Trim();
             }
             PolicyFlag.Instance.Flagged = true;
+            PolicyFlag.Instance.RemindOnDate = remindDtPicker.Date.ToString("dd-MMM-yyyy");
 
             PopupNavigation.Instance.PopAsync(true);
         }

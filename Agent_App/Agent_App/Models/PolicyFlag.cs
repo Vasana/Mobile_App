@@ -11,6 +11,7 @@ namespace Agent_App.Models
         public string PolicyNumber { get; set; }
         public bool Flagged { get; set; }
         public string Comment { get; set; }
+        public string RemindOnDate { get; set; }
 
         private PolicyFlag() { }
 

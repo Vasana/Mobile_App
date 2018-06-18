@@ -34,7 +34,7 @@ namespace Agent_App.Views
         private void flagImage_Tapped(object sender, EventArgs e)
         {
             var policy = BindingContext as CustPolicy;
-            PolicyFlagView flagView = new PolicyFlagView(policy.PolicyNumber, policy.AgentComment);
+            PolicyFlagView flagView = new PolicyFlagView(policy.PolicyNumber, policy.AgentComment, policy.RemindOnDate);
             flagView.Disappearing += FlagView_Disappearing;
             PopupNavigation.Instance.PushAsync(flagView);
 

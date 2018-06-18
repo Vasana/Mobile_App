@@ -25,7 +25,7 @@ namespace Agent_App.Models
         public string AgentComment { get; set; }
         public bool Flagged { get; set; }
         public string FlagImage { get; set; }
-
+        public string RemindOnDate { get; set; }
 
         public Color BackgroundColor
         {
@@ -42,7 +42,8 @@ namespace Agent_App.Models
         {
             string policyNo = PolicyFlag.Instance.PolicyNumber;
             string comment = PolicyFlag.Instance.Comment;
-            bool flagged = PolicyFlag.Instance.Flagged;            
+            bool flagged = PolicyFlag.Instance.Flagged;
+            string remindOnDate = PolicyFlag.Instance.RemindOnDate;
 
             //string polNo = policy.PolicyNumber;
             if (this.PolicyNumber == policyNo)
@@ -57,11 +58,13 @@ namespace Agent_App.Models
                 {
                     this.FlagImage = "starFrame.png";
                 }
+                this.RemindOnDate = remindOnDate;
             }
 
             PolicyFlag.Instance.PolicyNumber = null;
             PolicyFlag.Instance.Comment = null;
             PolicyFlag.Instance.Flagged = false;
+            PolicyFlag.Instance.RemindOnDate = null;
         }
         
     }
