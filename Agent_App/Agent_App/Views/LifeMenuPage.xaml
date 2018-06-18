@@ -1,44 +1,75 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Agent_App.Views.LifeMenuPage">
-    <!--  main page grid  -->
-    <Grid RowSpacing="0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="50" />
-        </Grid.RowDefinitions>
+             x:Class="Agent_App.Views.LifeMenuPage"
+             xmlns:views="clr-namespace:Agent_App.Views"
+             xmlns:viewModel="clr-namespace:Agent_App.ViewModels">
+    
+    <ContentPage.BindingContext>
+        <viewModel:LifeMenuViewModel/>
+    </ContentPage.BindingContext>
+    <Grid>
+        <!--  main page grid  -->
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
 
-        <!--  row background colors  -->
-        <BoxView Grid.Row="0" Color="#3A444D" />
-        <BoxView Grid.Row="1" Color="#FFFFFF" />
-        <BoxView Grid.Row="2" Color="#3A444D" />
+            <!--  row background colors  -->
+            <BoxView Grid.Row="0" Color="#3A444D" />
+            <BoxView Grid.Row="1" Color="#FFFFFF" />
+            <BoxView Grid.Row="2" Color="#3A444D" />
 
-        <!--  title  -->
-        <Label FontSize="Large" HorizontalOptions="Center" Text="Life"
+            <!--  title  -->
+            <Label x:Name="lblTitle" FontSize="Large" HorizontalOptions="Center" Text="Life"
                TextColor="White" VerticalOptions="Center" />
 
-        <!--  inner grid for button layouts  -->
+            <!--  inner grid for button layouts  -->
 
-        <Grid Grid.Row="1" ColumnSpacing="30" HorizontalOptions="Center"
-              RowSpacing="30" VerticalOptions="Center">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <!--<RowDefinition Height="*" />-->
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-
-            <Button Grid.Row="0" Grid.Column="0" x:Name="BtnCusprof" Command="{Binding CustomersProfilesCommand}" BorderColor="LightGray" BorderWidth="1" BackgroundColor="White"  Image="customer.png"  />
-            <Button Grid.Row="0" Grid.Column="1" x:Name="BtnQuote" Command="{Binding GetQuotationCommand}" BackgroundColor="White"  BorderColor="LightGray" BorderWidth="1" Image="policy.png" />
+            <Grid Grid.Row="1" ColumnSpacing="20" HorizontalOptions="Center"
+              RowSpacing="20" VerticalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="300" />
+                    <RowDefinition Height="*" />
+                    <!--<RowDefinition Height="*" />-->
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
 
+                <Button Grid.Row="0" Grid.Column="0" x:Name="BtnCusprof" Command="{Binding CustomersProfilesCommand}" BorderColor="LightGray" BorderWidth="1" BackgroundColor="White"  Image="customer.png" HeightRequest="200"  />
+                <Button Grid.Row="0" Grid.Column="1" x:Name="BtnQuote" Command="{Binding GetQuotationCommand}" BackgroundColor="White"  BorderColor="LightGray" BorderWidth="1" Image="policy.png" HeightRequest="200"/>
+
+                <StackLayout Grid.Row="1" Grid.ColumnSpan="2">
+                    <Label FontSize="Medium" HorizontalOptions="Center" Text="Today's Reminders"
+                   TextColor="Black" VerticalOptions="Center" />
+                    <ListView x:Name="listView"   
+                      RowHeight="150" ItemTapped="listView_ItemTapped" 
+                      ItemsSource="{Binding PoliciesCollection}"  HasUnevenRows="True" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ContentView Padding="10" BackgroundColor="{Binding BackgroundColor}">
+                                        <views:GenRemindsTemplate/>
+                                    </ContentView>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+
+            </Grid>
         </Grid>
 
+        <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
+                            HorizontalOptions="Center" VerticalOptions="Center">
+            <ActivityIndicator.Scale>
+                <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
+            </ActivityIndicator.Scale>
+        </ActivityIndicator>
     </Grid>
 </ContentPage>

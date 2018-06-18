@@ -21,6 +21,7 @@ namespace Agent_App.Services
         public int policyCount = 0;
 
         private GeneralPolicy _genPolicy;
+        private LifePolicy _lifePolicy;
 
         internal async Task<bool> RegisterAsync(string email, string password, string confirmPassword)
         {
@@ -194,6 +195,38 @@ namespace Agent_App.Services
 
         }
 
+        public async Task<LifePolicy> GetLifePolicyAsync(string accessToken, string dept, string policyNumber)
+        {
+            /* var client = new HttpClient();
+
+             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+             var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/CustPolicies");
+
+             var custPolicies = JsonConvert.DeserializeObject<List<CustPolicy>>(json);*/// Original code
+
+            //---------------------only for testing---------------------------------------
+            _lifePolicy = new LifePolicy
+            {
+                PolicyNumber = "VM1115003410000519",
+                InsuredName = "H.K.K.T.DUMINDA",
+                Address = new List<string> { "No 2", "Temple Road", "Colombo 03" },
+               // VehicleNumber = "DH 1234",
+                StartDate = "22-JUN-17",
+                EndDate = "22-JUN-18",
+                SumInsured = "G",
+                AdditionalCovers = new List<string> { "Cover 1", "Cover 2", "Cover 3" }
+            };
+
+            await Task.Delay(2000);
+            return _lifePolicy;
+
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
+
+        }
+
         public async Task<ObservableCollection<CustPolicy>> GetTodaysGenrlRemindsAsync(string accessToken)
         {
             /* var client = new HttpClient();
@@ -206,6 +239,28 @@ namespace Agent_App.Services
 
             //---------------------only for testing---------------------------------------
             var remindList = GenerateFlaggedForToday();
+
+            await Task.Delay(2000);
+            return remindList;
+
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
+
+        }
+
+        public async Task<ObservableCollection<CustPolicy>> GetTodaysLifeRemindsAsync(string accessToken)
+        {
+            /* var client = new HttpClient();
+
+             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+             var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/CustPolicies");
+
+             var custPolicies = JsonConvert.DeserializeObject<List<CustPolicy>>(json);*/// Original code
+
+            //---------------------only for testing---------------------------------------
+            var remindList = GenerateFlaggedForTodayLife();
 
             await Task.Delay(2000);
             return remindList;
@@ -868,6 +923,79 @@ namespace Agent_App.Services
 
                      },
             };
+
+
+
+            return polList;
+        }
+
+        public ObservableCollection<CustPolicy> GenerateFlaggedForTodayLife()
+        {
+            var polList = new ObservableCollection<CustPolicy>
+                {
+                    new CustPolicy
+                    {
+                        PolicyNumber = "968264",
+                        AgentCode="111558" ,
+                        InsuredName = "H.K.K.T.DUMINDA",
+                        StartDate = "22-JUN-17",
+                        EndDate = "22-JUN-18",
+                        Department = "G",
+                        PolicyType = "PA",
+                        PolTypeDesc = "Praguna",
+                        VehicleNumber = "",
+                        PolTypeImage = "health.png",
+                        PolStatusImage = "tick.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        FlagImage = "filledStar.png",
+                        Flagged = true,
+                        AgentComment = "Have to call the customer and find out the issue in claim. need to know if all documents submitted and requirements completed.",
+                    },
+
+                     new CustPolicy
+                     {
+                        PolicyNumber = "13713",
+                        AgentCode="111558" ,
+                        InsuredName = "W.A.D.N PERERA",
+                        StartDate = "02-JUN-18",
+                        EndDate = "02-JUN-19",
+                        Department = "G",
+                        PolicyType = "HC",
+                        PolTypeDesc = "Divi Thilina",
+                        VehicleNumber = "",
+                        PolTypeImage = "health.png",
+                        PolStatusImage = "tick.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        FlagImage = "filledStar.png",
+                        Flagged = true,
+                        AgentComment = "test comment, have to look into the claim pending",
+                     },
+
+                     new CustPolicy
+                     {
+                        PolicyNumber = "931973",
+                        AgentCode="111558" ,
+                        InsuredName = "Mr. S.L.S.GUNARATHNA",
+                        StartDate = "16-JUN-18",
+                        EndDate = "15-JUN-19",
+                        Department = "M",
+                        PolicyType = "M11",
+                        PolTypeDesc = "Praguna",
+                        VehicleNumber = "CAH 0945",
+                        PolTypeImage = "health.png",
+                        PolStatusImage = "tick.png",
+                        ClaimStatusImage = "tick.png",
+                        MobileNumber = "0766980982",
+                        MotorPolicy = true,
+                        FlagImage = "filledStar.png",
+                        Flagged = true,
+
+                     },
+            };
+
+
 
             return polList;
         }

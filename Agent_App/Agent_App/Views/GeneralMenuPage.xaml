@@ -13,7 +13,7 @@
         <!--  main page grid  -->
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
+                <RowDefinition Height="80" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
@@ -32,7 +32,7 @@
             <Grid Grid.Row="1" ColumnSpacing="30" HorizontalOptions="Center"
               RowSpacing="30" VerticalOptions="Center">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="300" />
                     <RowDefinition Height="*" />
                     <!--<RowDefinition Height="*" />-->
                 </Grid.RowDefinitions>
