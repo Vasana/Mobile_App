@@ -1,17 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Agent_App.Views.GenPolicyDetails"
-             xmlns:viewModel="clr-namespace:Agent_App.ViewModels">
+             x:Class="Agent_App.Views.GenPolicyDetails">
 
     <Grid>
-        <StackLayout Margin="12"
+        <StackLayout Margin="50"
                  Padding="24"
                  BackgroundColor="White"
                  HorizontalOptions="Center"
                  VerticalOptions="StartAndExpand">
 
-            <Grid VerticalOptions="End" HorizontalOptions="Start" >
+            <Grid VerticalOptions="End" HorizontalOptions="Center" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
@@ -26,15 +25,16 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="15" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Row="0" Grid.Column="0" VerticalTextAlignment="End" Text="Policy Number" FontSize="Medium" />
-                <Label Grid.Row="0" Grid.Column="1" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.PolicyNumber}" FontSize="Medium"/>
+                <Label Grid.Row="0" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.PolicyNumber}" FontSize="Medium"/>
                 <Label Grid.Row="1" Grid.Column="0" VerticalTextAlignment="End" Text="Insured Name" FontSize="Medium"/>
-                <Label Grid.Row="1" Grid.Column="1" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.InsuredName}" FontSize="Medium"/>
+                <Label Grid.Row="1" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.InsuredName}" FontSize="Medium"/>
                 <Label Grid.Row="2" Grid.Column="0" VerticalTextAlignment="Start" Text="Address" FontSize="Medium"/>
-                <ListView Grid.Row="2" Grid.Column="1" ItemsSource="{Binding GenPolicy.Address}" RowHeight="30">
+                <ListView Grid.Row="2" Grid.Column="2" ItemsSource="{Binding GenPolicy.Address}" RowHeight="30">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -46,15 +46,15 @@
 
                 </ListView>
                 <Label Grid.Row="3" Grid.Column="0" VerticalTextAlignment="End" Text="Vehicle Number" FontSize="Medium"/>
-                <Label Grid.Row="3" Grid.Column="1" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.VehicleNumber}" FontSize="Medium"/>
+                <Label Grid.Row="3" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.VehicleNumber}" FontSize="Medium"/>
                 <Label Grid.Row="4" Grid.Column="0" VerticalTextAlignment="End" Text="Start Date" FontSize="Medium"/>
-                <Label Grid.Row="4" Grid.Column="1" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.StartDate}" FontSize="Medium"/>
+                <Label Grid.Row="4" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.StartDate}" FontSize="Medium"/>
                 <Label Grid.Row="5" Grid.Column="0" VerticalTextAlignment="End" Text="End Date" FontSize="Medium"/>
-                <Label Grid.Row="5" Grid.Column="1" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.EndDate}" FontSize="Medium"/>
+                <Label Grid.Row="5" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.EndDate}" FontSize="Medium"/>
                 <Label Grid.Row="6" Grid.Column="0" VerticalTextAlignment="End" Text="Sum Insured" FontSize="Medium"/>
-                <Label Grid.Row="6" Grid.Column="1" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.SumInsured}" FontSize="Medium"/>
+                <Label Grid.Row="6" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.SumInsured}" FontSize="Medium"/>
                 <Label Grid.Row="7" Grid.Column="0" VerticalTextAlignment="Start" Text="Additional covers" FontSize="Medium"/>
-                <ListView Grid.Row="7" Grid.Column="1" ItemsSource="{Binding GenPolicy.AdditionalCovers}" RowHeight="30">
+                <ListView Grid.Row="7" Grid.Column="2" ItemsSource="{Binding GenPolicy.AdditionalCovers}" RowHeight="30">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
