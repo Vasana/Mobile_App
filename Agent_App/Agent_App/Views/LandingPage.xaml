@@ -1,53 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:Agent_App.ViewModels"
+             xmlns:local="clr-namespace:Agent_App.Views"
              x:Class="Agent_App.Views.LandingPage">
-    <ContentPage.BindingContext>
-        <viewModels:LandingPageModelView />
-    </ContentPage.BindingContext> 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="car.png" Text="Search" /> 
-    </ContentPage.ToolbarItems>
-    <!--  main page grid  -->
-    <Grid RowSpacing="0">
-        <Grid.RowDefinitions> 
-            <RowDefinition Height="100" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="50" />
-        </Grid.RowDefinitions>
-
-        <!--  row background colors  -->
-        <BoxView Grid.Row="0" Color="#3A444D" />
-        <BoxView Grid.Row="1" Color="#FFFFFF" />
-        <BoxView Grid.Row="2" Color="#3A444D" />
-
-        <!--  title  -->
-        <Label FontSize="Large" HorizontalOptions="Center" Text="Sales App Menu"
-               TextColor="White" VerticalOptions="Center" />
-
-        <!--  inner grid for button layouts  -->
-
-            <Grid Grid.Row="1" ColumnSpacing="30" HorizontalOptions="Center"
-              RowSpacing="30" VerticalOptions="Center">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <!--<RowDefinition Height="*" />-->
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-
-            <Button Grid.Row="0" Grid.Column="0" x:Name="BtnCusprof" Command="{Binding CustomersProfilesCommand}" BorderColor="LightGray" BorderWidth="1" BackgroundColor="White"  Image="customer.png"  />
-            <Button Grid.Row="0" Grid.Column="1" x:Name="BtnQuote" Command="{Binding GetQuotationCommand}" BackgroundColor="White"  BorderColor="LightGray" BorderWidth="1" Image="policy.png" />
-            <Button Grid.Row="1" Grid.Column="0" x:Name="BtnProfile" Command="{Binding GetUserProfCommand}" BackgroundColor="White" BorderColor="LightGray" BorderWidth="1"  Image="user.png" />
-            <Button Grid.Row="1" Grid.Column="1" x:Name="GetSettingsCommand" Command="{Binding CustomersProfilesCommand}" BorderColor="LightGray" BorderWidth="1" BackgroundColor="White"  Image="settings.png" />
-            
-          
-        </Grid>
-            
-    </Grid>
-</ContentPage>
+    
+    <local:LifeMenuPage />
+    <local:GeneralMenuPage />
+    <local:CommonUtilsPage />
+</CarouselPage>

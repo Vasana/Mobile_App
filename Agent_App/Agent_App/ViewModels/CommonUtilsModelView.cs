@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace Agent_App.ViewModels
 {
-    public class LandingPageModelView
+    public class CommonUtilsModelView
     {
         public ICommand CustomersProfilesCommand
         {
