@@ -77,7 +77,7 @@
                 BackgroundColor="DeepPink"
                 Text="View Payment History"
                 TextColor="White" 
-                Clicked="btnPayHist_Clicked" />
+                Clicked="btnPayHist_Clicked"/>
 
                 <Button Grid.Row="2" x:Name="btnClaimHist"
                 BackgroundColor="DodgerBlue"
