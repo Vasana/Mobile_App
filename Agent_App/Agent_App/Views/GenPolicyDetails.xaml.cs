@@ -19,5 +19,10 @@ namespace Agent_App.Views
 			InitializeComponent();
             Title = "Policy Details";            
         }
-	}
+
+        private void btnPayHist_Clicked(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

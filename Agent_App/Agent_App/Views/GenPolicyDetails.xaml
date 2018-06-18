@@ -3,22 +3,95 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Agent_App.Views.GenPolicyDetails"
              xmlns:viewModel="clr-namespace:Agent_App.ViewModels">
-        
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Label Text="{Binding GenPolicy.PolicyNumber}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
 
-            <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
-                            HorizontalOptions="Center" VerticalOptions="Center">
-                <ActivityIndicator.Scale>
-                    <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
-                </ActivityIndicator.Scale>
-            </ActivityIndicator>
+    <Grid>
+        <StackLayout Margin="12"
+                 Padding="24"
+                 BackgroundColor="White"
+                 HorizontalOptions="Center"
+                 VerticalOptions="StartAndExpand">
+
+            <Grid VerticalOptions="End" HorizontalOptions="Start" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="125" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="150" />
+                    <RowDefinition Height="*" />
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" VerticalTextAlignment="End" Text="Policy Number" FontSize="Medium" />
+                <Label Grid.Row="0" Grid.Column="1" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.PolicyNumber}" FontSize="Medium"/>
+                <Label Grid.Row="1" Grid.Column="0" VerticalTextAlignment="End" Text="Insured Name" FontSize="Medium"/>
+                <Label Grid.Row="1" Grid.Column="1" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.InsuredName}" FontSize="Medium"/>
+                <Label Grid.Row="2" Grid.Column="0" VerticalTextAlignment="Start" Text="Address" FontSize="Medium"/>
+                <ListView Grid.Row="2" Grid.Column="1" ItemsSource="{Binding GenPolicy.Address}" RowHeight="30">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label FontSize="Medium"  TextColor="#336699"  Text="{Binding .}" 
+                            LineBreakMode="TailTruncation"></Label>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+                <Label Grid.Row="3" Grid.Column="0" VerticalTextAlignment="End" Text="Vehicle Number" FontSize="Medium"/>
+                <Label Grid.Row="3" Grid.Column="1" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.VehicleNumber}" FontSize="Medium"/>
+                <Label Grid.Row="4" Grid.Column="0" VerticalTextAlignment="End" Text="Start Date" FontSize="Medium"/>
+                <Label Grid.Row="4" Grid.Column="1" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.StartDate}" FontSize="Medium"/>
+                <Label Grid.Row="5" Grid.Column="0" VerticalTextAlignment="End" Text="End Date" FontSize="Medium"/>
+                <Label Grid.Row="5" Grid.Column="1" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.EndDate}" FontSize="Medium"/>
+                <Label Grid.Row="6" Grid.Column="0" VerticalTextAlignment="End" Text="Sum Insured" FontSize="Medium"/>
+                <Label Grid.Row="6" Grid.Column="1" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.SumInsured}" FontSize="Medium"/>
+                <Label Grid.Row="7" Grid.Column="0" VerticalTextAlignment="Start" Text="Additional covers" FontSize="Medium"/>
+                <ListView Grid.Row="7" Grid.Column="1" ItemsSource="{Binding GenPolicy.AdditionalCovers}" RowHeight="30">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label FontSize="Medium"  TextColor="#336699"  Text="{Binding .}" 
+                            LineBreakMode="TailTruncation"></Label>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+            <Grid Padding="7">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Button Grid.Row="0" x:Name="btnPayHist"
+                BackgroundColor="DeepPink"
+                Text="View Payment History"
+                TextColor="White" 
+                Clicked="btnPayHist_Clicked" />
+
+                <Button Grid.Row="2" x:Name="btnClaimHist"
+                BackgroundColor="DodgerBlue"
+                Text="View Claim History"
+                TextColor="White" 
+                Clicked="btnPayHist_Clicked"/>
+            </Grid>
         </StackLayout>
-    </ContentPage.Content>
+
+        <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
+                            HorizontalOptions="Center" VerticalOptions="Center">
+            <ActivityIndicator.Scale>
+                <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
+            </ActivityIndicator.Scale>
+        </ActivityIndicator>
+    </Grid>
 </ContentPage>

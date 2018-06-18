@@ -177,12 +177,12 @@ namespace Agent_App.Services
             {
                 PolicyNumber = "VM1115003410000519",
                 InsuredName = "H.K.K.T.DUMINDA",
-                Address = new List<string> { "No 2", "Temple Road", "Colombo 03" },
+                Address = new List<string> { "No 2", "Temple Road", "Manel Avenue", "Colombo 04" },
                 VehicleNumber = "DH 1234",
                 StartDate = "22-JUN-17",
                 EndDate = "22-JUN-18",
-                SumInsured = "G",
-                AdditionalCovers = new List<string> { "Cover 1", "Cover 2", "Cover 3" }
+                SumInsured = "Rs. 2500000.00",
+                AdditionalCovers = new List<string> { "Special Windscreen cover", "Voluntary Excess", "Terrorism cover" }
             };
 
             await Task.Delay(2000);
