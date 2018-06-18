@@ -10,7 +10,7 @@
     <!--  main page grid  -->
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
+            <RowDefinition Height="80" />
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
@@ -31,7 +31,6 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
-                <!--<RowDefinition Height="*" />-->
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -39,10 +38,12 @@
             </Grid.ColumnDefinitions>
 
 
-            <Button Grid.Row="0" Grid.Column="0" x:Name="BtnCusprof" Command="{Binding CustomersProfilesCommand}" BorderColor="LightGray" BorderWidth="1" BackgroundColor="White"  Image="customer.png"  />
-            <Button Grid.Row="0" Grid.Column="1" x:Name="BtnQuote" Command="{Binding GetQuotationCommand}" BackgroundColor="White"  BorderColor="LightGray" BorderWidth="1" Image="policy.png" />
-            <Button Grid.Row="1" Grid.Column="0" x:Name="BtnProfile" Command="{Binding GetUserProfCommand}" BackgroundColor="White" BorderColor="LightGray" BorderWidth="1"  Image="user.png" />
-            <Button Grid.Row="1" Grid.Column="1" x:Name="GetSettingsCommand" Command="{Binding CustomersProfilesCommand}" BorderColor="LightGray" BorderWidth="1" BackgroundColor="White"  Image="settings.png" />
+            <!--<Button Grid.Row="0" Grid.Column="0" x:Name="BtnCusprof" Command="{Binding CustomersProfilesCommand}" BorderColor="LightGray" BorderWidth="1" BackgroundColor="White"  Image="customer.png"  />
+            <Button Grid.Row="0" Grid.Column="1" x:Name="BtnQuote" Command="{Binding GetQuotationCommand}" BackgroundColor="White"  BorderColor="LightGray" BorderWidth="1" Image="policy.png" />-->
+            <Button Grid.Row="0" Grid.Column="0" x:Name="BtnProfile" Command="{Binding GetUserProfCommand}" BackgroundColor="White" BorderColor="LightGray" BorderWidth="1"  Image="user.png" />
+            <Button Grid.Row="0" Grid.Column="1" x:Name="GetSettingsCommand" Command="{Binding CustomersProfilesCommand}" BorderColor="LightGray" BorderWidth="1" BackgroundColor="White"  Image="settings.png" />
+            <Button Grid.Row="1" Grid.Column="0" x:Name="BtnCusprof" Command="{Binding CustomersProfilesCommand}" BorderColor="LightGray" BorderWidth="1" BackgroundColor="White"  Image="phone.png"  />
+            <Button Grid.Row="1" Grid.Column="1" x:Name="BtnQuote" Command="{Binding GetQuotationCommand}" BackgroundColor="White"  BorderColor="LightGray" BorderWidth="1" Image="products.png" />
 
 
         </Grid>
