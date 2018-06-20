@@ -110,13 +110,12 @@ namespace Agent_App.Services
 
         public async Task<List<CustPolicy>> GetPoliciesAsync(string accessToken, int pageIndex, int pageSize)
         {
-            /* var client = new HttpClient();
+             var client = new HttpClient();
 
              client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
-             var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/CustPolicies");
-
-             var custPolicies = JsonConvert.DeserializeObject<List<CustPolicy>>(json);*/// Original code
+            string json;
+            //List<CustPolicy> custPolicies;            
 
             //---------------------only for testing---------------------------------------
 
@@ -136,10 +135,12 @@ namespace Agent_App.Services
                 }
                 else
                 {
-                    GeneratePolicies();
+                    //GeneratePolicies();
+                    json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/agent/getpolicies");
+                    _policyList = JsonConvert.DeserializeObject<List<CustPolicy>>(json);
                 }
 
-                await Task.Delay(2000);
+                //await Task.Delay(2000);
                 policyCount = _policyList.Count;
 
                 SearchCriteria.Instance.NewSearch = false;

@@ -13,8 +13,8 @@ namespace Agent_App
 		{
 			InitializeComponent();
 
-            Settings.Username = "Rani@gmail.com";
-            Settings.Password = "Rani@123";
+            Settings.Username = "chandranathr@slic.lk";
+            Settings.Password = "Slic@123";
 
             //setMainPage(); 
 			MainPage = new NavigationPage(new LoginPage());

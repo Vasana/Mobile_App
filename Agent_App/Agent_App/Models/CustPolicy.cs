@@ -25,7 +25,7 @@ namespace Agent_App.Models
         public string AgentComment { get; set; }
         public bool Flagged { get; set; }
         public string FlagImage { get; set; }
-        public string RemindOnDate { get; set; }
+        public string RemindOnDate { get; set; } // yy/MM/dd
 
         public Color BackgroundColor
         {
