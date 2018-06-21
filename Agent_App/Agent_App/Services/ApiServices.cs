@@ -141,6 +141,7 @@ namespace Agent_App.Services
                     SearchCriteria.Instance.ClaimPending = false;
                     SearchCriteria.Instance.Flagged = false;
                     SearchCriteria.Instance.BadClaims = false;
+                    SearchCriteria.Instance.DebitOutstanding = false;
                     SearchCriteria.Instance.AllPolicies = false;
                     SearchCriteria.Instance.PolicyNumber = null;
                     SearchCriteria.Instance.VehicleNumber = null;

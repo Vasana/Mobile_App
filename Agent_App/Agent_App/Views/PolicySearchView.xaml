@@ -45,6 +45,7 @@
             <Picker Grid.Row="0" Grid.Column="1" x:Name="typePicker" VerticalOptions="End" Title="Search by Type" SelectedIndexChanged="typePicker_SelectedIndexChanged">
                 <Picker.Items>                    
                     <x:String>Premiums Pending</x:String>
+                    <x:String>Debit Outstanding</x:String>
                     <x:String>Claims Pending</x:String>
                     <x:String>Flagged by Me</x:String>
                     <x:String>Bad Claims</x:String>

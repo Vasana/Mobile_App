@@ -29,17 +29,21 @@ namespace Agent_App
             }
             else if (selectedIndex == 1)
             {
-                SearchCriteria.Instance.ClaimPending = true;
+                SearchCriteria.Instance.DebitOutstanding = true;
             }
             else if (selectedIndex == 2)
             {
-                SearchCriteria.Instance.Flagged = true;
+                SearchCriteria.Instance.ClaimPending = true;
             }
             else if (selectedIndex == 3)
             {
-                SearchCriteria.Instance.BadClaims = true;
+                SearchCriteria.Instance.Flagged = true;
             }
             else if (selectedIndex == 4)
+            {
+                SearchCriteria.Instance.BadClaims = true;
+            }
+            else if (selectedIndex == 5)
             {
                 SearchCriteria.Instance.AllPolicies = true;
             }
