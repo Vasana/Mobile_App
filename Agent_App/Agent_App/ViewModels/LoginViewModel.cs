@@ -74,7 +74,7 @@ namespace Agent_App.ViewModels
                        IsBusy = false;
                        Message = "Logged in Successfully";
                        LoginSuccess = true;
-                       //Application.Current.MainPage = new NavigationPage(new ExampleList());
+                       Application.Current.MainPage = new NavigationPage(new LandingPage());
                        
 
                    }

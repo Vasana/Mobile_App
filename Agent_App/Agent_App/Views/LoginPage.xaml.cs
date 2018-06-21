@@ -16,11 +16,7 @@ namespace Agent_App.Views
 		{
 			InitializeComponent ();
             Title = "Login";
-        }        
+        }   
 
-        private async void BtnLogin_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new LandingPage());
-        }
     }
 }

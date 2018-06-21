@@ -23,19 +23,40 @@ namespace Agent_App
         private void btnSubmit_Clicked(object sender, EventArgs e)
         {
             int selectedIndex = typePicker.SelectedIndex;
-            if (selectedIndex == 1)
+            if (selectedIndex == 0)
             {
                 SearchCriteria.Instance.PremiumsPending = true;
             }
-            else
+            else if (selectedIndex == 1)
             {
-                SearchCriteria.Instance.PremiumsPending = false;
+                SearchCriteria.Instance.ClaimPending = true;
+            }
+            else if (selectedIndex == 2)
+            {
+                SearchCriteria.Instance.Flagged = true;
+            }
+            else if (selectedIndex == 3)
+            {
+                SearchCriteria.Instance.BadClaims = true;
+            }
+            else if (selectedIndex == 4)
+            {
+                SearchCriteria.Instance.AllPolicies = true;
             }
 
             SearchCriteria.Instance.NewSearch = true;
 
             //MessagingCenter.Send<MainPage, string>(, "SearchPolicy", "John");
             PopupNavigation.Instance.PopAsync(true);
+        }
+
+        private void typePicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = typePicker.SelectedIndex;
+            if (selectedIndex == 4)
+            {
+                DisplayAlert("Search Alert", "Choosing All Policies may take a long time to process depending on the number of policies.", "OK");
+            }
         }
     }
 }
