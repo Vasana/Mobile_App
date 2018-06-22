@@ -35,25 +35,37 @@ namespace Agent_App.Views
         {
             var policy = BindingContext as CustPolicy;
             PolicyFlagView flagView = new PolicyFlagView(policy.PolicyNumber, policy.AgentComment, policy.RemindOnDate);
-            flagView.Disappearing += FlagView_Disappearing;
+            flagView.Disappearing += FlagView_DisappearingAsync;
             PopupNavigation.Instance.PushAsync(flagView);
 
             //Device.BeginInvokeOnMainThread(async () => await PopupNavigation.Instance.PushAsync(flagView));
         }
 
-        private void FlagView_Disappearing(object sender, EventArgs e)
+        private async void FlagView_DisappearingAsync(object sender, EventArgs e)
         {
             var policy = BindingContext as CustPolicy;
-            policy.SetFlag();
-            if (policy.Flagged)
+            PolicyFlag.Instance.AgentCode = policy.AgentCode;
+            PolicyFlag.Instance.CommentCreatedDate = policy.CommentCreatedDate;
+
+            bool ret = await policy.SetFlag();
+
+            if (ret)
             {
-                btnReminder.Source = "filledStar.jpg";
+                if (policy.Flagged)
+                {
+                    btnReminder.Source = "filledStar.jpg";
+                }
+                else
+                {
+                    btnReminder.Source = "starFrame.png";
+                }
             }
             else
             {
-                btnReminder.Source = "starFrame.png";
+               
             }
-            ((PolicyFlagView)sender).Disappearing -= FlagView_Disappearing;
+
+            ((PolicyFlagView)sender).Disappearing -= FlagView_DisappearingAsync;
         }
 
         // Use like click button event

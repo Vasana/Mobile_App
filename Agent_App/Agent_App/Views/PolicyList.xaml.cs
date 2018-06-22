@@ -77,10 +77,21 @@ namespace Agent_App.Views
             vm.DownloadPoliciesAsync();
             ((PolicySearchView)sender).Disappearing -= SearchView_Disappearing;
         }
-
-        private void ToolbarItem_Clicked(object sender, EventArgs e)
+                
+        private void btnDbitOuts_Clicked(object sender, EventArgs e)
         {
+            SearchCriteria.Instance.NewSearch = true;
+            SearchCriteria.Instance.DebitOutstanding = true;
+            var vm = BindingContext as PoliciesViewModel;
+            vm.DownloadPoliciesAsync();
+        }
 
+        private void btnBadClaims_Clicked(object sender, EventArgs e)
+        {
+            SearchCriteria.Instance.NewSearch = true;
+            SearchCriteria.Instance.BadClaims = true;
+            var vm = BindingContext as PoliciesViewModel;
+            vm.DownloadPoliciesAsync();
         }
     }
 }

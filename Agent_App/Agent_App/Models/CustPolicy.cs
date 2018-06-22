@@ -1,13 +1,16 @@
-﻿using System;
+﻿using Agent_App.Helpers;
+using Agent_App.Services;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 namespace Agent_App.Models
 {
     public class CustPolicy
     {
-        public string PolicyNumber { get; set; }
+        public string PolicyNumber { get; set; } 
         public string AgentCode { get; set; }
         public string InsuredName { get; set; }
         public string StartDate { get; set; }
@@ -17,15 +20,18 @@ namespace Agent_App.Models
         public string PolTypeDesc { get; set; }
         public string VehicleNumber { get; set; }
         public bool IsSelected { get; set; }
-        public string PolTypeImage { get; set; }
+        public string PolTypeImage { get; set; } 
         public string PolStatusImage { get; set; }
         public string ClaimStatusImage { get; set; }
         public string MobileNumber { get; set; }
         public bool MotorPolicy { get; set; }
-        public string AgentComment { get; set; }
+        public string AgentComment { get; set; } = "";
         public bool Flagged { get; set; }
         public string FlagImage { get; set; }
-        public string RemindOnDate { get; set; } // yy/MM/dd
+        public string RemindOnDate { get; set; } = "";// yyyy/MM/dd
+        public string CommentCreatedDate { get; set; } = "";
+
+        ApiServices _apiServices = new ApiServices();
 
         public Color BackgroundColor
         {
@@ -38,33 +44,38 @@ namespace Agent_App.Models
             }
         }
 
-        internal void SetFlag()
+        public async Task<bool> SetFlag()
         {
+            bool updated = false;
             string policyNo = PolicyFlag.Instance.PolicyNumber;
             string comment = PolicyFlag.Instance.Comment;
             bool flagged = PolicyFlag.Instance.Flagged;
             string remindOnDate = PolicyFlag.Instance.RemindOnDate;
 
-            //string polNo = policy.PolicyNumber;
-            if (this.PolicyNumber == policyNo)
+            bool ret = await _apiServices.FlagPolicyAsync(Settings.AccessToken);
+
+            if (ret)
             {
-                this.AgentComment = comment;
-                this.Flagged = flagged;
-                if (flagged)
+                //string polNo = policy.PolicyNumber;
+                if (this.PolicyNumber == policyNo)
                 {
-                    this.FlagImage = "filledStar.jpg";
+                    this.AgentComment = comment;
+                    this.Flagged = flagged;
+                    if (flagged)
+                    {
+                        this.FlagImage = "filledStar.jpg";
+                    }
+                    else
+                    {
+                        this.FlagImage = "starFrame.png";
+                    }
+                    this.RemindOnDate = remindOnDate;
+
+                    updated = true;
                 }
-                else
-                {
-                    this.FlagImage = "starFrame.png";
-                }
-                this.RemindOnDate = remindOnDate;
             }
 
-            PolicyFlag.Instance.PolicyNumber = null;
-            PolicyFlag.Instance.Comment = null;
-            PolicyFlag.Instance.Flagged = false;
-            PolicyFlag.Instance.RemindOnDate = null;
+            return updated;
         }
         
     }

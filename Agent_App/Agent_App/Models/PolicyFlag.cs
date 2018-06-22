@@ -8,10 +8,12 @@ namespace Agent_App.Models
     {
         private static readonly PolicyFlag instance = new PolicyFlag();
 
-        public string PolicyNumber { get; set; }
+        public string PolicyNumber { get; set; } = "";
+        public string AgentCode { get; set; }
         public bool Flagged { get; set; }
-        public string Comment { get; set; }
-        public string RemindOnDate { get; set; }
+        public string Comment { get; set; } = "";
+        public string RemindOnDate { get; set; } = "";// yyyy/MM/dd
+        public string CommentCreatedDate { get; set; } = "";
 
         private PolicyFlag() { }
 

@@ -57,6 +57,7 @@ namespace Agent_App.ViewModels
         public PoliciesViewModel()
         {
             SearchCriteria.Instance.NewSearch = true;
+            SearchCriteria.Instance.TopTen = true;
             DownloadPoliciesAsync();
         }
 

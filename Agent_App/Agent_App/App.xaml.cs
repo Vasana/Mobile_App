@@ -16,8 +16,8 @@ namespace Agent_App
             Settings.Username = "chandranathr@slic.lk";
             Settings.Password = "Slic@123";
 
-            setMainPage(); 
-			//MainPage = new NavigationPage(new LoginPage());
+            //setMainPage(); 
+			MainPage = new NavigationPage(new LoginPage());
 		}
 
         private void setMainPage()

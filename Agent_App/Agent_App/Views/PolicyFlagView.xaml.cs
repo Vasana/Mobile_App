@@ -33,9 +33,9 @@ namespace Agent_App.Views
                 entComment.Text = Agentcomment;
             }
 
-            if (remindDate != null)
+            if (remindDate != null && remindDate != "")
             {
-                remindDtPicker.Date = DateTime.ParseExact(remindDate, "yy/MM/dd", CultureInfo.InvariantCulture);
+                remindDtPicker.Date = DateTime.ParseExact(remindDate, "yyyy/MM/dd", CultureInfo.InvariantCulture);
             }
         }
 
@@ -53,8 +53,8 @@ namespace Agent_App.Views
                 PolicyFlag.Instance.Comment = entComment.Text.Trim();
             }
             PolicyFlag.Instance.Flagged = true;
-            PolicyFlag.Instance.RemindOnDate = remindDtPicker.Date.ToString("yy/MM/dd");
-
+            PolicyFlag.Instance.RemindOnDate = remindDtPicker.Date.ToString("yyyy/MM/dd");
+           
             PopupNavigation.Instance.PopAsync(true);
         }
 

@@ -15,10 +15,14 @@ namespace Agent_App.Models
         public bool BadClaims { get; set; }
         public bool DebitOutstanding { get; set; }
         public bool AllPolicies { get; set; }
-        public string PolicyNumber { get; set; }
-        public string VehicleNumber { get; set; }               
-        public string StartFromDt { get; set; } // yy/MM/dd
-        public string StartToDt { get; set; }// yy/MM/dd
+        public string PolicyNumber { get; set; } = "";
+        public string VehicleNumber { get; set; } = "";
+        public string StartFromDt { get; set; } = ""; // yyyy/MM/dd
+        public string StartToDt { get; set; } = ""; // yyyy/MM/dd
+        public bool TopTen { get; set; }
+
+
+        //---- when adding a field update the apiServices.GetPoliciesAsync method to re-initilize the field
 
         private SearchCriteria() { }
 

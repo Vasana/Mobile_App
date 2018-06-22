@@ -111,28 +111,26 @@ namespace Agent_App.Services
         public async Task<List<CustPolicy>> GetPoliciesAsync(string accessToken, int pageIndex, int pageSize)
         {
             try
-            {
+            {                
                 if (SearchCriteria.Instance.NewSearch)
                 {
+                    _policyList = null;
+                     var json = JsonConvert.SerializeObject(SearchCriteria.Instance);
+                     HttpContent requestContent = new StringContent(json);
+                     requestContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                     var client = new HttpClient();
+                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+                     HttpResponseMessage response = new HttpResponseMessage();
+                     response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/agent/getpolicies", requestContent);
                     
-                    var json = JsonConvert.SerializeObject(SearchCriteria.Instance);
-                    HttpContent requestContent = new StringContent(json);
-                    requestContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-                    var client = new HttpClient();
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
-
-                    HttpResponseMessage response = new HttpResponseMessage();
-                    response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/agent/getpolicies", requestContent);
-
-                    
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var responseContent = await response.Content.ReadAsStringAsync();
-                        _policyList = JsonConvert.DeserializeObject<List<CustPolicy>>(responseContent);
-                    }                    
-
-                    
+                     if (response.IsSuccessStatusCode)
+                     {
+                         var responseContent = await response.Content.ReadAsStringAsync();
+                         _policyList = JsonConvert.DeserializeObject<List<CustPolicy>>(responseContent);
+                     }                    
+                     
                     //GeneratePolicies();
                     policyCount = _policyList.Count;
 
@@ -143,10 +141,11 @@ namespace Agent_App.Services
                     SearchCriteria.Instance.BadClaims = false;
                     SearchCriteria.Instance.DebitOutstanding = false;
                     SearchCriteria.Instance.AllPolicies = false;
-                    SearchCriteria.Instance.PolicyNumber = null;
-                    SearchCriteria.Instance.VehicleNumber = null;
-                    SearchCriteria.Instance.StartFromDt = null;
-                    SearchCriteria.Instance.StartToDt = null;
+                    SearchCriteria.Instance.PolicyNumber = "";
+                    SearchCriteria.Instance.VehicleNumber = "";
+                    SearchCriteria.Instance.StartFromDt = "";
+                    SearchCriteria.Instance.StartToDt = "";
+                    SearchCriteria.Instance.TopTen = false;
 
                 }
             }
@@ -166,8 +165,45 @@ namespace Agent_App.Services
             //-----------------------------------------------------------------------------------
 
             //return custPolicies; --- Original code
-
         }
+
+        
+        public async Task<bool> FlagPolicyAsync(string accessToken)
+        {
+            bool ret = false;
+            try
+            {               
+                var json = JsonConvert.SerializeObject(PolicyFlag.Instance);
+                HttpContent requestContent = new StringContent(json);
+                requestContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                var client = new HttpClient();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+                HttpResponseMessage response = new HttpResponseMessage();
+                response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/AddComment", requestContent);
+
+
+                if (response.IsSuccessStatusCode)
+                {
+                    ret = true;
+                }                 
+               
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                //throw;
+            }
+
+            PolicyFlag.Instance.PolicyNumber = "";
+            PolicyFlag.Instance.Flagged = false;
+            PolicyFlag.Instance.Comment = "";
+            PolicyFlag.Instance.RemindOnDate = "";
+
+            return ret;          
+
+        } 
 
         public async Task<GeneralPolicy> GetGenPolicyAsync(string accessToken, string dept, string policyNumber)
         {

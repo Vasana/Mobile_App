@@ -42,7 +42,7 @@
             </Grid.ColumnDefinitions>
             
             <Label Grid.Row="0" Grid.Column="0" VerticalTextAlignment="End" Text="Policy Status" FontSize="Medium"></Label>
-            <Picker Grid.Row="0" Grid.Column="1" x:Name="typePicker" VerticalOptions="End" Title="Search by Type" SelectedIndexChanged="typePicker_SelectedIndexChanged">
+            <Picker Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="typePicker" VerticalOptions="End" Title="Search by Type" SelectedIndexChanged="typePicker_SelectedIndexChanged">
                 <Picker.Items>                    
                     <x:String>Premiums Pending</x:String>
                     <x:String>Debit Outstanding</x:String>
@@ -53,9 +53,12 @@
                 </Picker.Items>
             </Picker>
             <Label Grid.Row="1" Grid.Column="0" VerticalTextAlignment="End" Text="Policy Number" FontSize="Medium"/>
-            <Entry Grid.Row="1" Grid.Column="1" x:Name="entPolicyNumber" VerticalOptions="End"/>
+            <Entry Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" x:Name="entPolicyNumber" VerticalOptions="End"/>
             <Label Grid.Row="2" Grid.Column="0" VerticalTextAlignment="End" Text="Vehicle Number" FontSize="Medium"/>
-            <Entry Grid.Row="2" Grid.Column="1" x:Name="entVehicleNumber" VerticalOptions="End"/>
+            <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+                <Entry x:Name="entVehiNum1" Placeholder="XXX" VerticalOptions="End"/>
+                <Entry x:Name="entVehiNum2" Placeholder="9999" VerticalOptions="End"/>
+            </StackLayout>
             <Label Grid.Row="3" Grid.Column="0" VerticalTextAlignment="End" Text="Start Date" FontSize="Medium"/>
             <DatePicker Grid.Row="3" Grid.Column="1" x:Name="stFromDtPicker" Date="{x:Static system:DateTime.MinValue}" VerticalOptions="End"/>
             <Label Grid.Row="3" Grid.Column="2" VerticalTextAlignment="End" Text="To" FontSize="Medium"/>

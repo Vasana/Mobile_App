@@ -10,8 +10,10 @@
         <viewModel:PoliciesViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="alert_yellow.png" Text="Payment Pending" Clicked="btnPayPend_Clicked"/>
+        <ToolbarItem Icon="alert_yellow.png" Text="Premium Pending" Clicked="btnPayPend_Clicked"/>
+        <ToolbarItem Icon="debitOutstd.png" Text="Debit Outstanding" Clicked="btnDbitOuts_Clicked"/>
         <ToolbarItem Icon="claim_pending.png" Text="Claim Pending" Clicked="btnClaimPend_Clicked"/>
+        <ToolbarItem Icon="badClaims.jpg" Text="Bad Claims" Clicked="btnBadClaims_Clicked"/>
         <ToolbarItem Icon="filledStar.jpg" Text="Flagged" Clicked="btnFlagged_Clicked"/>
         <ToolbarItem Icon="search.jpg" Text="Search" Clicked="btnSearch_Clicked"/>
     </ContentPage.ToolbarItems>
