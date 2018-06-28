@@ -52,7 +52,15 @@ namespace Agent_App.Models
             bool flagged = PolicyFlag.Instance.Flagged;
             string remindOnDate = PolicyFlag.Instance.RemindOnDate;
 
-            bool ret = await _apiServices.FlagPolicyAsync(Settings.AccessToken);
+            bool ret;
+            if (flagged)
+            {
+                ret = await _apiServices.FlagPolicyAsync(Settings.AccessToken);
+            }
+            else
+            {
+                ret = await _apiServices.UnFlagPolicyAsync(Settings.AccessToken);
+            }
 
             if (ret)
             {

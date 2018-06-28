@@ -64,10 +64,17 @@
             <Label Grid.Row="3" Grid.Column="2" VerticalTextAlignment="End" Text="To" FontSize="Medium"/>
             <DatePicker Grid.Row="3" Grid.Column="3" x:Name="stToDtPicker" Date="{x:Static system:DateTime.MaxValue}" VerticalOptions="End"/>
         </Grid>
-    <Button x:Name="btnSubmit"
-                BackgroundColor="DodgerBlue"
-                Text="Search"
-                TextColor="White" 
-                Clicked="btnSubmit_Clicked"/>
+        <StackLayout Orientation="Horizontal">
+            <Button x:Name="btnSubmit"
+                    BackgroundColor="DodgerBlue"
+                    Text="Search"
+                    TextColor="White" 
+                    Clicked="btnSubmit_Clicked"/>
+            <Button x:Name="btnClear"
+                    BackgroundColor="DeepPink"
+                    Text="Clear"
+                    TextColor="White" 
+                    Clicked="btnClear_Clicked"/>
+        </StackLayout>
     </StackLayout>
 </pages:PopupPage>

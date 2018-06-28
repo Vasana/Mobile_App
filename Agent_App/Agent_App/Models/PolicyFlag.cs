@@ -15,6 +15,8 @@ namespace Agent_App.Models
         public string RemindOnDate { get; set; } = "";// yyyy/MM/dd
         public string CommentCreatedDate { get; set; } = "";
 
+        //---- when adding a field update the apiServices.FlagPolicyAsync, apiServices.UnFlagPolicyAsync method to re-initilize the field
+
         private PolicyFlag() { }
 
         public static PolicyFlag Instance

@@ -38,8 +38,18 @@ namespace Agent_App.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public bool _isBusy;
+
+        public bool LoginEnabled
+        {
+            get { return _loginEnabled; }
+            set
+            {
+                _loginEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool _loginEnabled = true;
 
         public string Message
         {
@@ -60,10 +70,12 @@ namespace Agent_App.ViewModels
                 return new Command(async() =>
                {
                    IsBusy = true;
+                   LoginEnabled = false; 
                    var accessToken =  await _apiServices.LoginAsync(Username, Password);
 
+                   LoginEnabled = true;
                    if (accessToken == null)
-                   {
+                   {                       
                        IsBusy = false;
                        LoginSuccess = false;
                        Message = "Login failed";                       

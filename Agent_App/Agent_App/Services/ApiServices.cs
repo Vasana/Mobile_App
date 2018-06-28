@@ -129,12 +129,20 @@ namespace Agent_App.Services
                      {
                          var responseContent = await response.Content.ReadAsStringAsync();
                          _policyList = JsonConvert.DeserializeObject<List<CustPolicy>>(responseContent);
-                     }                    
-                     
+                     }
+
                     //GeneratePolicies();
-                    policyCount = _policyList.Count;
+                    if (_policyList != null)
+                    {
+                        policyCount = _policyList.Count;
+                    }
+                    else
+                    {
+                        policyCount = 0;
+                    }
 
                     SearchCriteria.Instance.NewSearch = false;
+                    SearchCriteria.Instance.BusinessType = "";
                     SearchCriteria.Instance.PremiumsPending = false;
                     SearchCriteria.Instance.ClaimPending = false;
                     SearchCriteria.Instance.Flagged = false;
@@ -146,6 +154,7 @@ namespace Agent_App.Services
                     SearchCriteria.Instance.StartFromDt = "";
                     SearchCriteria.Instance.StartToDt = "";
                     SearchCriteria.Instance.TopTen = false;
+                    SearchCriteria.Instance.TodayReminders = false;
 
                 }
             }
@@ -197,13 +206,54 @@ namespace Agent_App.Services
             }
 
             PolicyFlag.Instance.PolicyNumber = "";
+            PolicyFlag.Instance.AgentCode = "";
             PolicyFlag.Instance.Flagged = false;
             PolicyFlag.Instance.Comment = "";
             PolicyFlag.Instance.RemindOnDate = "";
+            PolicyFlag.Instance.CommentCreatedDate = "";
 
-            return ret;          
+            return ret;         
 
-        } 
+        }
+
+        public async Task<bool> UnFlagPolicyAsync(string accessToken)
+        {
+            bool ret = false;
+            try
+            {
+                var json = JsonConvert.SerializeObject(PolicyFlag.Instance);
+                HttpContent requestContent = new StringContent(json);
+                requestContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                var client = new HttpClient();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+                HttpResponseMessage response = new HttpResponseMessage();
+                response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/DeleteComment", requestContent);
+
+
+                if (response.IsSuccessStatusCode)
+                {
+                    ret = true;
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                //throw;
+            }
+
+            PolicyFlag.Instance.PolicyNumber = "";
+            PolicyFlag.Instance.AgentCode = "";
+            PolicyFlag.Instance.Flagged = false;
+            PolicyFlag.Instance.Comment = "";
+            PolicyFlag.Instance.RemindOnDate = "";
+            PolicyFlag.Instance.CommentCreatedDate = "";
+
+            return ret;
+
+        }
 
         public async Task<GeneralPolicy> GetGenPolicyAsync(string accessToken, string dept, string policyNumber)
         {

@@ -96,7 +96,7 @@ namespace Agent_App
                 stFromDtPicker.IsEnabled = false;
                 stToDtPicker.IsEnabled = false;
 
-                if (selectedIndex == 4)
+                if (selectedIndex == 5)
                 {
                     DisplayAlert("Search Alert", "Choosing All Policies may take a long time to process depending on the number of policies.", "OK");
                 }
@@ -109,6 +109,16 @@ namespace Agent_App
                 stFromDtPicker.IsEnabled = true;
                 stToDtPicker.IsEnabled = true;
             }
+        }
+
+        private void btnClear_Clicked(object sender, EventArgs e)
+        {
+            typePicker.SelectedIndex = -1;
+            entPolicyNumber.Text = "";
+            entVehiNum1.Text = "";
+            entVehiNum2.Text = "";
+            stFromDtPicker.Date = minPickerDate;
+            stToDtPicker.Date = maxPickerDate;
         }
     }
 }
