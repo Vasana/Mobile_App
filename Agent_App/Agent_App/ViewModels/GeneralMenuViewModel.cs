@@ -11,15 +11,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.Extended;
 
 namespace Agent_App.ViewModels
 {
     class GeneralMenuViewModel: INotifyPropertyChanged
     {
+        private const int PageSize = 10;
         ApiServices _apiServices = new ApiServices();
         public CustPolicy _previousPolicy;
 
-        public ObservableCollection<CustPolicy> PoliciesCollection
+        public InfiniteScrollCollection<CustPolicy> PoliciesCollection
         {
             get { return _policies; }
             set
@@ -28,7 +30,7 @@ namespace Agent_App.ViewModels
                 OnPropertyChanged();
             }
         }
-        public ObservableCollection<CustPolicy> _policies;
+        public InfiniteScrollCollection<CustPolicy> _policies;
 
         public bool IsBusy
         {
@@ -43,19 +45,41 @@ namespace Agent_App.ViewModels
 
         public GeneralMenuViewModel()
         {
+            SearchCriteria.Instance.NewSearch = true;
+            SearchCriteria.Instance.TodayReminders = true;
             DownloadPoliciesAsync();            
         }
 
         public async Task DownloadPoliciesAsync()
         {
+            PoliciesCollection = new InfiniteScrollCollection<CustPolicy>
+            {
+                OnLoadMore = async () =>
+                {
+                    IsBusy = true;
 
+                    // load the next page
+                    var page = PoliciesCollection.Count / PageSize;
+
+                    var items = await _apiServices.GetPoliciesAsync(Settings.AccessToken, page, PageSize);
+
+                    IsBusy = false;
+
+                    // return the items that need to be added
+                    return items;
+                },
+                OnCanLoadMore = () =>
+                {
+                    return PoliciesCollection.Count < _apiServices.policyCount;
+                }
+            };
             _previousPolicy = null;
             IsBusy = true;
-            PoliciesCollection = await _apiServices.GetTodaysGenrlRemindsAsync(accessToken: Settings.AccessToken);
+            var items2 = await _apiServices.GetPoliciesAsync(accessToken: Settings.AccessToken, pageIndex: 0, pageSize: PageSize);
             IsBusy = false;
-            
-            //PoliciesCollection = new InfiniteScrollCollection<CustPolicy>(items);
+            PoliciesCollection.AddRange(items2);
 
+            //PoliciesCollection = new InfiniteScrollCollection<CustPolicy>(items);
         }
 
         public void HideOrShowPolicy(CustPolicy policy)

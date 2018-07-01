@@ -93,5 +93,23 @@ namespace Agent_App.Views
             var vm = BindingContext as PoliciesViewModel;
             vm.DownloadPoliciesAsync();
         }
+
+        private void btnMotor_Clicked(object sender, EventArgs e)
+        {
+            SearchCriteria.Instance.NewSearch = true;
+            SearchCriteria.Instance.AllPolicies = true;
+            SearchCriteria.Instance.BusinessType = "M";
+            var vm = BindingContext as PoliciesViewModel;
+            vm.DownloadPoliciesAsync();
+        }
+
+        private void btnNonMotor_Clicked(object sender, EventArgs e)
+        {
+            SearchCriteria.Instance.NewSearch = true;
+            SearchCriteria.Instance.AllPolicies = true; //Policies in any policy status
+            SearchCriteria.Instance.BusinessType = "G";
+            var vm = BindingContext as PoliciesViewModel;
+            vm.DownloadPoliciesAsync();
+        }
     }
 }

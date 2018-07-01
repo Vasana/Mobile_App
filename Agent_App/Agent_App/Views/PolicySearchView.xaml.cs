@@ -21,39 +21,53 @@ namespace Agent_App
 		public PolicySearchView ()
 		{
 			InitializeComponent ();
+            BusiTypePicker.SelectedIndex = 0;
             minPickerDate = stFromDtPicker.Date;
             maxPickerDate = stToDtPicker.Date;
-		}
+
+            entPolicyNumber.IsEnabled = false;
+            entVehiNum1.IsEnabled = false;
+            entVehiNum2.IsEnabled = false;
+            stFromDtPicker.IsEnabled = false;
+            stToDtPicker.IsEnabled = false;
+        }
 
         private void btnSubmit_Clicked(object sender, EventArgs e)
         {
             try
             {
-                int selectedIndex = typePicker.SelectedIndex;
-                if (selectedIndex == 0)
+                int busiType = BusiTypePicker.SelectedIndex;
+
+                if(busiType == 1)
+                {
+                    SearchCriteria.Instance.BusinessType = "M";
+                }
+                else if (busiType == 2)
+                {
+                    SearchCriteria.Instance.BusinessType = "G";
+                }
+
+                int policyStatus = typePicker.SelectedIndex;
+                if (policyStatus == 0)
                 {
                     SearchCriteria.Instance.PremiumsPending = true;
                 }
-                else if (selectedIndex == 1)
+                else if (policyStatus == 1)
                 {
                     SearchCriteria.Instance.DebitOutstanding = true;
                 }
-                else if (selectedIndex == 2)
+                else if (policyStatus == 2)
                 {
                     SearchCriteria.Instance.ClaimPending = true;
                 }
-                else if (selectedIndex == 3)
+                else if (policyStatus == 3)
                 {
                     SearchCriteria.Instance.Flagged = true;
                 }
-                else if (selectedIndex == 4)
+                else if (policyStatus == 4)
                 {
                     SearchCriteria.Instance.BadClaims = true;
-                }
-                else if (selectedIndex == 5)
-                {
-                    SearchCriteria.Instance.AllPolicies = true;
-                }
+                }                
 
                 if (entPolicyNumber.Text != null)
                 {
@@ -68,13 +82,13 @@ namespace Agent_App
                // {
                     SearchCriteria.Instance.StartFromDt = stFromDtPicker.Date.ToString("yyyy/MM/dd");
                     SearchCriteria.Instance.StartToDt = stToDtPicker.Date.ToString("yyyy/MM/dd");
-               // }
+                // }
 
-                SearchCriteria.Instance.NewSearch = true;
-                if (selectedIndex == -1)
+                if (policyStatus == -1)
                 {
                     SearchCriteria.Instance.AllPolicies = true;
                 }
+                SearchCriteria.Instance.NewSearch = true;                
 
                 //MessagingCenter.Send<MainPage, string>(, "SearchPolicy", "John");
                 PopupNavigation.Instance.PopAsync(true);
@@ -96,10 +110,10 @@ namespace Agent_App
                 stFromDtPicker.IsEnabled = false;
                 stToDtPicker.IsEnabled = false;
 
-                if (selectedIndex == 5)
-                {
-                    DisplayAlert("Search Alert", "Choosing All Policies may take a long time to process depending on the number of policies.", "OK");
-                }
+                //if (selectedIndex == 5)
+                //{
+                //    DisplayAlert("Search Alert", "Choosing All Policies may take a long time to process depending on the number of policies.", "OK");
+                //}
             }
             else
             {
@@ -114,11 +128,33 @@ namespace Agent_App
         private void btnClear_Clicked(object sender, EventArgs e)
         {
             typePicker.SelectedIndex = -1;
-            entPolicyNumber.Text = "";
-            entVehiNum1.Text = "";
-            entVehiNum2.Text = "";
+            entPolicyNumber.Text = null;
+            entVehiNum1.Text = null;
+            entVehiNum2.Text = null;
             stFromDtPicker.Date = minPickerDate;
             stToDtPicker.Date = maxPickerDate;
+        }
+
+        private void BusiTypePicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = BusiTypePicker.SelectedIndex;
+
+            if (selectedIndex != 0)
+            {
+                entPolicyNumber.IsEnabled = true;
+                entVehiNum1.IsEnabled = true;
+                entVehiNum2.IsEnabled = true;
+                stFromDtPicker.IsEnabled = true;
+                stToDtPicker.IsEnabled = true;
+            }
+            else
+            {
+                entPolicyNumber.IsEnabled = false;
+                entVehiNum1.IsEnabled = false;
+                entVehiNum2.IsEnabled = false;
+                stFromDtPicker.IsEnabled = false;
+                stToDtPicker.IsEnabled = false;
+            }
         }
     }
 }

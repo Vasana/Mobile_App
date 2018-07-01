@@ -3,9 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Agent_App.ViewModels"
              x:Class="Agent_App.Views.CommonUtilsPage">
-    <ContentPage.BindingContext>
-        <viewModels:CommonUtilsModelView />
-    </ContentPage.BindingContext>
     
     <!--  main page grid  -->
     <Grid RowSpacing="0">
@@ -40,11 +37,10 @@
 
             <!--<Button Grid.Row="0" Grid.Column="0" x:Name="BtnCusprof" Command="{Binding CustomersProfilesCommand}" BorderColor="LightGray" BorderWidth="1" BackgroundColor="White"  Image="customer.png"  />
             <Button Grid.Row="0" Grid.Column="1" x:Name="BtnQuote" Command="{Binding GetQuotationCommand}" BackgroundColor="White"  BorderColor="LightGray" BorderWidth="1" Image="policy.png" />-->
-            <Button Grid.Row="0" Grid.Column="0" x:Name="BtnProfile" Command="{Binding GetUserProfCommand}" BackgroundColor="White" BorderColor="LightGray" BorderWidth="1"  Image="user.png" />
-            <Button Grid.Row="0" Grid.Column="1" x:Name="GetSettingsCommand" Command="{Binding CustomersProfilesCommand}" BorderColor="LightGray" BorderWidth="1" BackgroundColor="White"  Image="settings.png" />
-            <Button Grid.Row="1" Grid.Column="0" x:Name="BtnCusprof" Command="{Binding CustomersProfilesCommand}" BorderColor="LightGray" BorderWidth="1" BackgroundColor="White"  Image="phone.png"  />
-            <Button Grid.Row="1" Grid.Column="1" x:Name="BtnQuote" Command="{Binding GetQuotationCommand}" BackgroundColor="White"  BorderColor="LightGray" BorderWidth="1" Image="products.png" />
-
+            <Button Grid.Row="0" Grid.Column="0" x:Name="BtnProfile" Clicked="BtnProfile_Clicked" BackgroundColor="White" BorderColor="LightGray" BorderWidth="1"  Image="user.png" />
+            <Button Grid.Row="1" Grid.Column="0" x:Name="BtnBranches" Clicked="BtnBranches_Clicked"  BorderColor="LightGray" BorderWidth="1" BackgroundColor="White"  Image="phone.png"  />
+            <Button Grid.Row="1" Grid.Column="1" x:Name="BtnPromotions" Clicked="BtnPromotions_Clicked" BackgroundColor="White"  BorderColor="LightGray" BorderWidth="1" Image="products.png" />
+            <Button Grid.Row="0" Grid.Column="1" x:Name="btnSettings" Clicked="btnSettings_Clicked" BorderColor="LightGray" BorderWidth="1" BackgroundColor="White"  Image="settings.png" />
 
         </Grid>
 
