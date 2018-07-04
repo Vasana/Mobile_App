@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
+             x:Class="Agent_App.Views.AgentSelf"
+             xmlns:vm="clr-namespace:Agent_App.ViewModels"
+             xmlns:vm1="clr-namespace:Agent_App.Models">
+    <ContentPage.BindingContext>
+        <vm1:SelfEvaluation/>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <!--<AbsoluteLayout>
+           
+            <Label Text="Annual Income"/>
+          
+       </AbsoluteLayout>-->
+
+        <Grid VerticalOptions="FillAndExpand"
+          Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="500" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="500" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <oxy:PlotView Model="{Binding AreaModelNoPol}"
+                   HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand" Grid.Row="1" />
+
+            <oxy:PlotView Model="{Binding AreaModelAnnualInc}"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand" Grid.Row="3"/>
+        </Grid>
+    </ScrollView>
+</ContentPage>

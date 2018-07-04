@@ -15,6 +15,7 @@ namespace Agent_App.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
+            OxyPlot.Xamarin.Forms.Platform.Android.PlotViewRenderer.Init();
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
