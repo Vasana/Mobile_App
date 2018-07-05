@@ -28,6 +28,7 @@ namespace Agent_App.UWP
         /// </summary>
         public App()
         {
+            OxyPlot.Xamarin.Forms.Platform.UWP.PlotViewRenderer.Init();
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
