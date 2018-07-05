@@ -81,6 +81,7 @@ namespace Agent_App.Views
         private void btnDbitOuts_Clicked(object sender, EventArgs e)
         {
             SearchCriteria.Instance.NewSearch = true;
+            SearchCriteria.Instance.BusinessType = "M";
             SearchCriteria.Instance.DebitOutstanding = true;
             var vm = BindingContext as PoliciesViewModel;
             vm.DownloadPoliciesAsync();

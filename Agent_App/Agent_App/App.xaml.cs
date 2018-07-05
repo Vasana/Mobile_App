@@ -14,7 +14,7 @@ namespace Agent_App
 		{
 			InitializeComponent();
             
-            Settings.Username = "chandranathr@slic.lk";
+            Settings.Username = "virajb@slic.lk";
             Settings.Password = "Slic@123";
 
             //setMainPage(); 
