@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Agent_App.Views.BranchContactsPage"
+             xmlns:viewModel="clr-namespace:Agent_App.ViewModels"
+             xmlns:local="clr-namespace:Agent_App.Helpers"
+             Title="Branch Contacts">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:StringToBoolConverter x:Key="StringToBool" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.BindingContext>
+        <viewModel:BranchCntViewModel />        
+    </ContentPage.BindingContext>
+    <Grid>
+        <StackLayout>
+            <SearchBar x:Name="SearchBranch" TextChanged="SearchBranch_TextChanged" />
+            <ListView x:Name="LvBranches" HasUnevenRows="True" ItemsSource="{Binding BranchesList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame>
+                                <Frame.BorderColor>
+                                    <OnPlatform x:TypeArguments="Color"
+                                                Android="Gray"
+                                                iOS="Gray"/>
+                                </Frame.BorderColor>                               
+                               
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding Name}" 
+                               TextColor="Navy"
+                               FontSize="20"/>
+                                    <Label Text="{Binding Address}" 
+                               TextColor="Navy"
+                               FontSize="15"/>
+                                    <StackLayout Orientation="Horizontal" Spacing="20">
+                                        <Button x:Name="cntNum1" 
+                                            Text="{Binding ContactNumber1}"
+                                            Clicked="cntNum1_Clicked"
+                                            IsVisible="{Binding ContactNumber1, Converter={StaticResource StringToBool}}"
+                                           TextColor="Navy"
+                                            FontSize="Small"/>
+                                        <Button x:Name="cntNum2" 
+                                            Text="{Binding ContactNumber2}" 
+                                            Clicked="cntNum2_Clicked"
+                                            IsVisible="{Binding ContactNumber2, Converter={StaticResource StringToBool}}"
+                                           TextColor="Navy"
+                                            FontSize="Small"/>
+                                        <Button x:Name="cntNum3" 
+                                            Text="{Binding ContactNumber3}" 
+                                            Clicked="cntNum3_Clicked"
+                                            IsVisible="{Binding ContactNumber3, Converter={StaticResource StringToBool}}"
+                                           TextColor="Navy"
+                                            FontSize="Small"/>
+                                        <Button x:Name="cntNum4" 
+                                            Text="{Binding ContactNumber4}" 
+                                            Clicked="cntNum4_Clicked"
+                                            IsVisible="{Binding ContactNumber4, Converter={StaticResource StringToBool}}"
+                                           TextColor="Navy"
+                                            FontSize="Small"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
+                            HorizontalOptions="Center" VerticalOptions="Center">
+            <ActivityIndicator.Scale>
+                <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
+            </ActivityIndicator.Scale>
+        </ActivityIndicator>
+    </Grid>
+</ContentPage>

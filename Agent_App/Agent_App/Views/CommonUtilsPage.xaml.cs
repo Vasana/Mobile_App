@@ -17,5 +17,25 @@ namespace Agent_App.Views
 			InitializeComponent ();
             Title = "Common Menu";
         }
-	}
+
+        private void BtnProfile_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnBranches_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new BranchContactsPage());
+        }
+
+        private void BtnPromotions_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSettings_Clicked(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

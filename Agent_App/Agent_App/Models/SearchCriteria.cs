@@ -9,13 +9,13 @@ namespace Agent_App.Models
         private static readonly SearchCriteria instance = new SearchCriteria();
 
         public bool NewSearch { get; set; }
-        public string BusinessType { get; set; }
+        public string BusinessType { get; set; } = "A";
         public bool PremiumsPending { get; set; }
         public bool ClaimPending { get; set; }
         public bool Flagged { get; set; }
         public bool BadClaims { get; set; }
         public bool DebitOutstanding { get; set; }
-        public bool AllPolicies { get; set; }
+        public bool AllPolicies { get; set; } // Policies in any policy status
         public string PolicyNumber { get; set; } = "";
         public string VehicleNumber { get; set; } = "";
         public string StartFromDt { get; set; } = ""; // yyyy/MM/dd
