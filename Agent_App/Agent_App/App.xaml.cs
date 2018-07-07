@@ -3,7 +3,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Agent_App.Views;
 using Agent_App.Helpers;
-using DLToolkit.Forms.Controls;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace Agent_App

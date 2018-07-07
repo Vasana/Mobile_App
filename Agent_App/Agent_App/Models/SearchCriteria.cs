@@ -22,8 +22,7 @@ namespace Agent_App.Models
         public string StartToDt { get; set; } = ""; // yyyy/MM/dd
         public bool TopTen { get; set; }
         public bool TodayReminders { get; set; }
-
-
+        public string MobileNumber { get; set; } = "";
         //---- when adding a field update the apiServices.GetPoliciesAsync method to re-initilize the field
 
         private SearchCriteria() { }

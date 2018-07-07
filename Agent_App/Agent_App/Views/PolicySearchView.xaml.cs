@@ -30,6 +30,7 @@ namespace Agent_App
             entVehiNum2.IsEnabled = false;
             stFromDtPicker.IsEnabled = false;
             stToDtPicker.IsEnabled = false;
+            entMobileNumber.IsEnabled = false;
         }
 
         private void btnSubmit_Clicked(object sender, EventArgs e)
@@ -69,18 +70,23 @@ namespace Agent_App
                     SearchCriteria.Instance.BadClaims = true;
                 }                
 
-                if (entPolicyNumber.Text != null)
+                if (entPolicyNumber.Text.Trim() != null)
                 {
                     SearchCriteria.Instance.PolicyNumber = entPolicyNumber.Text.Trim();
                 }
-                if (entVehiNum1.Text != null || entVehiNum2.Text != null)
+                if (entVehiNum1.Text.Trim() != null || entVehiNum2.Text.Trim() != null)
                 {
                     SearchCriteria.Instance.VehicleNumber = entVehiNum1.Text.Trim() + " " + entVehiNum2.Text.Trim();
                 }
+                if (entMobileNumber.Text.Trim() != null)
+                {                    
+                    int mobileNo = int.Parse(entMobileNumber.Text.Trim());                   
+                    SearchCriteria.Instance.MobileNumber = entMobileNumber.Text.Trim();
+                }
 
-               // if (stFromDtPicker.Date != minPickerDate || stToDtPicker.Date != maxPickerDate)
-               // {
-                    SearchCriteria.Instance.StartFromDt = stFromDtPicker.Date.ToString("yyyy/MM/dd");
+                // if (stFromDtPicker.Date != minPickerDate || stToDtPicker.Date != maxPickerDate)
+                // {
+                SearchCriteria.Instance.StartFromDt = stFromDtPicker.Date.ToString("yyyy/MM/dd");
                     SearchCriteria.Instance.StartToDt = stToDtPicker.Date.ToString("yyyy/MM/dd");
                 // }
 
@@ -96,6 +102,21 @@ namespace Agent_App
             catch
             {
                 DisplayAlert("Search Error", "Invalid Search Options.", "OK");
+                SearchCriteria.Instance.NewSearch = false;
+                SearchCriteria.Instance.BusinessType = "A";
+                SearchCriteria.Instance.PremiumsPending = false;
+                SearchCriteria.Instance.ClaimPending = false;
+                SearchCriteria.Instance.Flagged = false;
+                SearchCriteria.Instance.BadClaims = false;
+                SearchCriteria.Instance.DebitOutstanding = false;
+                SearchCriteria.Instance.AllPolicies = false;
+                SearchCriteria.Instance.PolicyNumber = "";
+                SearchCriteria.Instance.VehicleNumber = "";
+                SearchCriteria.Instance.StartFromDt = "";
+                SearchCriteria.Instance.StartToDt = "";
+                SearchCriteria.Instance.TopTen = false;
+                SearchCriteria.Instance.TodayReminders = false;
+                SearchCriteria.Instance.MobileNumber = "";
             }
         }
 
@@ -109,6 +130,7 @@ namespace Agent_App
                 entVehiNum2.IsEnabled = false;
                 stFromDtPicker.IsEnabled = false;
                 stToDtPicker.IsEnabled = false;
+                entMobileNumber.IsEnabled = false;
 
                 //if (selectedIndex == 5)
                 //{
@@ -122,6 +144,7 @@ namespace Agent_App
                 entVehiNum2.IsEnabled = true;
                 stFromDtPicker.IsEnabled = true;
                 stToDtPicker.IsEnabled = true;
+                entMobileNumber.IsEnabled = true;
             }
         }
 
@@ -133,6 +156,7 @@ namespace Agent_App
             entVehiNum2.Text = null;
             stFromDtPicker.Date = minPickerDate;
             stToDtPicker.Date = maxPickerDate;
+            entMobileNumber.Text = null;
         }
 
         private void BusiTypePicker_SelectedIndexChanged(object sender, EventArgs e)
@@ -146,6 +170,7 @@ namespace Agent_App
                 entVehiNum2.IsEnabled = true;
                 stFromDtPicker.IsEnabled = true;
                 stToDtPicker.IsEnabled = true;
+                entMobileNumber.IsEnabled = true;
             }
             else
             {
@@ -154,6 +179,67 @@ namespace Agent_App
                 entVehiNum2.IsEnabled = false;
                 stFromDtPicker.IsEnabled = false;
                 stToDtPicker.IsEnabled = false;
+                entMobileNumber.IsEnabled = false;
+            }
+        }
+
+        private void entMobileNumber_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (entMobileNumber.Text.Trim() != "")
+            {
+                entPolicyNumber.IsEnabled = false;
+                entVehiNum1.IsEnabled = false;
+                entVehiNum2.IsEnabled = false;
+            }
+            else
+            {
+                entPolicyNumber.IsEnabled = true;
+                entVehiNum1.IsEnabled = true;
+                entVehiNum2.IsEnabled = true;
+            }
+        }
+
+        private void entPolicyNumber_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (entPolicyNumber.Text.Trim() != "")
+            {
+                entMobileNumber.IsEnabled = false;
+                entVehiNum1.IsEnabled = false;
+                entVehiNum2.IsEnabled = false;
+            }
+            else
+            {
+                entMobileNumber.IsEnabled = true;
+                entVehiNum1.IsEnabled = true;
+                entVehiNum2.IsEnabled = true;
+            }
+        }
+
+        private void entVehiNum1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (entVehiNum1.Text.Trim() != "")
+            {
+                entMobileNumber.IsEnabled = false;
+                entPolicyNumber.IsEnabled = false;                
+            }
+            else
+            {
+                entMobileNumber.IsEnabled = true;
+                entPolicyNumber.IsEnabled = true;                
+            }
+        }
+
+        private void entVehiNum2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (entVehiNum2.Text.Trim() != "")
+            {
+                entMobileNumber.IsEnabled = false;
+                entPolicyNumber.IsEnabled = false;
+            }
+            else
+            {
+                entMobileNumber.IsEnabled = true;
+                entPolicyNumber.IsEnabled = true;
             }
         }
     }
