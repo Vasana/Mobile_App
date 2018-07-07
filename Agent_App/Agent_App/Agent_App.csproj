@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DLToolkit.Forms.Controls.FlowListView" Version="2.0.11" />
     <PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
     <EmbeddedResource Remove="Views\AgentPerfomance.xaml" />
   </ItemGroup>

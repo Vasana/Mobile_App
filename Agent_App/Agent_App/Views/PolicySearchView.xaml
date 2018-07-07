@@ -32,7 +32,8 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="*" />                
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
@@ -60,16 +61,18 @@
                 </Picker.Items>
             </Picker>
             <Label Grid.Row="2" Grid.Column="0" VerticalTextAlignment="End" Text="Policy Number" FontSize="Medium"/>
-            <Entry Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" x:Name="entPolicyNumber" VerticalOptions="End"/>
+            <Entry Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" x:Name="entPolicyNumber" TextChanged="entPolicyNumber_TextChanged" VerticalOptions="End"/>
             <Label Grid.Row="3" Grid.Column="0" VerticalTextAlignment="End" Text="Vehicle Number" FontSize="Medium"/>
             <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
-                <Entry x:Name="entVehiNum1" Placeholder="XXX" VerticalOptions="End"/>
-                <Entry x:Name="entVehiNum2" Placeholder="9999" VerticalOptions="End"/>
+                <Entry x:Name="entVehiNum1" Placeholder="XXX" TextChanged="entVehiNum1_TextChanged" VerticalOptions="End"/>
+                <Entry x:Name="entVehiNum2" Placeholder="9999" TextChanged="entVehiNum2_TextChanged" VerticalOptions="End"/>
             </StackLayout>
             <Label Grid.Row="4" Grid.Column="0" VerticalTextAlignment="End" Text="Start Date" FontSize="Medium"/>
             <DatePicker Grid.Row="4" Grid.Column="1" x:Name="stFromDtPicker" Date="{x:Static system:DateTime.MinValue}" VerticalOptions="End"/>
             <Label Grid.Row="4" Grid.Column="2" VerticalTextAlignment="End" Text="To" FontSize="Medium"/>
             <DatePicker Grid.Row="4" Grid.Column="3" x:Name="stToDtPicker" Date="{x:Static system:DateTime.MaxValue}" VerticalOptions="End"/>
+            <Label Grid.Row="5" Grid.Column="0" VerticalTextAlignment="End" Text="Mobile Number" FontSize="Medium"/>
+            <Entry Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" x:Name="entMobileNumber" Keyboard="Numeric" TextChanged="entMobileNumber_TextChanged" VerticalOptions="End"/>
         </Grid>
         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="10">
             <Button x:Name="btnSubmit"
