@@ -13,5 +13,9 @@ namespace Agent_App.Models
         public string ContactNumber2 { get; set; } = "";
         public string ContactNumber3 { get; set; } = "";
         public string ContactNumber4 { get; set; } = "";
+        public string SMContactNumber { get; set; } = "";
+        public string RSMContactNumber { get; set; } = "";
+        public string BrnAdminName { get; set; } = "";
+        public string BrnAdminContactNo { get; set; } = "";
     }
 }
