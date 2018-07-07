@@ -356,6 +356,10 @@ namespace Agent_App.Services
                         ContactNumber2 = "0774544334",
                         ContactNumber3 = "0112334555",
                         ContactNumber4 = "0774544334",
+                        SMContactNumber = "0772334554",
+                        RSMContactNumber = "0774567956",
+                        BrnAdminName = "N. T. Karunathilake",
+                        BrnAdminContactNo = "0778455644",
                     },
                 new BranchContact
                     {
@@ -366,6 +370,10 @@ namespace Agent_App.Services
                         ContactNumber2 = "0774544334",
                         ContactNumber3 = "0112334555",
                         ContactNumber4 = "0774544334",
+                        SMContactNumber = "0772334554",
+                        RSMContactNumber = "0774567956",
+                        BrnAdminName = "N. T. Karunathilake",
+                        BrnAdminContactNo = "0778455644",
                     },
                     new BranchContact
                     {
@@ -376,6 +384,9 @@ namespace Agent_App.Services
                         ContactNumber2 = "0774544334",
                         ContactNumber3 = "0112334555",
                         ContactNumber4 = "0774544334",
+                        SMContactNumber = "0772334554",
+                        BrnAdminName = "N. T. Karunathilake",
+                        BrnAdminContactNo = "0778455644",
                     },
                     new BranchContact
                     {
@@ -395,7 +406,10 @@ namespace Agent_App.Services
                         ContactNumber1 =  "0112343344",
                         ContactNumber2 = "0774544334",
                         ContactNumber3 = "0112334555",
-                        
+                        SMContactNumber = "0772334554",
+                        BrnAdminName = "N. T. Karunathilake",
+                        BrnAdminContactNo = "0778455644",
+
                     },
                     new BranchContact
                     {
@@ -405,6 +419,10 @@ namespace Agent_App.Services
                         ContactNumber1 =  "0112343344",
                         ContactNumber2 = "0774544334",
                         ContactNumber3 = "0112334555",
+                        SMContactNumber = "0772334554",
+                        RSMContactNumber = "0774567956",
+                        BrnAdminName = "N. T. Karunathilake",
+                        BrnAdminContactNo = "0778455644",
 
                     },
                     new BranchContact
@@ -415,6 +433,10 @@ namespace Agent_App.Services
                         ContactNumber1 =  "0112343344",
                         ContactNumber3 = "0112334555",
                         ContactNumber4 = "0774544334",
+                        SMContactNumber = "0772334554",
+                        RSMContactNumber = "0774567956",
+                        BrnAdminName = "N. T. Karunathilake",
+                        BrnAdminContactNo = "0778455644",
                     },
                     new BranchContact
                     {
@@ -424,6 +446,10 @@ namespace Agent_App.Services
                         ContactNumber1 =  "0112343344",
                         ContactNumber3 = "0112334555",
                         ContactNumber4 = "0774544334",
+                        SMContactNumber = "0772334554",
+                        RSMContactNumber = "0774567956",
+                        BrnAdminName = "N. T. Karunathilake",
+                        BrnAdminContactNo = "0778455644",
                     },
                     new BranchContact
                     {
@@ -444,6 +470,10 @@ namespace Agent_App.Services
                         ContactNumber2 = "0774544334",
                         ContactNumber3 = "0112334555",
                         ContactNumber4 = "0774544334",
+                        SMContactNumber = "0772334554",
+                        RSMContactNumber = "0774567956",
+                        BrnAdminName = "N. T. Karunathilake",
+                        BrnAdminContactNo = "0778455644",
                     },
                     new BranchContact
                     {
@@ -464,6 +494,10 @@ namespace Agent_App.Services
                         ContactNumber2 = "0774544334",
                         ContactNumber3 = "0112334555",
                         ContactNumber4 = "0774544334",
+                        SMContactNumber = "0772334554",
+                        RSMContactNumber = "0774567956",
+                        BrnAdminName = "N. T. Karunathilake",
+                        BrnAdminContactNo = "0778455644",
                     },
                     new BranchContact
                     {
@@ -481,7 +515,10 @@ namespace Agent_App.Services
                         Address = "101, Negombo Rd",
                         ContactNumber1 =  "0112343344",
                         ContactNumber2 = "0774544334",
-
+                        SMContactNumber = "0772334554",
+                        RSMContactNumber = "0774567956",
+                        BrnAdminName = "N. T. Karunathilake",
+                        BrnAdminContactNo = "0778455644",
                     },
                     new BranchContact
                     {
@@ -512,6 +549,10 @@ namespace Agent_App.Services
                         ContactNumber2 = "0774544334",
                         ContactNumber3 = "0112334555",
                         ContactNumber4 = "0774544334",
+                        SMContactNumber = "0772334554",
+                        RSMContactNumber = "0774567956",
+                        BrnAdminName = "N. T. Karunathilake",
+                        BrnAdminContactNo = "0778455644",
                     },
                     new BranchContact
                     {
@@ -522,6 +563,10 @@ namespace Agent_App.Services
                         ContactNumber2 = "0774544334",
                         ContactNumber3 = "0112334555",
                         ContactNumber4 = "0774544334",
+                        SMContactNumber = "0772334554",
+                        RSMContactNumber = "0774567956",
+                        BrnAdminName = "N. T. Karunathilake",
+                        BrnAdminContactNo = "0778455644",
                     },
                     
 

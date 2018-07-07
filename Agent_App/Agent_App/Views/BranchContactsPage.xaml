@@ -37,6 +37,7 @@
                                TextColor="Navy"
                                FontSize="15"/>
                                     <StackLayout Orientation="Horizontal" Spacing="20">
+                                        <Label Text="General:" TextColor="Navy" VerticalOptions="Center" FontSize="20" />
                                         <Button x:Name="cntNum1" 
                                             Text="{Binding ContactNumber1}"
                                             Clicked="cntNum1_Clicked"
@@ -59,6 +60,36 @@
                                             Text="{Binding ContactNumber4}" 
                                             Clicked="cntNum4_Clicked"
                                             IsVisible="{Binding ContactNumber4, Converter={StaticResource StringToBool}}"
+                                           TextColor="Navy"
+                                            FontSize="Small"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Spacing="40" Padding="5">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="SM" TextColor="Navy" VerticalOptions="Center" FontSize="20" />
+                                            <Button x:Name="SMCntNum" 
+                                            Text="{Binding SMContactNumber}" 
+                                            Clicked="SMCntNum_Clicked"
+                                            IsVisible="{Binding SMContactNumber, Converter={StaticResource StringToBool}}"
+                                           TextColor="Navy"
+                                            FontSize="Small"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="RSM" TextColor="Navy" VerticalOptions="Center" FontSize="20" />
+                                            <Button x:Name="RSMCntNum" 
+                                            Text="{Binding RSMContactNumber}" 
+                                            Clicked="RSMCntNum_Clicked"
+                                            IsVisible="{Binding RSMContactNumber, Converter={StaticResource StringToBool}}"
+                                           TextColor="Navy"
+                                            FontSize="Small"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Spacing="10">
+                                        <Label Text="Branch Admin:" TextColor="Navy" VerticalOptions="Center" FontSize="20" />
+                                        <Label Text="{Binding BrnAdminName}" VerticalOptions="Center" TextColor="Navy" FontSize="20" />
+                                        <Button x:Name="BrnAdmnCntNum" 
+                                            Text="{Binding BrnAdminContactNo}" 
+                                            Clicked="BrnAdmnCntNum_Clicked"
+                                            IsVisible="{Binding BrnAdminContactNo, Converter={StaticResource StringToBool}}"
                                            TextColor="Navy"
                                             FontSize="Small"/>
                                     </StackLayout>

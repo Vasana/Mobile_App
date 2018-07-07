@@ -122,5 +122,20 @@ namespace Agent_App.Views
                 Application.Current.MainPage.DisplayAlert("Alert", "Error occured while performing function", "OK");
             }
         }
+
+        private void SMCntNum_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RSMCntNum_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BrnAdmnCntNum_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
