@@ -37,9 +37,7 @@ namespace Agent_App.Models
                 AngleSpan = 360,
                 StartAngle = 0
             };
-
-            // http://www.nationsonline.org/oneworld/world_population.htm
-            // http://en.wikipedia.org/wiki/Continent
+            
             ps.Slices.Add(new PieSlice("Africa", 1030) { IsExploded = false });
             ps.Slices.Add(new PieSlice("Americas", 929) { IsExploded = false });
             ps.Slices.Add(new PieSlice("Asia", 4157));

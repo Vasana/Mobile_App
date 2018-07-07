@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Agent_App.Views.performance_stats"
+             xmlns:viewModel="clr-namespace:Agent_App.ViewModels"
+             xmlns:models="clr-namespace:Agent_App.Models"
+             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms">
+
+    <ContentPage.BindingContext>
+        <models:PerformanceStats/>
+    </ContentPage.BindingContext>
+<StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="500" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Individual Performance" FontSize="Large"  Grid.Row="1" Grid.Column="0" />
+
+            <Label Text="Number of policies for current month" Grid.Row="3" Grid.Column="0" />
+            <Label Text="{Binding ownAgt.indMonthNoPolTotal}" Grid.Row="3" Grid.Column="1" />
+            <Label Text="Number of policies for current year" Grid.Row="4" Grid.Column="0" />
+            <Label Text="{Binding ownAgt.indMonthPremTotal}" Grid.Row="4" Grid.Column="1" />
+
+            <Label Text="Total Premium for current month" Grid.Row="5" Grid.Column="0" />
+            <Label Text="{Binding ownAgt.indYearPolTotal}" Grid.Row="5" Grid.Column="1" />
+            <Label Text="Total Premium for current year" Grid.Row="6" Grid.Column="0" />
+            <Label Text="{Binding ownAgt.indYearPremTotal}" Grid.Row="6" Grid.Column="1" />
+
+            <oxy:PlotView Model="{Binding PieMonthNoPol}"
+                   HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand" Grid.Row="7" />
+        </Grid>
+    </StackLayout>
+</ContentPage>
+    
