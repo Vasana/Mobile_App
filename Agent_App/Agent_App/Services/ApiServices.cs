@@ -11,14 +11,18 @@ using Newtonsoft.Json.Linq;
 using Microsoft.CSharp.RuntimeBinder;
 using System.Linq;
 using System.Collections.ObjectModel;
+using Agent_App.Views;
+using Xamarin.Forms;
 
 namespace Agent_App.Services
 {
     public class ApiServices
     {
         private List<CustPolicy> _policyList;
-
         public int policyCount = 0;
+
+        private List<Notification> _notifList;
+        public int notifCount = 0;
 
         private GeneralPolicy _genPolicy;
         private LifePolicy _lifePolicy;
@@ -80,7 +84,7 @@ namespace Agent_App.Services
                 JObject jwtDynamic = JsonConvert.DeserializeObject<dynamic>(jwtResponse);
 
                 accessToken = jwtDynamic.Value<string>("access_token");
-
+                
                 Debug.WriteLine(jwtResponse);
             }
             catch (Exception e)
@@ -128,6 +132,10 @@ namespace Agent_App.Services
                     {
                         var responseContent = await response.Content.ReadAsStringAsync();
                         _policyList = JsonConvert.DeserializeObject<List<CustPolicy>>(responseContent);
+                    }
+                    else if (response.StatusCode.ToString() == "Unauthorized")
+                    {                        
+                        Application.Current.MainPage = new LoginPage();                        
                     }
 
                     //GeneratePolicies();
@@ -194,12 +202,15 @@ namespace Agent_App.Services
                 HttpResponseMessage response = new HttpResponseMessage();
                 response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/AddComment", requestContent);
 
-
                 if (response.IsSuccessStatusCode)
                 {
                     ret = true;
-                }                 
-               
+                }
+                else if (response.StatusCode.ToString() == "Unauthorized")
+                {
+                    Application.Current.MainPage = new LoginPage();
+                }
+
             }
             catch (Exception e)
             {
@@ -238,6 +249,10 @@ namespace Agent_App.Services
                 {
                     ret = true;
                 }
+                else if (response.StatusCode.ToString() == "Unauthorized")
+                {
+                    Application.Current.MainPage = new LoginPage();
+                }
 
             }
             catch (Exception e)
@@ -254,10 +269,50 @@ namespace Agent_App.Services
             PolicyFlag.Instance.CommentCreatedDate = "";
 
             return ret;
-
         }
 
-        public async Task<GeneralPolicy> GetGenPolicyAsync(string accessToken, string dept, string policyNumber)
+        public async Task<bool> ClearNotifAsync(string accessToken, Notification notif)
+        {
+            bool ret = false;
+            /*try
+            {
+                var json = JsonConvert.SerializeObject(notif);
+                HttpContent requestContent = new StringContent(json);
+                requestContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                var client = new HttpClient();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+                HttpResponseMessage response = new HttpResponseMessage();
+                response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/ClearNotif", requestContent);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    ret = true;
+                }
+                else if (response.StatusCode.ToString() == "Unauthorized")
+                {
+                    Application.Current.MainPage = new LoginPage();
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                //throw;
+            }*/
+            await Task.Delay(1000);
+            ret = true;
+
+            if (ret)
+            {
+                notifCount -= notifCount;
+            }
+            return ret;
+        }
+
+
+            public async Task<GeneralPolicy> GetGenPolicyAsync(string accessToken, string dept, string policyNumber)
         {
             /* var client = new HttpClient();
 
@@ -340,7 +395,39 @@ namespace Agent_App.Services
             //-----------------------------------------------------------------------------------
 
             //return custPolicies; --- Original code
+        }
 
+        public async Task<List<Notification>> GetNotificationsAsync(string accessToken, int pageIndex, int pageSize)
+        {
+            /* var client = new HttpClient();
+
+             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+             var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/CustPolicies");
+
+             var custPolicies = JsonConvert.DeserializeObject<List<CustPolicy>>(json);*/// Original code
+
+            //---------------------only for testing---------------------------------------
+            _notifList = GetNotificationsList();
+            await Task.Delay(2000);
+
+            if (_notifList != null)
+            {
+                notifCount = _notifList.Count;
+            }
+            else
+            {
+                notifCount = 0;
+            }
+
+            if (notifCount >= pageSize)
+            {
+                return _notifList.Skip(pageIndex * pageSize).Take(pageSize).ToList();
+            }
+            else
+            {
+                return _notifList;
+            }            
         }
 
         private List<BranchContact> GetBranchesList()
@@ -358,7 +445,6 @@ namespace Agent_App.Services
                         ContactNumber4 = "0774544334",
                         SMContactNumber = "0772334554",
                         RSMContactNumber = "0774567956",
-                        BrnAdminName = "N. T. Karunathilake",
                         BrnAdminContactNo = "0778455644",
                     },
                 new BranchContact
@@ -372,7 +458,6 @@ namespace Agent_App.Services
                         ContactNumber4 = "0774544334",
                         SMContactNumber = "0772334554",
                         RSMContactNumber = "0774567956",
-                        BrnAdminName = "N. T. Karunathilake",
                         BrnAdminContactNo = "0778455644",
                     },
                     new BranchContact
@@ -385,7 +470,6 @@ namespace Agent_App.Services
                         ContactNumber3 = "0112334555",
                         ContactNumber4 = "0774544334",
                         SMContactNumber = "0772334554",
-                        BrnAdminName = "N. T. Karunathilake",
                         BrnAdminContactNo = "0778455644",
                     },
                     new BranchContact
@@ -407,7 +491,6 @@ namespace Agent_App.Services
                         ContactNumber2 = "0774544334",
                         ContactNumber3 = "0112334555",
                         SMContactNumber = "0772334554",
-                        BrnAdminName = "N. T. Karunathilake",
                         BrnAdminContactNo = "0778455644",
 
                     },
@@ -421,7 +504,6 @@ namespace Agent_App.Services
                         ContactNumber3 = "0112334555",
                         SMContactNumber = "0772334554",
                         RSMContactNumber = "0774567956",
-                        BrnAdminName = "N. T. Karunathilake",
                         BrnAdminContactNo = "0778455644",
 
                     },
@@ -435,7 +517,6 @@ namespace Agent_App.Services
                         ContactNumber4 = "0774544334",
                         SMContactNumber = "0772334554",
                         RSMContactNumber = "0774567956",
-                        BrnAdminName = "N. T. Karunathilake",
                         BrnAdminContactNo = "0778455644",
                     },
                     new BranchContact
@@ -448,7 +529,6 @@ namespace Agent_App.Services
                         ContactNumber4 = "0774544334",
                         SMContactNumber = "0772334554",
                         RSMContactNumber = "0774567956",
-                        BrnAdminName = "N. T. Karunathilake",
                         BrnAdminContactNo = "0778455644",
                     },
                     new BranchContact
@@ -472,7 +552,6 @@ namespace Agent_App.Services
                         ContactNumber4 = "0774544334",
                         SMContactNumber = "0772334554",
                         RSMContactNumber = "0774567956",
-                        BrnAdminName = "N. T. Karunathilake",
                         BrnAdminContactNo = "0778455644",
                     },
                     new BranchContact
@@ -496,7 +575,6 @@ namespace Agent_App.Services
                         ContactNumber4 = "0774544334",
                         SMContactNumber = "0772334554",
                         RSMContactNumber = "0774567956",
-                        BrnAdminName = "N. T. Karunathilake",
                         BrnAdminContactNo = "0778455644",
                     },
                     new BranchContact
@@ -517,7 +595,6 @@ namespace Agent_App.Services
                         ContactNumber2 = "0774544334",
                         SMContactNumber = "0772334554",
                         RSMContactNumber = "0774567956",
-                        BrnAdminName = "N. T. Karunathilake",
                         BrnAdminContactNo = "0778455644",
                     },
                     new BranchContact
@@ -551,7 +628,6 @@ namespace Agent_App.Services
                         ContactNumber4 = "0774544334",
                         SMContactNumber = "0772334554",
                         RSMContactNumber = "0774567956",
-                        BrnAdminName = "N. T. Karunathilake",
                         BrnAdminContactNo = "0778455644",
                     },
                     new BranchContact
@@ -565,7 +641,6 @@ namespace Agent_App.Services
                         ContactNumber4 = "0774544334",
                         SMContactNumber = "0772334554",
                         RSMContactNumber = "0774567956",
-                        BrnAdminName = "N. T. Karunathilake",
                         BrnAdminContactNo = "0778455644",
                     },
                     
@@ -573,6 +648,63 @@ namespace Agent_App.Services
                     };
 
             return BranchList;
+        }
+
+        private List<Notification> GetNotificationsList()
+        {
+            List<Notification> NotifsList = new List<Notification>
+                {
+                new Notification
+                    {
+                        PolicyNumber = "VM23456777445667",
+                        Department = "M",
+                        BusinessType = "G",
+                        InsuredName = "Nihal Fernando",
+                        ContactNumber = "0775666777",
+                        EventName = "Claim Intimation",
+                        EventDescription = "Claim Intimated on 02/07/2018",
+                        EventImage = "clmIntimated.png",
+                        NotifiedDate = "10/07/2018",
+                    },
+                new Notification
+                    {
+                        PolicyNumber = "A/P/00045653322/N",
+                        Department = "M",
+                        BusinessType = "G",
+                        InsuredName = "Roshan Fernando",
+                        ContactNumber = "0778456544",
+                        EventName = "Claim Rejection",
+                        EventDescription = "Claim rejected on 02/07/2018 due to insufficient information and not submitted on time",
+                        EventImage = "clmRejected.jpg",
+                        NotifiedDate = "10/07/2018",
+                    },
+                new Notification
+                    {
+                        PolicyNumber = "VM0056334567652",
+                        Department = "M",
+                        BusinessType = "G",
+                        InsuredName = "Thilak Ranathunga",
+                        ContactNumber = "0778945644",
+                        EventName = "Claim Intimation",
+                        EventDescription = "Claim Intimated on 02/07/2018",
+                        EventImage = "clmIntimated.png",
+                        NotifiedDate = "09/07/2018",
+                    },
+                new Notification
+                    {
+                        PolicyNumber = "SHE/00878889/SN",
+                        Department = "G",
+                        BusinessType = "G",
+                        InsuredName = "Rani Perera",
+                        ContactNumber = "0775666777",
+                        EventName = "Hospitalization",
+                        EventDescription = "Hospitalized on 02/07/2018",
+                        EventImage = "hospitalized.png",
+                        NotifiedDate = "08/07/2018",
+                    },
+                  };
+
+            return NotifsList;
         }
 
         public async Task<ObservableCollection<CustPolicy>> GetTodaysLifeRemindsAsync(string accessToken)

@@ -8,7 +8,9 @@
     <ContentPage.BindingContext>
         <viewModel:GeneralMenuViewModel/>
     </ContentPage.BindingContext>
-
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btnNotif" Icon="notifAlert.png" Text="Notifications" Clicked="btnNotif_Clicked"/>
+    </ContentPage.ToolbarItems>
     <Grid>
         <!--  main page grid  -->
         <Grid RowSpacing="0">

@@ -19,9 +19,7 @@
         <ToolbarItem Icon="filledStar.jpg" Text="Flagged" Clicked="btnFlagged_Clicked"/>
         <ToolbarItem Icon="search.jpg" Text="Search" Clicked="btnSearch_Clicked"/>
     </ContentPage.ToolbarItems>
-    <Grid>
-        
-        
+    <Grid>       
         <Label Text="Policy List"
              VerticalOptions="Start"
              HorizontalTextAlignment="Center"

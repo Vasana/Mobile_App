@@ -29,6 +29,9 @@ namespace Agent_App.Views
             
         }
 
-        
+        private void btnNotif_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new NotificationsList());
+        }
     }
 }

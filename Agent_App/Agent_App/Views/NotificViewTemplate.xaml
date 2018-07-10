@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Agent_App.Views.NotificViewTemplate"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
+
+    <Frame IsClippedToBounds="True"
+         HasShadow="True"
+         BackgroundColor="White" >
+        <Frame.OutlineColor>
+            <OnPlatform x:TypeArguments="Color"
+                  Android="Gray"
+                  iOS="Gray"/>
+        </Frame.OutlineColor>
+        <Frame.Margin>
+            <OnPlatform x:TypeArguments="Thickness"
+                  Android="7" iOS="7"/>
+        </Frame.Margin>
+        <Frame.Padding>
+            <OnPlatform x:TypeArguments="Thickness"
+                  Android="5" iOS="5"/>
+        </Frame.Padding>
+
+        <StackLayout Orientation="Horizontal">
+            <Grid VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" 
+            Padding="0"
+            HorizontalOptions="FillAndExpand"
+            >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Orientation="Horizontal" VerticalOptions="Start">
+                    <controls:CircleImage Source="{Binding EventImage}" 
+                                      VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="30" WidthRequest="30">
+
+                    </controls:CircleImage>
+
+                    <Label Grid.Row="0" 
+                       HorizontalTextAlignment="Start"
+                       VerticalTextAlignment="Center"
+                       FontSize="16" FontAttributes="Bold"
+                       Text="{Binding EventName}" TextColor="Black" >
+                    </Label>             
+                    
+                </StackLayout>
+                <Button x:Name="btnClear" Grid.Row="0" 
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"
+                        FontSize="14" FontAttributes="None"
+                        Clicked="btnClear_Clicked"
+                        Text="Clear">
+                </Button>
+
+                <Grid Grid.Row="1" VerticalOptions="CenterAndExpand" 
+                      Padding="0"  HorizontalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />                        
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"
+                            FontSize="14" FontAttributes="None"
+                            Text="{Binding EventDescription}" TextColor="Black">
+                    </Label>
+                    <Label Grid.Row="1" Grid.Column="1"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"
+                            FontSize="14" FontAttributes="None"
+                            Text="Policy Number: " TextColor="Black">
+                    </Label>
+                    <Label x:Name="lblPolicyNumber" Grid.Row="1" Grid.Column="2"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"
+                            FontSize="14" FontAttributes="None"
+                            Text="{Binding PolicyNumber}" TextColor="Black">
+                    </Label>                                    
+                    <Label Grid.Row="2" Grid.Column="1"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"
+                            FontSize="14" FontAttributes="None"
+                            Text="Insured Name: " TextColor="Black" >
+                    </Label>
+                    <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Center"
+                           FontSize="14" FontAttributes="None"
+                           Text="{Binding InsuredName}" TextColor="Black">
+                    </Label>             
+
+                </Grid>
+
+                <Grid Grid.Row="2" HorizontalOptions="Center"
+                        BackgroundColor="Transparent"
+                        Padding="7" IsVisible="{Binding IsSelected}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="0.5*" />
+                        <ColumnDefinition Width="0.5*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0" Padding="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />                            
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Image x:Name="btnCall" Grid.Column="0" HorizontalOptions="Center" Source="call.png"></Image>
+                        <Image x:Name="btnEmail" Grid.Column="1" HorizontalOptions="Center" Source="email.png"></Image>
+                        <Button x:Name="btnPolicy" Clicked="btnNotif_Clicked" Grid.Column="2"  HorizontalOptions="Center" Text="Go to Policy" HeightRequest="30"/>
+                        
+                    </Grid>
+                    <Label x:Name="lblMobileNo" Grid.Column="2" Text="{Binding ContactNumber}" IsVisible="False" />
+
+                </Grid>
+            </Grid>
+        </StackLayout>
+
+    </Frame>
+
+</ContentView>
