@@ -12,7 +12,7 @@
         <viewModel:NotificsViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnSearch" Icon="search.jpg" Text="Search" Clicked="btnSearch_Clicked"/>
+        <ToolbarItem x:Name="btnSearch" Icon="search.png" Text="Search" Clicked="btnSearch_Clicked"/>
     </ContentPage.ToolbarItems>
     <Grid>        
         <ListView x:Name="listView" SelectedItem="{Binding SelcetedItem,Mode=TwoWay}" 
