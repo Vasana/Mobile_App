@@ -83,7 +83,7 @@ namespace Agent_App.ViewModels
             };
             _previousNotif = null;
             IsBusy2 = true;
-            var items2 = await _apiServices.GetNotificationsAsync(accessToken: Settings.AccessToken, pageIndex: 0, pageSize: PageSize);
+            var items2 = await _apiServices.GetNotificationsAsync(accessToken: Settings.AccessToken, pageIndex: 0, pageSize: PageSize);            
             IsBusy2 = false;
             NotifCollection.AddRange(items2);
             //PoliciesCollection = new InfiniteScrollCollection<CustPolicy>(items);

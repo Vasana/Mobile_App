@@ -185,7 +185,6 @@ namespace Agent_App.Services
 
             //return custPolicies; --- Original code
         }
-
         
         public async Task<bool> FlagPolicyAsync(string accessToken)
         {
@@ -243,8 +242,7 @@ namespace Agent_App.Services
 
                 HttpResponseMessage response = new HttpResponseMessage();
                 response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/DeleteComment", requestContent);
-
-
+                
                 if (response.IsSuccessStatusCode)
                 {
                     ret = true;
@@ -269,48 +267,7 @@ namespace Agent_App.Services
             PolicyFlag.Instance.CommentCreatedDate = "";
 
             return ret;
-        }
-
-        public async Task<bool> ClearNotifAsync(string accessToken, Notification notif)
-        {
-            bool ret = false;
-            /*try
-            {
-                var json = JsonConvert.SerializeObject(notif);
-                HttpContent requestContent = new StringContent(json);
-                requestContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-                var client = new HttpClient();
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
-
-                HttpResponseMessage response = new HttpResponseMessage();
-                response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/ClearNotif", requestContent);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    ret = true;
-                }
-                else if (response.StatusCode.ToString() == "Unauthorized")
-                {
-                    Application.Current.MainPage = new LoginPage();
-                }
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                //throw;
-            }*/
-            await Task.Delay(1000);
-            ret = true;
-
-            if (ret)
-            {
-                notifCount -= notifCount;
-            }
-            return ret;
-        }
-
+        }       
 
             public async Task<GeneralPolicy> GetGenPolicyAsync(string accessToken, string dept, string policyNumber)
         {
@@ -378,18 +335,14 @@ namespace Agent_App.Services
 
         public async Task<List<BranchContact>> GetBranchContactsAsync(string accessToken)
         {
-            /* var client = new HttpClient();
+             var client = new HttpClient();
 
              client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
-             var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/CustPolicies");
+             var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/GetBranches");
 
-             var custPolicies = JsonConvert.DeserializeObject<List<CustPolicy>>(json);*/// Original code
-
-            //---------------------only for testing---------------------------------------
-            var branchList = GetBranchesList();
-
-            await Task.Delay(2000);
+             var branchList = JsonConvert.DeserializeObject<List<BranchContact>>(json);
+            
             return branchList;
 
             //-----------------------------------------------------------------------------------
@@ -399,18 +352,15 @@ namespace Agent_App.Services
 
         public async Task<List<Notification>> GetNotificationsAsync(string accessToken, int pageIndex, int pageSize)
         {
-            /* var client = new HttpClient();
+             this._notifList = null;
 
-             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+              var client = new HttpClient();
+              client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
-             var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/CustPolicies");
+              var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/GetNotifications");
 
-             var custPolicies = JsonConvert.DeserializeObject<List<CustPolicy>>(json);*/// Original code
-
-            //---------------------only for testing---------------------------------------
-            _notifList = GetNotificationsList();
-            await Task.Delay(2000);
-
+              _notifList = JsonConvert.DeserializeObject<List<Notification>>(json); 
+            
             if (_notifList != null)
             {
                 notifCount = _notifList.Count;
@@ -428,6 +378,72 @@ namespace Agent_App.Services
             {
                 return _notifList;
             }            
+        }
+
+        public async Task<bool> ClearNotifAsync(string accessToken, Notification notif)
+        {
+            bool ret = false;
+            try
+            {
+                var json = JsonConvert.SerializeObject(notif);
+                HttpContent requestContent = new StringContent(json);
+                requestContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                var client = new HttpClient();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+                HttpResponseMessage response = new HttpResponseMessage();
+                response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/DeleteNotification", requestContent);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    ret = true;
+                }
+                else if (response.StatusCode.ToString() == "Unauthorized")
+                {
+                    Application.Current.MainPage = new LoginPage();
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                //throw;
+            }
+            
+            if (ret)
+            {
+                notifCount -= notifCount;
+            }
+            return ret;
+        }
+
+        public async Task<bool> NotificsExistAsync(string accessToken)
+        {
+            bool ret = false;
+            try
+            {
+                var client = new HttpClient();
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+                HttpResponseMessage response = new HttpResponseMessage();
+                response = await client.GetAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/CheckNotifications");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    ret = true;
+                }
+                else if (response.StatusCode.ToString() == "Unauthorized")
+                {
+                    Application.Current.MainPage = new LoginPage();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                //throw;
+            }         
+            return ret;
         }
 
         private List<BranchContact> GetBranchesList()
@@ -664,7 +680,7 @@ namespace Agent_App.Services
                         EventName = "Claim Intimation",
                         EventDescription = "Claim Intimated on 02/07/2018",
                         EventImage = "clmIntimated.png",
-                        NotifiedDate = "10/07/2018",
+                        NotifiedDate = DateTime.Now,
                     },
                 new Notification
                     {
@@ -676,7 +692,7 @@ namespace Agent_App.Services
                         EventName = "Claim Rejection",
                         EventDescription = "Claim rejected on 02/07/2018 due to insufficient information and not submitted on time",
                         EventImage = "clmRejected.jpg",
-                        NotifiedDate = "10/07/2018",
+                        NotifiedDate = DateTime.Now,
                     },
                 new Notification
                     {
@@ -688,7 +704,7 @@ namespace Agent_App.Services
                         EventName = "Claim Intimation",
                         EventDescription = "Claim Intimated on 02/07/2018",
                         EventImage = "clmIntimated.png",
-                        NotifiedDate = "09/07/2018",
+                        NotifiedDate = DateTime.Now,
                     },
                 new Notification
                     {
@@ -700,7 +716,7 @@ namespace Agent_App.Services
                         EventName = "Hospitalization",
                         EventDescription = "Hospitalized on 02/07/2018",
                         EventImage = "hospitalized.png",
-                        NotifiedDate = "08/07/2018",
+                        NotifiedDate = DateTime.Now,
                     },
                   };
 

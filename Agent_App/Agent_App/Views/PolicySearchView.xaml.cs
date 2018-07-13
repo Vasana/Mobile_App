@@ -68,17 +68,18 @@ namespace Agent_App
                 else if (policyStatus == 4)
                 {
                     SearchCriteria.Instance.BadClaims = true;
-                }                
+                }
 
-                if (entPolicyNumber.Text.Trim() != null)
+                if (entPolicyNumber.Text != null)
                 {
                     SearchCriteria.Instance.PolicyNumber = entPolicyNumber.Text.Trim();
                 }
-                if (entVehiNum1.Text.Trim() != null || entVehiNum2.Text.Trim() != null)
+                
+                if (entVehiNum1.Text != null || entVehiNum2.Text != null)
                 {
-                    SearchCriteria.Instance.VehicleNumber = entVehiNum1.Text.Trim() + " " + entVehiNum2.Text.Trim();
+                    SearchCriteria.Instance.VehicleNumber = entVehiNum1.Text.Trim().ToUpper() + " " + entVehiNum2.Text.Trim();
                 }
-                if (entMobileNumber.Text.Trim() != null)
+                if (entMobileNumber.Text != null)
                 {                    
                     int mobileNo = int.Parse(entMobileNumber.Text.Trim());                   
                     SearchCriteria.Instance.MobileNumber = entMobileNumber.Text.Trim();
@@ -99,9 +100,9 @@ namespace Agent_App
                 //MessagingCenter.Send<MainPage, string>(, "SearchPolicy", "John");
                 PopupNavigation.Instance.PopAsync(true);
             }
-            catch
+            catch (Exception e2)
             {
-                DisplayAlert("Search Error", "Invalid Search Options.", "OK");
+                DisplayAlert("Search Error", "Invalid Search Options." + e2.ToString(), "OK");
                 SearchCriteria.Instance.NewSearch = false;
                 SearchCriteria.Instance.BusinessType = "A";
                 SearchCriteria.Instance.PremiumsPending = false;
@@ -185,7 +186,7 @@ namespace Agent_App
 
         private void entMobileNumber_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (entMobileNumber.Text.Trim() != "")
+            if (entMobileNumber.Text != "")
             {
                 entPolicyNumber.IsEnabled = false;
                 entVehiNum1.IsEnabled = false;
@@ -201,7 +202,7 @@ namespace Agent_App
 
         private void entPolicyNumber_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (entPolicyNumber.Text.Trim() != "")
+            if (entPolicyNumber.Text != "")
             {
                 entMobileNumber.IsEnabled = false;
                 entVehiNum1.IsEnabled = false;
@@ -217,7 +218,7 @@ namespace Agent_App
 
         private void entVehiNum1_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (entVehiNum1.Text.Trim() != "")
+            if (entVehiNum1.Text != "")
             {
                 entMobileNumber.IsEnabled = false;
                 entPolicyNumber.IsEnabled = false;                
@@ -231,7 +232,7 @@ namespace Agent_App
 
         private void entVehiNum2_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (entVehiNum2.Text.Trim() != "")
+            if (entVehiNum2.Text != "")
             {
                 entMobileNumber.IsEnabled = false;
                 entPolicyNumber.IsEnabled = false;
