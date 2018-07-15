@@ -83,7 +83,7 @@
                 BackgroundColor="DodgerBlue"
                 Text="View Claim History"
                 TextColor="White" 
-                Clicked="btnPayHist_Clicked"/>
+                Clicked="btnClaimHist_Clicked"/>
             </Grid>
         </StackLayout>
 

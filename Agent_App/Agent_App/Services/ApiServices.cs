@@ -380,7 +380,64 @@ namespace Agent_App.Services
             }            
         }
 
-        public async Task<bool> ClearNotifAsync(string accessToken, Notification notif)
+        public async Task<List<Notification>> ClearNotifAsync(string accessToken, List<Notification> notifList, int pageIndex, int pageSize)
+        {
+            if (notifList != null)
+            {
+                try
+                {
+                    _notifList = null;
+                    var json = JsonConvert.SerializeObject(notifList);
+                    HttpContent requestContent = new StringContent(json);
+                    requestContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                    var client = new HttpClient();
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+                    HttpResponseMessage response = new HttpResponseMessage();
+                    response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/agent/DeleteNotifications", requestContent);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseContent = await response.Content.ReadAsStringAsync();
+                        _notifList = JsonConvert.DeserializeObject<List<Notification>>(responseContent);
+                    }
+                    else if (response.StatusCode.ToString() == "Unauthorized")
+                    {
+                        Application.Current.MainPage = new LoginPage();
+                    }
+
+                    //GeneratePolicies();
+                    if (_notifList != null)
+                    {
+                        notifCount = _notifList.Count;
+                    }
+                    else
+                    {
+                        notifCount = 0;
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    //throw;
+                }
+            }
+            if (notifCount >= pageSize)
+            {
+                return _notifList.Skip(pageIndex * pageSize).Take(pageSize).ToList();
+            }
+            else
+            {
+                return _notifList;
+            }
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
+        }
+
+        public async Task<bool> ClearNotifAsync_1(string accessToken, Notification notif)
         {
             bool ret = false;
             try

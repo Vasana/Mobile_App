@@ -54,23 +54,29 @@ namespace Agent_App.Views
             vm.HideOrShowNotif(notif);
         }
 
-        private void btnSearch_Clicked(object sender, EventArgs e)
+        private async void btnDelete_Clicked(object sender, EventArgs e)
         {
+            var vm = BindingContext as NotificsViewModel;
             
+            //await vm.ClearNotifAsync(); -- to be tested
+
+            //if (!ret)
+            //{
+            //    await DisplayAlert("Delete Error", "Error occured while removing.", "OK");
+            //}
         }
-        
+
         private async void btnClear_Clicked(object sender, EventArgs e)
         {
             var button = sender as Button;
             var notif = button.BindingContext as Notification;
             var vm = BindingContext as NotificsViewModel;
+            await vm.ClearNotifAsync();
 
-            bool ret = await vm.ClearNotifAsync(notif);
-
-            if (!ret)
-            {
-                await DisplayAlert("Delete Error", "Error occured while removing.", "OK");
-            }
+            //if (!ret)
+            //{
+            //    await DisplayAlert("Delete Error", "Error occured while removing.", "OK");
+            //}
         }
 
         private async void btnNotif_Clicked(object sender, EventArgs e)
@@ -121,6 +127,24 @@ namespace Agent_App.Views
         private void btnEmail_Clicked(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnMark_Clicked(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            var notif = button.BindingContext as Notification;
+
+            notif.IsMarked = !notif.IsMarked;
+
+            if (notif.IsMarked)
+            {
+                button.BackgroundColor = Color.Green;
+            }
+            else
+            {
+                button.BackgroundColor = Color.White;
+            }        
+           
         }
     }
 

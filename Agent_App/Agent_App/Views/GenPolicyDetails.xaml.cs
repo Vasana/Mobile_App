@@ -24,5 +24,10 @@ namespace Agent_App.Views
         {
 
         }
+
+        private void btnClaimHist_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

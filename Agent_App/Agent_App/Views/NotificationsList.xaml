@@ -12,7 +12,7 @@
         <viewModel:NotificsViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnSearch" Icon="search.png" Text="Search" Clicked="btnSearch_Clicked"/>
+        <ToolbarItem x:Name="btnSearch" Icon="trashbin.png" Text="Delete" Clicked="btnDelete_Clicked"/>
     </ContentPage.ToolbarItems>
     <Grid>        
         <ListView x:Name="listView" SelectedItem="{Binding SelcetedItem,Mode=TwoWay}" 
@@ -68,12 +68,13 @@
                                         </Label>
 
                                     </StackLayout>
-                                    <Button x:Name="btnClear" Grid.Row="0" 
+                                    <Button x:Name="btnMark" Grid.Row="0" 
                         HorizontalOptions="End"
                         VerticalOptions="Center"
                         FontSize="14" FontAttributes="None"
-                        Clicked="btnClear_Clicked"
-                        Text="Clear">
+                        Clicked="btnMark_Clicked"
+                        BackgroundColor="White"
+                         BorderColor="Black" BorderWidth="1" WidthRequest="30" HeightRequest="30">
                                     </Button>
 
                                     <Grid Grid.Row="1" VerticalOptions="CenterAndExpand" 
@@ -133,7 +134,7 @@
                            Text="{Binding InsuredName}" TextColor="Black">
                                         </Label>
 
-                                    </Grid>
+                                    </Grid>                                    
 
                                     <Grid Grid.Row="3" HorizontalOptions="Center"
                         BackgroundColor="Transparent"

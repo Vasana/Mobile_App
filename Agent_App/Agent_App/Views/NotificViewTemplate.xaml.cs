@@ -72,7 +72,7 @@ namespace Agent_App.Views
             var vm = BindingContext as NotificsViewModel;
             var notif = BindingContext as Notification;
 
-            bool ret = await vm.ClearNotifAsync(notif);
+             await vm.ClearNotifAsync();
         }
     }
 }

@@ -20,5 +20,6 @@ namespace Agent_App.Models
         public DateTime NotifiedDate { get; set; }
         public string PolicyType { get; set; } = "";
         public string PolicyDescription { get; set; } = "";
+        public bool IsMarked { get; set; }
     }
 }

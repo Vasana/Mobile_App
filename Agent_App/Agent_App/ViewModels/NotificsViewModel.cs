@@ -4,6 +4,7 @@ using Agent_App.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -89,16 +90,29 @@ namespace Agent_App.ViewModels
             //PoliciesCollection = new InfiniteScrollCollection<CustPolicy>(items);
         }
 
-        public async Task<bool> ClearNotifAsync(Notification notif)
-        {            
-            IsBusy2 = true;
-            bool ret = await _apiServices.ClearNotifAsync(Settings.AccessToken, notif);            
-            if (ret)
-            {
-                NotifCollection.Remove(notif);
-            }
-            IsBusy2 = false;
-            return ret;
+        public async Task ClearNotifAsync()
+        {
+            /* IsBusy2 = true;
+             bool ret = await _apiServices.ClearNotifAsync_1(Settings.AccessToken, notif);            
+             if (ret)
+             {
+                 NotifCollection.Remove(notif);
+             }
+             IsBusy2 = false;
+             return ret;
+             */
+            IEnumerable<Notification> delNotifList = NotifCollection.Where(p => p.IsMarked == true);
+            if (delNotifList != null)
+            {                
+                List<Notification> delNotifs = delNotifList.ToList();
+                _previousNotif = null;
+                IsBusy2 = true;
+                var items = await _apiServices.ClearNotifAsync(accessToken: Settings.AccessToken, notifList: delNotifs, pageIndex: 0, pageSize: PageSize);
+                IsBusy2 = false;
+                NotifCollection = null;
+                NotifCollection.AddRange(items);
+            }           
+
         }
 
         public Command DeleteNotifClicked
@@ -112,7 +126,7 @@ namespace Agent_App.ViewModels
                     if (rst)
                     {
                         IsBusy2 = true;
-                        bool ret = await _apiServices.ClearNotifAsync(Settings.AccessToken, itm);
+                        bool ret = await _apiServices.ClearNotifAsync_1(Settings.AccessToken, itm);
                         IsBusy2 = false;
                         if (ret)
                         {
