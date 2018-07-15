@@ -111,7 +111,7 @@ namespace Agent_App.ViewModels
                 {
                     //Application.Current.MainPage = new NavigationPage(new ExampleList());
 
-                    await Application.Current.MainPage.Navigation.PushAsync(new Agent_performance());
+                    await Application.Current.MainPage.Navigation.PushAsync(new Org_Perform_landing());
                 });
             }
         }

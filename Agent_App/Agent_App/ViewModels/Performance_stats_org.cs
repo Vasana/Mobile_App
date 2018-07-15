@@ -1,9 +1,9 @@
-﻿using Agent_App.Views;
+﻿using Agent_App.Models;
+using Agent_App.Views;
 using OxyPlot;
 using OxyPlot.Series;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.CompilerServices;
@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace Agent_App.Models
+namespace Agent_App.ViewModels
 {
-    public class PerformanceStats : INotifyPropertyChanged
+    public class Performance_stats_org : INotifyPropertyChanged
     {
         //public ObservableCollection<AgtPerfmStat> CardDataCollection { get; set; }
         public AgtPerfmStat ownAgt { get; set; }
@@ -33,16 +33,16 @@ namespace Agent_App.Models
         public string lbl_mon_prem { get; set; }
         public string lbl_yr_prem { get; set; }
 
-        public PerformanceStats()
+        public Performance_stats_org()
         {
             GetAgentStats();
             MonthList = getMonths();
             YearList = getYears();
-           
+
             inq_year = DateTime.Today.Year;
-            lbl_mon_NOP = "Number of Policies for "+ CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Today.Month);
+            lbl_mon_NOP = "Number of Policies for " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Today.Month);
             lbl_yr_NOP = "Number of Policies for " + DateTime.Today.Year;
-            lbl_mon_prem = "Total Premium for " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Today.Month); 
+            lbl_mon_prem = "Total Premium for " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Today.Month);
             lbl_yr_prem = "Total Premium for " + DateTime.Today.Year;
 
             PieMonthNoPol = Indvidual_month_no_of_pol();
@@ -82,10 +82,10 @@ namespace Agent_App.Models
                 new Month() {number = 11, name ="November" },
                 new Month() {number = 12, name ="December" }
             };
-            
+
             return months;
         }
-        
+
 
         private bool _isBusy;
 
@@ -104,82 +104,83 @@ namespace Agent_App.Models
         {
             IsBusy = true;
             hardCoded();
-             IsBusy = false;
+            IsBusy = false;
         }
 
 
         private void hardCoded()
         {
 
-            ownAgt = new AgtPerfmStat {
-            
+            ownAgt = new AgtPerfmStat
+            {
 
-                    agentID  = 905717,
-                    year = 2018,
-                    month = "July",
 
-                    indMonthNoPolTotal  = 12,
-                    indMonthNoPolTotal_cash = 9,
-                    indMonthNoPolTotal_Dbt = 3,
+                agentID = 905717,
+                year = 2018,
+                month = "July",
 
-                    indYearPolTotal  = 78,
-                    indYearPolTotal_cash = 58,
-                    indYearPolTotal_Dbt = 20,
+                indMonthNoPolTotal = 12,
+                indMonthNoPolTotal_cash = 9,
+                indMonthNoPolTotal_Dbt = 3,
 
-                    indMonthPremTotal  = 12000,
-                    indMonthPremTotal_cash = 8000,
-                    indMonthPremTotal_Dbt = 4000,
+                indYearPolTotal = 78,
+                indYearPolTotal_cash = 58,
+                indYearPolTotal_Dbt = 20,
 
-                    indYearPremTotal  = 3408000,
-                    indYearPremTotal_cash = 2408000,
-                    indYearPremTotal_Dbt = 1000000,
+                indMonthPremTotal = 12000,
+                indMonthPremTotal_cash = 8000,
+                indMonthPremTotal_Dbt = 4000,
 
-                    indMonthNoPol_New = 7,
-                    indMonthNoPol_New_Cash = 2,
-                    indMonthNoPol_New_Dbt = 5,
+                indYearPremTotal = 3408000,
+                indYearPremTotal_cash = 2408000,
+                indYearPremTotal_Dbt = 1000000,
 
-                    indYearPol_New = 58,
-                    indYearPol_New_Cash = 38,
-                    indYearPol_New_Dbt = 20,
+                indMonthNoPol_New = 7,
+                indMonthNoPol_New_Cash = 2,
+                indMonthNoPol_New_Dbt = 5,
 
-                    indMonthPrem_New = 6000,
-                    indMonthPrem_New_Cash = 3000,
-                    indMonthPrem_New_Dbt = 3000,
+                indYearPol_New = 58,
+                indYearPol_New_Cash = 38,
+                indYearPol_New_Dbt = 20,
 
-                    indYearPrem_New = 1408000,
-                    indYearPrem_New_Cash = 1000000,
-                    indYearPrem_New_Dbt = 408000,
+                indMonthPrem_New = 6000,
+                indMonthPrem_New_Cash = 3000,
+                indMonthPrem_New_Dbt = 3000,
 
-                    indMonthNoPol_Renewal = 5,
-                    indMonthNoPol_Renewal_cash = 2,
-                    indMonthNoPol_Renewal_Dbt = 3,
+                indYearPrem_New = 1408000,
+                indYearPrem_New_Cash = 1000000,
+                indYearPrem_New_Dbt = 408000,
 
-                    indYearPol_Renewal = 20,
-                    indYearPol_Renewal_cash = 10,
-                    indYearPol_Renewal_Dbt = 10,
+                indMonthNoPol_Renewal = 5,
+                indMonthNoPol_Renewal_cash = 2,
+                indMonthNoPol_Renewal_Dbt = 3,
 
-                    indMonthPrem_Renewal = 6000,
-                    indMonthPrem_Renewal_cash = 4000,
-                    indMonthPrem_Renewal_Dbt = 2000,
+                indYearPol_Renewal = 20,
+                indYearPol_Renewal_cash = 10,
+                indYearPol_Renewal_Dbt = 10,
+
+                indMonthPrem_Renewal = 6000,
+                indMonthPrem_Renewal_cash = 4000,
+                indMonthPrem_Renewal_Dbt = 2000,
 
                 indYearPrem_Renewal = 2000000,
                 indYearPrem_Renewal_cash = 1200000,
                 indYearPrem_Renewal_Dbt = 800000,
 
-                branchMonthNoPolTotal  = 67,
-                    branchYearPolTotal  = 560,
+                branchMonthNoPolTotal = 67,
+                branchYearPolTotal = 560,
 
-                    branchMonthPremTotal  = 4500000,
-                    branchYearPremTotal  = 6788888,
+                branchMonthPremTotal = 4500000,
+                branchYearPremTotal = 6788888,
 
-                       
-                    };
+
+            };
         }
 
         private PlotModel Indvidual_month_no_of_pol()
         {
-            
-            var model = new PlotModel { Title = "Number of Policies for "+ ownAgt.month };
+
+            var model = new PlotModel { Title = "Number of Policies for " + ownAgt.month };
 
             var ps = new PieSeries
             {

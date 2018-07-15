@@ -1,54 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Agent_App.Views.performance_stats"
-             xmlns:viewModel="clr-namespace:Agent_App.ViewModels"
              xmlns:models="clr-namespace:Agent_App.Models"
-             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms">
+             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
+             xmlns:models1="clr-namespace:Agent_App.ViewModels"
+             x:Class="Agent_App.Views.org_team_performance">
 
     <ContentPage.BindingContext>
-        <models:PerformanceStats/>
+        <models1:Performance_stats_org/>
     </ContentPage.BindingContext>
-<ScrollView><StackLayout>
-        
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+    <ScrollView>
+        <StackLayout>
 
-            <Picker x:Name="Month" Title="Select Month" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding MonthList}" ItemDisplayBinding="{Binding name} "/>
-            <Picker x:Name="Year"   Title="Select Year" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding YearList}" ItemDisplayBinding="{Binding yearVal}" />
-            <Button x:Name="BtnLoad" Grid.Row="1" Grid.Column="2" Command="{Binding FilterPerformanceDate}" Text="Load"/>
-        </Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <!--<RowDefinition Height="300" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Picker x:Name="Month" Title="Select Month" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding MonthList}" ItemDisplayBinding="{Binding name} "/>
+                <Picker x:Name="Year"   Title="Select Year" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding YearList}" ItemDisplayBinding="{Binding yearVal}" />
+                <Button x:Name="BtnLoad" Grid.Row="1" Grid.Column="2" Command="{Binding FilterPerformanceDate}" Text="Load"/>
+            </Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <!--<RowDefinition Height="300" />
                 <RowDefinition Height="300" />
                     <RowDefinition Height="300" />
                     <RowDefinition Height="300" />-->
                 </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="10" />
-            </Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
 
                 <Label Text="New" FontSize="Large"  Grid.Row="0" Grid.Column="2" />
                 <Label Text="Renewals" FontSize="Large"  Grid.Row="0" Grid.Column="3" />
@@ -74,7 +75,7 @@
                 <Label Text="{Binding ownAgt.indYearPrem_New}" FontSize="Large" Grid.Row="5" Grid.Column="3" />
                 <Label Text="{Binding ownAgt.indYearPrem_Renewal}" FontSize="Large" Grid.Row="5" Grid.Column="4" />
 
-               
+
             </Grid>
             <Grid>
                 <Grid.RowDefinitions>
@@ -104,6 +105,7 @@
                   VerticalOptions="FillAndExpand" Grid.Row="1"  Grid.Column="2" />
 
             </Grid>
-        </StackLayout></ScrollView>
+        </StackLayout>
+    </ScrollView>
+
 </ContentPage>
-    
