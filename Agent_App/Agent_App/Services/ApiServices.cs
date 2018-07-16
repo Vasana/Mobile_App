@@ -356,10 +356,9 @@ namespace Agent_App.Services
 
               var client = new HttpClient();
               client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+             var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/GetNotifications");
 
-              var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/GetNotifications");
-
-              _notifList = JsonConvert.DeserializeObject<List<Notification>>(json); 
+             _notifList = JsonConvert.DeserializeObject<List<Notification>>(json); 
             
             if (_notifList != null)
             {
@@ -395,7 +394,7 @@ namespace Agent_App.Services
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
                     HttpResponseMessage response = new HttpResponseMessage();
-                    response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/agent/DeleteNotifications", requestContent);
+                    response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/agent/DeleteNotification", requestContent);
 
                     if (response.IsSuccessStatusCode)
                     {
