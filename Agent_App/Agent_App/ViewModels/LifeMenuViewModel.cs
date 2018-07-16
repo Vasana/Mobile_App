@@ -2,6 +2,7 @@
 using Agent_App.Models;
 using Agent_App.Services;
 using Agent_App.Views;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -112,6 +113,7 @@ namespace Agent_App.ViewModels
                     //Application.Current.MainPage = new NavigationPage(new ExampleList());
 
                     await Application.Current.MainPage.Navigation.PushAsync(new Org_Perform_landing());
+                    
                 });
             }
         }
@@ -122,5 +124,9 @@ namespace Agent_App.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+       
     }
+
+
 }

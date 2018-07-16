@@ -8,6 +8,7 @@ using Agent_App.Helpers;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Agent_App.Views;
+using Agent_App.Models;
 
 namespace Agent_App.ViewModels
 {
@@ -87,8 +88,9 @@ namespace Agent_App.ViewModels
                        Message = "Logged in Successfully";
                        LoginSuccess = true;
                        Application.Current.MainPage = new NavigationPage(new LandingPage());
-                       
 
+                       AgentProfile agentProfile = AgentProfile.Instance;
+                       agentProfile = await _apiServices.GetAgentProfile(accessToken);
                    }
                });
             }
