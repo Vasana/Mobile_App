@@ -63,7 +63,7 @@
                                            TextColor="Navy"
                                             FontSize="Small"/>
                                     </StackLayout>
-                                    <StackLayout Orientation="Horizontal" Spacing="40" Padding="5">
+                                    <StackLayout Orientation="Horizontal" Spacing="20" Padding="5">
                                         <StackLayout Orientation="Horizontal">
                                             <Label Text="SM" TextColor="Navy" VerticalOptions="Center" FontSize="20" />
                                             <Button x:Name="SMCntNum" 
@@ -82,17 +82,16 @@
                                            TextColor="Navy"
                                             FontSize="Small"/>
                                         </StackLayout>
-                                    </StackLayout>
-                                    <StackLayout Orientation="Horizontal" Spacing="10">
-                                        <Label Text="Branch Admin:" TextColor="Navy" VerticalOptions="Center" FontSize="20" />
-                                        <Label Text="{Binding BrnAdminName}" VerticalOptions="Center" TextColor="Navy" FontSize="20" />
-                                        <Button x:Name="BrnAdmnCntNum" 
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Br. Admin:" TextColor="Navy" VerticalOptions="Center" FontSize="20" />
+                                            <Button x:Name="BrnAdmnCntNum" 
                                             Text="{Binding BrnAdminContactNo}" 
                                             Clicked="BrnAdmnCntNum_Clicked"
                                             IsVisible="{Binding BrnAdminContactNo, Converter={StaticResource StringToBool}}"
                                            TextColor="Navy"
                                             FontSize="Small"/>
-                                    </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>                                    
                                 </StackLayout>
                             </Frame>
                         </ViewCell>

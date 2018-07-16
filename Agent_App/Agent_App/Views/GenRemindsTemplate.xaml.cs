@@ -88,7 +88,7 @@ namespace Agent_App.Views
         private async void btnPolicy_Clicked(object sender, EventArgs e)
         {
             var policy = BindingContext as CustPolicy;
-            var genPolVM = new GenPolViewModel(policy);
+            var genPolVM = new GenPolViewModel(policy.Department, policy.PolicyNumber);
 
             var genPolicyPage = new GenPolicyDetails
             {

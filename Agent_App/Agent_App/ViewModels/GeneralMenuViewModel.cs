@@ -19,7 +19,7 @@ namespace Agent_App.ViewModels
     {
         private const int PageSize = 10;
         ApiServices _apiServices = new ApiServices();
-        public CustPolicy _previousPolicy;
+        public CustPolicy _previousPolicy;        
 
         public InfiniteScrollCollection<CustPolicy> PoliciesCollection
         {
@@ -43,11 +43,23 @@ namespace Agent_App.ViewModels
         }
         private bool _isBusy;
 
+        public string NotifExist
+        {
+            get => _notifExist;
+            set
+            {
+                _notifExist = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _notifExist;
+
         public GeneralMenuViewModel()
         {
             SearchCriteria.Instance.NewSearch = true;
             SearchCriteria.Instance.TodayReminders = true;
-            DownloadPoliciesAsync();            
+            DownloadPoliciesAsync();
+            GetNotifExistAsync();
         }
 
         public async Task DownloadPoliciesAsync()
@@ -80,6 +92,19 @@ namespace Agent_App.ViewModels
             PoliciesCollection.AddRange(items2);
 
             //PoliciesCollection = new InfiniteScrollCollection<CustPolicy>(items);
+        }
+
+        public async Task GetNotifExistAsync()
+        {
+            bool ret = await _apiServices.NotificsExistAsync(Settings.AccessToken);
+            if (ret)
+            {
+                NotifExist = "notifAlert.png";
+            }
+            else
+            {
+                NotifExist = "";
+            }
         }
 
         public void HideOrShowPolicy(CustPolicy policy)

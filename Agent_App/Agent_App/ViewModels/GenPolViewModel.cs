@@ -36,9 +36,9 @@ namespace Agent_App.ViewModels
         }
         private bool _isBusy;
 
-        public GenPolViewModel(CustPolicy policy)
+        public GenPolViewModel(string dept, string policyNum)
         {
-            GetPolicyDetailsAsync(policy.Department, policy.PolicyNumber);
+            GetPolicyDetailsAsync(dept, policyNum);
         }
 
         public async Task GetPolicyDetailsAsync(string dept, string policyNumber)

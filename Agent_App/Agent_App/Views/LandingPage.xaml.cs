@@ -15,8 +15,7 @@ namespace Agent_App.Views
 	{
 		public LandingPage ()
 		{
-            InitializeComponent();
-            Title = "Sales App";
+            InitializeComponent();           
           
         }
 
