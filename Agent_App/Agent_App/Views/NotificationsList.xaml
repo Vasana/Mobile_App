@@ -61,24 +61,25 @@
                                         </controls:CircleImage>
 
                                         <Label Grid.Row="0" 
-                       HorizontalTextAlignment="Start"
-                       VerticalTextAlignment="Center"
-                       FontSize="16" FontAttributes="Bold"
-                       Text="{Binding EventName}" TextColor="Black" >
+                                            HorizontalTextAlignment="Start"
+                                            VerticalTextAlignment="Center"
+                                            FontSize="16" FontAttributes="Bold"
+                                            Text="{Binding EventName}" TextColor="Black" >
                                         </Label>
 
                                     </StackLayout>
                                     <Button x:Name="btnMark" Grid.Row="0" 
-                        HorizontalOptions="End"
-                        VerticalOptions="Center"
-                        FontSize="14" FontAttributes="None"
-                        Clicked="btnMark_Clicked"
-                        BackgroundColor="White"
-                         BorderColor="Black" BorderWidth="1" WidthRequest="30" HeightRequest="30">
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center"
+                                            FontSize="14" FontAttributes="None"
+                                            Clicked="btnMark_Clicked"
+                                            BackgroundColor="White"
+                                            Image="{Binding MarkedImage}"
+                                            BorderColor="Black" BorderWidth="1" WidthRequest="30" HeightRequest="30">
                                     </Button>
 
                                     <Grid Grid.Row="1" VerticalOptions="CenterAndExpand" 
-                      Padding="0"  HorizontalOptions="FillAndExpand">
+                                        Padding="0"  HorizontalOptions="FillAndExpand">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="auto"/>
                                             <RowDefinition Height="auto"/>
@@ -92,10 +93,10 @@
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"
-                            HorizontalTextAlignment="Start"
-                            VerticalTextAlignment="Center"
-                            FontSize="14" FontAttributes="None"
-                            Text="{Binding EventDescription}" TextColor="Black">
+                                            HorizontalTextAlignment="Start"
+                                            VerticalTextAlignment="Center"
+                                            FontSize="14" FontAttributes="None"
+                                            Text="{Binding EventDescription}" TextColor="Black">
                                         </Label>
                                         <Label Grid.Row="1" Grid.Column="1"
                             HorizontalTextAlignment="Start"

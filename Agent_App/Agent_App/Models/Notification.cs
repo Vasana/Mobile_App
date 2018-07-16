@@ -21,5 +21,6 @@ namespace Agent_App.Models
         public string PolicyType { get; set; } = "";
         public string PolicyDescription { get; set; } = "";
         public bool IsMarked { get; set; }
+        public string MarkedImage { get; set; } = "";
     }
 }

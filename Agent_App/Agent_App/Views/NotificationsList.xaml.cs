@@ -52,13 +52,14 @@ namespace Agent_App.Views
             var notif = e.Item as Notification;
 
             vm.HideOrShowNotif(notif);
+
         }
 
         private async void btnDelete_Clicked(object sender, EventArgs e)
         {
             var vm = BindingContext as NotificsViewModel;
             
-            //await vm.ClearNotifAsync(); -- to be tested
+            await vm.ClearNotifAsync();
 
             //if (!ret)
             //{
@@ -138,11 +139,15 @@ namespace Agent_App.Views
 
             if (notif.IsMarked)
             {
-                button.BackgroundColor = Color.Green;
+                //button.BackgroundColor = Color.Green;
+                notif.MarkedImage = "selected.png";
+                button.Image = "selected.png";
             }
             else
             {
-                button.BackgroundColor = Color.White;
+                //button.BackgroundColor = Color.White;
+                notif.MarkedImage = "";
+                button.Image = "";
             }        
            
         }

@@ -109,7 +109,7 @@ namespace Agent_App.ViewModels
                 IsBusy2 = true;
                 var items = await _apiServices.ClearNotifAsync(accessToken: Settings.AccessToken, notifList: delNotifs, pageIndex: 0, pageSize: PageSize);
                 IsBusy2 = false;
-                NotifCollection = null;
+                NotifCollection.Clear();
                 NotifCollection.AddRange(items);
             }           
 
