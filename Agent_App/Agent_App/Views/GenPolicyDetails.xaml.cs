@@ -25,9 +25,20 @@ namespace Agent_App.Views
 
         }
 
-        private void btnClaimHist_Clicked(object sender, EventArgs e)
+        private async void btnClaimHist_Clicked(object sender, EventArgs e)
         {
+            var genPolVM = BindingContext as GenPolViewModel;
 
+            var claimHistVM = new ClaimHistViewModel(genPolVM.GenPolicy.PolicyNumber);
+            var claimHistPage = new ClaimHistoryPage
+            {
+                BindingContext = claimHistVM
+            };
+
+            if (App.Current.MainPage is NavigationPage)
+            {
+                await(App.Current.MainPage as NavigationPage).PushAsync(claimHistPage);
+            }
         }
     }
 }
