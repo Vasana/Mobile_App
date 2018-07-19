@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Agent_App.Views.ClaimHistoryPage"
+             xmlns:viewModel="clr-namespace:Agent_App.ViewModels"
+             xmlns:local="clr-namespace:Agent_App.Helpers">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:StringToBoolConverter x:Key="StringToBool" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+   
+    <Grid>
+        <StackLayout>
+            <ListView x:Name="LvClaims" HasUnevenRows="True" ItemsSource="{Binding ClaimHistList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame>
+                                <Frame.BorderColor>
+                                    <OnPlatform x:TypeArguments="Color"
+                                                Android="Gray"
+                                                iOS="Gray"/>
+                                </Frame.BorderColor>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Grid VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" 
+                                        Padding="0"
+                                        HorizontalOptions="FillAndExpand">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <StackLayout Orientation="Vertical" Grid.Row="0">
+                                            <StackLayout Orientation="Horizontal" Spacing="5">
+                                                <Label Text="{Binding INV_NO}" 
+                                                   TextColor="Black"
+                                                   FontSize="18"/>
+                                                <Label Text="Intimated On " 
+                                                   TextColor="Gray" VerticalTextAlignment="End"
+                                                   FontSize="16" />
+                                                <Label Text="{Binding INT_DATE}" 
+                                                   TextColor="Gray" VerticalTextAlignment="End"
+                                                   FontSize="16"/>
+                                            </StackLayout>
+                                            <Label Text="{Binding STATUS}" 
+                                               TextColor="Black"
+                                               FontSize="16"/>
+                                        </StackLayout>
+
+                                        <Grid Grid.Row="1" VerticalOptions="CenterAndExpand" 
+                                            Padding="0"  HorizontalOptions="FillAndExpand">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="15" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="1.5*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Row="0" Grid.Column="1"
+                                                HorizontalTextAlignment="Start"
+                                                VerticalTextAlignment="Center"
+                                                FontSize="14" FontAttributes="None"
+                                                Text="Date of Loss: " TextColor="Black">
+                                            </Label>
+                                            <Label x:Name="lblDateOfLoss" Grid.Row="0" Grid.Column="2"
+                                                HorizontalTextAlignment="Start"
+                                                VerticalTextAlignment="Center"
+                                                FontSize="14" FontAttributes="None"
+                                                Text="{Binding DATE_OF_LOSS}" TextColor="Black">
+                                            </Label>
+                                            <Label Grid.Row="0" Grid.Column="3"
+                                                HorizontalTextAlignment="Start"
+                                                VerticalTextAlignment="Center"
+                                                FontSize="14" FontAttributes="None"
+                                                Text="Registered Date: " TextColor="Black" >
+                                            </Label>
+                                            <Label Grid.Row="0" Grid.Column="4"
+                                                HorizontalTextAlignment="Start"
+                                                VerticalTextAlignment="Center"
+                                                FontSize="14" FontAttributes="None"
+                                                Text="{Binding REG_DATE}" TextColor="Black" >
+                                            </Label>
+                                            <Label Grid.Row="1" Grid.Column="1"
+                                                HorizontalTextAlignment="Start"
+                                                VerticalTextAlignment="Center"
+                                                FontSize="14" FontAttributes="None"
+                                                Text="Estimated Liability: " TextColor="Black">
+                                            </Label>
+                                            <Label Grid.Row="1" Grid.Column="2" 
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"
+                                               FontSize="14" FontAttributes="None"
+                                               Text="{Binding EST_LIB, StringFormat='Rs. {0:N2}'}" TextColor="Black">
+                                            </Label>
+                                            <Label Grid.Row="1" Grid.Column="3" 
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"
+                                               FontSize="14" FontAttributes="None"
+                                               Text="Payment Type:" TextColor="Black">
+                                            </Label>
+                                            <Label Grid.Row="1" Grid.Column="4"
+                                                HorizontalTextAlignment="Start"
+                                                VerticalTextAlignment="Center"
+                                                FontSize="14" FontAttributes="None"
+                                                Text="{Binding PAY_TYP}" TextColor="Black" >
+                                            </Label>
+                                            <Label Grid.Row="2" Grid.Column="1"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"
+                                               FontSize="14" FontAttributes="None"
+                                               Text="Voucher Status:" TextColor="Black" >
+                                            </Label>
+                                            <Label Grid.Row="2" Grid.Column="2"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"
+                                               FontSize="14" FontAttributes="None"
+                                               Text="{Binding VOU_STS}" TextColor="Black" >
+                                            </Label>
+                                            <Label Grid.Row="2" Grid.Column="3"
+                                                HorizontalTextAlignment="Start"
+                                                VerticalTextAlignment="Center"
+                                                FontSize="14" FontAttributes="None"
+                                                Text="Paid amount:" TextColor="Black">
+                                            </Label>
+                                            <Label Grid.Row="2" Grid.Column="4"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"
+                                               FontSize="14" FontAttributes="None"
+                                               Text="{Binding PAD_AMOUNT, StringFormat='Rs. {0:N2}'}" TextColor="Black" >
+                                            </Label>
+                                            <Label Grid.Row="3" Grid.Column="1"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"
+                                               FontSize="14" FontAttributes="None"
+                                               Text="Paid Date:" TextColor="Black" >
+                                            </Label>
+                                            <Label Grid.Row="3" Grid.Column="2"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"
+                                               FontSize="14" FontAttributes="None"
+                                               Text="{Binding PAY_DATE}" TextColor="Black" >
+                                            </Label>
+                                            <Label Grid.Row="3" Grid.Column="3"
+                                                HorizontalTextAlignment="Start"
+                                                VerticalTextAlignment="Center"
+                                                FontSize="14" FontAttributes="None"
+                                                Text="Voucher No:" TextColor="Black">
+                                            </Label>
+                                            <Label Grid.Row="3" Grid.Column="4"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"
+                                               FontSize="14" FontAttributes="None"
+                                               Text="{Binding VOU_NO}" TextColor="Black" >
+                                            </Label>
+
+                                        </Grid>
+                                    </Grid>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
+                            HorizontalOptions="Center" VerticalOptions="Center">
+            <ActivityIndicator.Scale>
+                <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
+            </ActivityIndicator.Scale>
+        </ActivityIndicator>
+    </Grid>
+</ContentPage>

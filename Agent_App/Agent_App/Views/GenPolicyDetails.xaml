@@ -52,7 +52,7 @@
                 <Label Grid.Row="5" Grid.Column="0" VerticalTextAlignment="End" Text="End Date" FontSize="Medium"/>
                 <Label Grid.Row="5" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.EndDate}" FontSize="Medium"/>
                 <Label Grid.Row="6" Grid.Column="0" VerticalTextAlignment="End" Text="Sum Insured" FontSize="Medium"/>
-                <Label Grid.Row="6" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.SumInsured}" FontSize="Medium"/>
+                <Label Grid.Row="6" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.SumInsured, StringFormat='Rs. {0:N2}'}" FontSize="Medium"/>
                 <Label Grid.Row="7" Grid.Column="0" VerticalTextAlignment="Start" Text="Additional covers" FontSize="Medium"/>
                 <ListView Grid.Row="7" Grid.Column="2" ItemsSource="{Binding GenPolicy.AdditionalCovers}" RowHeight="30">
                     <ListView.ItemTemplate>

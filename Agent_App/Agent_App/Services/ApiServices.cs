@@ -24,7 +24,6 @@ namespace Agent_App.Services
         private List<Notification> _notifList;
         public int notifCount = 0;
 
-        private GeneralPolicy _genPolicy;
         private LifePolicy _lifePolicy;
 
         internal async Task<bool> RegisterAsync(string email, string password, string confirmPassword)
@@ -271,34 +270,19 @@ namespace Agent_App.Services
 
             public async Task<GeneralPolicy> GetGenPolicyAsync(string accessToken, string dept, string policyNumber)
         {
-            /* var client = new HttpClient();
+            var client = new HttpClient();
 
-             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
-             var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/CustPolicies");
+            var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getGeneralPolicyInfo?policyNo=" + policyNumber.Trim());
 
-             var custPolicies = JsonConvert.DeserializeObject<List<CustPolicy>>(json);*/// Original code
-
-            //---------------------only for testing---------------------------------------
-            _genPolicy = new GeneralPolicy
-            {
-                PolicyNumber = "VM1115003410000519",
-                InsuredName = "H.K.K.T.DUMINDA",
-                Address = new List<string> { "No 2", "Temple Road", "Manel Avenue", "Colombo 04" },
-                VehicleNumber = "DH 1234",
-                StartDate = "22-JUN-17",
-                EndDate = "22-JUN-18",
-                SumInsured = "Rs. 2500000.00",
-                AdditionalCovers = new List<string> { "Special Windscreen cover", "Voluntary Excess", "Terrorism cover" }
-            };
-
-            await Task.Delay(2000);
+            var _genPolicy = JsonConvert.DeserializeObject<GeneralPolicy>(json);
+            
             return _genPolicy;
-
+             
             //-----------------------------------------------------------------------------------
 
-            //return custPolicies; --- Original code
-
+            
         }
 
         public async Task<LifePolicy> GetLifePolicyAsync(string accessToken, string dept, string policyNumber)
@@ -500,6 +484,23 @@ namespace Agent_App.Services
                 //throw;
             }         
             return ret;
+        }
+
+        public async Task<List<ClaimHistory>> GetClaimHistoryAsync(string accessToken, string polNumber)
+        {
+            var client = new HttpClient();
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+            var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/GetClaimHistory?policyNo=" + polNumber.Trim());
+
+            var claimsList = JsonConvert.DeserializeObject<List<ClaimHistory>>(json);
+
+            return claimsList;
+
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
         }
 
         private List<BranchContact> GetBranchesList()
