@@ -873,5 +873,21 @@ namespace Agent_App.Services
             return polList;
         }
 
+        public async Task<AgentProfile> GetAgentProfile(string accessToken)
+        {
+            var client = new HttpClient();
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+            var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getAgentProfile");
+
+            AgentProfile agentProf = JsonConvert.DeserializeObject<AgentProfile>(json);
+
+            return agentProf;
+
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
+        }
     }
 }

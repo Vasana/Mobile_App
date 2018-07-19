@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Agent_App.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class PieEx : ContentPage
+	public partial class Agent_perform_PREM_Temp : ContentView
 	{
-		public PieEx ()
+		public Agent_perform_PREM_Temp ()
 		{
 			InitializeComponent ();
 		}

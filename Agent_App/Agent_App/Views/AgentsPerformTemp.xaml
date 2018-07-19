@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Agent_App.Views.AgentsPerformTemp">
+
+    <Frame IsClippedToBounds="True"
+         HasShadow="True"
+         BackgroundColor="White" >
+        <Frame.OutlineColor>
+            <OnPlatform x:TypeArguments="Color"
+                  Android="Gray"
+                  iOS="Gray"/>
+        </Frame.OutlineColor>
+        <Frame.Margin>
+            <OnPlatform x:TypeArguments="Thickness"
+                  Android="7" iOS="7"/>
+        </Frame.Margin>
+        <Frame.Padding>
+            <OnPlatform x:TypeArguments="Thickness"
+                  Android="5" iOS="5"/>
+        </Frame.Padding>
+
+        <StackLayout Orientation="Horizontal">
+
+
+            <Grid VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" 
+            Padding="0"
+            HorizontalOptions="FillAndExpand"
+            >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <!--<StackLayout Orientation="Horizontal" VerticalOptions="Start"  >-->
+
+
+                <Label Grid.Row="0" 
+                   HorizontalTextAlignment="Start"
+                   VerticalTextAlignment="Center"
+                   FontSize="16" FontAttributes="Bold"
+                   Text="{Binding agentID}" TextColor="Black" >
+                </Label>
+
+                <!--</StackLayout>-->
+
+                <Grid Grid.Row="1" VerticalOptions="CenterAndExpand" 
+                      Padding="0" RowSpacing="0" ColumnSpacing="0"  HorizontalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="10" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Number of Policies "   Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="1" />
+
+
+                    <Label Text="New"   Grid.Row="1" FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="LightGray"  Grid.Column="2" Grid.ColumnSpan="2" />
+                    <Label Text="Renewals"  Grid.Row="1" FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="LightBlue"  Grid.Column="4" Grid.ColumnSpan="2" />
+                    <Label Text="Total"  Grid.Row="1" FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="LightGray" Grid.Column="6" Grid.ColumnSpan="2" />
+
+                    <Label Text="Cash" FontAttributes="Bold"  Grid.Row="2" HorizontalTextAlignment="Center" BackgroundColor="LightGray" Grid.Column="2"  />
+                    <Label Text="Debit" FontAttributes="Bold"  Grid.Row="2" HorizontalTextAlignment="Center"  Grid.Column="3"  />
+
+
+                    <Label Text="Cash" FontAttributes="Bold"  Grid.Row="2" HorizontalTextAlignment="Center" BackgroundColor="LightBlue" Grid.Column="4"  />
+                    <Label Text="Debit" FontAttributes="Bold"  Grid.Row="2" HorizontalTextAlignment="Center"  Grid.Column="5"  />
+
+
+                    <Label Text="Cash"  FontAttributes="Bold" Grid.Row="2" HorizontalTextAlignment="Center" BackgroundColor="LightGray" Grid.Column="6"  />
+                    <Label Text="Debit" FontAttributes="Bold"  Grid.Row="2" HorizontalTextAlignment="Center" Grid.Column="7"  />
+
+
+                    <Label Text="{Binding month}"   Grid.Row="3" Grid.Column="1" />
+
+                    <Label Text="{Binding indMonthNoPol_New_Cash}" HorizontalTextAlignment="Center" BackgroundColor="LightGray" Grid.Row="3" Grid.Column="2" />
+                    <Label Text="{Binding indMonthNoPol_New_Dbt}" HorizontalTextAlignment="Center" Grid.Row="3" Grid.Column="3" />
+
+                    <Label Text="{Binding indMonthNoPol_Renewal_cash}" HorizontalTextAlignment="Center" BackgroundColor="LightBlue" Grid.Row="3" Grid.Column="4" />
+                    <Label Text="{Binding indMonthNoPol_Renewal_Dbt}" HorizontalTextAlignment="Center"  Grid.Row="3" Grid.Column="5" />
+
+                    <Label Text="{Binding indMonthNoPolTotal_cash}" HorizontalTextAlignment="Center" BackgroundColor="LightGray" Grid.Row="3" Grid.Column="6" />
+                    <Label Text="{Binding indMonthNoPolTotal_Dbt}" HorizontalTextAlignment="Center" Grid.Row="3" Grid.Column="7" />
+                    
+                    <Label Text="{Binding year}"   Grid.Row="4" Grid.Column="1" />
+
+ 
+
+                    <Label Text="{Binding indYearPol_New_Cash}" HorizontalTextAlignment="Center" BackgroundColor="LightGray" Grid.Row="4" Grid.Column="2" />
+                    <Label Text="{Binding indYearPol_New_Dbt}" HorizontalTextAlignment="Center"  Grid.Row="4" Grid.Column="3" />
+
+                    <Label Text="{Binding indYearPol_Renewal_cash}" HorizontalTextAlignment="Center" BackgroundColor="LightBlue"  Grid.Row="4" Grid.Column="4" />
+                    <Label Text="{Binding indYearPol_Renewal_Dbt}" HorizontalTextAlignment="Center" Grid.Row="4" Grid.Column="5" />
+
+                    <Label Text="{Binding indYearPolTotal_cash}" HorizontalTextAlignment="Center" BackgroundColor="LightGray" Grid.Row="4" Grid.Column="6" />
+                    <Label Text="{Binding indYearPolTotal_Dbt}" HorizontalTextAlignment="Center" Grid.Row="4" Grid.Column="7" />
+
+                    <!--<Label Text="{Binding year}" Grid.Row="3" Grid.Column="1" />
+                    <Label Text="{Binding indYearPolTotal}" Grid.Row="3" Grid.Column="2" />
+                    <Label Text="{Binding indYearPol_New}" Grid.Row="3" Grid.Column="3" />
+                    <Label Text="{Binding indYearPol_Renewal}" Grid.Row="3" Grid.Column="4" />-->
+
+                    <!--<Label Text="Premium Income " Grid.ColumnSpan="3"   Grid.Row="4" Grid.Column="1" />
+
+                    <Label Text="{Binding month}" Grid.Row="5" Grid.Column="1" />
+                    <Label Text="{Binding indMonthPremTotal}" Grid.Row="5" Grid.Column="2" />
+                    <Label Text="{Binding indMonthPrem_New}" Grid.Row="5" Grid.Column="3" />
+                    <Label Text="{Binding indMonthPrem_Renewal}" Grid.Row="5" Grid.Column="4" />
+
+                    <Label Text="{Binding year}" Grid.Row="6" Grid.Column="1" />
+                    <Label Text="{Binding indYearPremTotal}"  Grid.Row="6" Grid.Column="2" />
+                    <Label Text="{Binding indYearPrem_New}"  Grid.Row="6" Grid.Column="3" />
+                    <Label Text="{Binding indYearPrem_Renewal}" Grid.Row="6" Grid.Column="4" />-->
+
+
+                </Grid>
+
+            </Grid>
+        </StackLayout>
+    </Frame>
+</ContentView>

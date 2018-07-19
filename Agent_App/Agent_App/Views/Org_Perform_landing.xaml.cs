@@ -10,14 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace Agent_App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Agent_performance : TabbedPage
+    public partial class Org_Perform_landing : TabbedPage
     {
-        public Agent_performance ()
+        public Org_Perform_landing ()
         {
             InitializeComponent();
-            Title = "Sales Performance";
         }
-
-        
     }
 }

@@ -43,6 +43,7 @@
 
                 <Button Grid.Row="0" Grid.Column="0" x:Name="BtnCusprof" Command="{Binding CustomersProfilesCommand}" BorderColor="LightGray" BorderWidth="1" BackgroundColor="White"  Image="customer.png" HeightRequest="200"  />
                 <Button Grid.Row="0" Grid.Column="1" x:Name="BtnQuote" Command="{Binding GetQuotationCommand}" BackgroundColor="White"  BorderColor="LightGray" BorderWidth="1" Image="policy.png" HeightRequest="200"/>
+                <!--<Button Grid.Row="0" Grid.Column="1" Clicked="Button_Clicked" BackgroundColor="White"  BorderColor="LightGray" BorderWidth="1" Image="policy.png" HeightRequest="200"/>-->
 
                 <StackLayout Grid.Row="1" Grid.ColumnSpan="2">
                     <Label FontSize="Medium" HorizontalOptions="Center" Text="Today's Reminders"

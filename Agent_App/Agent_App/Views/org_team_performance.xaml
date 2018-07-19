@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Agent_App.Models"
+             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
+             xmlns:models1="clr-namespace:Agent_App.ViewModels"
+             x:Class="Agent_App.Views.org_team_performance">
+
+    <ContentPage.BindingContext>
+        <models1:Performance_stats_org/>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <StackLayout>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Picker x:Name="Month" Title="Select Month" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding MonthList}" ItemDisplayBinding="{Binding name} "/>
+                <Picker x:Name="Year"   Title="Select Year" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding YearList}" ItemDisplayBinding="{Binding yearVal}" />
+                <Button x:Name="BtnLoad" Grid.Row="1" Grid.Column="2" Command="{Binding FilterPerformanceDate}" Text="Load"/>
+            </Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <!--<RowDefinition Height="300" />
+                <RowDefinition Height="300" />
+                    <RowDefinition Height="300" />
+                    <RowDefinition Height="300" />-->
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="New" FontSize="Large"  Grid.Row="0" Grid.Column="2" />
+                <Label Text="Renewals" FontSize="Large"  Grid.Row="0" Grid.Column="3" />
+                <Label Text="Total" FontSize="Large"  Grid.Row="0" Grid.Column="4" />
+
+                <Label Text="{Binding lbl_mon_NOP}" FontSize="Large"  Grid.Row="1" Grid.Column="1" />
+                <Label Text="{Binding ownAgt.indMonthNoPolTotal}" FontSize="Large" Grid.Row="1" Grid.Column="2" />
+                <Label Text="{Binding ownAgt.indMonthNoPol_New}" FontSize="Large" Grid.Row="1" Grid.Column="3" />
+                <Label Text="{Binding ownAgt.indMonthNoPol_Renewal}" FontSize="Large" Grid.Row="1" Grid.Column="4" />
+
+                <Label Text="{Binding lbl_yr_NOP}" FontSize="Large"  Grid.Row="2" Grid.Column="1" />
+                <Label Text="{Binding ownAgt.indYearPolTotal}"  FontSize="Large" Grid.Row="2" Grid.Column="2" />
+                <Label Text="{Binding ownAgt.indYearPol_New}"  FontSize="Large" Grid.Row="2" Grid.Column="3" />
+                <Label Text="{Binding ownAgt.indYearPol_Renewal}"  FontSize="Large" Grid.Row="2" Grid.Column="4" />
+
+                <Label Text="{Binding lbl_mon_prem}" FontSize="Large"  Grid.Row="4" Grid.Column="1" />
+                <Label Text="{Binding ownAgt.indMonthPremTotal}" FontSize="Large" Grid.Row="4" Grid.Column="2" />
+                <Label Text="{Binding ownAgt.indMonthPrem_New}" FontSize="Large" Grid.Row="4" Grid.Column="3" />
+                <Label Text="{Binding ownAgt.indMonthPrem_Renewal}" FontSize="Large" Grid.Row="4" Grid.Column="4" />
+
+                <Label Text="{Binding lbl_yr_prem}" FontSize="Large"  Grid.Row="5" Grid.Column="1" />
+                <Label Text="{Binding ownAgt.indYearPremTotal}" FontSize="Large" Grid.Row="5" Grid.Column="2" />
+                <Label Text="{Binding ownAgt.indYearPrem_New}" FontSize="Large" Grid.Row="5" Grid.Column="3" />
+                <Label Text="{Binding ownAgt.indYearPrem_Renewal}" FontSize="Large" Grid.Row="5" Grid.Column="4" />
+
+
+            </Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="300" />
+                    <RowDefinition Height="300" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                </Grid.ColumnDefinitions>
+                <oxy:PlotView Model="{Binding PieMonthNoPol}"
+                   HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand" Grid.Row="0" Grid.Column="1" />
+
+                <oxy:PlotView Model="{Binding PieYearNoPol}"
+                   HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand" Grid.Row="0"  Grid.Column="2" />
+
+                <oxy:PlotView Model="{Binding PieMonthPrem}"
+                   HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand" Grid.Row="1"  Grid.Column="1" />
+
+                <oxy:PlotView Model="{Binding PieYearPrem}"
+                   HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand" Grid.Row="1"  Grid.Column="2" />
+
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

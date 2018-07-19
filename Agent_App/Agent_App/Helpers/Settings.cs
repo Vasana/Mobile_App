@@ -43,6 +43,18 @@ namespace Agent_App.Helpers
             }
         }
 
+        public static string jobRole
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("jobRole", "");
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("jobRole", value);
+            }
+        }
+
         public static string AccessToken
         {
             get

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Agent_App.ViewModels"
+             xmlns:views="clr-namespace:Agent_App.Views"
+             x:Class="Agent_App.Views.Agent_team_perfomance_Prem">
+    <ContentPage.BindingContext>
+        <viewmodels:AgentPerfomance_prem/>
+    </ContentPage.BindingContext>
+    <ListView x:Name="listView" SelectedItem="{Binding SelcetedItem,Mode=TwoWay}" 
+              RowHeight="150" ItemTapped="listView_ItemTapped" 
+              ItemsSource="{Binding agentsTeamRecs}"  HasUnevenRows="True"  >
+
+        <!--<ListView.Behaviors>
+                <extended:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}" />
+            </ListView.Behaviors>-->
+
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <ContentView Padding="10">
+                        <views:Agent_perform_PREM_Temp/>
+                        <!--<Label Text="{Binding agentID}"/>-->
+                    </ContentView>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+        <!--<ListView.Footer>
+                <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                    -->
+        <!-- set the footer to have a zero height when invisible -->
+        <!--
+                    <Grid.Triggers>
+                        <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                            <Setter Property="HeightRequest" Value="0" />
+                        </Trigger>
+                    </Grid.Triggers>
+                    -->
+        <!-- the loading content -->
+        <!--
+                    <Label Text="Loading..." TextColor="DeepPink" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" />
+                </Grid>
+            </ListView.Footer>-->
+    </ListView>
+</ContentPage>
