@@ -1,5 +1,6 @@
 ﻿using Agent_App.Models;
 using Agent_App.ViewModels;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,11 @@ namespace Agent_App.Views
 
             vm.HideOrShowPolicy(policy);
 
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            PopupNavigation.Instance.PushAsync(new PopUp_Perform());
         }
     }
 }

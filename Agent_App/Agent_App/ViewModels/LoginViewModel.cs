@@ -91,6 +91,7 @@ namespace Agent_App.ViewModels
 
                        AgentProfile agentProfile = AgentProfile.Instance;
                        agentProfile = await _apiServices.GetAgentProfile(accessToken);
+                       Settings.jobRole = agentProfile.Role;
                    }
                });
             }

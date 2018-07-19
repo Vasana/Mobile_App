@@ -112,8 +112,12 @@ namespace Agent_App.ViewModels
                 {
                     //Application.Current.MainPage = new NavigationPage(new ExampleList());
 
-                    await Application.Current.MainPage.Navigation.PushAsync(new Org_Perform_landing());
+                    //await Application.Current.MainPage.Navigation.PushAsync(new Org_Perform_landing());
                     
+                    if (Settings.jobRole == "Organizer")
+                        await PopupNavigation.Instance.PushAsync(new PopUp_Perform());
+                    else
+                        await Application.Current.MainPage.Navigation.PushAsync(new Agent_performance());
                 });
             }
         }

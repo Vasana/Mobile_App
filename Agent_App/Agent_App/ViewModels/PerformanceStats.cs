@@ -210,10 +210,10 @@ namespace Agent_App.Models
                 StartAngle = 0
             };
 
-            ps.Slices.Add(new PieSlice("Cash - New", ownAgt.indYearPol_New_Cash) { IsExploded = false });
-            ps.Slices.Add(new PieSlice("Debit - New", ownAgt.indYearPol_New_Dbt) { IsExploded = false });
-            ps.Slices.Add(new PieSlice("Cash - Renewals", ownAgt.indYearPol_Renewal_cash) { IsExploded = false });
-            ps.Slices.Add(new PieSlice("Debit - Renewals", ownAgt.indYearPol_Renewal_Dbt) { IsExploded = false });
+            ps.Slices.Add(new PieSlice("Cash - New", ownAgt.indYearPol_New_Cash) { IsExploded = false, Fill = OxyColor.FromRgb(130, 177, 185) });
+            ps.Slices.Add(new PieSlice("Debit - New", ownAgt.indYearPol_New_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(54, 139, 193) });
+            ps.Slices.Add(new PieSlice("Cash - Renewals", ownAgt.indYearPol_Renewal_cash) { IsExploded = false, Fill = OxyColor.FromRgb(235, 199, 170) });
+            ps.Slices.Add(new PieSlice("Debit - Renewals", ownAgt.indYearPol_Renewal_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(195, 159, 130) });
             model.Series.Add(ps);
             return model;
         }
