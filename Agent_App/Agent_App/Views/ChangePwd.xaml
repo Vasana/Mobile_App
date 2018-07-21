@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Agent_App.ViewModels"
+             x:Class="Agent_App.Views.ChangePwd"
+             xmlns:behaviors ="clr-namespace:Agent_App.Models">
+    <ContentPage.BindingContext>
+        <viewmodels:ChangePW/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Grid ColumnSpacing="5" RowSpacing="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Current Password" Grid.Row="1" Grid.Column="1"></Label>
+                <Entry Text="{Binding old_password}" Grid.Row="1" Grid.Column="2" IsPassword="True"  Placeholder="Enter Password"  FontSize="20" PlaceholderColor="#CCC" TextColor="#555">
+                    <Entry.Behaviors>
+                        <behaviors:PasswordValidationBehavior/>
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Label Text="New Password" Grid.Row="2" Grid.Column="1"></Label>
+                <Entry Text="{Binding new_password}" Grid.Row="2" Grid.Column="2" IsPassword="True"  Placeholder="New Password"  FontSize="20" MaxLength="12" PlaceholderColor="#CCC" TextColor="#555">
+                    <Entry.Behaviors>
+                        <behaviors:PasswordValidationBehavior/>
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Label Text="Confirm Password" Grid.Row="3" Grid.Column="1"></Label>
+                <Entry Text="{Binding confirm_password}" Grid.Row="3" Grid.Column="2" IsPassword="True"  Placeholder="Confirm Password"  FontSize="20" MaxLength="12" PlaceholderColor="#CCC" TextColor="#555">
+                    <Entry.Behaviors>
+                        <behaviors:PasswordValidationBehavior/>
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Button Text="Submit" Grid.Row="4" Grid.Column="2" Command="{Binding changePWDCommand}" />
+
+                <Label Text="{Binding Message}" BackgroundColor="{Binding textcolor}" TextColor="{Binding textcolor}" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"></Label>
+
+            </Grid>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

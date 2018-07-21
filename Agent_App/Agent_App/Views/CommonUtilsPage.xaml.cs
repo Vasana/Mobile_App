@@ -20,7 +20,7 @@ namespace Agent_App.Views
 
         private void BtnProfile_Clicked(object sender, EventArgs e)
         {
-
+            Navigation.PushAsync(new Agent_profile());
         }
 
         private void BtnBranches_Clicked(object sender, EventArgs e)
@@ -35,7 +35,7 @@ namespace Agent_App.Views
 
         private void btnSettings_Clicked(object sender, EventArgs e)
         {
-
+            Navigation.PushAsync(new ChangePwd());
         }
     }
 }

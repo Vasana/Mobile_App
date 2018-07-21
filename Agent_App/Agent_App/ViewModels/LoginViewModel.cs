@@ -89,7 +89,7 @@ namespace Agent_App.ViewModels
                        LoginSuccess = true;
                        Application.Current.MainPage = new NavigationPage(new LandingPage());
 
-                       AgentProfile agentProfile = AgentProfile.Instance;
+                       AgentProfile agentProfile = new AgentProfile();
                        agentProfile = await _apiServices.GetAgentProfile(accessToken);
                        Settings.jobRole = agentProfile.Role;
                    }

@@ -10,12 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace Agent_App.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Agent_profile : ContentPage
+	public partial class ChangePwd : ContentPage
 	{
-		public Agent_profile ()
+		public ChangePwd ()
 		{
 			InitializeComponent ();
-            Title = "Profile";
-        }
+            Title = "Change Password";
+		}
 	}
 }
