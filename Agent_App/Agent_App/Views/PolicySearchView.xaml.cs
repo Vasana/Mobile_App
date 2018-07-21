@@ -228,6 +228,12 @@ namespace Agent_App
                 entMobileNumber.IsEnabled = true;
                 entPolicyNumber.IsEnabled = true;                
             }
+
+            if (e.NewTextValue.Length > 2)
+            {
+                //entVehiNum1.Text = entVehiNum1.Text.Remove(3);
+                entVehiNum2.Focus();
+            }
         }
 
         private void entVehiNum2_TextChanged(object sender, TextChangedEventArgs e)

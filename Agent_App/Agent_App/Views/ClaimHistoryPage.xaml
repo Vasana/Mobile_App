@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Agent_App.Views.ClaimHistoryPage"
              xmlns:viewModel="clr-namespace:Agent_App.ViewModels"
-             xmlns:local="clr-namespace:Agent_App.Helpers">
+             xmlns:local="clr-namespace:Agent_App.Helpers"
+             Title="Claim History">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -13,6 +14,12 @@
    
     <Grid>
         <StackLayout>
+            <Label Text="Claim History"
+             VerticalOptions="Start"
+             HorizontalTextAlignment="Center"
+             VerticalTextAlignment="Center"
+             BackgroundColor="Transparent"
+             HorizontalOptions="CenterAndExpand" />
             <ListView x:Name="LvClaims" HasUnevenRows="True" ItemsSource="{Binding ClaimHistList}">
                 <ListView.ItemTemplate>
                     <DataTemplate>

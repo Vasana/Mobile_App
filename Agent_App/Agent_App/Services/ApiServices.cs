@@ -518,14 +518,18 @@ namespace Agent_App.Services
 
         public async Task<List<ClaimHistory>> GetClaimHistoryAsync(string accessToken, string polNumber)
         {
-            var client = new HttpClient();
-
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
-
-            var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/GetClaimHistory?policyNo=" + polNumber.Trim());
-
-            var claimsList = JsonConvert.DeserializeObject<List<ClaimHistory>>(json);
-
+            List<ClaimHistory> claimsList = null;
+            try
+            {
+                var client = new HttpClient();   
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+                var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/GetClaimHistory?policyNo=" + polNumber.Trim());
+                claimsList = JsonConvert.DeserializeObject<List<ClaimHistory>>(json);               
+            }
+            catch(Exception e)
+            {
+                claimsList = null;
+            }
             return claimsList;
 
             //-----------------------------------------------------------------------------------
