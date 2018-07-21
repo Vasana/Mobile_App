@@ -45,7 +45,7 @@ namespace Agent_App.ViewModels
         public async Task getClaimHistoryAsync(string policyNum)
         {
             IsBusy = true;
-            ClaimHistList = await _apiServices.GetClaimHistoryAsync(Settings.AccessToken, policyNum);
+            ClaimHistList = await _apiServices.GetClaimHistoryAsync(Settings.AccessToken, policyNum);                  
             IsBusy = false;
         }
 
