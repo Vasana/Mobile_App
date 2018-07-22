@@ -113,7 +113,6 @@ namespace Agent_App.Services
                 JObject jwtDynamic = JsonConvert.DeserializeObject<dynamic>(jwtResponse);
 
                 accessToken = jwtDynamic.Value<string>("access_token");
-                
                 Debug.WriteLine(jwtResponse);
             }
             catch (Exception e)

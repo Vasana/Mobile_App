@@ -82,8 +82,15 @@ namespace Agent_App.ViewModels
                        Message = "Login failed";                       
                    }
                    else
-                   {                   
+                   {                       
                        Settings.AccessToken = accessToken;
+                       if (Settings.Password != Password)
+                       {
+                           if (Settings.Username == Username)
+                           {
+                               Settings.Password = Password;
+                           }
+                       }
                        IsBusy = false;
                        Message = "Logged in Successfully";
                        LoginSuccess = true;
@@ -92,6 +99,7 @@ namespace Agent_App.ViewModels
                        AgentProfile agentProfile = new AgentProfile();
                        agentProfile = await _apiServices.GetAgentProfile(accessToken);
                        Settings.jobRole = agentProfile.Role;
+                       
                    }
                });
             }

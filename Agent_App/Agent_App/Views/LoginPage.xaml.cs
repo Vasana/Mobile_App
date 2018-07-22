@@ -1,4 +1,5 @@
-﻿using Agent_App.Interfaces;
+﻿using Agent_App.Helpers;
+using Agent_App.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,8 +27,11 @@ namespace Agent_App.Views
         
         public void LoadProfilePic()
         {
-            string filePath =  DependencyService.Get<IPhoto>().GetPhotoPath();
-            ProfileImage.Source = ImageSource.FromFile(filePath);
+            if (Settings.ProfileImageSet)
+            {
+                string filePath = DependencyService.Get<IPhoto>().GetPhotoPath();
+                ProfileImage.Source = ImageSource.FromFile(filePath);
+            }
         }
 
        

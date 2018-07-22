@@ -1,4 +1,5 @@
 ﻿using Agent_App.Helpers;
+using Agent_App.Interfaces;
 using Agent_App.Models;
 using Agent_App.Services;
 using System;
@@ -7,12 +8,14 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace Agent_App.ViewModels
 {
     public class AgentProfileVM : INotifyPropertyChanged
     {
         private bool _isBusy;
+        private string _imagePath;
         ApiServices _apiServices = new ApiServices();
         public AgentProfile AgentProf
         {
@@ -35,6 +38,16 @@ namespace Agent_App.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        public string ImagePath
+        {
+            get => _imagePath;
+            set
+            {
+                _imagePath = value;
+                OnPropertyChanged();
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -53,7 +66,15 @@ namespace Agent_App.ViewModels
         public AgentProfileVM()
         {
             GetAgentProfileAsync();
-
+            if (Settings.ProfileImageSet)
+            {
+                string filePath = DependencyService.Get<IPhoto>().GetPhotoPath();
+                ImagePath = filePath;
+            }
+            else
+            {
+                ImagePath = "ProfileImage.png";
+            }
         }
 
 

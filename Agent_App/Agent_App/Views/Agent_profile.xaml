@@ -10,17 +10,17 @@
         <Grid>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
@@ -77,6 +77,10 @@
             <Label FontSize="Medium" Text="{Binding AgentProf.NIC_number}" Grid.Row="11" Grid.Column="3"    />
 
         </Grid>
-        
+        <StackLayout Padding="20">
+            <Label x:Name="lblSuccessMsg" TextColor="Green" HorizontalOptions="Center"/>
+            <Image x:Name="ProfileImage" HeightRequest="150" WidthRequest="150" Source="{Binding ImagePath}"/>
+            <Button x:Name="btnPickPhoto" Text="Pick Photo" Clicked="btnPickPhoto_Clicked" HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
     </StackLayout>
 </ContentPage>

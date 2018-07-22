@@ -67,5 +67,17 @@ namespace Agent_App.Helpers
             }
         }
 
+        public static bool ProfileImageSet
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("ProfileImageSet", false);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("ProfileImageSet", value);
+            }
+        }
+
     }
 }

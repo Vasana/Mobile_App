@@ -22,10 +22,19 @@ namespace Agent_App.Droid
         public string GetPhotoPath()
         {            
             var dir = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures);
-            var pictures = dir.AbsolutePath;
+            var picturesPath = dir.AbsolutePath + "/Agent_App_Images";
+
+            try
+            {
+                Directory.CreateDirectory(picturesPath);
+            }
+            catch(Exception e)
+            {
+
+            }
             //adding a time stamp time file name to allow saving more than one image... otherwise it overwrites the previous saved image of the same name
-            string name = "images.jpeg";
-            string filePath = System.IO.Path.Combine(pictures, name);
+            string name = "ProfilePhoto.png";
+            string filePath = System.IO.Path.Combine(picturesPath, name);
             
             return filePath;
         }
