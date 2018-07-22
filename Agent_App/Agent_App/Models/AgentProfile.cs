@@ -6,13 +6,14 @@ namespace Agent_App.Models
 {
     public sealed class AgentProfile
     {
-        private static readonly AgentProfile instance = new AgentProfile();
+        //private static readonly AgentProfile instance = new AgentProfile();
 
         public int Agent_code { get; set; }
         public int Organizer_code { get; set; }
 
         public string Role { get; set; }
 
+        public bool Is_org { get; set; }
         public string title { get; set; }
         public string initials { get; set; }
         public string last_name { get; set; }
@@ -27,14 +28,14 @@ namespace Agent_App.Models
         public string ibslPassed { get; set; }
 
 
-        private AgentProfile() { }
+        //private AgentProfile() { }
 
-        public static AgentProfile Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
+        //public static AgentProfile Instance
+        //{
+        //    get
+        //    {
+        //        return instance;
+        //    }
+        //}
     }
 }

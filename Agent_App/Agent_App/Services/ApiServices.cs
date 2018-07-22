@@ -59,6 +59,36 @@ namespace Agent_App.Services
             return ret;
         }
 
+        public async Task<string> changePassword(ChangePasswordBindingModel model, string accessToken)
+        {
+            string result = "";
+            HttpClient client = new HttpClient();
+            var json = JsonConvert.SerializeObject(model);
+            HttpContent content = new StringContent(json);
+                        
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+            HttpResponseMessage response = new HttpResponseMessage();
+            response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/Account/ChangePassword", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                result = "Successful";
+            }
+            else
+            {
+                result = response.ReasonPhrase.ToString();
+            }
+
+
+            return result;
+
+
+
+
+        }
+
         public async Task<string> LoginAsync(string userName, string password)
         {
             string accessToken = null;
