@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Agent_App.ViewModels"
-             x:Class="Agent_App.Views.LoginPage">
+             x:Class="Agent_App.Views.LoginPage"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
  
     <ContentPage.BindingContext>
         <viewModels:LoginViewModel />
@@ -14,6 +15,9 @@
         <ScrollView>
             <StackLayout Spacing="20" Padding="50">
                 <StackLayout Padding="15" Spacing="2" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                    <controls:CircleImage x:Name="ProfileImage"
+                                      VerticalOptions="Start" HorizontalOptions="Center" HeightRequest="200" WidthRequest="200">
+                    </controls:CircleImage>                    
                     <Label Text="Username (Email)" TextColor="#555" FontSize="20" FontAttributes="Bold" />
                     <Entry Text="{Binding Username}" Placeholder="Enter Email" PlaceholderColor="#CCC" TextColor="#555" />
                     <Label Text="Password" TextColor="#555" FontSize="20" FontAttributes="Bold" />
