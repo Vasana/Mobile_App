@@ -10,8 +10,8 @@
         </ResourceDictionary>
     </ContentPage.Resources>
         
-        <StackLayout Margin="50"
-                 Padding="24"
+        <StackLayout Margin="30"
+                 Padding="8"
                  BackgroundColor="White"
                  HorizontalOptions="Center"
                  VerticalOptions="StartAndExpand">
@@ -99,17 +99,24 @@
                        Text="Engine No" FontSize="Medium"/>
                 <Label Grid.Row="13" Grid.Column="2" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
                        TextColor="#336699" Text="{Binding GenPolicy.EngineNo}" FontSize="Medium"/>
-                
-            </Grid>
+            
+        </Grid>
 
-            <Grid Padding="7">
+            <Grid Padding="4">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Button Grid.Row="0" x:Name="btnPayHist"
+            <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
+                            HorizontalOptions="Center" VerticalOptions="Center">
+                <ActivityIndicator.Scale>
+                    <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
+                </ActivityIndicator.Scale>
+            </ActivityIndicator>
+                
+            <Button Grid.Row="0" x:Name="btnPayHist"
                 BackgroundColor="DeepPink"
                 Text="View Payment History"
                 TextColor="White" 
