@@ -17,7 +17,8 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions >
@@ -27,21 +28,21 @@
                     <ColumnDefinition Width="30"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Text="Current Password" Grid.Row="1" Grid.Column="1"></Label>
+                <Label Text="Current Password" Grid.Row="1" Grid.Column="1" FontSize="20"></Label>
                 <Entry Text="{Binding old_password}" Grid.Row="1" Grid.Column="2" IsPassword="True"  Placeholder="Enter Password"  FontSize="20" PlaceholderColor="#CCC" TextColor="#555">
                     <Entry.Behaviors>
                         <behaviors:PasswordValidationBehavior/>
                     </Entry.Behaviors>
                 </Entry>
 
-                <Label Text="New Password" Grid.Row="2" Grid.Column="1"></Label>
+                <Label Text="New Password" Grid.Row="2" Grid.Column="1" FontSize="20"></Label>
                 <Entry Text="{Binding new_password}" Grid.Row="2" Grid.Column="2" IsPassword="True"  Placeholder="New Password"  FontSize="20" MaxLength="12" PlaceholderColor="#CCC" TextColor="#555">
                     <Entry.Behaviors>
                         <behaviors:PasswordValidationBehavior/>
                     </Entry.Behaviors>
                 </Entry>
 
-                <Label Text="Confirm Password" Grid.Row="3" Grid.Column="1"></Label>
+                <Label Text="Confirm Password" Grid.Row="3" Grid.Column="1" FontSize="20"></Label>
                 <Entry Text="{Binding confirm_password}" Grid.Row="3" Grid.Column="2" IsPassword="True"  Placeholder="Confirm Password"  FontSize="20" MaxLength="12" PlaceholderColor="#CCC" TextColor="#555">
                     <Entry.Behaviors>
                         <behaviors:PasswordValidationBehavior/>
@@ -50,10 +51,57 @@
 
                 <Button Text="Submit" Grid.Row="4" Grid.Column="2" Command="{Binding changePWDCommand}" />
 
-                <Label Text="{Binding Message}" BackgroundColor="{Binding textcolor}" TextColor="{Binding textcolor}" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"></Label>
+                <Label Text="{Binding Message}"  TextColor="Red" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"></Label>
 
+                <Button Text="Re-Login" TextColor="White" BackgroundColor="RoyalBlue" BorderColor="Navy" HeightRequest="40" Grid.Row="6" IsVisible="{Binding PwdChanged}" Grid.Column="1" Command="{Binding loginCommand}" WidthRequest="125" HorizontalOptions="Start" VerticalOptions="Start"/>
             </Grid>
-            
+
+            <Frame IsClippedToBounds="True"
+         HasShadow="True"
+         BackgroundColor="White" >
+                <Frame.OutlineColor>
+                    <OnPlatform x:TypeArguments="Color"
+                  Android="LightGray"
+                  iOS="LightGray" WinPhone="LightGray" />
+                </Frame.OutlineColor>
+                <Frame.Margin>
+                    <OnPlatform x:TypeArguments="Thickness"
+                  Android="7" iOS="7"/>
+                </Frame.Margin>
+                <Frame.Padding>
+                    <OnPlatform x:TypeArguments="Thickness"
+                  Android="5" iOS="5"/>
+                </Frame.Padding>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="1" Grid.Column="1" Text="Password Rules" HorizontalTextAlignment="Center" TextColor="White" BackgroundColor="Gray"></Label>
+
+                    <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="Password should be 8-20 characters long" TextColor="DarkGray" BackgroundColor="White"></Label>
+                    <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="Contain one or more lower case characters" TextColor="DarkGray" BackgroundColor="White"></Label>
+                    <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="Contain one or more upper case characters" TextColor="DarkGray" BackgroundColor="White"></Label>
+                    <Label Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="Contain one or more numerics" TextColor="DarkGray" BackgroundColor="White"></Label>
+                    <Label Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Text="Contain one or more special characters ([ &lt; &gt; % # @ ])" TextColor="DarkGray" BackgroundColor="White"></Label>
+
+
+                </Grid>
+            </Frame>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

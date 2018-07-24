@@ -1,6 +1,7 @@
 ﻿using Agent_App.Helpers;
 using Agent_App.Models;
 using Agent_App.Services;
+using Agent_App.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -57,11 +58,28 @@ namespace Agent_App.ViewModels
 
         public string _message;
 
+        public ChangePW()
+        {
+            PwdChanged = false;
+            textcolor = Color.Black;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public ICommand loginCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    Application.Current.MainPage = new NavigationPage(new LoginPage());
+                });
+            }
         }
 
         public ICommand changePWDCommand
@@ -87,19 +105,21 @@ namespace Agent_App.ViewModels
 
                                 string response = await _apiServices.changePassword(changepwd_mdl, Settings.AccessToken);
 
-                                PwdChanged = true;
+                                
                                 if (response == "Successful")
                                 {
-                                    IsBusy = false;
-                                    // LoginSuccess = false;
-                                    Message = "Password Updated";
                                     textcolor = Color.Green;
+                                    IsBusy = false;
+                                    PwdChanged = true;
+                                    Message = "Password Successfully Updated.";
+                                    
                                 }
                                 else
                                 {
-                                    IsBusy = false;
-                                    Message = "Failed to Change Password. " + response;
                                     textcolor = Color.Red;
+                                    IsBusy = false;
+                                    Message = "Failed to Change Password. Please retry.";
+                                    
 
                                     // Application.Current.MainPage = new NavigationPage(new LandingPage());
 
@@ -108,6 +128,7 @@ namespace Agent_App.ViewModels
                             }
                             else
                             {
+                                textcolor = Color.Red;
                                 IsBusy = false;
                                 Message = "New password cannot be the current password.";
                                 textcolor = Color.Red;
@@ -115,18 +136,17 @@ namespace Agent_App.ViewModels
                         }
                         else
                         {
+                            textcolor = Color.Red;
                             IsBusy = false;
                             Message = "New Password didn't match with confirmation";
-                            textcolor = Color.Red;
 
                         }
                     }
                     else
                     {
-                        
+                        textcolor = Color.Red;
                         IsBusy = false;
                         Message = "Please Enter Correct Values";
-                        textcolor = Color.Red;
                     }
                 });
             }
