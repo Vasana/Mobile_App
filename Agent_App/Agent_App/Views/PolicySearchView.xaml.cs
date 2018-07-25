@@ -151,6 +151,7 @@ namespace Agent_App
 
         private void btnClear_Clicked(object sender, EventArgs e)
         {
+            BusiTypePicker.SelectedIndex = 0;
             typePicker.SelectedIndex = -1;
             entPolicyNumber.Text = null;
             entVehiNum1.Text = null;
@@ -158,6 +159,7 @@ namespace Agent_App
             stFromDtPicker.Date = minPickerDate;
             stToDtPicker.Date = maxPickerDate;
             entMobileNumber.Text = null;
+            //BusiTypePicker.Focus();
         }
 
         private void BusiTypePicker_SelectedIndexChanged(object sender, EventArgs e)
@@ -186,68 +188,70 @@ namespace Agent_App
 
         private void entMobileNumber_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (entMobileNumber.Text != "")
-            {
-                entPolicyNumber.IsEnabled = false;
-                entVehiNum1.IsEnabled = false;
-                entVehiNum2.IsEnabled = false;
-            }
-            else
-            {
-                entPolicyNumber.IsEnabled = true;
-                entVehiNum1.IsEnabled = true;
-                entVehiNum2.IsEnabled = true;
-            }
+            //if (entMobileNumber.Text != "")
+            //{
+            //    entPolicyNumber.IsEnabled = false;
+            //    entVehiNum1.IsEnabled = false;
+            //    entVehiNum2.IsEnabled = false;
+            //}
+            //else
+            //{
+            //    entPolicyNumber.IsEnabled = true;
+            //    entVehiNum1.IsEnabled = true;
+            //    entVehiNum2.IsEnabled = true;
+            //}
         }
 
         private void entPolicyNumber_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (entPolicyNumber.Text != "")
-            {
-                entMobileNumber.IsEnabled = false;
-                entVehiNum1.IsEnabled = false;
-                entVehiNum2.IsEnabled = false;
-            }
-            else
-            {
-                entMobileNumber.IsEnabled = true;
-                entVehiNum1.IsEnabled = true;
-                entVehiNum2.IsEnabled = true;
-            }
+            //if (entPolicyNumber.Text != "")
+            //{
+            //    entMobileNumber.IsEnabled = false;
+            //    entVehiNum1.IsEnabled = false;
+            //    entVehiNum2.IsEnabled = false;
+            //}
+            //else
+            //{
+            //    entMobileNumber.IsEnabled = true;
+            //    entVehiNum1.IsEnabled = true;
+            //    entVehiNum2.IsEnabled = true;
+            //}
         }
 
         private void entVehiNum1_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (entVehiNum1.Text != "")
+            //if (entVehiNum1.Text != null && entVehiNum1.Text != "")
+            //{
+            //    entMobileNumber.IsEnabled = false;
+            //    entPolicyNumber.IsEnabled = false;                
+            //}
+            //else
+            //{
+            //    entMobileNumber.IsEnabled = true;
+            //    entPolicyNumber.IsEnabled = true;                
+            //}
+            if (e.NewTextValue != null)
             {
-                entMobileNumber.IsEnabled = false;
-                entPolicyNumber.IsEnabled = false;                
-            }
-            else
-            {
-                entMobileNumber.IsEnabled = true;
-                entPolicyNumber.IsEnabled = true;                
-            }
-
-            if (e.NewTextValue.Length > 2)
-            {
-                //entVehiNum1.Text = entVehiNum1.Text.Remove(3);
-                entVehiNum2.Focus();
+                if (e.NewTextValue.Length > 2)
+                {
+                    //entVehiNum1.Text = entVehiNum1.Text.Remove(3);
+                    entVehiNum2.Focus();
+                }
             }
         }
 
         private void entVehiNum2_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (entVehiNum2.Text != "")
-            {
-                entMobileNumber.IsEnabled = false;
-                entPolicyNumber.IsEnabled = false;
-            }
-            else
-            {
-                entMobileNumber.IsEnabled = true;
-                entPolicyNumber.IsEnabled = true;
-            }
+            //if (entVehiNum2.Text != "")
+            //{
+            //    entMobileNumber.IsEnabled = false;
+            //    entPolicyNumber.IsEnabled = false;
+            //}
+            //else
+            //{
+            //    entMobileNumber.IsEnabled = true;
+            //    entPolicyNumber.IsEnabled = true;
+            //}
         }
     }
 }
