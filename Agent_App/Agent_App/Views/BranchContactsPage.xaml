@@ -17,7 +17,7 @@
     </ContentPage.BindingContext>
     <Grid>
         <StackLayout>
-            <SearchBar x:Name="SearchBranch" TextChanged="SearchBranch_TextChanged" />
+            <Entry Placeholder="Enter Branch to search" x:Name="SearchBranch" TextChanged="SearchBranch_TextChanged" />
             <ListView x:Name="LvBranches" HasUnevenRows="True" ItemsSource="{Binding BranchesList}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
