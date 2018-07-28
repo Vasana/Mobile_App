@@ -55,6 +55,19 @@ namespace Agent_App.Helpers
             }
         }
 
+        public static string agentCode
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("agentCode", "");
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("agentCode", value);
+            }
+        }
+        
+
         public static string AccessToken
         {
             get

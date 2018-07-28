@@ -13,6 +13,7 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using Agent_App.Views;
 using Xamarin.Forms;
+using System.Net;
 
 namespace Agent_App.Services
 {
@@ -535,6 +536,36 @@ namespace Agent_App.Services
 
             //return custPolicies; --- Original code
         }
+
+        public List<MonthlyPerformance> GetMonthlyPerformance(string accessToken, string agentCode, string year)
+        {
+            List<MonthlyPerformance> claimsList = null;
+            try
+            {
+                //    var client = new HttpClient();
+                //    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+                //    var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getMonthlyPreformance?agentCode=" + agentCode.Trim()+ "&year="+year);
+                //    claimsList = JsonConvert.DeserializeObject<List<MonthlyPerformance>>(json);
+
+                using (WebClient wc = new WebClient())
+                { 
+                    wc.Headers.Add("Content-Type", "text");
+                    wc.Headers[HttpRequestHeader.Authorization] = "Bearer "+accessToken;
+                    var json = wc.DownloadString("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getMonthlyPreformance?agentCode=" + agentCode.Trim() + "&year=" + year);
+                    claimsList = JsonConvert.DeserializeObject<List<MonthlyPerformance>>(json);
+                }
+            }
+            catch (Exception e)
+            {
+                claimsList = null;
+            }
+            return claimsList;
+
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
+        }
+
 
         private List<BranchContact> GetBranchesList()
         {
