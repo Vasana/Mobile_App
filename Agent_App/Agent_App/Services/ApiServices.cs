@@ -545,6 +545,27 @@ namespace Agent_App.Services
             //return custPolicies; --- Original code
         }
 
+        public async Task<List<PremiumHistory>> GetPremiumHistoryAsync(string accessToken, string polNumber)
+        {
+            List<PremiumHistory> premiumsList = null;
+            try
+            {
+                var client = new HttpClient();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+                var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/GetPremiumHistory?policyNo=" + polNumber.Trim());
+                premiumsList = JsonConvert.DeserializeObject<List<PremiumHistory>>(json);
+            }
+            catch (Exception e)
+            {
+                premiumsList = null;
+            }
+            return premiumsList;
+
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
+        }
+
         public List<MonthlyPerformance> GetMonthlyPerformance(string accessToken, string agentCode, string year)
         {
             List<MonthlyPerformance> claimsList = null;
