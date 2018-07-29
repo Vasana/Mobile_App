@@ -300,14 +300,22 @@ namespace Agent_App.Services
 
             public async Task<GeneralPolicy> GetGenPolicyAsync(string accessToken, string dept, string policyNumber)
         {
-            var client = new HttpClient();
+            GeneralPolicy _genPolicy = new GeneralPolicy();
+            try
+            {
+                var client = new HttpClient();
 
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
-            var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getGeneralPolicyInfo?policyNo=" + policyNumber.Trim());
+                var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getGeneralPolicyInfo?policyNo=" + policyNumber.Trim());
 
-            var _genPolicy = JsonConvert.DeserializeObject<GeneralPolicy>(json);
-            
+                _genPolicy = JsonConvert.DeserializeObject<GeneralPolicy>(json);
+
+            }
+            catch(Exception e)
+            {
+
+            }
             return _genPolicy;
              
             //-----------------------------------------------------------------------------------
@@ -537,6 +545,27 @@ namespace Agent_App.Services
             //return custPolicies; --- Original code
         }
 
+        public async Task<List<PremiumHistory>> GetPremiumHistoryAsync(string accessToken, string polNumber)
+        {
+            List<PremiumHistory> premiumsList = null;
+            try
+            {
+                var client = new HttpClient();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+                var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/GetPremiumHistory?policyNo=" + polNumber.Trim());
+                premiumsList = JsonConvert.DeserializeObject<List<PremiumHistory>>(json);
+            }
+            catch (Exception e)
+            {
+                premiumsList = null;
+            }
+            return premiumsList;
+
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
+        }
+
         public List<MonthlyPerformance> GetMonthlyPerformance(string accessToken, string agentCode, string year)
         {
             List<MonthlyPerformance> claimsList = null;
@@ -548,9 +577,9 @@ namespace Agent_App.Services
                 //    claimsList = JsonConvert.DeserializeObject<List<MonthlyPerformance>>(json);
 
                 using (WebClient wc = new WebClient())
-                { 
+                {
                     wc.Headers.Add("Content-Type", "text");
-                    wc.Headers[HttpRequestHeader.Authorization] = "Bearer "+accessToken;
+                    wc.Headers[HttpRequestHeader.Authorization] = "Bearer " + accessToken;
                     var json = wc.DownloadString("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getMonthlyPreformance?agentCode=" + agentCode.Trim() + "&year=" + year);
                     claimsList = JsonConvert.DeserializeObject<List<MonthlyPerformance>>(json);
                 }

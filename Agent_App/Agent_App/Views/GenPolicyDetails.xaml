@@ -44,7 +44,7 @@
                 <Label Grid.Row="0" Grid.Column="0" VerticalTextAlignment="End" Text="Policy Number" FontSize="Medium" />
                 <Label Grid.Row="0" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.PolicyNumber}" FontSize="Medium"/>
                 <Label Grid.Row="1" Grid.Column="0" VerticalTextAlignment="End" Text="Insured Name" FontSize="Medium"/>
-                <Label Grid.Row="1" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.InsuredName}" FontSize="Medium"/>
+            <Label Grid.Row="1" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" LineBreakMode="TailTruncation" Text="{Binding GenPolicy.InsuredName}" FontSize="Medium"/>
                 <Label Grid.Row="2" Grid.Column="0" VerticalTextAlignment="Start" Text="Address" FontSize="Medium"/>                
                 <ListView Grid.Row="2" Grid.Column="2" ItemsSource="{Binding GenPolicy.Address}" RowHeight="30">
                     <ListView.ItemTemplate>
@@ -70,12 +70,12 @@
                 <Label Grid.Row="7" Grid.Column="0" VerticalTextAlignment="End" Text="Sum Insured" FontSize="Medium"/>
                 <Label Grid.Row="7" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.SumInsured, StringFormat='Rs. {0:N2}'}" FontSize="Medium"/>
                 <Label Grid.Row="8" Grid.Column="0" VerticalTextAlignment="Start" Text="Additional covers" FontSize="Medium"/>
-                
-                <ListView Grid.Row="8" Grid.Column="2" ItemsSource="{Binding GenPolicy.AdditionalCovers}" RowHeight="30">
+
+            <ListView Grid.Row="8" Grid.Column="2" ItemsSource="{Binding GenPolicy.AdditionalCovers}" RowHeight="30">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Label FontSize="Medium"  TextColor="#336699"  Text="{Binding .}" 
+                            <Label FontSize="Medium"  TextColor="#336699"  Text="{Binding COVER_TYPE_NAME}" 
                             LineBreakMode="TailTruncation"></Label>
                             </ViewCell>
                         </DataTemplate>
@@ -118,7 +118,7 @@
                 
             <Button Grid.Row="0" x:Name="btnPayHist"
                 BackgroundColor="DeepPink"
-                Text="View Payment History"
+                Text="View Premium (NB/ Renewal) History"
                 TextColor="White" 
                 Clicked="btnPayHist_Clicked"/>
 

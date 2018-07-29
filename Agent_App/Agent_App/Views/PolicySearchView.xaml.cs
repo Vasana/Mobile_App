@@ -9,28 +9,33 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Globalization;
 
 namespace Agent_App
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class PolicySearchView
 	{
-        DateTime minPickerDate;
-        DateTime maxPickerDate;
+        //DateTime minPickerDate;
+        //DateTime maxPickerDate;
 
 		public PolicySearchView ()
 		{
 			InitializeComponent ();
             BusiTypePicker.SelectedIndex = 0;
-            minPickerDate = stFromDtPicker.Date;
-            maxPickerDate = stToDtPicker.Date;
+            //minPickerDate = stFromDtPicker.Date;
+            //maxPickerDate = stToDtPicker.Date;
 
             entPolicyNumber.IsEnabled = false;
             entVehiNum1.IsEnabled = false;
             entVehiNum2.IsEnabled = false;
             stFromDtPicker.IsEnabled = false;
+            entStartFromDt.IsEnabled = false;
             stToDtPicker.IsEnabled = false;
+            entStartToDt.IsEnabled = false;
             entMobileNumber.IsEnabled = false;
+            entStartFromDt.Keyboard = null;
+            entStartToDt.Keyboard = null;
         }
 
         private void btnSubmit_Clicked(object sender, EventArgs e)
@@ -85,11 +90,24 @@ namespace Agent_App
                     SearchCriteria.Instance.MobileNumber = entMobileNumber.Text.Trim();
                 }
 
-                // if (stFromDtPicker.Date != minPickerDate || stToDtPicker.Date != maxPickerDate)
-                // {
-                SearchCriteria.Instance.StartFromDt = stFromDtPicker.Date.ToString("yyyy/MM/dd");
-                    SearchCriteria.Instance.StartToDt = stToDtPicker.Date.ToString("yyyy/MM/dd");
-                // }
+                if (entStartFromDt.Text != null && entStartFromDt.Text != "")
+                {
+                    DateTime fromDate = DateTime.ParseExact(entStartFromDt.Text, "yyyy/MM/dd", CultureInfo.InvariantCulture);
+                    SearchCriteria.Instance.StartFromDt = fromDate.ToString("yyyy/MM/dd");
+                }
+                else
+                {
+                    SearchCriteria.Instance.StartFromDt = "1990/01/01";
+                }
+                if (entStartToDt.Text != null && entStartToDt.Text != "")
+                {
+                    DateTime toDate = DateTime.ParseExact(entStartToDt.Text, "yyyy/MM/dd", CultureInfo.InvariantCulture);
+                    SearchCriteria.Instance.StartToDt = toDate.ToString("yyyy/MM/dd");
+                }
+                else
+                {
+                    SearchCriteria.Instance.StartToDt = "2100/01/01";
+                }                    
 
                 if (policyStatus == -1)
                 {
@@ -126,12 +144,24 @@ namespace Agent_App
             int selectedIndex = typePicker.SelectedIndex;
             if (selectedIndex != -1)
             {
+                entPolicyNumber.Text = null;
+                entVehiNum1.Text = null;
+                entVehiNum2.Text = null;                
+                stFromDtPicker.Date = DateTime.Now;                
+                stToDtPicker.Date = DateTime.Now;
+                entStartFromDt.Text = null;
+                entStartToDt.Text = null;
+                entMobileNumber.Text = null;
+
                 entPolicyNumber.IsEnabled = false;
                 entVehiNum1.IsEnabled = false;
                 entVehiNum2.IsEnabled = false;
+                entStartFromDt.IsEnabled = false;
                 stFromDtPicker.IsEnabled = false;
+                entStartToDt.IsEnabled = false;
                 stToDtPicker.IsEnabled = false;
                 entMobileNumber.IsEnabled = false;
+
 
                 //if (selectedIndex == 5)
                 //{
@@ -143,7 +173,9 @@ namespace Agent_App
                 entPolicyNumber.IsEnabled = true;
                 entVehiNum1.IsEnabled = true;
                 entVehiNum2.IsEnabled = true;
+                entStartFromDt.IsEnabled = true;
                 stFromDtPicker.IsEnabled = true;
+                entStartToDt.IsEnabled = true;
                 stToDtPicker.IsEnabled = true;
                 entMobileNumber.IsEnabled = true;
             }
@@ -156,8 +188,10 @@ namespace Agent_App
             entPolicyNumber.Text = null;
             entVehiNum1.Text = null;
             entVehiNum2.Text = null;
-            stFromDtPicker.Date = minPickerDate;
-            stToDtPicker.Date = maxPickerDate;
+            stFromDtPicker.Date = DateTime.Now;
+            stToDtPicker.Date = DateTime.Now;
+            entStartFromDt.Text = null;
+            entStartToDt.Text = null;
             entMobileNumber.Text = null;
             //BusiTypePicker.Focus();
         }
@@ -171,16 +205,29 @@ namespace Agent_App
                 entPolicyNumber.IsEnabled = true;
                 entVehiNum1.IsEnabled = true;
                 entVehiNum2.IsEnabled = true;
+                entStartFromDt.IsEnabled = true;
                 stFromDtPicker.IsEnabled = true;
+                entStartToDt.IsEnabled = true;
                 stToDtPicker.IsEnabled = true;
                 entMobileNumber.IsEnabled = true;
             }
             else
             {
+                entPolicyNumber.Text = null;
+                entVehiNum1.Text = null;
+                entVehiNum2.Text = null;
+                stFromDtPicker.Date = DateTime.Now;
+                stToDtPicker.Date = DateTime.Now;
+                entStartFromDt.Text = null;
+                entStartToDt.Text = null;
+                entMobileNumber.Text = null;
+
                 entPolicyNumber.IsEnabled = false;
                 entVehiNum1.IsEnabled = false;
                 entVehiNum2.IsEnabled = false;
+                entStartFromDt.IsEnabled = false;
                 stFromDtPicker.IsEnabled = false;
+                entStartToDt.IsEnabled = false;
                 stToDtPicker.IsEnabled = false;
                 entMobileNumber.IsEnabled = false;
             }
@@ -252,6 +299,28 @@ namespace Agent_App
             //    entMobileNumber.IsEnabled = true;
             //    entPolicyNumber.IsEnabled = true;
             //}
+        }
+
+        private void entStartFromDt_Focused(object sender, FocusEventArgs e)
+        {
+            entStartFromDt.Text = DateTime.Now.ToString("yyyy/MM/dd");
+            stFromDtPicker.Focus();
+        }
+
+        private void stFromDtPicker_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            entStartFromDt.Text = stFromDtPicker.Date.ToString("yyyy/MM/dd");
+        }
+
+        private void entStartToDt_Focused(object sender, FocusEventArgs e)
+        {
+            entStartToDt.Text = DateTime.Now.ToString("yyyy/MM/dd");
+            stToDtPicker.Focus();
+        }
+
+        private void stToDtPicker_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            entStartToDt.Text = stToDtPicker.Date.ToString("yyyy/MM/dd");
         }
     }
 }
