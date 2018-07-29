@@ -13,7 +13,7 @@ namespace Agent_App.Models
         public string StartDate { get; set; }
         public string EndDate { get; set; }
         public double SumInsured { get; set; }
-        public List<string> AdditionalCovers { get; set; }
+        public List<CoverDetails> AdditionalCovers { get; set; }
         public string MakeYear { get; set; }
         public string Make { get; set; }
         public string ChassisNo { get; set; }

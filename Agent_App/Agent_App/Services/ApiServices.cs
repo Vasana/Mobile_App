@@ -299,14 +299,22 @@ namespace Agent_App.Services
 
             public async Task<GeneralPolicy> GetGenPolicyAsync(string accessToken, string dept, string policyNumber)
         {
-            var client = new HttpClient();
+            GeneralPolicy _genPolicy = new GeneralPolicy();
+            try
+            {
+                var client = new HttpClient();
 
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
-            var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getGeneralPolicyInfo?policyNo=" + policyNumber.Trim());
+                var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getGeneralPolicyInfo?policyNo=" + policyNumber.Trim());
 
-            var _genPolicy = JsonConvert.DeserializeObject<GeneralPolicy>(json);
-            
+                _genPolicy = JsonConvert.DeserializeObject<GeneralPolicy>(json);
+
+            }
+            catch(Exception e)
+            {
+
+            }
             return _genPolicy;
              
             //-----------------------------------------------------------------------------------
@@ -530,6 +538,27 @@ namespace Agent_App.Services
                 claimsList = null;
             }
             return claimsList;
+
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
+        }
+
+        public async Task<List<PremiumHistory>> GetPremiumHistoryAsync(string accessToken, string polNumber)
+        {
+            List<PremiumHistory> premiumPaidList = null;
+            try
+            {
+                var client = new HttpClient();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+                var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getPremiumHistory?policyNo=" + polNumber.Trim());
+                premiumPaidList = JsonConvert.DeserializeObject<List<PremiumHistory>>(json);
+            }
+            catch (Exception e)
+            {
+                premiumPaidList = null;
+            }
+            return premiumPaidList;
 
             //-----------------------------------------------------------------------------------
 

@@ -20,9 +20,20 @@ namespace Agent_App.Views
             Title = "Policy Details";            
         }
 
-        private void btnPayHist_Clicked(object sender, EventArgs e)
+        private async void btnPayHist_Clicked(object sender, EventArgs e)
         {
+            var genPolVM = BindingContext as GenPolViewModel;
 
+            var premiumHistVM = new PremiumHistVM(genPolVM.GenPolicy.Department, genPolVM.GenPolicy.PolicyNumber);
+            var premiumHistPage = new PremiumHistPage
+            {
+                BindingContext = premiumHistVM
+            };
+
+            if (App.Current.MainPage is NavigationPage)
+            {
+                await(App.Current.MainPage as NavigationPage).PushAsync(premiumHistPage);
+            }
         }
 
         private async void btnClaimHist_Clicked(object sender, EventArgs e)

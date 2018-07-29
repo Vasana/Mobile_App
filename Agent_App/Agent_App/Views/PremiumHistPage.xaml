@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Agent_App.Views.ClaimHistoryPage"
              xmlns:local="clr-namespace:Agent_App.Helpers"
-             Title="Claim History">
+             x:Class="Agent_App.Views.PremiumHistPage">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:StringToBoolConverter x:Key="StringToBool" />
         </ResourceDictionary>
     </ContentPage.Resources>
-   
+
+
     <Grid>
         <StackLayout>
-            <Label Text="Claim History"
+            <Label Text="Premium Payment History"
              VerticalOptions="Start"
              HorizontalTextAlignment="Center"
              VerticalTextAlignment="Center"
              BackgroundColor="Transparent"
              HorizontalOptions="CenterAndExpand" />
-            <ListView x:Name="LvClaims" HasUnevenRows="True" ItemsSource="{Binding ClaimHistList}">
+            <ListView x:Name="LvPremiums" HasUnevenRows="True" ItemsSource="{Binding PremiumHistList}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -31,34 +31,30 @@
                                 </Frame.BorderColor>
 
                                 <StackLayout Orientation="Horizontal">
-                                    <Grid VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" 
-                                        Padding="0"
+                                    <Grid VerticalOptions="CenterAndExpand" BackgroundColor="Transparent"                                        
                                         HorizontalOptions="FillAndExpand">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="auto"/>
-                                            <RowDefinition Height="auto"/>
-                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>                                            
                                         </Grid.RowDefinitions>
-
-                                        <StackLayout Orientation="Vertical" Grid.Row="0">
-                                            <StackLayout Orientation="Horizontal" Spacing="5">
-                                                <Label Text="{Binding INV_NO}" 
-                                                   TextColor="Black"
-                                                   FontSize="18"/>
-                                                <Label Text="Intimated On " 
-                                                   TextColor="Gray" VerticalTextAlignment="End"
-                                                   FontSize="16" />
-                                                <Label Text="{Binding INT_DATE}" 
-                                                   TextColor="Gray" VerticalTextAlignment="End"
-                                                   FontSize="16"/>
-                                            </StackLayout>
-                                            <Label Text="{Binding STATUS}" 
-                                               TextColor="Black"
-                                               FontSize="16"/>
-                                        </StackLayout>
+                                        
+                                        <StackLayout Orientation="Horizontal" Spacing="5">
+                                            <Label Text="From" 
+                                                TextColor="Black"
+                                                FontSize="18"/>
+                                            <Label Text="{Binding POLICY_START_DATE}" 
+                                                TextColor="Black" VerticalTextAlignment="End"
+                                                FontSize="18"/>
+                                            <Label Text="To" 
+                                                TextColor="Black"
+                                                FontSize="18"/>
+                                            <Label Text="{Binding POLICY_END_DATE}" 
+                                                TextColor="Black" VerticalTextAlignment="End"
+                                                FontSize="18"/>
+                                        </StackLayout>                                       
 
                                         <Grid Grid.Row="1" VerticalOptions="CenterAndExpand" 
-                                            Padding="0"  HorizontalOptions="FillAndExpand">
+                                             HorizontalOptions="FillAndExpand">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="auto"/>
                                                 <RowDefinition Height="auto"/>
@@ -70,104 +66,102 @@
                                                 <ColumnDefinition Width="*" />
                                                 <ColumnDefinition Width="*" />
                                                 <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="1.5*" />
+                                                <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
-
                                             <Label Grid.Row="0" Grid.Column="1"
                                                 HorizontalTextAlignment="Start"
                                                 VerticalTextAlignment="Center"
                                                 FontSize="14" FontAttributes="None"
-                                                Text="Date of Loss: " TextColor="Black">
+                                                Text="Basic Premium: " TextColor="Black">
                                             </Label>
-                                            <Label x:Name="lblDateOfLoss" Grid.Row="0" Grid.Column="2"
-                                                HorizontalTextAlignment="Start"
-                                                VerticalTextAlignment="Center"
-                                                FontSize="14" FontAttributes="None"
-                                                Text="{Binding DATE_OF_LOSS}" TextColor="Black">
+                                            <Label Grid.Row="0" Grid.Column="2"
+                                                    HorizontalTextAlignment="Start"
+                                                    VerticalTextAlignment="Center"
+                                                    FontSize="14" FontAttributes="None"
+                                                    Text="{Binding BASIC_PREMIUM, StringFormat='Rs. {0:N2}'}" TextColor="Black">
                                             </Label>
-                                            <Label Grid.Row="0" Grid.Column="3"
-                                                HorizontalTextAlignment="Start"
-                                                VerticalTextAlignment="Center"
-                                                FontSize="14" FontAttributes="None"
-                                                Text="Registered Date: " TextColor="Black" >
-                                            </Label>
-                                            <Label Grid.Row="0" Grid.Column="4"
-                                                HorizontalTextAlignment="Start"
-                                                VerticalTextAlignment="Center"
-                                                FontSize="14" FontAttributes="None"
-                                                Text="{Binding REG_DATE}" TextColor="Black" >
-                                            </Label>
+                                            <StackLayout Orientation="Horizontal" Grid.Row="0" Spacing="7" Grid.Column="3" Grid.ColumnSpan="2" >                                               
+                                                <Label
+                                                    HorizontalTextAlignment="Start"
+                                                    VerticalTextAlignment="Center"
+                                                    FontSize="14" FontAttributes="None"
+                                                    Text="RCC: " TextColor="Black" />
+                                                <Label
+                                                    HorizontalTextAlignment="Start"
+                                                    VerticalTextAlignment="Center"
+                                                    FontSize="14" FontAttributes="None"
+                                                    Text="{Binding RCC, StringFormat='Rs. {0:N2}'}" TextColor="Black" />
+                                                <Label
+                                                    HorizontalTextAlignment="Start"
+                                                    VerticalTextAlignment="Center"
+                                                    FontSize="14" FontAttributes="None"
+                                                    Text="TC: " TextColor="Black" />
+                                                <Label
+                                                    HorizontalTextAlignment="Start"
+                                                    VerticalTextAlignment="Center"
+                                                    FontSize="14" FontAttributes="None"
+                                                    Text="{Binding TC, StringFormat='Rs. {0:N2}'}" TextColor="Black" />
+                                            </StackLayout>
+                                           
                                             <Label Grid.Row="1" Grid.Column="1"
                                                 HorizontalTextAlignment="Start"
                                                 VerticalTextAlignment="Center"
                                                 FontSize="14" FontAttributes="None"
-                                                Text="Estimated Liability: " TextColor="Black">
+                                                Text="Total Premium: " TextColor="Black">
                                             </Label>
                                             <Label Grid.Row="1" Grid.Column="2" 
                                                HorizontalTextAlignment="Start"
                                                VerticalTextAlignment="Center"
                                                FontSize="14" FontAttributes="None"
-                                               Text="{Binding EST_LIB, StringFormat='Rs. {0:N2}'}" TextColor="Black">
+                                               Text="{Binding TOTAL_PREMIUM, StringFormat='Rs. {0:N2}'}" TextColor="Black">
                                             </Label>
                                             <Label Grid.Row="1" Grid.Column="3" 
                                                HorizontalTextAlignment="Start"
                                                VerticalTextAlignment="Center"
                                                FontSize="14" FontAttributes="None"
-                                               Text="Payment Type:" TextColor="Black">
+                                               Text="No. of Claims:" TextColor="Black">
                                             </Label>
                                             <Label Grid.Row="1" Grid.Column="4"
                                                 HorizontalTextAlignment="Start"
                                                 VerticalTextAlignment="Center"
                                                 FontSize="14" FontAttributes="None"
-                                                Text="{Binding PAY_TYP}" TextColor="Black" >
+                                                Text="{Binding CLAIM_COUNT}" TextColor="Black">
                                             </Label>
-                                            <Label Grid.Row="2" Grid.Column="1"
+                                            <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                                                HorizontalTextAlignment="Start"
                                                VerticalTextAlignment="Center"
                                                FontSize="14" FontAttributes="None"
-                                               Text="Voucher Status:" TextColor="Black" >
-                                            </Label>
-                                            <Label Grid.Row="2" Grid.Column="2"
-                                               HorizontalTextAlignment="Start"
-                                               VerticalTextAlignment="Center"
-                                               FontSize="14" FontAttributes="None"
-                                               Text="{Binding VOU_STS}" TextColor="Black" >
+                                               Text="NCB adjusted premium (Motor only)" TextColor="Black" >
                                             </Label>
                                             <Label Grid.Row="2" Grid.Column="3"
-                                                HorizontalTextAlignment="Start"
-                                                VerticalTextAlignment="Center"
-                                                FontSize="14" FontAttributes="None"
-                                                Text="Paid amount:" TextColor="Black">
-                                            </Label>
-                                            <Label Grid.Row="2" Grid.Column="4"
                                                HorizontalTextAlignment="Start"
                                                VerticalTextAlignment="Center"
                                                FontSize="14" FontAttributes="None"
-                                               Text="{Binding PAD_AMOUNT, StringFormat='Rs. {0:N2}'}" TextColor="Black" >
-                                            </Label>
+                                               Text="{Binding NCB_ADJ_PREMIUM, StringFormat='Rs. {0:N2}'}" TextColor="Black" >
+                                            </Label>                                            
                                             <Label Grid.Row="3" Grid.Column="1"
                                                HorizontalTextAlignment="Start"
                                                VerticalTextAlignment="Center"
                                                FontSize="14" FontAttributes="None"
-                                               Text="Paid Date:" TextColor="Black" >
+                                               Text="Premium Paid:" TextColor="Black" >
                                             </Label>
                                             <Label Grid.Row="3" Grid.Column="2"
                                                HorizontalTextAlignment="Start"
                                                VerticalTextAlignment="Center"
                                                FontSize="14" FontAttributes="None"
-                                               Text="{Binding PAY_DATE}" TextColor="Black" >
+                                               Text="{Binding PAID_PREMIUM, StringFormat='Rs. {0:N2}'}" TextColor="Black" >
                                             </Label>
                                             <Label Grid.Row="3" Grid.Column="3"
                                                 HorizontalTextAlignment="Start"
                                                 VerticalTextAlignment="Center"
                                                 FontSize="14" FontAttributes="None"
-                                                Text="Voucher No:" TextColor="Black">
+                                                Text="Paid Date:" TextColor="Black">
                                             </Label>
                                             <Label Grid.Row="3" Grid.Column="4"
                                                HorizontalTextAlignment="Start"
                                                VerticalTextAlignment="Center"
                                                FontSize="14" FontAttributes="None"
-                                               Text="{Binding VOU_NO}" TextColor="Black" >
+                                               Text="{Binding LAST_PAY_DATE}" TextColor="Black" >
                                             </Label>
 
                                         </Grid>

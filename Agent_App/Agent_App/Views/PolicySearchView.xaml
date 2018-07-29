@@ -68,9 +68,11 @@
                 <Entry x:Name="entVehiNum2" Placeholder="9999" TextChanged="entVehiNum2_TextChanged" VerticalOptions="End"/>
             </StackLayout>
             <Label Grid.Row="4" Grid.Column="0" VerticalTextAlignment="End" Text="Start Date" FontSize="Medium"/>
-            <DatePicker Grid.Row="4" Grid.Column="1" x:Name="stFromDtPicker" Date="{x:Static system:DateTime.MinValue}" VerticalOptions="End"/>
+            <Entry Grid.Row="4" Grid.Column="1" WidthRequest="125" x:Name="entStartFromDt" Focused="entStartFromDt_Focused" VerticalOptions="End"/>
+            <DatePicker x:Name="stFromDtPicker"  VerticalOptions="End" IsVisible="False" DateSelected="stFromDtPicker_DateSelected"/>
             <Label Grid.Row="4" Grid.Column="2" VerticalTextAlignment="End" Text="To" FontSize="Medium"/>
-            <DatePicker Grid.Row="4" Grid.Column="3" x:Name="stToDtPicker" Date="{x:Static system:DateTime.MaxValue}" VerticalOptions="End"/>
+            <Entry Grid.Row="4" Grid.Column="3" WidthRequest="125" x:Name="entStartToDt" Focused="entStartToDt_Focused" VerticalOptions="End"/>
+            <DatePicker x:Name="stToDtPicker" VerticalOptions="End" IsVisible="False" DateSelected="stToDtPicker_DateSelected"/>
             <Label Grid.Row="5" Grid.Column="0" VerticalTextAlignment="End" Text="Mobile Number" FontSize="Medium"/>
             <Entry Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" x:Name="entMobileNumber" Keyboard="Numeric" TextChanged="entMobileNumber_TextChanged" VerticalOptions="End"/>
         </Grid>
