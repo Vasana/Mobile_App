@@ -13,6 +13,7 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using Agent_App.Views;
 using Xamarin.Forms;
+using System.Net;
 
 namespace Agent_App.Services
 {
@@ -538,27 +539,6 @@ namespace Agent_App.Services
                 claimsList = null;
             }
             return claimsList;
-
-            //-----------------------------------------------------------------------------------
-
-            //return custPolicies; --- Original code
-        }
-
-        public async Task<List<PremiumHistory>> GetPremiumHistoryAsync(string accessToken, string polNumber)
-        {
-            List<PremiumHistory> premiumPaidList = null;
-            try
-            {
-                var client = new HttpClient();
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
-                var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getPremiumHistory?policyNo=" + polNumber.Trim());
-                premiumPaidList = JsonConvert.DeserializeObject<List<PremiumHistory>>(json);
-            }
-            catch (Exception e)
-            {
-                premiumPaidList = null;
-            }
-            return premiumPaidList;
 
             //-----------------------------------------------------------------------------------
 

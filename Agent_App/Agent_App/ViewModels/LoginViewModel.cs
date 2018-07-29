@@ -91,7 +91,7 @@ namespace Agent_App.ViewModels
                                Settings.Password = Password;
                            }
                        }
-                       IsBusy = false;
+                       
                        Message = "Logged in Successfully";
                        LoginSuccess = true;
                        Application.Current.MainPage = new NavigationPage(new LandingPage());
@@ -99,7 +99,9 @@ namespace Agent_App.ViewModels
                        AgentProfile agentProfile = new AgentProfile();
                        agentProfile = await _apiServices.GetAgentProfile(accessToken);
                        Settings.jobRole = agentProfile.Role;
-                       
+                       Settings.agentCode = (agentProfile.Role == "Organizer" ? agentProfile.Organizer_code.ToString() : agentProfile.Agent_code.ToString());
+                       IsBusy = false;
+
                    }
                });
             }
