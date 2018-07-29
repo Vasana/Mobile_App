@@ -23,8 +23,8 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Picker x:Name="Month" Title="Select Month" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding MonthList}" ItemDisplayBinding="{Binding name} "/>
-            <Picker x:Name="Year"   Title="Select Year" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding YearList}" ItemDisplayBinding="{Binding yearVal}" />
+                <Picker x:Name="PMonth" Title="Select Month" Grid.Row="1" Grid.Column="0" SelectedItem="{Binding _getMoth}"  ItemsSource="{Binding MonthList}" ItemDisplayBinding="{Binding name} "/>
+            <Picker x:Name="PYear"   Title="Select Year" Grid.Row="1" SelectedItem="{Binding _getYear}"  Grid.Column="1" ItemsSource="{Binding YearList}" ItemDisplayBinding="{Binding yearVal}" />
             <Button x:Name="BtnLoad" Grid.Row="1" Grid.Column="2" Command="{Binding FilterPerformanceDate}" Text="Load"/>
         </Grid>
         <Grid>
@@ -32,7 +32,7 @@
                 <RowDefinition Height="50" />
                 <RowDefinition Height="50" />
                 <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
+                <RowDefinition Height="25" />
                 <RowDefinition Height="50" />
                 <RowDefinition Height="50" />
                 <RowDefinition Height="50" />
@@ -50,36 +50,36 @@
                     <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
 
-                <Label Text="New" FontSize="Large"  Grid.Row="0" Grid.Column="2" />
-                <Label Text="Renewals" FontSize="Large"  Grid.Row="0" Grid.Column="3" />
-                <Label Text="Total" FontSize="Large"  Grid.Row="0" Grid.Column="4" />
+                <Label Text="Renewals"  HorizontalTextAlignment="Center" FontSize="Medium"  Grid.Row="0" Grid.Column="2" />
+                <Label Text="New"  HorizontalTextAlignment="Center" FontSize="Medium"  Grid.Row="0" Grid.Column="3" />
+                <Label Text="Total"  HorizontalTextAlignment="Center" FontSize="Medium"  Grid.Row="0" Grid.Column="4" />
 
-                <Label Text="{Binding lbl_mon_NOP}" FontSize="Large"  Grid.Row="1" Grid.Column="1" />
-                <Label Text="{Binding ownAgt.indMonthNoPolTotal}" FontSize="Large" Grid.Row="1" Grid.Column="2" />
-                <Label Text="{Binding ownAgt.indMonthNoPol_New}" FontSize="Large" Grid.Row="1" Grid.Column="3" />
-                <Label Text="{Binding ownAgt.indMonthNoPol_Renewal}" FontSize="Large" Grid.Row="1" Grid.Column="4" />
+                <Label Text="{Binding lbl_mon_NOP}" FontSize="Medium" HorizontalTextAlignment="Start" Grid.Row="1" Grid.Column="1" />
+                <Label Text="{Binding ownAgt.indMonthNoPolTotal}" HorizontalTextAlignment="End" FontSize="Medium" Grid.Row="1" Grid.Column="4" />
+                <Label Text="{Binding ownAgt.indMonthNoPol_New}"  HorizontalTextAlignment="End" FontSize="Medium" Grid.Row="1" Grid.Column="3" />
+                <Label Text="{Binding ownAgt.indMonthNoPol_Renewal}" HorizontalTextAlignment="End" FontSize="Medium" Grid.Row="1" Grid.Column="2" />
 
-                <Label Text="{Binding lbl_yr_NOP}" FontSize="Large"  Grid.Row="2" Grid.Column="1" />
-                <Label Text="{Binding ownAgt.indYearPolTotal}"  FontSize="Large" Grid.Row="2" Grid.Column="2" />
-                <Label Text="{Binding ownAgt.indYearPol_New}"  FontSize="Large" Grid.Row="2" Grid.Column="3" />
-                <Label Text="{Binding ownAgt.indYearPol_Renewal}"  FontSize="Large" Grid.Row="2" Grid.Column="4" />
+                <Label Text="{Binding lbl_yr_NOP}" FontSize="Medium" HorizontalTextAlignment="Start" Grid.Row="2" Grid.Column="1" />
+                <Label Text="{Binding ownAgt.indYearPolTotal}" HorizontalTextAlignment="End"  FontSize="Medium" Grid.Row="2" Grid.Column="4" />
+                <Label Text="{Binding ownAgt.indYearPol_New}"  HorizontalTextAlignment="End"  FontSize="Medium" Grid.Row="2" Grid.Column="3" />
+                <Label Text="{Binding ownAgt.indYearPol_Renewal}" HorizontalTextAlignment="End"  FontSize="Medium" Grid.Row="2" Grid.Column="2" />
 
-                <Label Text="{Binding lbl_mon_prem}" FontSize="Large"  Grid.Row="4" Grid.Column="1" />
-                <Label Text="{Binding ownAgt.indMonthPremTotal}" FontSize="Large" Grid.Row="4" Grid.Column="2" />
-                <Label Text="{Binding ownAgt.indMonthPrem_New}" FontSize="Large" Grid.Row="4" Grid.Column="3" />
-                <Label Text="{Binding ownAgt.indMonthPrem_Renewal}" FontSize="Large" Grid.Row="4" Grid.Column="4" />
+                <Label Text="{Binding lbl_mon_prem}" FontSize="Medium" HorizontalTextAlignment="Start" Grid.Row="4" Grid.Column="1" />
+                <Label Text="{Binding ownAgt.indMonthPremTotal}" HorizontalTextAlignment="End"  FontSize="Medium" Grid.Row="4" Grid.Column="4" />
+                <Label Text="{Binding ownAgt.indMonthPrem_New}" HorizontalTextAlignment="End"  FontSize="Medium" Grid.Row="4" Grid.Column="3" />
+                <Label Text="{Binding ownAgt.indMonthPrem_Renewal}" HorizontalTextAlignment="End"  FontSize="Medium" Grid.Row="4" Grid.Column="2" />
 
-                <Label Text="{Binding lbl_yr_prem}" FontSize="Large"  Grid.Row="5" Grid.Column="1" />
-                <Label Text="{Binding ownAgt.indYearPremTotal}" FontSize="Large" Grid.Row="5" Grid.Column="2" />
-                <Label Text="{Binding ownAgt.indYearPrem_New}" FontSize="Large" Grid.Row="5" Grid.Column="3" />
-                <Label Text="{Binding ownAgt.indYearPrem_Renewal}" FontSize="Large" Grid.Row="5" Grid.Column="4" />
+                <Label Text="{Binding lbl_yr_prem}" FontSize="Medium" HorizontalTextAlignment="Start" Grid.Row="5" Grid.Column="1" />
+                <Label Text="{Binding ownAgt.indYearPremTotal}" HorizontalTextAlignment="End"  FontSize="Medium" Grid.Row="5" Grid.Column="4" />
+                <Label Text="{Binding ownAgt.indYearPrem_New}"  HorizontalTextAlignment="End"  FontSize="Medium" Grid.Row="5" Grid.Column="3" />
+                <Label Text="{Binding ownAgt.indYearPrem_Renewal}" HorizontalTextAlignment="End"  FontSize="Medium" Grid.Row="5" Grid.Column="2" />
 
                
             </Grid>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="300" />
-                    <RowDefinition Height="300" />
+                    <RowDefinition Height="310" />
+                    <RowDefinition Height="310" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10" />
@@ -102,8 +102,15 @@
                 <oxy:PlotView Model="{Binding PieYearPrem}"
                    HorizontalOptions="FillAndExpand"
                   VerticalOptions="FillAndExpand" Grid.Row="1"  Grid.Column="2" />
-
+                
+                <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
+                            HorizontalOptions="Center" VerticalOptions="Center">
+                    <ActivityIndicator.Scale>
+                        <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
+                    </ActivityIndicator.Scale>
+                </ActivityIndicator>
             </Grid>
+           
         </StackLayout></ScrollView>
 </ContentPage>
     

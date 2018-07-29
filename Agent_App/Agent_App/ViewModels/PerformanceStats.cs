@@ -1,4 +1,6 @@
-﻿using Agent_App.Views;
+﻿using Agent_App.Helpers;
+using Agent_App.Services;
+using Agent_App.Views;
 using OxyPlot;
 using OxyPlot.Series;
 using System;
@@ -17,38 +19,195 @@ namespace Agent_App.Models
     public class PerformanceStats : INotifyPropertyChanged
     {
         //public ObservableCollection<AgtPerfmStat> CardDataCollection { get; set; }
-        public AgtPerfmStat ownAgt { get; set; }
+        private List<AgentPerformance> month_performance;
+        private List<AgentPerformance> year_performance;
+        private ApiServices _apiServices = new ApiServices();
+
+        private bool _isBusy;
+
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set
+            {
+                _isBusy = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private AgtPerfmStat _ownAgt;
+
+        public AgtPerfmStat ownAgt
+        {
+            get => _ownAgt;
+            set
+            {
+                _ownAgt = value;
+                OnPropertyChanged();
+            }
+        }
+
+        //blic AgtPerfmStat ownAgt { get; set ; }
         public List<Month> MonthList { get; set; }
         public List<Year> YearList { get; set; }
         public string inq_month { get; set; }
         public int inq_year { get; set; }
 
-        public PlotModel PieMonthNoPol { get; set; }
-        public PlotModel PieYearNoPol { get; set; }
-        public PlotModel PieYearPrem { get; set; }
-        public PlotModel PieMonthPrem { get; set; }
+        public Month _getMoth { get; set; }
+        public Year _getYear { get; set; }
 
-        public string lbl_mon_NOP { get; set; }
-        public string lbl_yr_NOP { get; set; }
-        public string lbl_mon_prem { get; set; }
-        public string lbl_yr_prem { get; set; }
+        private PlotModel _pieMonthNoPol;
+
+        public PlotModel PieMonthNoPol
+        {
+            get => _pieMonthNoPol;
+            set
+            {
+                _pieMonthNoPol = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private PlotModel _pieYearNoPol;
+
+        public PlotModel PieYearNoPol
+        {
+            get => _pieYearNoPol;
+            set
+            {
+                _pieYearNoPol = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private PlotModel _pieYearPrem;
+
+        public PlotModel PieYearPrem
+        {
+            get => _pieYearPrem;
+            set
+            {
+                _pieYearPrem = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private PlotModel _pieMonthPrem;
+
+        public PlotModel PieMonthPrem
+        {
+            get => _pieMonthPrem;
+            set
+            {
+                _pieMonthPrem = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _lbl_mon_NOP;
+
+        public string lbl_mon_NOP
+        {
+            get => _lbl_mon_NOP;
+            set
+            {
+                _lbl_mon_NOP = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _lbl_yr_NOP;
+
+        public string lbl_yr_NOP
+        {
+            get => _lbl_yr_NOP;
+            set
+            {
+                _lbl_yr_NOP = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _lbl_mon_prem;
+
+        public string lbl_mon_prem
+        {
+            get => _lbl_mon_prem;
+            set
+            {
+                _lbl_mon_prem = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _lbl_yr_prem;
+
+        public string lbl_yr_prem
+        {
+            get => _lbl_yr_prem;
+            set
+            {
+                _lbl_yr_prem = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public PerformanceStats()
         {
-            GetAgentStats();
+            IsBusy = true;
+            fetchData();
+            if (month_performance.Count > 0 && year_performance.Count > 0)
+            {
+                GetAgentStats(month_performance[0], year_performance[0], DateTime.Today.ToString("MM"), Convert.ToInt32(DateTime.Today.ToString("yyyy")));
+                Populate_controls(month_performance[0], year_performance[0], DateTime.Today.ToString("MM"), DateTime.Today.ToString("yyyy"));
+            }
             MonthList = getMonths();
             YearList = getYears();
+            IsBusy = false;
+        }
+
+        //public PerformanceStats(string month, string year)
+        //{
+        //    fetchData(month, year);
+        //    GetAgentStats(month_performance[0], year_performance[0], month, Convert.ToInt32( year));
+        //    Populate_controls(month_performance[0], year_performance[0], month, year);
+
            
-            inq_year = DateTime.Today.Year;
-            lbl_mon_NOP = "Number of Policies for "+ CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Today.Month);
-            lbl_yr_NOP = "Number of Policies for " + DateTime.Today.Year;
-            lbl_mon_prem = "Total Premium for " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Today.Month); 
-            lbl_yr_prem = "Total Premium for " + DateTime.Today.Year;
+        //}
+
+
+        private void Populate_controls(AgentPerformance monthPerf, AgentPerformance yearPerf, string month, string year)
+        {
+            inq_year = Convert.ToInt32(year);
+            lbl_mon_NOP = "Number of Policies for " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Convert.ToInt32( month));
+            lbl_yr_NOP = "Number of Policies for " + inq_year;
+            lbl_mon_prem = "Total Premium for " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Convert.ToInt32(month));
+            lbl_yr_prem = "Total Premium for " + inq_year;
 
             PieMonthNoPol = Indvidual_month_no_of_pol();
             PieYearNoPol = Indvidual_year_no_of_pol();
             PieMonthPrem = Indvidual_month_premium();
             PieYearPrem = Indvidual_year_premium();
+        }
+
+        private void fetchData()
+        {
+            month_performance = _apiServices.GetAgentPerformance(Settings.AccessToken, Settings.agentCode, DateTime.Today.ToString("yyyy-MM-01"), DateTime.Today.ToString("yyyy-MM-dd"));
+            
+            year_performance = _apiServices.GetAgentPerformance(Settings.AccessToken, Settings.agentCode, DateTime.Today.ToString("yyyy-01-01"), DateTime.Today.ToString("yyyy-MM-dd"));
+        }
+
+        private void fetchData(string month, string year)
+        {
+            string fromDateMonth = year + "-" + month + "-01";
+            string fromDateYear = year + "-01-01";
+            string lastDate = DateTime.DaysInMonth(Convert.ToInt32(year), Convert.ToInt32(month)).ToString();
+            string toDateMonth = year + "-" + month + "-" + (lastDate.Length == 1 ? "0" + lastDate : lastDate);
+
+            month_performance = _apiServices.GetAgentPerformance(Settings.AccessToken, Settings.agentCode, fromDateMonth, toDateMonth);
+
+            year_performance = _apiServices.GetAgentPerformance(Settings.AccessToken, Settings.agentCode, fromDateYear, DateTime.Today.ToString("yyyy-MM-dd"));
         }
 
         private List<Year> getYears()
@@ -61,8 +220,6 @@ namespace Agent_App.Models
                 years.Add(new Year() { yearID = i, yearVal = i });
             }
             return years;
-
-
         }
 
         private List<Month> getMonths()
@@ -87,99 +244,87 @@ namespace Agent_App.Models
         }
         
 
-        private bool _isBusy;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public bool IsBusy
+       
+        public async Task GetAgentStats(AgentPerformance month, AgentPerformance year, string _month, int _year)
         {
-            get => _isBusy;
-            set
-            {
-                _isBusy = value;
-                OnPropertyChanged();
-            }
-        }
-        public async Task GetAgentStats()
-        {
-            IsBusy = true;
-            hardCoded();
-             IsBusy = false;
+            
+            hardCoded( month,  year,  _month,  _year);
         }
 
 
-        private void hardCoded()
+        private void hardCoded(AgentPerformance month, AgentPerformance year, string _month, int _year)
         {
 
             ownAgt = new AgtPerfmStat {
             
 
-                    agentID  = 905717,
-                    year = 2018,
-                    month = "July",
+                    agentID  = 0,
+                    year = _year,
+                    month = _month,
 
-                    indMonthNoPolTotal  = 12,
-                    indMonthNoPolTotal_cash = 9,
-                    indMonthNoPolTotal_Dbt = 3,
+                    indMonthNoPolTotal  = month.TOT_CASH_MOTOR+month.TOT_DEBIT_MOTOR+ month.TOT_CASH_NON_MOTOR+month.TOT_DEBIT_NON_MOTOR,
+                    indMonthNoPolTotal_cash = month.TOT_CASH_MOTOR+month.TOT_CASH_NON_MOTOR,
+                    indMonthNoPolTotal_Dbt = month.TOT_DEBIT_MOTOR+month.TOT_DEBIT_NON_MOTOR,
 
-                    indYearPolTotal  = 78,
-                    indYearPolTotal_cash = 58,
-                    indYearPolTotal_Dbt = 20,
+                    indYearPolTotal  = year.TOT_CASH_MOTOR + year.TOT_DEBIT_MOTOR + year.TOT_CASH_NON_MOTOR + year.TOT_DEBIT_NON_MOTOR,
+                    indYearPolTotal_cash = year.TOT_CASH_MOTOR + year.TOT_CASH_NON_MOTOR,
+                    indYearPolTotal_Dbt = year.TOT_DEBIT_MOTOR + year.TOT_DEBIT_NON_MOTOR,
 
-                    indMonthPremTotal  = 12000,
-                    indMonthPremTotal_cash = 8000,
-                    indMonthPremTotal_Dbt = 4000,
+                    indMonthPremTotal  = month.TOT_CASH_MOTOR_PRM + month.TOT_DEBIT_MOTOR_PRM + month.TOT_CASH_NON_MOTOR_PRM + month.TOT_DEBIT_NON_MOTOR,
+                    indMonthPremTotal_cash = month.TOT_CASH_MOTOR_PRM + month.TOT_CASH_NON_MOTOR_PRM,
+                    indMonthPremTotal_Dbt = month.TOT_DEBIT_MOTOR_PRM + month.TOT_DEBIT_NON_MOTOR_PRM,
 
-                    indYearPremTotal  = 3408000,
-                    indYearPremTotal_cash = 2408000,
-                    indYearPremTotal_Dbt = 1000000,
+                    indYearPremTotal  = year.TOT_CASH_MOTOR_PRM + year.TOT_DEBIT_MOTOR_PRM + year.TOT_CASH_NON_MOTOR_PRM + year.TOT_DEBIT_NON_MOTOR_PRM,
+                    indYearPremTotal_cash = year.TOT_CASH_MOTOR_PRM + year.TOT_CASH_NON_MOTOR_PRM,
+                    indYearPremTotal_Dbt = year.TOT_DEBIT_MOTOR_PRM + year.TOT_DEBIT_NON_MOTOR_PRM,
 
-                    indMonthNoPol_New = 7,
-                    indMonthNoPol_New_Cash = 2,
-                    indMonthNoPol_New_Dbt = 5,
+                    indMonthNoPol_New = month.CASH_NEW_MOTOR+month.DEBIT_NEW_MOTOR+month.CASH_NEW_NON_MOTOR+month.DEBIT_NEW_NON_MOTOR,
+                    indMonthNoPol_New_Cash = month.CASH_NEW_MOTOR+ month.CASH_NEW_NON_MOTOR,
+                    indMonthNoPol_New_Dbt = month.DEBIT_NEW_MOTOR+ month.DEBIT_NEW_NON_MOTOR,
 
-                    indYearPol_New = 58,
-                    indYearPol_New_Cash = 38,
-                    indYearPol_New_Dbt = 20,
+                    indYearPol_New = year.CASH_NEW_MOTOR + year.DEBIT_NEW_MOTOR + year.CASH_NEW_NON_MOTOR + year.DEBIT_NEW_NON_MOTOR,
+                    indYearPol_New_Cash = year.CASH_NEW_MOTOR + year.CASH_NEW_NON_MOTOR,
+                    indYearPol_New_Dbt = year.DEBIT_NEW_MOTOR + year.DEBIT_NEW_NON_MOTOR,
 
-                    indMonthPrem_New = 6000,
-                    indMonthPrem_New_Cash = 3000,
-                    indMonthPrem_New_Dbt = 3000,
+                    indMonthPrem_New = month.CASH_NEW_MOTOR_PRM + month.DEBIT_NEW_MOTOR_PRM + month.CASH_NEW_NON_MOTOR_PRM + month.DEBIT_NEW_NON_MOTOR_PRM,
+                    indMonthPrem_New_Cash = month.CASH_NEW_MOTOR_PRM + month.CASH_NEW_NON_MOTOR_PRM,
+                    indMonthPrem_New_Dbt = month.DEBIT_NEW_MOTOR_PRM + month.DEBIT_NEW_NON_MOTOR_PRM,
 
-                    indYearPrem_New = 1408000,
-                    indYearPrem_New_Cash = 1000000,
-                    indYearPrem_New_Dbt = 408000,
+                    indYearPrem_New = year.CASH_NEW_MOTOR_PRM + year.DEBIT_NEW_MOTOR_PRM + year.CASH_NEW_NON_MOTOR_PRM + year.DEBIT_NEW_NON_MOTOR_PRM,
+                    indYearPrem_New_Cash = year.CASH_NEW_MOTOR_PRM + year.CASH_NEW_NON_MOTOR_PRM,
+                    indYearPrem_New_Dbt = year.DEBIT_NEW_MOTOR_PRM + year.DEBIT_NEW_NON_MOTOR_PRM,
 
-                    indMonthNoPol_Renewal = 5,
-                    indMonthNoPol_Renewal_cash = 2,
-                    indMonthNoPol_Renewal_Dbt = 3,
+                    indMonthNoPol_Renewal = month.CASH_REN_MOTOR + month.DEBIT_REN_MOTOR + month.CASH_REN_NON_MOTOR + month.DEBIT_REN_NON_MOTOR,
+                    indMonthNoPol_Renewal_cash = month.CASH_REN_MOTOR + month.CASH_REN_NON_MOTOR,
+                    indMonthNoPol_Renewal_Dbt = month.DEBIT_REN_MOTOR + month.DEBIT_REN_NON_MOTOR,
 
-                    indYearPol_Renewal = 20,
-                    indYearPol_Renewal_cash = 10,
-                    indYearPol_Renewal_Dbt = 10,
+                    indYearPol_Renewal = year.CASH_REN_MOTOR + year.DEBIT_REN_MOTOR + year.CASH_REN_NON_MOTOR + year.DEBIT_REN_NON_MOTOR,
+                    indYearPol_Renewal_cash = year.CASH_REN_MOTOR + year.CASH_REN_NON_MOTOR,
+                    indYearPol_Renewal_Dbt = year.DEBIT_REN_MOTOR + year.DEBIT_REN_NON_MOTOR,
 
-                    indMonthPrem_Renewal = 6000,
-                    indMonthPrem_Renewal_cash = 4000,
-                    indMonthPrem_Renewal_Dbt = 2000,
+                    indMonthPrem_Renewal = month.CASH_REN_MOTOR_PRM + month.DEBIT_REN_MOTOR_PRM + month.CASH_REN_NON_MOTOR_PRM + month.DEBIT_REN_NON_MOTOR_PRM,
+                    indMonthPrem_Renewal_cash = month.CASH_REN_MOTOR_PRM + month.CASH_REN_NON_MOTOR_PRM,
+                    indMonthPrem_Renewal_Dbt = month.DEBIT_REN_MOTOR_PRM + month.DEBIT_REN_NON_MOTOR_PRM,
 
-                indYearPrem_Renewal = 2000000,
-                indYearPrem_Renewal_cash = 1200000,
-                indYearPrem_Renewal_Dbt = 800000,
+                    indYearPrem_Renewal = year.CASH_REN_MOTOR_PRM + year.DEBIT_REN_MOTOR_PRM + year.CASH_REN_NON_MOTOR_PRM + year.DEBIT_REN_NON_MOTOR_PRM,
+                    indYearPrem_Renewal_cash = year.CASH_REN_MOTOR_PRM + year.CASH_REN_NON_MOTOR_PRM,
+                    indYearPrem_Renewal_Dbt = year.DEBIT_REN_MOTOR_PRM + year.DEBIT_REN_NON_MOTOR_PRM,
 
-                branchMonthNoPolTotal  = 67,
-                    branchYearPolTotal  = 560,
+                    branchMonthNoPolTotal  = 0,
+                    branchYearPolTotal  = 0,
 
-                    branchMonthPremTotal  = 4500000,
-                    branchYearPremTotal  = 6788888,
+                    branchMonthPremTotal  = 0,
+                    branchYearPremTotal  = 0,
 
                        
                     };
+           // OnPropertyChanged();
         }
 
         private PlotModel Indvidual_month_no_of_pol()
         {
             
-            var model = new PlotModel { Title = "Number of Policies for "+ ownAgt.month };
+            var model = new PlotModel { Title = "Number of Policies for " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Convert.ToInt32(ownAgt.month)) };
 
             var ps = new PieSeries
             {
@@ -189,10 +334,10 @@ namespace Agent_App.Models
                 StartAngle = 0
             };
 
-            ps.Slices.Add(new PieSlice("Cash - New ", ownAgt.indMonthNoPol_New_Cash) { IsExploded = false });
-            ps.Slices.Add(new PieSlice("Debit - New", ownAgt.indMonthNoPol_New_Dbt) { IsExploded = false });
-            ps.Slices.Add(new PieSlice("Cash - Renewals", ownAgt.indMonthNoPol_Renewal_cash) { IsExploded = false });
-            ps.Slices.Add(new PieSlice("Debit - Renewals", ownAgt.indMonthNoPol_Renewal_Dbt) { IsExploded = false });
+            ps.Slices.Add(new PieSlice("Cash - New ", ownAgt.indMonthNoPol_New_Cash) { IsExploded = false, Fill = OxyColor.FromRgb(130, 177, 185) });
+            ps.Slices.Add(new PieSlice("Debit - New", ownAgt.indMonthNoPol_New_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(54, 139, 193) });
+            ps.Slices.Add(new PieSlice("Cash - Renewals", ownAgt.indMonthNoPol_Renewal_cash) { IsExploded = false, Fill = OxyColor.FromRgb(235, 199, 170) });
+            ps.Slices.Add(new PieSlice("Debit - Renewals", ownAgt.indMonthNoPol_Renewal_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(195, 159, 130) });
             model.Series.Add(ps);
             return model;
         }
@@ -221,7 +366,7 @@ namespace Agent_App.Models
         private PlotModel Indvidual_month_premium()
         {
 
-            var model = new PlotModel { Title = "Premium Income for " + ownAgt.month };
+            var model = new PlotModel { Title = "Premium Income for " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Convert.ToInt32(ownAgt.month)) };
 
             var ps = new PieSeries
             {
@@ -231,10 +376,10 @@ namespace Agent_App.Models
                 StartAngle = 0
             };
 
-            ps.Slices.Add(new PieSlice("Cash - New", ownAgt.indMonthPrem_New_Cash) { IsExploded = false });
-            ps.Slices.Add(new PieSlice("Debit - New", ownAgt.indMonthPrem_New_Dbt) { IsExploded = false });
-            ps.Slices.Add(new PieSlice("Cash - Renewals", ownAgt.indMonthPrem_Renewal_cash) { IsExploded = false });
-            ps.Slices.Add(new PieSlice("Debit - Renewals", ownAgt.indMonthPrem_Renewal_Dbt) { IsExploded = false });
+            ps.Slices.Add(new PieSlice("Cash - New", ownAgt.indMonthPrem_New_Cash) { IsExploded = false, Fill = OxyColor.FromRgb(130, 177, 185) });
+            ps.Slices.Add(new PieSlice("Debit - New", ownAgt.indMonthPrem_New_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(54, 139, 193) });
+            ps.Slices.Add(new PieSlice("Cash - Renewals", ownAgt.indMonthPrem_Renewal_cash) { IsExploded = false, Fill = OxyColor.FromRgb(235, 199, 170) });
+            ps.Slices.Add(new PieSlice("Debit - Renewals", ownAgt.indMonthPrem_Renewal_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(195, 159, 130) });
             model.Series.Add(ps);
             return model;
         }
@@ -252,14 +397,14 @@ namespace Agent_App.Models
                 StartAngle = 0
             };
 
-            ps.Slices.Add(new PieSlice("Cash - New", ownAgt.indYearPrem_New_Cash) { IsExploded = false });
-            ps.Slices.Add(new PieSlice("Debit - New", ownAgt.indYearPrem_New_Dbt) { IsExploded = false });
-            ps.Slices.Add(new PieSlice("Cash - Renewals", ownAgt.indYearPrem_Renewal_cash) { IsExploded = false });
-            ps.Slices.Add(new PieSlice("Debit - Renewals", ownAgt.indYearPrem_Renewal_Dbt) { IsExploded = false });
+            ps.Slices.Add(new PieSlice("Cash - New", ownAgt.indYearPrem_New_Cash) { IsExploded = false, Fill = OxyColor.FromRgb(130, 177, 185) });
+            ps.Slices.Add(new PieSlice("Debit - New", ownAgt.indYearPrem_New_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(54, 139, 193) });
+            ps.Slices.Add(new PieSlice("Cash - Renewals", ownAgt.indYearPrem_Renewal_cash) { IsExploded = false, Fill = OxyColor.FromRgb(235, 199, 170) });
+            ps.Slices.Add(new PieSlice("Debit - Renewals", ownAgt.indYearPrem_Renewal_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(195, 159, 130) });
             model.Series.Add(ps);
             return model;
         }
-
+        public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -271,11 +416,26 @@ namespace Agent_App.Models
             {
                 return new Command(async () =>
                 {
-                    //Application.Current.MainPage = new NavigationPage(new ExampleList());
+                    IsBusy = true;
+                    month_performance = null;
+                    year_performance = null;
+                    fetchData((_getMoth.number.ToString().Length == 1 ? "0" + _getMoth.number.ToString() : _getMoth.number.ToString()), _getYear.yearVal.ToString());
+                    if (month_performance.Count > 0 && year_performance.Count > 0)
+                    {
+                        GetAgentStats(month_performance[0], year_performance[0], (_getMoth.number.ToString().Length == 1 ? "0" + _getMoth.number.ToString() : _getMoth.number.ToString()), _getYear.yearVal);
+                        Populate_controls(month_performance[0], year_performance[0], (_getMoth.number.ToString().Length == 1 ? "0" + _getMoth.number.ToString() : _getMoth.number.ToString()), _getYear.yearVal.ToString());
+                    }
+                    //OnPropertyChanged();
+                    IsBusy = false;
 
-                    await Application.Current.MainPage.Navigation.PushAsync(new Agent_performance());
                 });
             }
         }
+
+        
+
+
+
+
     }
 }
