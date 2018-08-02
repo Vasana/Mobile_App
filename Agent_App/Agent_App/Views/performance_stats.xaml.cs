@@ -15,6 +15,10 @@ namespace Agent_App.Views
 		public performance_stats ()
 		{
 			InitializeComponent ();
-		}
-	}
+            PMonth.SelectedIndex = Convert.ToInt32( DateTime.Today.ToString("MM"))-1;
+            PYear.SelectedIndex = 0;
+        }
+
+    }
+
 }

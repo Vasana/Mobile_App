@@ -595,6 +595,35 @@ namespace Agent_App.Services
             //return custPolicies; --- Original code
         }
 
+        public List<AgentPerformance> GetAgentPerformance(string accessToken, string agentCode, string fromDate, string toDate)
+        {
+            List < AgentPerformance> claimsList = null;
+            try
+            {
+                //    var client = new HttpClient();
+                //    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+                //    var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getAgentPerfomance_byDate?agentCode=" + agentCode.Trim()+ "&year="+year);
+                //    claimsList = JsonConvert.DeserializeObject<List<MonthlyPerformance>>(json);
+
+                using (WebClient wc = new WebClient())
+                {
+                    wc.Headers.Add("Content-Type", "text");
+                    wc.Headers[HttpRequestHeader.Authorization] = "Bearer " + accessToken;
+                    var json = wc.DownloadString("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getAgentPerfomance_byDate?agentCode=" + agentCode.Trim() + "&fromDate=" + fromDate+"&toDate="+toDate);
+                    claimsList = JsonConvert.DeserializeObject< List<AgentPerformance>>(json);
+                }
+            }
+            catch (Exception e)
+            {
+                claimsList = null;
+            }
+            return claimsList;
+
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
+        }
+
         private List<BranchContact> GetBranchesList()
         {
             List<BranchContact> BranchList = new List<BranchContact>
