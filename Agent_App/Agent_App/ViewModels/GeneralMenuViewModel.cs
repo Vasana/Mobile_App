@@ -140,7 +140,7 @@ namespace Agent_App.ViewModels
             PoliciesCollection.Insert(index, policy);
         }
 
-        public ICommand CustomersProfilesCommand
+        public ICommand CustomersPoliciesCommand
         {
             get
             {
@@ -153,7 +153,7 @@ namespace Agent_App.ViewModels
             }
         }
 
-        public ICommand GetQuotationCommand
+        public ICommand GetPerformanceCommand
         {
             get
             {
@@ -162,9 +162,16 @@ namespace Agent_App.ViewModels
                     //Application.Current.MainPage = new NavigationPage(new ExampleList());
 
                     if (Settings.jobRole == "Organizer")
+                    {
                         await PopupNavigation.Instance.PushAsync(new PopUp_Perform());
+                    }
                     else
+                    {
+                        IsBusy = true;
                         await Application.Current.MainPage.Navigation.PushAsync(new Agent_performance());
+                        IsBusy = false;
+                    }
+                    //IsBusy = false;
                 });
             }
         }

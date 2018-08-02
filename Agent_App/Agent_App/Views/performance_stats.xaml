@@ -9,46 +9,48 @@
     <ContentPage.BindingContext>
         <models:PerformanceStats/>
     </ContentPage.BindingContext>
-<ScrollView><StackLayout>
-        
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+
+    <ScrollView>
+        <StackLayout>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
                 <Picker x:Name="PMonth" Title="Select Month" Grid.Row="1" Grid.Column="0" SelectedItem="{Binding _getMoth}"  ItemsSource="{Binding MonthList}" ItemDisplayBinding="{Binding name} "/>
-            <Picker x:Name="PYear"   Title="Select Year" Grid.Row="1" SelectedItem="{Binding _getYear}"  Grid.Column="1" ItemsSource="{Binding YearList}" ItemDisplayBinding="{Binding yearVal}" />
-            <Button x:Name="BtnLoad" Grid.Row="1" Grid.Column="2" Command="{Binding FilterPerformanceDate}" Text="Load"/>
-        </Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="25" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <!--<RowDefinition Height="300" />
+                <Picker x:Name="PYear"   Title="Select Year" Grid.Row="1" SelectedItem="{Binding _getYear}"  Grid.Column="1" ItemsSource="{Binding YearList}" ItemDisplayBinding="{Binding yearVal}" />
+                <Button x:Name="BtnLoad" Grid.Row="1" Grid.Column="2" Command="{Binding FilterPerformanceDate}" Text="Load"/>
+            </Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <!--<RowDefinition Height="300" />
                 <RowDefinition Height="300" />
                     <RowDefinition Height="300" />
                     <RowDefinition Height="300" />-->
                 </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="10" />
-            </Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
 
                 <Label Text="Renewals"  HorizontalTextAlignment="Center" FontSize="Medium"  Grid.Row="0" Grid.Column="2" />
                 <Label Text="New"  HorizontalTextAlignment="Center" FontSize="Medium"  Grid.Row="0" Grid.Column="3" />
@@ -74,7 +76,6 @@
                 <Label Text="{Binding ownAgt.indYearPrem_New}"  HorizontalTextAlignment="End"  FontSize="Medium" Grid.Row="5" Grid.Column="3" />
                 <Label Text="{Binding ownAgt.indYearPrem_Renewal}" HorizontalTextAlignment="End"  FontSize="Medium" Grid.Row="5" Grid.Column="2" />
 
-               
             </Grid>
             <Grid>
                 <Grid.RowDefinitions>
@@ -102,15 +103,11 @@
                 <oxy:PlotView Model="{Binding PieYearPrem}"
                    HorizontalOptions="FillAndExpand"
                   VerticalOptions="FillAndExpand" Grid.Row="1"  Grid.Column="2" />
-                
-                <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
-                            HorizontalOptions="Center" VerticalOptions="Center">
-                    <ActivityIndicator.Scale>
-                        <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
-                    </ActivityIndicator.Scale>
-                </ActivityIndicator>
+
             </Grid>
-           
-        </StackLayout></ScrollView>
+
+        </StackLayout>
+    </ScrollView>
+
 </ContentPage>
     

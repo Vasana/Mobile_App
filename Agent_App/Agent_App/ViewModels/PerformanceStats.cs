@@ -155,7 +155,7 @@ namespace Agent_App.Models
 
         public PerformanceStats()
         {
-            IsBusy = true;
+            
             fetchData();
             if (month_performance.Count > 0 && year_performance.Count > 0)
             {
@@ -164,7 +164,7 @@ namespace Agent_App.Models
             }
             MonthList = getMonths();
             YearList = getYears();
-            IsBusy = false;
+            
         }
 
         //public PerformanceStats(string month, string year)
@@ -192,7 +192,7 @@ namespace Agent_App.Models
         }
 
         private void fetchData()
-        {
+        {            
             month_performance = _apiServices.GetAgentPerformance(Settings.AccessToken, Settings.agentCode, DateTime.Today.ToString("yyyy-MM-01"), DateTime.Today.ToString("yyyy-MM-dd"));
             
             year_performance = _apiServices.GetAgentPerformance(Settings.AccessToken, Settings.agentCode, DateTime.Today.ToString("yyyy-01-01"), DateTime.Today.ToString("yyyy-MM-dd"));
@@ -247,8 +247,7 @@ namespace Agent_App.Models
        
         public async Task GetAgentStats(AgentPerformance month, AgentPerformance year, string _month, int _year)
         {
-            
-            hardCoded( month,  year,  _month,  _year);
+            hardCoded( month,  year,  _month,  _year);            
         }
 
 
@@ -416,7 +415,6 @@ namespace Agent_App.Models
             {
                 return new Command(async () =>
                 {
-                    IsBusy = true;
                     month_performance = null;
                     year_performance = null;
                     fetchData((_getMoth.number.ToString().Length == 1 ? "0" + _getMoth.number.ToString() : _getMoth.number.ToString()), _getYear.yearVal.ToString());
@@ -426,8 +424,7 @@ namespace Agent_App.Models
                         Populate_controls(month_performance[0], year_performance[0], (_getMoth.number.ToString().Length == 1 ? "0" + _getMoth.number.ToString() : _getMoth.number.ToString()), _getYear.yearVal.ToString());
                     }
                     //OnPropertyChanged();
-                    IsBusy = false;
-
+                   
                 });
             }
         }

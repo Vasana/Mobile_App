@@ -44,8 +44,8 @@
                 </Grid.ColumnDefinitions>
 
 
-                <Button Grid.Row="0" Grid.Column="0" x:Name="BtnCusprof" Command="{Binding CustomersProfilesCommand}" BorderColor="LightGray" BorderWidth="1" BackgroundColor="White"  Image="customer.png"  />
-                <Button Grid.Row="0" Grid.Column="1" x:Name="BtnQuote" Command="{Binding GetQuotationCommand}" BackgroundColor="White"  BorderColor="LightGray" BorderWidth="1" Image="policy.png" />
+                <Button Grid.Row="0" Grid.Column="0" x:Name="BtnCusprof" Command="{Binding CustomersPoliciesCommand}" BorderColor="LightGray" BorderWidth="1" BackgroundColor="White"  Image="customer.png"  />
+                <Button Grid.Row="0" Grid.Column="1" x:Name="BtnQuote" Command="{Binding GetPerformanceCommand}" BackgroundColor="White"  BorderColor="LightGray" BorderWidth="1" Image="graph.png" />
 
                 <StackLayout Grid.Row="1" Grid.ColumnSpan="2">
                     <Label FontSize="Medium" HorizontalOptions="Center" Text="Today's Reminders"
