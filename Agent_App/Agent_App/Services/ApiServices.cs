@@ -536,7 +536,7 @@ namespace Agent_App.Services
             }
             catch(Exception e)
             {
-                claimsList = null;
+                claimsList = null; 
             }
             return claimsList;
 
