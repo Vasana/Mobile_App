@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Agent_App.Views;
 using Foundation;
 using UIKit;
 
@@ -28,6 +28,16 @@ namespace Agent_App.iOS
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
+        }
+
+        public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations(UIApplication application, UIWindow forWindow)
+        {
+            var mainPage = Xamarin.Forms.Application.Current.MainPage;
+            if (mainPage.Navigation.NavigationStack.Last() is GenPolicyDetails)
+            {
+                return UIInterfaceOrientationMask.Portrait;
+            }
+            return UIInterfaceOrientationMask.AllButUpsideDown;
         }
     }
 }
