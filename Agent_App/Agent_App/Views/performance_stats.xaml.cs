@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Agent_App.ViewModels;
+using Agent_App.Models;
 
 namespace Agent_App.Views
 {
@@ -19,6 +21,14 @@ namespace Agent_App.Views
             PYear.SelectedIndex = 0;
         }
 
+        //private async void BtnLoad_Clicked(object sender, EventArgs e)
+        //{
+        //    indicator.IsRunning = true;
+        //    var vm = BindingContext as PerformanceStats;
+        //    await vm.FilterPerformanceDate();
+        //    // IsBusy = false;
+        //    indicator.IsRunning = false;
+        //}
     }
 
 }

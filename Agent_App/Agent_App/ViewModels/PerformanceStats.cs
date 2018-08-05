@@ -1,26 +1,24 @@
 ﻿using Agent_App.Helpers;
+using Agent_App.Models;
 using Agent_App.Services;
-using Agent_App.Views;
 using OxyPlot;
 using OxyPlot.Series;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace Agent_App.Models
+namespace Agent_App.ViewModels
 {
     public class PerformanceStats : INotifyPropertyChanged
     {
         //public ObservableCollection<AgtPerfmStat> CardDataCollection { get; set; }
-        private List<AgentPerformance> month_performance;
-        private List<AgentPerformance> year_performance;
+        private List<Models.AgentPerformance> month_performance;
+        private List<Models.AgentPerformance> year_performance;
         private ApiServices _apiServices = new ApiServices();
 
         private bool _isBusy;
@@ -177,7 +175,7 @@ namespace Agent_App.Models
         //}
 
 
-        private void Populate_controls(AgentPerformance monthPerf, AgentPerformance yearPerf, string month, string year)
+        private void Populate_controls(Models.AgentPerformance monthPerf, Models.AgentPerformance yearPerf, string month, string year)
         {
             inq_year = Convert.ToInt32(year);
             lbl_mon_NOP = "Number of Policies for " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Convert.ToInt32( month));
@@ -242,16 +240,14 @@ namespace Agent_App.Models
             
             return months;
         }
-        
-
-       
-        public async Task GetAgentStats(AgentPerformance month, AgentPerformance year, string _month, int _year)
+               
+        public async Task GetAgentStats(Models.AgentPerformance month, Models.AgentPerformance year, string _month, int _year)
         {
             hardCoded( month,  year,  _month,  _year);            
         }
 
 
-        private void hardCoded(AgentPerformance month, AgentPerformance year, string _month, int _year)
+        private void hardCoded(Models.AgentPerformance month, Models.AgentPerformance year, string _month, int _year)
         {
 
             ownAgt = new AgtPerfmStat {
@@ -409,25 +405,49 @@ namespace Agent_App.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        //public ICommand FilterPerformanceDate
+        //{
+        //    get
+        //    {
+        //        return new Command(async () =>
+        //        {
+        //            month_performance = null;
+        //            year_performance = null;
+        //            fetchData((_getMoth.number.ToString().Length == 1 ? "0" + _getMoth.number.ToString() : _getMoth.number.ToString()), _getYear.yearVal.ToString());
+        //            if (month_performance.Count > 0 && year_performance.Count > 0)
+        //            {
+        //                GetAgentStats(month_performance[0], year_performance[0], (_getMoth.number.ToString().Length == 1 ? "0" + _getMoth.number.ToString() : _getMoth.number.ToString()), _getYear.yearVal);
+        //                Populate_controls(month_performance[0], year_performance[0], (_getMoth.number.ToString().Length == 1 ? "0" + _getMoth.number.ToString() : _getMoth.number.ToString()), _getYear.yearVal.ToString());
+        //            }
+        //            //OnPropertyChanged();
+
+        //        });
+        //    }
+        //}
+
+
         public ICommand FilterPerformanceDate
         {
             get
             {
                 return new Command(async () =>
                 {
+                    IsBusy = true;
                     month_performance = null;
                     year_performance = null;
                     fetchData((_getMoth.number.ToString().Length == 1 ? "0" + _getMoth.number.ToString() : _getMoth.number.ToString()), _getYear.yearVal.ToString());
                     if (month_performance.Count > 0 && year_performance.Count > 0)
                     {
-                        GetAgentStats(month_performance[0], year_performance[0], (_getMoth.number.ToString().Length == 1 ? "0" + _getMoth.number.ToString() : _getMoth.number.ToString()), _getYear.yearVal);
+                        await GetAgentStats(month_performance[0], year_performance[0], (_getMoth.number.ToString().Length == 1 ? "0" + _getMoth.number.ToString() : _getMoth.number.ToString()), _getYear.yearVal);
                         Populate_controls(month_performance[0], year_performance[0], (_getMoth.number.ToString().Length == 1 ? "0" + _getMoth.number.ToString() : _getMoth.number.ToString()), _getYear.yearVal.ToString());
                     }
                     //OnPropertyChanged();
-                   
+                    IsBusy = false;
                 });
             }
         }
+
+       
 
         
 

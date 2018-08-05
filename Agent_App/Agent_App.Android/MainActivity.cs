@@ -10,6 +10,8 @@ using Agent_App.Droid;
 using System.Threading.Tasks;
 using System.IO;
 using Android.Content;
+using Xamarin.Forms;
+using Agent_App.Views;
 
 namespace Agent_App.Droid
 {
@@ -19,7 +21,8 @@ namespace Agent_App.Droid
         internal static MainActivity Instance { get; private set; }
 
         protected override void OnCreate(Bundle bundle)
-        {
+        {     
+
             OxyPlot.Xamarin.Forms.Platform.Android.PlotViewRenderer.Init();
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
@@ -30,7 +33,21 @@ namespace Agent_App.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
-        }
+
+            //allowing the device to change the screen orientation based on the rotation
+            MessagingCenter.Subscribe<GenPolicyDetails>(this, "allowLandScapePortrait", sender =>
+            {
+
+                RequestedOrientation = ScreenOrientation.Unspecified;
+            });
+
+            //during page close setting back to portrait
+            MessagingCenter.Subscribe<GenPolicyDetails>(this, "preventLandScape", sender =>
+            {
+                RequestedOrientation = ScreenOrientation.Portrait;
+            });
+        }       
+       
 
         // Field, property, and method for Picture Picker
         public static readonly int PickImageId = 1000;

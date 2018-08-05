@@ -102,9 +102,7 @@ namespace Agent_App.ViewModels
         }
         public async Task GetAgentStats()
         {
-            IsBusy = true;
-            hardCoded();
-            IsBusy = false;
+            hardCoded();            
         }
 
 
@@ -273,8 +271,9 @@ namespace Agent_App.ViewModels
                 return new Command(async () =>
                 {
                     //Application.Current.MainPage = new NavigationPage(new ExampleList());
-
+                    IsBusy = true;
                     await Application.Current.MainPage.Navigation.PushAsync(new Agent_performance());
+                    IsBusy = false;
                 });
             }
         }

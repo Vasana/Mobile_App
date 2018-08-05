@@ -226,6 +226,9 @@
     <ImageAsset Include="Assets.xcassets\filledStar.imageset\filledStar.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\graph.imageset\graph.png">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\health.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -244,7 +247,7 @@
     <ImageAsset Include="Assets.xcassets\hospitalized.imageset\hospitalized.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\ProfileImage.imageset\Contents.json">
+    <ImageAsset Include="Assets.xcassets\graph.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\life.imageset\life.png">
@@ -263,6 +266,9 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\products.imageset\products.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ProfileImage.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\ProfileImage.imageset\ProfileImage.png">
