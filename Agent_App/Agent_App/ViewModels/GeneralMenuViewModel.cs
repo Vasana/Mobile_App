@@ -163,6 +163,7 @@ namespace Agent_App.ViewModels
 
                     if (Settings.jobRole == "Organizer")
                     {
+                        
                         await PopupNavigation.Instance.PushAsync(new PopUp_Perform());
                     }
                     else
