@@ -51,13 +51,13 @@ namespace Agent_App.Models
         private void fetchData()
         {
             last_year = _apiServices.GetMonthlyPerformance(Settings.AccessToken, Settings.agentCode, DateTime.Today.AddYears(-1).ToString("yyyy"));
-            last_year = last_year.FindAll(x => x.BUSS_TYPE == "Total");
-            last_year.Sort((x, y) => x.Y_MONTH.CompareTo(y.Y_MONTH));
+            //last_year = last_year.FindAll(x => x.BUSS_TYPE == "Total");
+            last_year.Sort((x, y) => x.YEAR_MONTH.CompareTo(y.YEAR_MONTH));
 
 
             current_year = _apiServices.GetMonthlyPerformance(Settings.AccessToken, Settings.agentCode, DateTime.Today.ToString("yyyy"));
-            current_year = current_year.FindAll(x => x.BUSS_TYPE == "Total");
-            current_year.Sort((x, y) => x.Y_MONTH.CompareTo(y.Y_MONTH));
+            //current_year = current_year.FindAll(x => x.BUSS_TYPE == "Total");
+            current_year.Sort((x, y) => x.YEAR_MONTH.CompareTo(y.YEAR_MONTH));
         }
 
         public async Task LoadAsync()
@@ -101,8 +101,8 @@ namespace Agent_App.Models
 
                     running_month_str = year_str + running_month_str;
 
-                    if (item.Y_MONTH.ToString() == running_month_str)
-                        s1.Points.Add(new DataPoint(running_month, item.NO_BUSINESS));
+                    if (item.YEAR_MONTH.ToString() == running_month_str)
+                        s1.Points.Add(new DataPoint(running_month, item.NO_OF_TOTAL_BUSINESS));
                     else
                         s1.Points.Add(new DataPoint(running_month, 0));
 
@@ -140,8 +140,8 @@ namespace Agent_App.Models
 
                     running_month_str = year_str + running_month_str;
 
-                    if (item.Y_MONTH.ToString() == running_month_str)
-                        s2.Points.Add(new DataPoint(running_month, item.NO_BUSINESS));
+                    if (item.YEAR_MONTH.ToString() == running_month_str)
+                        s2.Points.Add(new DataPoint(running_month, item.NO_OF_TOTAL_BUSINESS));
                     else
                         s2.Points.Add(new DataPoint(running_month, 0));
 
@@ -196,8 +196,8 @@ namespace Agent_App.Models
 
                 running_month_str = year_str + running_month_str;
 
-                if (item.Y_MONTH.ToString() == running_month_str)
-                    s1.Points.Add(new DataPoint(running_month, item.AMOUNT));
+                if (item.YEAR_MONTH.ToString() == running_month_str)
+                    s1.Points.Add(new DataPoint(running_month, (item.TOTAL_PREMIUM - item.TOTAL_REFUND)));
                 else
                     s1.Points.Add(new DataPoint(running_month, 0));
 
@@ -230,8 +230,8 @@ namespace Agent_App.Models
 
                 running_month_str = year_str + running_month_str;
 
-                if (item.Y_MONTH.ToString() == running_month_str)
-                    s2.Points.Add(new DataPoint(running_month, item.AMOUNT));
+                if (item.YEAR_MONTH.ToString() == running_month_str)
+                    s2.Points.Add(new DataPoint(running_month, (item.TOTAL_PREMIUM - item.TOTAL_REFUND)));
                 else
                     s2.Points.Add(new DataPoint(running_month, 0));
 

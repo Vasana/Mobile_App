@@ -6,7 +6,7 @@ namespace Agent_App.Models
 {
     public class AgentPerformance
     {
-        public int PMAGT { get; set; }
+        public int AGENT_CODE { get; set; }
         public int CASH_NEW_MOTOR { get; set; }
         public int DEBIT_NEW_MOTOR { get; set; }
         public int CASH_REN_MOTOR { get; set; }
@@ -31,5 +31,7 @@ namespace Agent_App.Models
         public double DEBIT_REN_NON_MOTOR_PRM { get; set; }
         public double TOT_CASH_NON_MOTOR_PRM { get; set; }
         public double TOT_DEBIT_NON_MOTOR_PRM { get; set; }
+        
+        public double TOT_REFUND { get; set; }
     }
 }
