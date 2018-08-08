@@ -2,7 +2,15 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Agent_App.Views.PolicyViewTemplate"
+             xmlns:local="clr-namespace:Agent_App.Helpers"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
+    
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <local:StringToBoolConverter x:Key="StringToBool" />
+            <local:ImgStringToWidth x:Key="StrToWidth" />
+        </ResourceDictionary>
+    </ContentView.Resources>
 
     <Frame IsClippedToBounds="True"
          HasShadow="True"
@@ -42,12 +50,13 @@
                    HorizontalTextAlignment="Start"
                    VerticalTextAlignment="Center"
                    FontSize="16" FontAttributes="Bold"
-                   Text="{Binding PolTypeDesc}" TextColor="Black" >
+                   Text="{Binding PolTypeDesc}" TextColor="Black">
                     </Label>
 
-                    <controls:CircleImage Source="{Binding PolStatusImage}" VerticalOptions="End" HeightRequest="30" WidthRequest="30"></controls:CircleImage>
-                    <controls:CircleImage Source="{Binding ClaimStatusImage}" VerticalOptions="End" HeightRequest="30" WidthRequest="30"></controls:CircleImage>
-
+                    <Image x:Name="imgPremType" Source="{Binding PremiumTypeImg}" IsVisible="{Binding PremiumTypeImg, Converter={StaticResource StringToBool}}" VerticalOptions="End" HeightRequest="30" WidthRequest="{Binding PremiumTypeImg, Converter={StaticResource StrToWidth}}"></Image>
+                    <controls:CircleImage Source="{Binding PolStatusImage}" IsVisible="{Binding PolStatusImage, Converter={StaticResource StringToBool}}" VerticalOptions="End" HeightRequest="30" WidthRequest="30"></controls:CircleImage>
+                    <controls:CircleImage Source="{Binding ClaimStatusImage}" IsVisible="{Binding ClaimStatusImage, Converter={StaticResource StringToBool}}" VerticalOptions="End" HeightRequest="30" WidthRequest="30"></controls:CircleImage>
+                                        
                 </StackLayout>
 
                 <Grid Grid.Row="1" VerticalOptions="CenterAndExpand" 
@@ -95,11 +104,23 @@
                             FontSize="14" FontAttributes="None"
                             Text="Insured Name: " TextColor="Black" >
                     </Label>
-                    <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3"
+                    <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"
                            HorizontalTextAlignment="Start"
                            VerticalTextAlignment="Center"
                            FontSize="14" FontAttributes="None"
                            Text="{Binding InsuredName}" TextColor="Black">
+                    </Label>
+                    <Label Grid.Row="1" Grid.Column="3" IsVisible="{Binding DebitCancelDate, Converter={StaticResource StringToBool}}"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"
+                            FontSize="14" FontAttributes="None" 
+                            Text="Debit Cncl. Date" TextColor="Black" >
+                    </Label>
+                    <Label Grid.Row="1" Grid.Column="4"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"
+                            FontSize="14" FontAttributes="None"
+                            Text="{Binding DebitCancelDate}" TextColor="Red" >
                     </Label>
                     <Label Grid.Row="2" Grid.Column="1"
                             HorizontalTextAlignment="Start"

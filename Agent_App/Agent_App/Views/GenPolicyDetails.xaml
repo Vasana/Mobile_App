@@ -111,14 +111,7 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-            <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
-                            HorizontalOptions="Center" VerticalOptions="Center">
-                <ActivityIndicator.Scale>
-                    <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
-                </ActivityIndicator.Scale>
-            </ActivityIndicator>
+                </Grid.RowDefinitions>           
                 
             <Button Grid.Row="0" x:Name="btnPayHist"
                 BackgroundColor="DeepPink"
@@ -131,7 +124,14 @@
                 Text="View Claim History"
                 TextColor="White" 
                 Clicked="btnClaimHist_Clicked"/>
-            </Grid>
+
+            <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
+                            HorizontalOptions="Center" VerticalOptions="Center">
+                <ActivityIndicator.Scale>
+                    <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
+                </ActivityIndicator.Scale>
+            </ActivityIndicator>
+        </Grid>
         </StackLayout>
 
        

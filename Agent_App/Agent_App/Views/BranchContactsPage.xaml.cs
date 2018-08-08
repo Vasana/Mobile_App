@@ -125,17 +125,68 @@ namespace Agent_App.Views
 
         private void SMCntNum_Clicked(object sender, EventArgs e)
         {
+            var btn = (Button)sender;
+            string mobileNumber = btn.Text.Trim();
+            try
+            {
+                if (mobileNumber != "")
+                {
+                    Device.OpenUri(new Uri("tel:" + mobileNumber));
+                }
+                else
+                {
+                    Application.Current.MainPage.DisplayAlert("Alert", "No information found", "OK");
+                }
 
+            }
+            catch (Exception)
+            {
+                Application.Current.MainPage.DisplayAlert("Alert", "Error occured while performing function", "OK");
+            }
         }
 
         private void RSMCntNum_Clicked(object sender, EventArgs e)
         {
+            var btn = (Button)sender;
+            string mobileNumber = btn.Text.Trim();
+            try
+            {
+                if (mobileNumber != "")
+                {
+                    Device.OpenUri(new Uri("tel:" + mobileNumber));
+                }
+                else
+                {
+                    Application.Current.MainPage.DisplayAlert("Alert", "No information found", "OK");
+                }
 
+            }
+            catch (Exception)
+            {
+                Application.Current.MainPage.DisplayAlert("Alert", "Error occured while performing function", "OK");
+            }
         }
 
         private void BrnAdmnCntNum_Clicked(object sender, EventArgs e)
         {
+            var btn = (Button)sender;
+            string mobileNumber = btn.Text.Trim();
+            try
+            {
+                if (mobileNumber != "")
+                {
+                    Device.OpenUri(new Uri("tel:" + mobileNumber));
+                }
+                else
+                {
+                    Application.Current.MainPage.DisplayAlert("Alert", "No information found", "OK");
+                }
 
+            }
+            catch (Exception)
+            {
+                Application.Current.MainPage.DisplayAlert("Alert", "Error occured while performing function", "OK");
+            }
         }
     }
 }
