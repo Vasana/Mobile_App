@@ -15,7 +15,6 @@
         <ToolbarItem Icon="alert_yellow.png" Text="Premium Pending" Clicked="btnPayPend_Clicked"/>
         <ToolbarItem Icon="debitOutstd.png" Text="Debit Outstanding" Clicked="btnDbitOuts_Clicked"/>
         <ToolbarItem Icon="claim_pending.png" Text="Claim Pending" Clicked="btnClaimPend_Clicked"/>
-        <ToolbarItem Icon="badClaims.png" Text="Bad Claims" Clicked="btnBadClaims_Clicked"/>
         <ToolbarItem Icon="filledStar.png" Text="Flagged" Clicked="btnFlagged_Clicked"/>
         <ToolbarItem Icon="search.png" Text="Search" Clicked="btnSearch_Clicked"/>
     </ContentPage.ToolbarItems>
