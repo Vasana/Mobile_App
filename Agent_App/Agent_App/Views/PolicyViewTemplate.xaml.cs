@@ -29,8 +29,20 @@ namespace Agent_App.Views
             var flagImage = new TapGestureRecognizer();
             flagImage.Tapped += flagImage_Tapped;            
             btnReminder.GestureRecognizers.Add(flagImage);
-        }
 
+            //try
+            //{
+            //    if (imgPremType.Source == null)
+            //    {
+            //        imgPremType.WidthRequest = 2;
+            //    }
+            //}
+            //catch(Exception e)
+            //{
+
+            //}
+        }
+        
         private void flagImage_Tapped(object sender, EventArgs e)
         {
             var policy = BindingContext as CustPolicy;

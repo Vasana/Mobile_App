@@ -6,17 +6,19 @@ using Xamarin.Forms;
 
 namespace Agent_App.Helpers
 {
-    public class StringToBoolConverter:IValueConverter
+    public class ImgStringToWidth : IValueConverter
     {
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (string)value != "";
+            if ((string)value == "")
+                return 2;
+            else
+                return 60;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (bool)value ? "123" : "";
+            throw new NotImplementedException();
         }
     }
 }

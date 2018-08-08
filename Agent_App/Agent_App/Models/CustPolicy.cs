@@ -30,7 +30,7 @@ namespace Agent_App.Models
         public string FlagImage { get; set; }
         public string RemindOnDate { get; set; } = "";// yyyy/MM/dd
         public string CommentCreatedDate { get; set; } = "";
-        public bool NewBusiness { get; set; }
+        public string PremiumTypeImg { get; set; } = "";
         public string DebitCancelDate { get; set; } = "";
 
         ApiServices _apiServices = new ApiServices();
