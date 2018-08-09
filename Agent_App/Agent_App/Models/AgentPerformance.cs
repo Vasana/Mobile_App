@@ -7,6 +7,7 @@ namespace Agent_App.Models
     public class AgentPerformance
     {
         public int AGENT_CODE { get; set; }
+        public string AGENT_NAME { get; set; }
         public int CASH_NEW_MOTOR { get; set; }
         public int DEBIT_NEW_MOTOR { get; set; }
         public int CASH_REN_MOTOR { get; set; }
