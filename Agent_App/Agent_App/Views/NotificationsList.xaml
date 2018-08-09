@@ -146,18 +146,17 @@
                                             <ColumnDefinition Width="0.5*" />
                                         </Grid.ColumnDefinitions>
 
-                                        <Grid Grid.Column="0" Padding="2">
+                                        <Grid Grid.Column="0" Padding="5">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />                                                
                                             </Grid.ColumnDefinitions>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="40" />
                                             </Grid.RowDefinitions>
                                             <Button x:Name="btnCall" Clicked="btnCall_Clicked" Grid.Column="0" HorizontalOptions="Center" Text="Call"/>
-                                            <Button x:Name="btnEmail" Clicked="btnEmail_Clicked" Grid.Column="1" HorizontalOptions="Center" Text="Email"></Button>
-                                            <Button x:Name="btnNotif" Clicked="btnNotif_Clicked"  Grid.Column="2"  HorizontalOptions="Center" Text="Go to Policy" HeightRequest="30"/>
+                                           <!-- <Button x:Name="btnEmail" Clicked="btnEmail_Clicked" Grid.Column="1" HorizontalOptions="Center" Text="Email"></Button> -->
+                                            <Button x:Name="btnNotif" Clicked="btnNotif_Clicked"  Grid.Column="1"  HorizontalOptions="Center" Text="Go to Policy" HeightRequest="30"/>
 
                                         </Grid>
                                         <Label x:Name="lblMobileNo" Grid.Column="2" Text="{Binding ContactNumber}" IsVisible="False" />
