@@ -77,7 +77,7 @@ namespace Agent_App
 
                 if (entPolicyNumber.Text != null)
                 {
-                    SearchCriteria.Instance.PolicyNumber = entPolicyNumber.Text.Trim();
+                    SearchCriteria.Instance.PolicyNumber = entPolicyNumber.Text.ToUpper().Trim();
                 }
                 
                 if (entVehiNum1.Text != null || entVehiNum2.Text != null)
