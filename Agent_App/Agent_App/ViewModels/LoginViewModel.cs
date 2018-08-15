@@ -100,6 +100,7 @@ namespace Agent_App.ViewModels
                        agentProfile = await _apiServices.GetAgentProfile(accessToken);
                        Settings.jobRole = agentProfile.Role;
                        Settings.agentCode = (agentProfile.Role == "Organizer" ? agentProfile.Organizer_code.ToString() : agentProfile.Agent_code.ToString());
+                       Settings.orgTeamCode = (agentProfile.Role == "Organizer" ? agentProfile.Organizer_codeTeam.ToString():"");
                        IsBusy = false;
 
                    }

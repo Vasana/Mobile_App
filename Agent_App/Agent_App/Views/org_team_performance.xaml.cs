@@ -14,7 +14,11 @@ namespace Agent_App.Views
 	{
 		public org_team_performance ()
 		{
-			InitializeComponent ();
-		}
-	}
+            
+            InitializeComponent ();
+
+            PMonth.SelectedIndex = Convert.ToInt32(DateTime.Today.ToString("MM")) - 1;
+            PYear.SelectedIndex = 0;
+        }
+    }
 }
