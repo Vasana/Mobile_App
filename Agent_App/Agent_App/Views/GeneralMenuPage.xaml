@@ -21,7 +21,7 @@
             </Grid.RowDefinitions>
 
             <!--  row background colors  -->
-            <BoxView Grid.Row="0" Color="#3A444D" />
+            <BoxView Grid.Row="0" Color="Red" />
             <BoxView Grid.Row="1" Color="#FFFFFF" />
             <BoxView Grid.Row="2" Color="#3A444D" />
 

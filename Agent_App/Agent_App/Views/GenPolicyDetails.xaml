@@ -111,19 +111,19 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
-                </Grid.RowDefinitions>           
-                
-            <Button Grid.Row="0" x:Name="btnPayHist"
-                BackgroundColor="DeepPink"
-                Text="View Premium (NB/ Renewal) History"
-                TextColor="White" 
-                Clicked="btnPayHist_Clicked"/>
+                </Grid.RowDefinitions>
 
-                <Button Grid.Row="2" x:Name="btnClaimHist"
-                BackgroundColor="DodgerBlue"
+            <Button Grid.Row="2" x:Name="btnClaimHist"
+                BackgroundColor="DeepPink"
                 Text="View Claim History"
                 TextColor="White" 
                 Clicked="btnClaimHist_Clicked"/>
+                
+            <Button Grid.Row="0" x:Name="btnPayHist"
+                BackgroundColor="DodgerBlue"
+                Text="View Premium (NB/ Renewal) History"
+                TextColor="White" 
+                Clicked="btnPayHist_Clicked"/>                
 
             <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
                             HorizontalOptions="Center" VerticalOptions="Center">

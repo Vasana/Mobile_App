@@ -57,7 +57,7 @@
                     <x:String>Debit Outstanding</x:String>
                     <x:String>Claims Pending</x:String>
                     <x:String>Flagged by Me</x:String>
-                    <x:String>Bad Claims</x:String>                   
+                    <!--<x:String>Bad Claims</x:String>   -->                
                 </Picker.Items>
             </Picker>
             <Label Grid.Row="2" Grid.Column="0" VerticalTextAlignment="End" Text="Policy Number" FontSize="Medium"/>
