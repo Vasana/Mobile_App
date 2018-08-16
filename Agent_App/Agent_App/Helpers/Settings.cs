@@ -66,7 +66,19 @@ namespace Agent_App.Helpers
                 AppSettings.AddOrUpdateValue("agentCode", value);
             }
         }
-        
+
+        public static string orgTeamCode
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("orgTeamCode", "");
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("orgTeamCode", value);
+            }
+        }
+
 
         public static string AccessToken
         {

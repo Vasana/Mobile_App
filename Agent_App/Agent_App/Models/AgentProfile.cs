@@ -11,6 +11,8 @@ namespace Agent_App.Models
         public int Agent_code { get; set; }
         public int Organizer_code { get; set; }
 
+        public int Organizer_codeTeam { get; set; }
+
         public string Role { get; set; }
 
         public bool Is_org { get; set; }
