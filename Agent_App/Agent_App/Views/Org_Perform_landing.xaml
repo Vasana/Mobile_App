@@ -5,7 +5,7 @@
             x:Class="Agent_App.Views.Org_Perform_landing">
 
     <local:org_team_performance Title="Team Statistics" />
-    <local:Agents_team_Performance Title="Team's Sales Performance - NOP" />
-    <local:Agent_team_perfomance_Prem Title="Team's Sales Performance - Premium" />
+    <local:Agents_team_Performance Title="Current Month Performance" />
+    <local:Agent_team_perfomance_Prem Title="Current Year Performance" />
     
 </TabbedPage>

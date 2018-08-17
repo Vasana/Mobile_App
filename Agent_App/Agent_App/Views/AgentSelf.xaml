@@ -27,13 +27,16 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <oxy:PlotView Model="{Binding AreaModelNoPol}"
-                   HorizontalOptions="FillAndExpand"
-                  VerticalOptions="FillAndExpand" Grid.Row="1" />
 
             <oxy:PlotView Model="{Binding AreaModelAnnualInc}"
                   HorizontalOptions="FillAndExpand"
-                  VerticalOptions="FillAndExpand" Grid.Row="3"/>
+                  VerticalOptions="FillAndExpand" Grid.Row="1"/>
+            
+            <oxy:PlotView Model="{Binding AreaModelNoPol}"
+                   HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand" Grid.Row="3" />
+
+          
         </Grid>
     </ScrollView>
 </ContentPage>

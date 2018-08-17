@@ -72,7 +72,7 @@ namespace Agent_App.Models
             plotModel1.InvalidatePlot(true);
             try
             {
-                var s1 = new AreaSeries()
+                var s1 = new LineSeries()
                 {
                     Title = "Number of policies in last year",
                     Color = OxyColors.LightPink,
@@ -114,7 +114,7 @@ namespace Agent_App.Models
 
                 plotModel1.Series.Add(s1);
 
-                var s2 = new AreaSeries()
+                var s2 = new LineSeries()
                 {
                     Title = "Number of policies current year",
                     Color = OxyColors.Teal,

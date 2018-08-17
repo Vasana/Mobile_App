@@ -28,6 +28,10 @@ namespace Agent_App.Models
         public int MAX_RENEWAL_BUSINESS_COUNT { get; set; }
         public int MAX_TOTAL_BUSINESS_COUNT { get; set; }
         public double MAX_NEW_BUSINESS_PREMIUM { get; set; }
+        public double MAX_RENEWAL_BUSINESS_PREMIUM { get; set; }
+        public double MAX_TOTAL_BUSINESS_PREMIUM { get; set; }
+
+
 
     }
 }
