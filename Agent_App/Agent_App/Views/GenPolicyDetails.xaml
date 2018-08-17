@@ -33,6 +33,7 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
                     <RowDefinition Height="*" />
 
                 </Grid.RowDefinitions>
@@ -103,7 +104,11 @@
                        Text="Engine No" FontSize="Medium"/>
                 <Label Grid.Row="13" Grid.Column="2" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
                        TextColor="#336699" Text="{Binding GenPolicy.EngineNo}" FontSize="Medium"/>
-            
+                <Label Grid.Row="14" Grid.Column="0" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
+                           Text="Engine Capacity" FontSize="Medium"/>
+                <Label Grid.Row="14" Grid.Column="2" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
+                           TextColor="#336699" Text="{Binding GenPolicy.EngineCapacity}" FontSize="Medium"/>
+
         </Grid>
 
             <Grid Padding="4">

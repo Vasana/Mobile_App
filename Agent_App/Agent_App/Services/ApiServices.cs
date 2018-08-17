@@ -296,9 +296,9 @@ namespace Agent_App.Services
             PolicyFlag.Instance.CommentCreatedDate = "";
 
             return ret;
-        }       
+        }
 
-            public async Task<GeneralPolicy> GetGenPolicyAsync(string accessToken, string dept, string policyNumber)
+        public async Task<GeneralPolicy> GetGenPolicyAsync(string accessToken, string dept, string policyNumber)
         {
             GeneralPolicy _genPolicy = new GeneralPolicy();
             try
@@ -312,15 +312,14 @@ namespace Agent_App.Services
                 _genPolicy = JsonConvert.DeserializeObject<GeneralPolicy>(json);
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
 
             }
             return _genPolicy;
-             
+
             //-----------------------------------------------------------------------------------
 
-            
         }
 
         public async Task<LifePolicy> GetLifePolicyAsync(string accessToken, string dept, string policyNumber)

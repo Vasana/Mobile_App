@@ -21,5 +21,6 @@ namespace Agent_App.Models
         public string Department { get; set; }
         public string MobileNumber { get; set; }
         public bool isCancelled { get; set; }
+        public double EngineCapacity { get; set; }
     }
 }
