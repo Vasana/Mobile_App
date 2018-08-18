@@ -37,9 +37,21 @@ namespace Agent_App.ViewModels
         }
         private bool _isBusy;
 
-        public ClaimHistViewModel(string polNumber)
+        public string VehiNum
+        {
+            get => _vehiNum;
+            set
+            {
+                _vehiNum = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _vehiNum;
+
+        public ClaimHistViewModel(string polNumber, string vehiNumber)
         {
             getClaimHistoryAsync(polNumber);
+            VehiNum = vehiNumber;
         }
 
         public async Task getClaimHistoryAsync(string policyNum)

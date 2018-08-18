@@ -16,8 +16,7 @@ namespace Agent_App.Views
 	{
 		public GeneralMenuPage ()
 		{
-            InitializeComponent();          
-                     
+            InitializeComponent();
         }        
 
         private void listView_ItemTapped(object sender, ItemTappedEventArgs e)

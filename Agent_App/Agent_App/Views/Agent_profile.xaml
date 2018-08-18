@@ -79,10 +79,10 @@
                 <Label FontSize="Medium" Text="{Binding AgentProf.NIC_number}" Grid.Row="11" Grid.Column="3"    />
 
             </Grid>
-            <StackLayout Padding="20">
+            <StackLayout Padding="20" Spacing="20">
                 <Label x:Name="lblSuccessMsg" TextColor="Green" HorizontalOptions="Center"/>
-                <Image x:Name="ProfileImage" HeightRequest="150" WidthRequest="150" Source="{Binding ImagePath}"/>
-                <Button x:Name="btnPickPhoto" Text="Pick Photo" Clicked="btnPickPhoto_Clicked" HorizontalOptions="CenterAndExpand"/>
+                <Image x:Name="ProfileImage" HeightRequest="150" WidthRequest="150" Source="{Binding ImagePath}" />
+                <Button x:Name="btnPickPhoto" Text="Pick Photo" Clicked="btnPickPhoto_Clicked" HorizontalOptions="FillAndExpand" BackgroundColor="DodgerBlue"/>
             </StackLayout>
         </StackLayout>
     </ScrollView>

@@ -442,6 +442,8 @@ namespace Agent_App.ViewModels
                         Populate_controls(month_performance[0], year_performance[0], (_getMoth.number.ToString().Length == 1 ? "0" + _getMoth.number.ToString() : _getMoth.number.ToString()), _getYear.yearVal.ToString());
                     }
                     //OnPropertyChanged();
+
+                    await Task.Delay(2000);
                     IsBusy = false;
                 });
             }

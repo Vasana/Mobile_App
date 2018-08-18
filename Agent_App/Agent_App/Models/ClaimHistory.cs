@@ -6,7 +6,7 @@ namespace Agent_App.Models
 {
     public class ClaimHistory
     {
-        public string INV_NO { get; set; } 
+        public string CLAIM_NO { get; set; } 
         public string STATUS { get; set; } 
         public string DATE_OF_LOSS { get; set; } 
         public string INT_DATE { get; set; }

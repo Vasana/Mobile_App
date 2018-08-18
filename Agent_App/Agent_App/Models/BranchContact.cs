@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace Agent_App.Models
 {
@@ -16,5 +17,17 @@ namespace Agent_App.Models
         public string SMContactNumber { get; set; } = "";
         public string RSMContactNumber { get; set; } = "";
         public string BrnAdminContactNo { get; set; } = "";
+        public bool IsSelected { get; set; }
+
+        public Color BackgroundColor
+        {
+            get
+            {
+                if (IsSelected)
+                    return Color.FromHex("#FAEBD7");
+                else
+                    return Color.Transparent;
+            }
+        }
     }
 }

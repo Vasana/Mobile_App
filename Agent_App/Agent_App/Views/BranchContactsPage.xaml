@@ -18,11 +18,11 @@
     <Grid>
         <StackLayout>
             <Entry Placeholder="Enter Branch to search" x:Name="SearchBranch" TextChanged="SearchBranch_TextChanged" />
-            <ListView x:Name="LvBranches" HasUnevenRows="True" ItemsSource="{Binding BranchesList}">
+            <ListView x:Name="LvBranches" HasUnevenRows="True" ItemsSource="{Binding BranchesList}" ItemTapped="listView_ItemTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <Frame>
+                        <ViewCell>                            
+                            <Frame CornerRadius="20">
                                 <Frame.BorderColor>
                                     <OnPlatform x:TypeArguments="Color"
                                                 Android="Gray"
@@ -38,62 +38,55 @@
                                FontSize="15"/>
                                     <StackLayout Orientation="Horizontal" Spacing="20">
                                         <Label Text="General:" TextColor="Navy" VerticalOptions="Center" FontSize="20" />
-                                        <Button x:Name="cntNum1" 
-                                            Text="{Binding ContactNumber1}"
-                                            Clicked="cntNum1_Clicked"
+                                        <Label x:Name="cntNum1" 
+                                            Text="{Binding ContactNumber1}" 
                                             IsVisible="{Binding ContactNumber1, Converter={StaticResource StringToBool}}"
                                            TextColor="Navy"
-                                            FontSize="Small"/>
-                                        <Button x:Name="cntNum2" 
+                                            FontSize="Small" VerticalOptions="Center" />
+                                        <Label x:Name="cntNum2" 
                                             Text="{Binding ContactNumber2}" 
-                                            Clicked="cntNum2_Clicked"
                                             IsVisible="{Binding ContactNumber2, Converter={StaticResource StringToBool}}"
                                            TextColor="Navy"
-                                            FontSize="Small"/>
-                                        <Button x:Name="cntNum3" 
+                                            FontSize="Small" VerticalOptions="Center" />
+                                        <Label x:Name="cntNum3" 
                                             Text="{Binding ContactNumber3}" 
-                                            Clicked="cntNum3_Clicked"
                                             IsVisible="{Binding ContactNumber3, Converter={StaticResource StringToBool}}"
                                            TextColor="Navy"
-                                            FontSize="Small"/>
-                                        <Button x:Name="cntNum4" 
+                                            FontSize="Small" VerticalOptions="Center" />
+                                        <Label x:Name="cntNum4" 
                                             Text="{Binding ContactNumber4}" 
-                                            Clicked="cntNum4_Clicked"
                                             IsVisible="{Binding ContactNumber4, Converter={StaticResource StringToBool}}"
                                            TextColor="Navy"
-                                            FontSize="Small"/>
+                                            FontSize="Small" VerticalOptions="Center" />
                                     </StackLayout>
-                                    <StackLayout Orientation="Horizontal" Spacing="20" Padding="5">
+                                        <StackLayout Orientation="Horizontal" Spacing="20" Padding="5" IsVisible="{Binding IsSelected}" BackgroundColor="{Binding BackgroundColor}">
                                         <StackLayout Orientation="Horizontal">
-                                            <Label Text="SM" TextColor="Navy" VerticalOptions="Center" FontSize="20" />
-                                            <Button x:Name="SMCntNum" 
+                                            <Label Text="SM:" TextColor="Navy" VerticalOptions="Center" FontSize="20" IsVisible="{Binding SMContactNumber, Converter={StaticResource StringToBool}}" />
+                                            <Label x:Name="SMCntNum" 
                                             Text="{Binding SMContactNumber}" 
-                                            Clicked="SMCntNum_Clicked"
                                             IsVisible="{Binding SMContactNumber, Converter={StaticResource StringToBool}}"
                                            TextColor="Navy"
-                                            FontSize="Small"/>
+                                            FontSize="Small" VerticalOptions="Center" />
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal">
-                                            <Label Text="RSM" TextColor="Navy" VerticalOptions="Center" FontSize="20" />
-                                            <Button x:Name="RSMCntNum" 
+                                            <Label Text="RSM:" TextColor="Navy" VerticalOptions="Center" FontSize="20" IsVisible="{Binding RSMContactNumber, Converter={StaticResource StringToBool}}" />
+                                            <Label x:Name="RSMCntNum" 
                                             Text="{Binding RSMContactNumber}" 
-                                            Clicked="RSMCntNum_Clicked"
                                             IsVisible="{Binding RSMContactNumber, Converter={StaticResource StringToBool}}"
                                            TextColor="Navy"
-                                            FontSize="Small"/>
+                                            FontSize="Small" VerticalOptions="Center" />
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal">
-                                            <Label Text="Br. Admin:" TextColor="Navy" VerticalOptions="Center" FontSize="20" />
-                                            <Button x:Name="BrnAdmnCntNum" 
+                                            <Label Text="Br. Admin:" TextColor="Navy" VerticalOptions="Center" FontSize="20" IsVisible="{Binding BrnAdminContactNo, Converter={StaticResource StringToBool}}" />
+                                            <Label x:Name="BrnAdmnCntNum" 
                                             Text="{Binding BrnAdminContactNo}" 
-                                            Clicked="BrnAdmnCntNum_Clicked"
                                             IsVisible="{Binding BrnAdminContactNo, Converter={StaticResource StringToBool}}"
                                            TextColor="Navy"
-                                            FontSize="Small"/>
+                                            FontSize="Small" VerticalOptions="Center" />
                                         </StackLayout>
                                     </StackLayout>                                    
                                 </StackLayout>
-                            </Frame>
+                            </Frame>                           
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

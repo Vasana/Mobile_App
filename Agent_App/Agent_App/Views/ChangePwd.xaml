@@ -49,7 +49,7 @@
                     </Entry.Behaviors>
                 </Entry>
 
-                <Button Text="Submit" Grid.Row="4" Grid.Column="2" Command="{Binding changePWDCommand}" />
+                <Button Text="Submit" Grid.Row="4" Grid.Column="2" Command="{Binding changePWDCommand}" BackgroundColor="DodgerBlue"/>
 
                 <Label Text="{Binding Message}"  TextColor="Red" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"></Label>
 

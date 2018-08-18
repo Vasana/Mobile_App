@@ -26,16 +26,16 @@ namespace Agent_App
             //minPickerDate = stFromDtPicker.Date;
             //maxPickerDate = stToDtPicker.Date;
 
-            entPolicyNumber.IsEnabled = false;
-            entVehiNum1.IsEnabled = false;
-            entVehiNum2.IsEnabled = false;
-            stFromDtPicker.IsEnabled = false;
-            entStartFromDt.IsEnabled = false;
-            stToDtPicker.IsEnabled = false;
-            entStartToDt.IsEnabled = false;
-            entMobileNumber.IsEnabled = false;
-            entStartFromDt.Keyboard = null;
-            entStartToDt.Keyboard = null;
+            //entPolicyNumber.IsEnabled = false;
+            //entVehiNum1.IsEnabled = false;
+            //entVehiNum2.IsEnabled = false;
+            //stFromDtPicker.IsEnabled = false;
+            //entStartFromDt.IsEnabled = false;
+            //stToDtPicker.IsEnabled = false;
+            //entStartToDt.IsEnabled = false;
+            //entMobileNumber.IsEnabled = false;
+            //entStartFromDt.Keyboard = null;
+            //entStartToDt.Keyboard = null;
         }
 
         private void btnSubmit_Clicked(object sender, EventArgs e)
@@ -77,6 +77,7 @@ namespace Agent_App
 
                 if (entPolicyNumber.Text != null)
                 {
+                    SearchCriteria.Instance.BusinessType = "M";
                     SearchCriteria.Instance.PolicyNumber = entPolicyNumber.Text.ToUpper().Trim();
                 }
                 
@@ -210,6 +211,15 @@ namespace Agent_App
                 entStartToDt.IsEnabled = true;
                 stToDtPicker.IsEnabled = true;
                 entMobileNumber.IsEnabled = true;
+
+                entPolicyNumber.Text = null;
+                entVehiNum1.Text = null;
+                entVehiNum2.Text = null;
+                stFromDtPicker.Date = DateTime.Now;
+                stToDtPicker.Date = DateTime.Now;
+                entStartFromDt.Text = null;
+                entStartToDt.Text = null;
+                entMobileNumber.Text = null;
             }
             else
             {
@@ -222,14 +232,14 @@ namespace Agent_App
                 entStartToDt.Text = null;
                 entMobileNumber.Text = null;
 
-                entPolicyNumber.IsEnabled = false;
-                entVehiNum1.IsEnabled = false;
-                entVehiNum2.IsEnabled = false;
-                entStartFromDt.IsEnabled = false;
-                stFromDtPicker.IsEnabled = false;
-                entStartToDt.IsEnabled = false;
-                stToDtPicker.IsEnabled = false;
-                entMobileNumber.IsEnabled = false;
+                //entPolicyNumber.IsEnabled = false;
+                //entVehiNum1.IsEnabled = false;
+                //entVehiNum2.IsEnabled = false;
+                //entStartFromDt.IsEnabled = false;
+                //stFromDtPicker.IsEnabled = false;
+                //entStartToDt.IsEnabled = false;
+                //stToDtPicker.IsEnabled = false;
+                //entMobileNumber.IsEnabled = false;
             }
         }
 
@@ -247,6 +257,15 @@ namespace Agent_App
             //    entVehiNum1.IsEnabled = true;
             //    entVehiNum2.IsEnabled = true;
             //}
+            if (entMobileNumber.Text!= null && entMobileNumber.Text != "")
+            {
+                if (BusiTypePicker.SelectedIndex == 0)
+                {
+                    DisplayAlert("Message", "Please select Business Type first", "OK");
+                    entMobileNumber.Text = "";
+                    //BusiTypePicker.Focus();
+                }
+            }
         }
 
         private void entPolicyNumber_TextChanged(object sender, TextChangedEventArgs e)
@@ -263,6 +282,15 @@ namespace Agent_App
             //    entVehiNum1.IsEnabled = true;
             //    entVehiNum2.IsEnabled = true;
             //}
+            if (entPolicyNumber.Text != null && entPolicyNumber.Text != "")
+            {
+                if (BusiTypePicker.SelectedIndex == 0)
+                {
+                    DisplayAlert("Message", "Please select Business Type first", "OK");
+                    entPolicyNumber.Text = "";
+                    //BusiTypePicker.Focus();
+                }
+            }
         }
 
         private void entVehiNum1_TextChanged(object sender, TextChangedEventArgs e)
@@ -277,13 +305,24 @@ namespace Agent_App
             //    entMobileNumber.IsEnabled = true;
             //    entPolicyNumber.IsEnabled = true;                
             //}
-            if (e.NewTextValue != null)
+            if (entVehiNum1.Text != "")
             {
-                if (e.NewTextValue.Length > 2)
-                {
-                    //entVehiNum1.Text = entVehiNum1.Text.Remove(3);
-                    entVehiNum2.Focus();
-                }
+                //if (BusiTypePicker.SelectedIndex == 0)
+                //{
+                //    DisplayAlert("Message", "Please select Business Type first", "OK");
+                //    entVehiNum1.Text = "";
+                //}
+                //else
+                //{
+                    if (e.NewTextValue != null)
+                    {
+                        if (e.NewTextValue.Length > 2)
+                        {
+                            //entVehiNum1.Text = entVehiNum1.Text.Remove(3);
+                            entVehiNum2.Focus();
+                        }
+                    }
+                //}
             }
         }
 
@@ -299,12 +338,29 @@ namespace Agent_App
             //    entMobileNumber.IsEnabled = true;
             //    entPolicyNumber.IsEnabled = true;
             //}
+            //if (entVehiNum2.Text != "")
+            //{
+            //    if (BusiTypePicker.SelectedIndex == 0)
+            //    {
+            //        DisplayAlert("Message", "Please select Business Type first", "OK");
+            //        entVehiNum2.Text = "";
+            //    }
+            //}
         }
 
         private void entStartFromDt_Focused(object sender, FocusEventArgs e)
         {
-            entStartFromDt.Text = DateTime.Now.ToString("yyyy/MM/dd");
-            stFromDtPicker.Focus();
+            if (BusiTypePicker.SelectedIndex == 0)
+            {
+                DisplayAlert("Message", "Please select Business Type first", "OK");
+                entStartFromDt.Text = "";
+                //BusiTypePicker.Focus();
+            }
+            else
+            {
+                entStartFromDt.Text = DateTime.Now.ToString("yyyy/MM/dd");
+                stFromDtPicker.Focus();
+            }
         }
 
         private void stFromDtPicker_DateSelected(object sender, DateChangedEventArgs e)
@@ -314,13 +370,70 @@ namespace Agent_App
 
         private void entStartToDt_Focused(object sender, FocusEventArgs e)
         {
-            entStartToDt.Text = DateTime.Now.ToString("yyyy/MM/dd");
-            stToDtPicker.Focus();
+            if (BusiTypePicker.SelectedIndex == 0)
+            {
+                DisplayAlert("Message", "Please select Business Type first", "OK");
+                entStartToDt.Text = "";
+                //BusiTypePicker.Focus();
+            }
+            else
+            {
+                entStartToDt.Text = DateTime.Now.ToString("yyyy/MM/dd");
+                stToDtPicker.Focus();
+            }
         }
 
         private void stToDtPicker_DateSelected(object sender, DateChangedEventArgs e)
         {
             entStartToDt.Text = stToDtPicker.Date.ToString("yyyy/MM/dd");
+        }
+
+        private void entStartFromDt_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (entStartFromDt.Text != null && entStartFromDt.Text != "")
+            {
+                if (BusiTypePicker.SelectedIndex == 0)
+                {
+                    DisplayAlert("Message", "Please select Business Type first", "OK");
+                    entStartFromDt.Text = "";
+                    //BusiTypePicker.Focus();
+                }
+            }
+        }
+
+        private void entStartToDt_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (entStartToDt.Text != null && entStartToDt.Text != "")
+            {
+                if (BusiTypePicker.SelectedIndex == 0)
+                {
+                    DisplayAlert("Message", "Please select a specific Business Type", "OK");
+                    entStartToDt.Text = "";
+                    //BusiTypePicker.Focus();
+                }
+            }
+        }
+
+        private void entPolicyNumber_Focused(object sender, FocusEventArgs e)
+        {
+            //if (BusiTypePicker.SelectedIndex == 0)
+            //{
+            //    DisplayAlert("Message", "Please select Business Type first7", "OK");
+            //    entPolicyNumber.Text = "";
+            //    //BusiTypePicker.Focus();
+            //}
+            
+        }
+
+        private void entMobileNumber_Focused(object sender, FocusEventArgs e)
+        {
+            if (BusiTypePicker.SelectedIndex == 0)
+            {
+                DisplayAlert("Message", "Please select Business Type first", "OK");
+                entMobileNumber.Text = "";
+                //BusiTypePicker.Focus();
+            }
+           
         }
     }
 }

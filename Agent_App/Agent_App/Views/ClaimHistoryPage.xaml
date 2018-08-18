@@ -13,12 +13,13 @@
    
     <Grid>
         <StackLayout>
-            <Label Text="Claim History"
-             VerticalOptions="Start"
-             HorizontalTextAlignment="Center"
-             VerticalTextAlignment="Center"
-             BackgroundColor="Transparent"
-             HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding VehiNum, StringFormat='Claim History for - {0}'}"
+                 VerticalOptions="Start"
+                 FontAttributes="Bold"
+                 HorizontalTextAlignment="Center"
+                 VerticalTextAlignment="Center"
+                 BackgroundColor="Transparent"
+                 HorizontalOptions="CenterAndExpand" />
             <ListView x:Name="LvClaims" HasUnevenRows="True" ItemsSource="{Binding ClaimHistList}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -42,7 +43,7 @@
 
                                         <StackLayout Orientation="Vertical" Grid.Row="0">
                                             <StackLayout Orientation="Horizontal" Spacing="5">
-                                                <Label Text="{Binding INV_NO}" 
+                                                <Label Text="{Binding CLAIM_NO}" 
                                                    TextColor="Black"
                                                    FontSize="18"/>
                                                 <Label Text="Intimated On " 
@@ -82,7 +83,7 @@
                                             <Label x:Name="lblDateOfLoss" Grid.Row="0" Grid.Column="2"
                                                 HorizontalTextAlignment="Start"
                                                 VerticalTextAlignment="Center"
-                                                FontSize="14" FontAttributes="None"
+                                                FontSize="14" FontAttributes="Bold"
                                                 Text="{Binding DATE_OF_LOSS}" TextColor="Black">
                                             </Label>
                                             <Label Grid.Row="0" Grid.Column="3"

@@ -16,13 +16,22 @@ namespace Agent_App.Views
 	public partial class LoginPage : ContentPage
 	{
 		public LoginPage ()
-		{
+		{            
 			InitializeComponent ();
             Title = "Login";
 
-            
-            //ProfileImage.BackgroundColor = Color.AntiqueWhite;
-            LoadProfilePic();
+            if (Device.Idiom == TargetIdiom.Phone)
+            {
+                DisplayAlert("Error", "Application does not support mobile phones.", "OK");
+                var closer = DependencyService.Get<ICloseApplication>();
+                if (closer != null)
+                    closer.CloseApp();
+            }
+            else
+            {
+                //ProfileImage.BackgroundColor = Color.AntiqueWhite;
+                LoadProfilePic();
+            }
         }  
         
         public void LoadProfilePic()

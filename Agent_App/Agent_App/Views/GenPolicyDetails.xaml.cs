@@ -52,7 +52,7 @@ namespace Agent_App.Views
         {
             var genPolVM = BindingContext as GenPolViewModel;
 
-            var claimHistVM = new ClaimHistViewModel(genPolVM.GenPolicy.PolicyNumber);
+            var claimHistVM = new ClaimHistViewModel(genPolVM.GenPolicy.PolicyNumber, genPolVM.GenPolicy.VehicleNumber);
             var claimHistPage = new ClaimHistoryPage
             {
                 BindingContext = claimHistVM

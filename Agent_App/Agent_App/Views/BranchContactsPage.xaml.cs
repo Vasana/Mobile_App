@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Agent_App.ViewModels;
+using Agent_App.Models;
 
 namespace Agent_App.Views
 {
@@ -32,6 +33,25 @@ namespace Agent_App.Views
             {
                 LvBranches.ItemsSource = vm.BranchesList;
             }
+
+        }
+
+        private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var vm = BindingContext as BranchCntViewModel;
+            var contact = e.Item as BranchContact;
+
+            vm.HideOrShowContact(contact);
+
+            var keyword = SearchBranch.Text;
+            if (keyword != null && keyword != "")
+            {
+                LvBranches.ItemsSource = vm.BranchesList.Where(brList => (brList.Name.ToLower() + " " + brList.District.ToLower()).Contains(keyword.ToLower()));
+            }
+            //else
+            //{
+            //    LvBranches.ItemsSource = vm.BranchesList;
+            //}
 
         }
 

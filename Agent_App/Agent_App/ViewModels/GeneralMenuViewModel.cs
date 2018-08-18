@@ -55,6 +55,18 @@ namespace Agent_App.ViewModels
         }
         private string _notifExist;
 
+        public bool IsEmpty
+        {
+            get => _isEmpty;
+            set
+            {
+                _isEmpty = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isEmpty;
+
         public GeneralMenuViewModel()
         {
             SearchCriteria.Instance.NewSearch = true;
@@ -89,9 +101,18 @@ namespace Agent_App.ViewModels
             _previousPolicy = null;
             IsBusy = true;
             var items2 = await _apiServices.GetPoliciesAsync(accessToken: Settings.AccessToken, pageIndex: 0, pageSize: PageSize);
+            
+            if (items2 != null)
+            {
+                IsEmpty = false;
+            }
+            else
+            {
+                IsEmpty = true;
+            }
             IsBusy = false;
             PoliciesCollection.AddRange(items2);
-
+            
             //PoliciesCollection = new InfiniteScrollCollection<CustPolicy>(items);
         }
 
