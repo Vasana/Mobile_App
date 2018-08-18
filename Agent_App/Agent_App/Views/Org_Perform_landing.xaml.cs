@@ -15,6 +15,7 @@ namespace Agent_App.Views
         public Org_Perform_landing ()
         {
             InitializeComponent();
+            Title = "Team Performance";
         }
     }
 }

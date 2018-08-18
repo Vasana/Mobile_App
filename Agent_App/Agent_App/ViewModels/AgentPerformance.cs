@@ -7,13 +7,23 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Xamarin.Forms.Extended;
 using Agent_App.Helpers;
+using System.Threading.Tasks;
+using Agent_App.Services;
 
 namespace Agent_App.ViewModels
 {
     public class AgentPerformance: INotifyPropertyChanged
     {
+        ApiServices _apiServices = new ApiServices();
+        private const int PageSize = 15;
         public AgtPerfmStat agentStat;
         public AgtPerfmStat _previousAgentRec;
+
+        public AgtPerfmStat _previousAgt;
+
+        public List<AgtPerfmStat> teamList;
+        public List<Agent_App.Models.AgentPerformance> AgentPerfList;
+
         public InfiniteScrollCollection<AgtPerfmStat> _agentDetails;
         public InfiniteScrollCollection<AgtPerfmStat> agentsTeamRecs
         {
@@ -37,6 +47,17 @@ namespace Agent_App.ViewModels
         }
         private bool _isBusy;
 
+        public bool IsBusy2
+        {
+            get { return _isBusy2; }
+            set
+            {
+                _isBusy2 = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool _isBusy2;
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -44,6 +65,7 @@ namespace Agent_App.ViewModels
         public AgentPerformance()
         {
             load();
+            //DownloadNotifsAsync();
 
 
         }
@@ -86,10 +108,103 @@ namespace Agent_App.ViewModels
             agentsTeamRecs.Insert(index, agentRec);
         }
 
+        
+        //public async Task DownloadNotifsAsync()
+        //{
+        //    agentsTeamRecs = new InfiniteScrollCollection<AgentPerformance>
+        //    {
+        //        OnLoadMore = async () =>
+        //        {
+        //            IsBusy = true;
+
+        //            // load the next page
+        //            var page = agentsTeamRecs.Count / PageSize;
+
+        //            var items = await _apiServices.GetTeamPerformanceAsync(Settings.AccessToken, "", "", "");
+
+        //            IsBusy = false;
+
+        //            // return the items that need to be added
+        //            return items;
+        //        },
+        //        OnCanLoadMore = () =>
+        //        {
+        //            return agentsTeamRecs.Count < _apiServices.notifCount;
+        //        }
+        //    };
+        //    _previousAgt = null;
+        //    IsBusy2 = true;
+        //    var items2 = await _apiServices.GetNotificationsAsync(accessToken: Settings.AccessToken, pageIndex: 0, pageSize: PageSize);
+        //    IsBusy2 = false;
+        //    agentsTeamRecs.AddRange(items2);
+        //    //PoliciesCollection = new InfiniteScrollCollection<CustPolicy>(items);
+        //}
+        
+
         private void load()
         {
+            teamList = new List<AgtPerfmStat>();
             _previousAgentRec = null;  // this should be done whenever policy collection regenerated.
+            AgentPerfList =  _apiServices.GetTeamPerformance(Settings.AccessToken,  Settings.orgTeamCode, DateTime.Today.ToString("yyyy-MM-01"), DateTime.Today.ToString("yyyy-MM-dd"));
 
+
+            foreach (Agent_App.Models.AgentPerformance item in AgentPerfList)
+            {
+                try
+                {
+                    AgtPerfmStat agt = new AgtPerfmStat();
+                    agt.agentID = item.AGENT_CODE;
+                    agt.agentName = item.AGENT_NAME;
+                    agt.indMonthNoPolTotal = item.TOT_CASH_MOTOR + item.TOT_DEBIT_MOTOR + item.TOT_CASH_NON_MOTOR + item.TOT_DEBIT_NON_MOTOR;
+                    agt.indMonthNoPolTotal_cash = item.TOT_CASH_MOTOR + item.TOT_CASH_NON_MOTOR;
+                    agt.indMonthNoPolTotal_Dbt = item.TOT_DEBIT_MOTOR + item.TOT_DEBIT_NON_MOTOR;
+
+
+
+                    agt.indMonthPremTotal = item.TOT_CASH_MOTOR_PRM + item.TOT_DEBIT_MOTOR_PRM + item.TOT_CASH_NON_MOTOR_PRM + item.TOT_DEBIT_NON_MOTOR_PRM - item.TOT_REFUND;
+                    agt.indMonthPremTotal_cash = item.TOT_CASH_MOTOR_PRM + item.TOT_CASH_NON_MOTOR_PRM;
+                    agt.indMonthPremTotal_Dbt = item.TOT_DEBIT_MOTOR_PRM + item.TOT_DEBIT_NON_MOTOR_PRM;
+
+
+
+                    agt.indMonthNoPol_New = item.CASH_NEW_MOTOR + item.DEBIT_NEW_MOTOR + item.CASH_NEW_NON_MOTOR + item.DEBIT_NEW_NON_MOTOR;
+                    agt.indMonthNoPol_New_Cash = item.CASH_NEW_MOTOR + item.CASH_NEW_NON_MOTOR;
+                    agt.indMonthNoPol_New_Dbt = item.DEBIT_NEW_MOTOR + item.DEBIT_NEW_NON_MOTOR;
+
+
+
+                    agt.indMonthPrem_New = item.CASH_NEW_MOTOR_PRM + item.DEBIT_NEW_MOTOR_PRM + item.CASH_NEW_NON_MOTOR_PRM + item.DEBIT_NEW_NON_MOTOR_PRM;
+                    agt.indMonthPrem_New_Cash = item.CASH_NEW_MOTOR_PRM + item.CASH_NEW_NON_MOTOR_PRM;
+                    agt.indMonthPrem_New_Dbt = item.DEBIT_NEW_MOTOR_PRM + item.DEBIT_NEW_NON_MOTOR_PRM;
+
+
+
+                    agt.indMonthNoPol_Renewal = item.CASH_REN_MOTOR + item.DEBIT_REN_MOTOR + item.CASH_REN_NON_MOTOR + item.DEBIT_REN_NON_MOTOR;
+                    agt.indMonthNoPol_Renewal_cash = item.CASH_REN_MOTOR + item.CASH_REN_NON_MOTOR;
+                    agt.indMonthNoPol_Renewal_Dbt = item.DEBIT_REN_MOTOR + item.DEBIT_REN_NON_MOTOR;
+
+
+
+                    agt.indMonthPrem_Renewal = item.CASH_REN_MOTOR_PRM + item.DEBIT_REN_MOTOR_PRM + item.CASH_REN_NON_MOTOR_PRM + item.DEBIT_REN_NON_MOTOR_PRM;
+                    agt.indMonthPrem_Renewal_cash = item.CASH_REN_MOTOR_PRM + item.CASH_REN_NON_MOTOR_PRM;
+                    agt.indMonthPrem_Renewal_Dbt = item.DEBIT_REN_MOTOR_PRM + item.DEBIT_REN_NON_MOTOR_PRM;
+
+                    teamList.Add(agt);
+                }
+                catch (Exception q)
+                {
+
+                }
+                
+            }
+
+            agentsTeamRecs = new InfiniteScrollCollection<AgtPerfmStat>();
+            foreach (AgtPerfmStat item in teamList)
+            {
+                agentsTeamRecs.Add(item);
+            }
+
+            /*
             agentsTeamRecs = new InfiniteScrollCollection<AgtPerfmStat>
                 {
                     new AgtPerfmStat
@@ -584,7 +699,7 @@ new AgtPerfmStat
 
                      }
 
-                     };
+                     };*/
 
 
         }

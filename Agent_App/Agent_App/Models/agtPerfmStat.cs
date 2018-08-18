@@ -8,6 +8,7 @@ namespace Agent_App.Models
     public class AgtPerfmStat
     {
         public int agentID { get; set; }
+        public string agentName { get; set; }
         public int year { get; set; }
         public string month { get; set; }
         public bool IsSelected { get; set; }
