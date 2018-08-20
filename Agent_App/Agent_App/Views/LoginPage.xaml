@@ -21,7 +21,7 @@
                     <Label Text="Password" TextColor="#555" FontSize="20" FontAttributes="Bold" />
                     <Entry Text="{Binding Password}" Placeholder="Enter Password" IsPassword="True" FontSize="20" PlaceholderColor="#CCC" TextColor="#555"/>
                     <Label Text="{Binding Message}" HorizontalOptions="Center" TextColor="Green" FontSize="20" />
-                    <Button x:Name="BtnLogin" Command="{Binding LoginCommand}" IsEnabled="{Binding LoginEnabled}" Text="Login" BorderColor="#C89400" BackgroundColor="#F4B400"/>
+                    <Button x:Name="BtnLogin" Command="{Binding LoginCommand}" IsEnabled="{Binding LoginEnabled}" Text="Login" BorderColor="#C89400" BackgroundColor="SkyBlue"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>
