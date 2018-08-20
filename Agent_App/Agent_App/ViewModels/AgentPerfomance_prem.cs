@@ -105,13 +105,13 @@ namespace Agent_App.ViewModels
                     AgtPerfmStat agt = new AgtPerfmStat();
                     agt.agentID = item.AGENT_CODE;
                     agt.agentName = item.AGENT_NAME;
-                    agt.indMonthNoPolTotal = item.TOT_CASH_MOTOR + item.TOT_DEBIT_MOTOR + item.TOT_CASH_NON_MOTOR + item.TOT_DEBIT_NON_MOTOR;
+                    agt.indMonthNoPolTotal = item.TOT_CASH_MOTOR + item.TOT_DEBIT_MOTOR + item.TOT_CASH_NON_MOTOR + item.TOT_DEBIT_NON_MOTOR - (item.TOT_MOTOR_REFUND + item.TOT_NON_MOTOR_REFUND);
                     agt.indMonthNoPolTotal_cash = item.TOT_CASH_MOTOR + item.TOT_CASH_NON_MOTOR;
                     agt.indMonthNoPolTotal_Dbt = item.TOT_DEBIT_MOTOR + item.TOT_DEBIT_NON_MOTOR;
 
 
 
-                    agt.indMonthPremTotal = item.TOT_CASH_MOTOR_PRM + item.TOT_DEBIT_MOTOR_PRM + item.TOT_CASH_NON_MOTOR_PRM + item.TOT_DEBIT_NON_MOTOR_PRM - item.TOT_REFUND;
+                    agt.indMonthPremTotal = item.TOT_CASH_MOTOR_PRM + item.TOT_DEBIT_MOTOR_PRM + item.TOT_CASH_NON_MOTOR_PRM + item.TOT_DEBIT_NON_MOTOR_PRM - ((item.TOT_MOTOR_REFUND_PRM + item.TOT_NON_MOTOR_REFUND_PRM));
                     agt.indMonthPremTotal_cash = item.TOT_CASH_MOTOR_PRM + item.TOT_CASH_NON_MOTOR_PRM;
                     agt.indMonthPremTotal_Dbt = item.TOT_DEBIT_MOTOR_PRM + item.TOT_DEBIT_NON_MOTOR_PRM;
 

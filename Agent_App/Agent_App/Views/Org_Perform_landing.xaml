@@ -4,8 +4,28 @@
             xmlns:local="clr-namespace:Agent_App.Views"
             x:Class="Agent_App.Views.Org_Perform_landing">
 
-    <local:org_team_performance Title="Team Statistics" />
+
+
+    <NavigationPage Title="Team Statistics">
+        <x:Arguments>
+            <local:org_team_performance Title="Team Statistics" />
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="Current Month Performance">
+        <x:Arguments>
+            <local:Agents_team_Performance Title="Current Month Performance" />
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="Current Year Performance">
+        <x:Arguments>
+            <local:Agent_team_perfomance_Prem Title="Current Year Performance" />
+        </x:Arguments>
+    </NavigationPage>
+
+    <!--<local:org_team_performance Title="Team Statistics" />
     <local:Agents_team_Performance Title="Current Month Performance" />
-    <local:Agent_team_perfomance_Prem Title="Current Year Performance" />
+    <local:Agent_team_perfomance_Prem Title="Current Year Performance" />-->
     
 </TabbedPage>

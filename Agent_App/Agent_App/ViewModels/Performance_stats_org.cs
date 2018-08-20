@@ -207,7 +207,10 @@ namespace Agent_App.ViewModels
                 month_performance_comb.TOT_DEBIT_MOTOR_PRM = month_performance.Sum(x => x.TOT_DEBIT_MOTOR_PRM);
                 month_performance_comb.TOT_DEBIT_NON_MOTOR = month_performance.Sum(x => x.TOT_DEBIT_NON_MOTOR);
                 month_performance_comb.TOT_DEBIT_NON_MOTOR_PRM = month_performance.Sum(x => x.TOT_DEBIT_NON_MOTOR_PRM);
-                month_performance_comb.TOT_REFUND = month_performance.Sum(x => x.TOT_REFUND);
+                month_performance_comb.TOT_MOTOR_REFUND = month_performance.Sum(x => x.TOT_MOTOR_REFUND);
+                month_performance_comb.TOT_NON_MOTOR_REFUND = month_performance.Sum(x => x.TOT_NON_MOTOR_REFUND);
+                month_performance_comb.TOT_MOTOR_REFUND_PRM = month_performance.Sum(x => x.TOT_MOTOR_REFUND_PRM);
+                month_performance_comb.TOT_NON_MOTOR_REFUND_PRM = month_performance.Sum(x => x.TOT_NON_MOTOR_REFUND_PRM);
 
 
 
@@ -237,7 +240,10 @@ namespace Agent_App.ViewModels
                 year_performance_comb.TOT_DEBIT_MOTOR_PRM = year_performance.Sum(x => x.TOT_DEBIT_MOTOR_PRM);
                 year_performance_comb.TOT_DEBIT_NON_MOTOR = year_performance.Sum(x => x.TOT_DEBIT_NON_MOTOR);
                 year_performance_comb.TOT_DEBIT_NON_MOTOR_PRM = year_performance.Sum(x => x.TOT_DEBIT_NON_MOTOR_PRM);
-                year_performance_comb.TOT_REFUND = year_performance.Sum(x => x.TOT_REFUND);
+                year_performance_comb.TOT_MOTOR_REFUND = year_performance.Sum(x => x.TOT_MOTOR_REFUND);
+                year_performance_comb.TOT_NON_MOTOR_REFUND = year_performance.Sum(x => x.TOT_NON_MOTOR_REFUND);
+                year_performance_comb.TOT_MOTOR_REFUND_PRM = year_performance.Sum(x => x.TOT_MOTOR_REFUND_PRM);
+                year_performance_comb.TOT_NON_MOTOR_REFUND_PRM = month_performance.Sum(x => x.TOT_NON_MOTOR_REFUND_PRM);
             }
             catch (Exception e)
             {
@@ -277,7 +283,10 @@ namespace Agent_App.ViewModels
             month_performance_comb.TOT_DEBIT_MOTOR_PRM = month_performance.Sum(x => x.TOT_DEBIT_MOTOR_PRM);
             month_performance_comb.TOT_DEBIT_NON_MOTOR = month_performance.Sum(x => x.TOT_DEBIT_NON_MOTOR);
             month_performance_comb.TOT_DEBIT_NON_MOTOR_PRM = month_performance.Sum(x => x.TOT_DEBIT_NON_MOTOR_PRM);
-            month_performance_comb.TOT_REFUND = month_performance.Sum(x => x.TOT_REFUND);
+            month_performance_comb.TOT_MOTOR_REFUND = month_performance.Sum(x => x.TOT_MOTOR_REFUND);
+            month_performance_comb.TOT_NON_MOTOR_REFUND = month_performance.Sum(x => x.TOT_NON_MOTOR_REFUND);
+            month_performance_comb.TOT_MOTOR_REFUND_PRM = month_performance.Sum(x => x.TOT_MOTOR_REFUND_PRM);
+            month_performance_comb.TOT_NON_MOTOR_REFUND_PRM = month_performance.Sum(x => x.TOT_NON_MOTOR_REFUND_PRM);
 
 
             //year_performance = _apiServices.GetTeamPerformance(Settings.AccessToken, Settings.orgTeamCode, fromDateYear, DateTime.Today.ToString("yyyy-MM-dd"));
@@ -306,7 +315,10 @@ namespace Agent_App.ViewModels
             year_performance_comb.TOT_DEBIT_MOTOR_PRM = year_performance.Sum(x => x.TOT_DEBIT_MOTOR_PRM);
             year_performance_comb.TOT_DEBIT_NON_MOTOR = year_performance.Sum(x => x.TOT_DEBIT_NON_MOTOR);
             year_performance_comb.TOT_DEBIT_NON_MOTOR_PRM = year_performance.Sum(x => x.TOT_DEBIT_NON_MOTOR_PRM);
-            year_performance_comb.TOT_REFUND = year_performance.Sum(x => x.TOT_REFUND);
+            year_performance_comb.TOT_MOTOR_REFUND = year_performance.Sum(x => x.TOT_MOTOR_REFUND);
+            year_performance_comb.TOT_NON_MOTOR_REFUND = year_performance.Sum(x => x.TOT_NON_MOTOR_REFUND);
+            year_performance_comb.TOT_MOTOR_REFUND_PRM = year_performance.Sum(x => x.TOT_MOTOR_REFUND_PRM);
+            year_performance_comb.TOT_NON_MOTOR_REFUND_PRM = year_performance.Sum(x => x.TOT_NON_MOTOR_REFUND_PRM);
 
         }
 
@@ -378,19 +390,19 @@ namespace Agent_App.ViewModels
                 year = _year,
                 month = _month,
 
-                indMonthNoPolTotal = month.TOT_CASH_MOTOR + month.TOT_DEBIT_MOTOR + month.TOT_CASH_NON_MOTOR + month.TOT_DEBIT_NON_MOTOR,
+                indMonthNoPolTotal = month.TOT_CASH_MOTOR + month.TOT_DEBIT_MOTOR + month.TOT_CASH_NON_MOTOR + month.TOT_DEBIT_NON_MOTOR - (month.TOT_NON_MOTOR_REFUND + month.TOT_MOTOR_REFUND),
                 indMonthNoPolTotal_cash = month.TOT_CASH_MOTOR + month.TOT_CASH_NON_MOTOR,
                 indMonthNoPolTotal_Dbt = month.TOT_DEBIT_MOTOR + month.TOT_DEBIT_NON_MOTOR,
 
-                indYearPolTotal = year.TOT_CASH_MOTOR + year.TOT_DEBIT_MOTOR + year.TOT_CASH_NON_MOTOR + year.TOT_DEBIT_NON_MOTOR,
+                indYearPolTotal = year.TOT_CASH_MOTOR + year.TOT_DEBIT_MOTOR + year.TOT_CASH_NON_MOTOR + year.TOT_DEBIT_NON_MOTOR - (year.TOT_NON_MOTOR_REFUND + year.TOT_MOTOR_REFUND),
                 indYearPolTotal_cash = year.TOT_CASH_MOTOR + year.TOT_CASH_NON_MOTOR,
                 indYearPolTotal_Dbt = year.TOT_DEBIT_MOTOR + year.TOT_DEBIT_NON_MOTOR,
 
-                indMonthPremTotal = month.TOT_CASH_MOTOR_PRM + month.TOT_DEBIT_MOTOR_PRM + month.TOT_CASH_NON_MOTOR_PRM + month.TOT_DEBIT_NON_MOTOR_PRM - month.TOT_REFUND,
+                indMonthPremTotal = month.TOT_CASH_MOTOR_PRM + month.TOT_DEBIT_MOTOR_PRM + month.TOT_CASH_NON_MOTOR_PRM + month.TOT_DEBIT_NON_MOTOR_PRM - (month.TOT_NON_MOTOR_REFUND_PRM + month.TOT_MOTOR_REFUND_PRM),
                 indMonthPremTotal_cash = month.TOT_CASH_MOTOR_PRM + month.TOT_CASH_NON_MOTOR_PRM,
                 indMonthPremTotal_Dbt = month.TOT_DEBIT_MOTOR_PRM + month.TOT_DEBIT_NON_MOTOR_PRM,
 
-                indYearPremTotal = year.TOT_CASH_MOTOR_PRM + year.TOT_DEBIT_MOTOR_PRM + year.TOT_CASH_NON_MOTOR_PRM + year.TOT_DEBIT_NON_MOTOR_PRM - year.TOT_REFUND,
+                indYearPremTotal = year.TOT_CASH_MOTOR_PRM + year.TOT_DEBIT_MOTOR_PRM + year.TOT_CASH_NON_MOTOR_PRM + year.TOT_DEBIT_NON_MOTOR_PRM - (year.TOT_NON_MOTOR_REFUND_PRM + year.TOT_MOTOR_REFUND_PRM),
                 indYearPremTotal_cash = year.TOT_CASH_MOTOR_PRM + year.TOT_CASH_NON_MOTOR_PRM,
                 indYearPremTotal_Dbt = year.TOT_DEBIT_MOTOR_PRM + year.TOT_DEBIT_NON_MOTOR_PRM,
 

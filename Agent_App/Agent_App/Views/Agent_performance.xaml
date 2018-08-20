@@ -4,8 +4,26 @@
             xmlns:local="clr-namespace:Agent_App.Views"
             x:Class="Agent_App.Views.Agent_performance">
 
-    <local:performance_stats Title="Sales Statistics" />
+    <!--<local:performance_stats Title="Sales Statistics" />
     <local:AgentSelf Title="Your Sales Performance" />
-    <local:Branch_performance Title="Branch Sales Performance" />
-    
+    <local:Branch_performance Title="Branch Sales Performance" />-->
+
+    <NavigationPage Title="Sales Statistics">
+        <x:Arguments>
+            <local:performance_stats Title="Sales Statistics" />
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="Your Sales Performance">
+        <x:Arguments>
+            <local:AgentSelf Title="Your Sales Performance" />
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="Branch Sales Performance">
+        <x:Arguments>
+            <local:Branch_performance Title="Branch Sales Performance" />
+        </x:Arguments>
+    </NavigationPage>
+
 </TabbedPage>
