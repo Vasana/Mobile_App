@@ -10,19 +10,19 @@
 
     <NavigationPage Title="Sales Statistics">
         <x:Arguments>
-            <local:org_team_performance Title="Sales Statistics" />
+            <local:performance_stats Title="Sales Statistics" />
         </x:Arguments>
     </NavigationPage>
 
     <NavigationPage Title="Your Sales Performance">
         <x:Arguments>
-            <local:Agents_team_Performance Title="Your Sales Performance" />
+            <local:AgentSelf Title="Your Sales Performance" />
         </x:Arguments>
     </NavigationPage>
 
     <NavigationPage Title="Branch Sales Performance">
         <x:Arguments>
-            <local:Agent_team_perfomance_Prem Title="Branch Sales Performance" />
+            <local:Branch_performance Title="Branch Sales Performance" />
         </x:Arguments>
     </NavigationPage>
 

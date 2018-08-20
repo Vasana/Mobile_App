@@ -33,6 +33,10 @@ namespace Agent_App.Models
         public double TOT_CASH_NON_MOTOR_PRM { get; set; }
         public double TOT_DEBIT_NON_MOTOR_PRM { get; set; }
         
-        public double TOT_REFUND { get; set; }
+        
+        public int TOT_MOTOR_REFUND { get; set; }
+        public double TOT_MOTOR_REFUND_PRM { get; set; }
+        public int TOT_NON_MOTOR_REFUND { get; set; }
+        public double TOT_NON_MOTOR_REFUND_PRM { get; set; }
     }
 }
