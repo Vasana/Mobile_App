@@ -23,11 +23,11 @@
             </Grid.ColumnDefinitions>
             <oxy:PlotView Model="{Binding AreaModelNoPol}"
                    HorizontalOptions="FillAndExpand"
-                  VerticalOptions="FillAndExpand" Grid.Row="1" />
+                  VerticalOptions="FillAndExpand" Grid.Row="3" />
 
             <oxy:PlotView Model="{Binding AreaModelAnnualInc}"
                   HorizontalOptions="FillAndExpand"
-                  VerticalOptions="FillAndExpand" Grid.Row="3"/>
+                  VerticalOptions="FillAndExpand" Grid.Row="1"/>
         </Grid>
     </ScrollView>
 

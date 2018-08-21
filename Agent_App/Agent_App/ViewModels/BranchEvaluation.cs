@@ -245,7 +245,7 @@ namespace Agent_App.ViewModels
                 plotModel1.Series.Add(s3);
 
 
-                plotModel1.Axes.Add(new LinearAxis { Position = AxisPosition.Left, IsPanEnabled = false, IsZoomEnabled = false });
+                plotModel1.Axes.Add(new LinearAxis { Position = AxisPosition.Left, StringFormat = "N", IsPanEnabled = false, IsZoomEnabled = false });
                 plotModel1.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom, IsPanEnabled = false, IsZoomEnabled = false });
                 //
                 //AreaModelNoPol = plotModel1;

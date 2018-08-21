@@ -80,7 +80,7 @@ namespace Agent_App.Models
                     MarkerSize = 6,
                     MarkerStroke = OxyColors.White,
                     MarkerFill = OxyColors.LightPink,
-                    MarkerStrokeThickness = 1.5
+                    MarkerStrokeThickness = 2.5
                 };
 
                 string year_str = DateTime.Today.AddYears(-1).ToString("yyyy");
@@ -122,7 +122,7 @@ namespace Agent_App.Models
                     MarkerSize = 6,
                     MarkerStroke = OxyColors.White,
                     MarkerFill = OxyColors.Teal,
-                    MarkerStrokeThickness = 1.5
+                    MarkerStrokeThickness = 2.5
                 };
 
                 year_str = DateTime.Today.ToString("yyyy");
@@ -152,7 +152,7 @@ namespace Agent_App.Models
                 }
                 plotModel1.Series.Add(s2);
 
-                plotModel1.Axes.Add(new LinearAxis { Position = AxisPosition.Left, IsPanEnabled = false, IsZoomEnabled = false });
+                plotModel1.Axes.Add(new LinearAxis { Position = AxisPosition.Left , IsPanEnabled = false, IsZoomEnabled = false });
                 plotModel1.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom, IsPanEnabled = false, IsZoomEnabled = false });
                 //
                 //AreaModelNoPol = plotModel1;
@@ -241,7 +241,7 @@ namespace Agent_App.Models
                 running_month++;
             }
             model.Series.Add(s2);
-            model.Axes.Add(new LinearAxis {  Position = AxisPosition.Left,  IsPanEnabled =false, IsZoomEnabled = false  });
+            model.Axes.Add(new LinearAxis {  Position = AxisPosition.Left,StringFormat ="N",  IsPanEnabled =false, IsZoomEnabled = false  });
             model.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom,  IsPanEnabled = false, IsZoomEnabled = false });
             return model;
         }
