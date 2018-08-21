@@ -16,7 +16,9 @@ namespace Agent_App.Models
         public double indMonthNoPolTotal { get; set; }
         public double indYearPolTotal { get; set; }
         public double indMonthPremTotal { get; set; }
+        public string indMonthPremTotal_str { get; set; }
         public double indYearPremTotal { get; set; }
+        public string indYearPremTotal_str { get; set; }
 
         public double indMonthNoPolTotal_cash { get; set; }
         public double indYearPolTotal_cash { get; set; }
@@ -36,7 +38,9 @@ namespace Agent_App.Models
         public double indMonthNoPol_New { get; set; }
         public double indYearPol_New { get; set; }
         public double indMonthPrem_New { get; set; }
+        public string indMonthPrem_New_str { get; set; }
         public double indYearPrem_New { get; set; }
+        public string indYearPrem_New_str { get; set; }
 
         public double indMonthNoPol_New_Cash { get; set; }
         public double indYearPol_New_Cash { get; set; }
@@ -56,7 +60,9 @@ namespace Agent_App.Models
         public double indMonthNoPol_Renewal { get; set; }
         public double indYearPol_Renewal { get; set; }
         public double indMonthPrem_Renewal { get; set; }
+        public string indMonthPrem_Renewal_str { get; set; }
         public double indYearPrem_Renewal { get; set; }
+        public string indYearPrem_Renewal_str { get; set; }
 
         public double indMonthNoPol_Renewal_cash { get; set; }
         public double indYearPol_Renewal_cash { get; set; }
