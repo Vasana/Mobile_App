@@ -79,8 +79,12 @@ namespace Agent_App.Models
         public double branchMonthPrem_Renewal { get; set; }
         public double branchYearPrem_Renewal { get; set; }
 
-
-
+        public double indMonthNoPol_refund { get; set; }
+        public double indYearNoPol_refund { get; set; }
+        public double indMonthPrem_refund { get; set; }
+        public double indYearPrem_refund { get; set; }
+        public string indMonthPrem_refund_str { get; set; }
+        public string indYearPrem_refund_str { get; set; }
 
     }
 }

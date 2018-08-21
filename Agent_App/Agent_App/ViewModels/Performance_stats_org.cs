@@ -390,21 +390,27 @@ namespace Agent_App.ViewModels
                 year = _year,
                 month = _month,
 
-                indMonthNoPolTotal = month.TOT_CASH_MOTOR + month.TOT_DEBIT_MOTOR + month.TOT_CASH_NON_MOTOR + month.TOT_DEBIT_NON_MOTOR - (month.TOT_NON_MOTOR_REFUND + month.TOT_MOTOR_REFUND),
+                indMonthNoPolTotal = month.TOT_CASH_MOTOR + month.TOT_DEBIT_MOTOR + month.TOT_CASH_NON_MOTOR + month.TOT_DEBIT_NON_MOTOR,
+                indMonthNoPol_refund = (month.TOT_NON_MOTOR_REFUND + month.TOT_MOTOR_REFUND),
                 indMonthNoPolTotal_cash = month.TOT_CASH_MOTOR + month.TOT_CASH_NON_MOTOR,
                 indMonthNoPolTotal_Dbt = month.TOT_DEBIT_MOTOR + month.TOT_DEBIT_NON_MOTOR,
 
-                indYearPolTotal = year.TOT_CASH_MOTOR + year.TOT_DEBIT_MOTOR + year.TOT_CASH_NON_MOTOR + year.TOT_DEBIT_NON_MOTOR - (year.TOT_NON_MOTOR_REFUND + year.TOT_MOTOR_REFUND),
+                indYearPolTotal = year.TOT_CASH_MOTOR + year.TOT_DEBIT_MOTOR + year.TOT_CASH_NON_MOTOR + year.TOT_DEBIT_NON_MOTOR ,
+                indYearNoPol_refund = (year.TOT_NON_MOTOR_REFUND + year.TOT_MOTOR_REFUND),
                 indYearPolTotal_cash = year.TOT_CASH_MOTOR + year.TOT_CASH_NON_MOTOR,
                 indYearPolTotal_Dbt = year.TOT_DEBIT_MOTOR + year.TOT_DEBIT_NON_MOTOR,
 
-                indMonthPremTotal = month.TOT_CASH_MOTOR_PRM + month.TOT_DEBIT_MOTOR_PRM + month.TOT_CASH_NON_MOTOR_PRM + month.TOT_DEBIT_NON_MOTOR_PRM - (month.TOT_NON_MOTOR_REFUND_PRM + month.TOT_MOTOR_REFUND_PRM),
-                indMonthPremTotal_str = (month.TOT_CASH_MOTOR_PRM + month.TOT_DEBIT_MOTOR_PRM + month.TOT_CASH_NON_MOTOR_PRM + month.TOT_DEBIT_NON_MOTOR_PRM - (month.TOT_NON_MOTOR_REFUND_PRM + month.TOT_MOTOR_REFUND_PRM)).ToString("N2"),
+                indMonthPremTotal = month.TOT_CASH_MOTOR_PRM + month.TOT_DEBIT_MOTOR_PRM + month.TOT_CASH_NON_MOTOR_PRM + month.TOT_DEBIT_NON_MOTOR_PRM ,
+                indMonthPremTotal_str = (month.TOT_CASH_MOTOR_PRM + month.TOT_DEBIT_MOTOR_PRM + month.TOT_CASH_NON_MOTOR_PRM + month.TOT_DEBIT_NON_MOTOR_PRM).ToString("N2"),
+                indMonthPrem_refund = (month.TOT_MOTOR_REFUND_PRM + month.TOT_NON_MOTOR_REFUND_PRM),
+                indMonthPrem_refund_str = (month.TOT_MOTOR_REFUND_PRM + month.TOT_NON_MOTOR_REFUND_PRM).ToString("N2"),
                 indMonthPremTotal_cash = month.TOT_CASH_MOTOR_PRM + month.TOT_CASH_NON_MOTOR_PRM,
                 indMonthPremTotal_Dbt = month.TOT_DEBIT_MOTOR_PRM + month.TOT_DEBIT_NON_MOTOR_PRM,
 
-                indYearPremTotal = year.TOT_CASH_MOTOR_PRM + year.TOT_DEBIT_MOTOR_PRM + year.TOT_CASH_NON_MOTOR_PRM + year.TOT_DEBIT_NON_MOTOR_PRM - (year.TOT_NON_MOTOR_REFUND_PRM + year.TOT_MOTOR_REFUND_PRM),
-                indYearPremTotal_str = (year.TOT_CASH_MOTOR_PRM + year.TOT_DEBIT_MOTOR_PRM + year.TOT_CASH_NON_MOTOR_PRM + year.TOT_DEBIT_NON_MOTOR_PRM - (year.TOT_NON_MOTOR_REFUND_PRM + year.TOT_MOTOR_REFUND_PRM)).ToString("N2"),
+                indYearPremTotal = year.TOT_CASH_MOTOR_PRM + year.TOT_DEBIT_MOTOR_PRM + year.TOT_CASH_NON_MOTOR_PRM + year.TOT_DEBIT_NON_MOTOR_PRM ,
+                indYearPremTotal_str = (year.TOT_CASH_MOTOR_PRM + year.TOT_DEBIT_MOTOR_PRM + year.TOT_CASH_NON_MOTOR_PRM + year.TOT_DEBIT_NON_MOTOR_PRM).ToString("N2"),
+                indYearPrem_refund = (year.TOT_MOTOR_REFUND_PRM + year.TOT_NON_MOTOR_REFUND_PRM),
+                indYearPrem_refund_str = (year.TOT_MOTOR_REFUND_PRM + year.TOT_NON_MOTOR_REFUND_PRM).ToString("N2"),
                 indYearPremTotal_cash = year.TOT_CASH_MOTOR_PRM + year.TOT_CASH_NON_MOTOR_PRM,
                 indYearPremTotal_Dbt = year.TOT_DEBIT_MOTOR_PRM + year.TOT_DEBIT_NON_MOTOR_PRM,
 

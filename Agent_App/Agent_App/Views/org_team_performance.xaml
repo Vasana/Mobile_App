@@ -50,32 +50,38 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="50" />
                     </Grid.ColumnDefinitions>
 
                     <Label Text="Renewals"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="LightBlue"  FontSize="Medium" FontAttributes="Bold"  Grid.Row="0" Grid.Column="2" />
                     <Label Text="New"  HorizontalTextAlignment="Center"  VerticalTextAlignment="Center" BackgroundColor="LightBlue" FontSize="Medium"  FontAttributes="Bold"  Grid.Row="0" Grid.Column="3" />
                     <Label Text="Total"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="LightBlue"  FontSize="Medium" FontAttributes="Bold"   Grid.Row="0" Grid.Column="4" />
-
+                    <Label Text="Refunds"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" BackgroundColor="LightBlue"  FontSize="Medium" FontAttributes="Bold"  Grid.Row="0" Grid.Column="5" />
+                    
                     <Label Text="{Binding lbl_mon_NOP}" FontSize="Medium" VerticalTextAlignment="Center" BackgroundColor="Lavender" HorizontalTextAlignment="Start" Grid.Row="1" Grid.Column="1" />
                     <Label Text="{Binding ownAgt.indMonthNoPolTotal}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" BackgroundColor="Lavender" FontSize="Medium" Grid.Row="1" Grid.Column="4" />
                     <Label Text="{Binding ownAgt.indMonthNoPol_New}"  HorizontalTextAlignment="End" VerticalTextAlignment="Center" BackgroundColor="Lavender" FontSize="Medium" Grid.Row="1" Grid.Column="3" />
                     <Label Text="{Binding ownAgt.indMonthNoPol_Renewal}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" BackgroundColor="Lavender" FontSize="Medium" Grid.Row="1" Grid.Column="2" />
+                    <Label Text="{Binding ownAgt.indMonthNoPol_refund}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" BackgroundColor="Lavender" FontSize="Medium" Grid.Row="1" Grid.Column="5" />
 
                     <Label Text="{Binding lbl_yr_NOP}" FontSize="Medium" BackgroundColor="SeaShell" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Grid.Row="2" Grid.Column="1" />
                     <Label Text="{Binding ownAgt.indYearPolTotal}" BackgroundColor="SeaShell" VerticalTextAlignment="Center" HorizontalTextAlignment="End"  FontSize="Medium" Grid.Row="2" Grid.Column="4" />
                     <Label Text="{Binding ownAgt.indYearPol_New}" BackgroundColor="SeaShell" VerticalTextAlignment="Center" HorizontalTextAlignment="End"  FontSize="Medium" Grid.Row="2" Grid.Column="3" />
                     <Label Text="{Binding ownAgt.indYearPol_Renewal}" BackgroundColor="SeaShell" VerticalTextAlignment="Center" HorizontalTextAlignment="End"  FontSize="Medium" Grid.Row="2" Grid.Column="2" />
+                    <Label Text="{Binding ownAgt.indYearNoPol_refund}" HorizontalTextAlignment="End" BackgroundColor="SeaShell" VerticalTextAlignment="Center"  FontSize="Medium" Grid.Row="2" Grid.Column="5" />
 
                     <Label Text="{Binding lbl_mon_prem}" FontSize="Medium" VerticalTextAlignment="Center" BackgroundColor="Lavender" HorizontalTextAlignment="Start" Grid.Row="4" Grid.Column="1" />
                     <Label Text="{Binding ownAgt.indMonthPremTotal_str}" VerticalTextAlignment="Center" BackgroundColor="Lavender" HorizontalTextAlignment="End"  FontSize="Medium" Grid.Row="4" Grid.Column="4" />
                     <Label Text="{Binding ownAgt.indMonthPrem_New_str}"  VerticalTextAlignment="Center" BackgroundColor="Lavender" HorizontalTextAlignment="End"  FontSize="Medium" Grid.Row="4" Grid.Column="3" />
                     <Label Text="{Binding ownAgt.indMonthPrem_Renewal_str}" VerticalTextAlignment="Center" BackgroundColor="Lavender" HorizontalTextAlignment="End"  FontSize="Medium" Grid.Row="4" Grid.Column="2" />
+                    <Label Text="{Binding ownAgt.indMonthPrem_refund_str}" VerticalTextAlignment="Center" BackgroundColor="Lavender" HorizontalTextAlignment="End"  FontSize="Medium" Grid.Row="4" Grid.Column="5" />
 
                     <Label Text="{Binding lbl_yr_prem}" FontSize="Medium" BackgroundColor="SeaShell" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Grid.Row="5" Grid.Column="1" />
                     <Label Text="{Binding ownAgt.indYearPremTotal_str}" BackgroundColor="SeaShell" VerticalTextAlignment="Center" HorizontalTextAlignment="End"  FontSize="Medium" Grid.Row="5" Grid.Column="4" />
                     <Label Text="{Binding ownAgt.indYearPrem_New_str}" BackgroundColor="SeaShell" VerticalTextAlignment="Center" HorizontalTextAlignment="End"  FontSize="Medium" Grid.Row="5" Grid.Column="3" />
                     <Label Text="{Binding ownAgt.indYearPrem_Renewal_str}" BackgroundColor="SeaShell" VerticalTextAlignment="Center" HorizontalTextAlignment="End"  FontSize="Medium" Grid.Row="5" Grid.Column="2" />
+                    <Label Text="{Binding ownAgt.indYearPrem_refund_str}" HorizontalTextAlignment="End" BackgroundColor="SeaShell" VerticalTextAlignment="Center" FontSize="Medium" Grid.Row="5" Grid.Column="5" />
 
                 </Grid>
                 <Grid>
