@@ -21,25 +21,11 @@ namespace Agent_App.Views
 		{            
 			InitializeComponent ();
             Title = "Login";
-
-            if (Device.Idiom == TargetIdiom.Phone)
-            {
-                //DisplayAlert("Error", "Application does not support mobile phones.", "OK");
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await DisplayAlert("Alert", "Application does not support mobile phones.", "Ok");
-                    var closer = DependencyService.Get<ICloseApplication>();
-                    if (closer != null)
-                        closer.CloseApp();
-                });
-
-                
-            }
-            else
-            {               
-                //ProfileImage.BackgroundColor = Color.AntiqueWhite;
-                LoadProfilePic();
-            }
+                  
+           
+            //ProfileImage.BackgroundColor = Color.AntiqueWhite;
+            LoadProfilePic();
+           
         }  
         
         public void LoadProfilePic()
@@ -56,43 +42,57 @@ namespace Agent_App.Views
             base.OnAppearing();
             //your code here;
 
-            string buildNum = DependencyService.Get<IScreen>().Version;
-
-            var vm = BindingContext as LoginViewModel;
-            AppVersions release = await vm.CheckVersion(buildNum);
-            
-            string message = "";
-
-            if (release.BuildNo != int.Parse(buildNum))
+            if (Device.Idiom == TargetIdiom.Tablet)
             {
-                Device.BeginInvokeOnMainThread(async () =>
+                string buildNum = DependencyService.Get<IScreen>().Version;
+
+                var vm = BindingContext as LoginViewModel;
+                AppVersions release = await vm.CheckVersion(buildNum);
+
+                string message = "";
+
+                if (release.BuildNo != int.Parse(buildNum))
                 {
-                    if (release.IsMajorUpdate == "Y")
+                    Device.BeginInvokeOnMainThread(async () =>
                     {
-                        message = "Current version is no longer supported. Please get the latest version (" + release.VersionNo + "). Do you want to install latest version now?.";
-                        var answer = await DisplayAlert("Alert", message, "Yes", "No");
-                        if (answer)
+                        if (release.IsMajorUpdate == "Y")
                         {
-                            Device.OpenUri(new System.Uri("http://www.srilankainsurance.lk/apk/english.pdf"));
-                        }
-                        var closer = DependencyService.Get<ICloseApplication>();
-                        if (closer != null)
-                            closer.CloseApp();
-                    }
-                    else if (release.IsMajorUpdate == "N")
-                    {
-                        message = "A new update is available. Please get the latest version (" + release.VersionNo + ") for improved functionality. Do you want to install latest version now?";
-                        var answer = await DisplayAlert("Alert", message, "Yes", "No");
-                        if (answer)
-                        {
-                            Device.OpenUri(new System.Uri("http://www.srilankainsurance.lk/apk/english.pdf"));
+                            message = "Current version is no longer supported. Please get the latest version (" + release.VersionNo + "). Do you want to install latest version now?.";
+                            var answer = await DisplayAlert("Alert", message, "Yes", "No");
+                            if (answer)
+                            {
+                                Device.OpenUri(new System.Uri("http://www.srilankainsurance.lk/apk/english.pdf"));
+                            }
                             var closer = DependencyService.Get<ICloseApplication>();
                             if (closer != null)
                                 closer.CloseApp();
                         }
+                        else if (release.IsMajorUpdate == "N")
+                        {
+                            message = "A new update is available. Please get the latest version (" + release.VersionNo + ") for improved functionality. Do you want to install latest version now?";
+                            var answer = await DisplayAlert("Alert", message, "Yes", "No");
+                            if (answer)
+                            {
+                                Device.OpenUri(new System.Uri("http://www.srilankainsurance.lk/apk/english.pdf"));
+                                var closer = DependencyService.Get<ICloseApplication>();
+                                if (closer != null)
+                                    closer.CloseApp();
+                            }
 
-                    }
+                        }
 
+                    });
+                }                
+            }
+            else
+            {
+                //DisplayAlert("Error", "Application does not support mobile phones.", "OK");
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await DisplayAlert("Alert", "Application does not support mobile phones.", "Ok");
+                    var closer = DependencyService.Get<ICloseApplication>();
+                    if (closer != null)
+                        closer.CloseApp();
                 });
             }
 
