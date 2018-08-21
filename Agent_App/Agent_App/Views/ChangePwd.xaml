@@ -49,11 +49,11 @@
                     </Entry.Behaviors>
                 </Entry>
 
-                <Button Text="Submit" Grid.Row="4" Grid.Column="2" Command="{Binding changePWDCommand}" BackgroundColor="DodgerBlue"/>
+                <Button Text="Submit" Grid.Row="4" Grid.Column="2" Command="{Binding changePWDCommand}" BackgroundColor="SkyBlue"/>
 
                 <Label Text="{Binding Message}"  TextColor="Red" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"></Label>
 
-                <Button Text="Re-Login" TextColor="White" BackgroundColor="RoyalBlue" BorderColor="Navy" HeightRequest="40" Grid.Row="6" IsVisible="{Binding PwdChanged}" Grid.Column="1" Command="{Binding loginCommand}" WidthRequest="125" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <Button Text="Re-Login" TextColor="White" BackgroundColor="SkyBlue" BorderColor="Navy" HeightRequest="40" Grid.Row="6" IsVisible="{Binding PwdChanged}" Grid.Column="1" Command="{Binding loginCommand}" WidthRequest="125" HorizontalOptions="Start" VerticalOptions="Start"/>
             </Grid>
 
             <Frame IsClippedToBounds="True"

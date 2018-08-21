@@ -125,7 +125,7 @@
                 Clicked="btnClaimHist_Clicked"/>
                 
             <Button Grid.Row="0" x:Name="btnPayHist"
-                BackgroundColor="DodgerBlue"
+                BackgroundColor="SkyBlue"
                 Text="View Premium (NB/ Renewal) History"
                 TextColor="White" 
                 Clicked="btnPayHist_Clicked"/>                

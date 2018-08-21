@@ -48,8 +48,8 @@
                 <Button Grid.Row="0" Grid.Column="1" x:Name="BtnQuote" Command="{Binding GetPerformanceCommand}" BackgroundColor="White"  BorderColor="LightGray" BorderWidth="1" Image="graph.png" />
 
                 <StackLayout Grid.Row="1" Grid.ColumnSpan="2">
-                    <Label FontSize="Medium" HorizontalOptions="Center" Text="Today's Reminders"
-                   TextColor="Black" VerticalOptions="Center" />
+                    <!--<Label FontSize="Medium" HorizontalOptions="Center" Text="Today's Reminders"
+                   TextColor="Black" VerticalOptions="Center" />-->
                     <ListView x:Name="listView" 
                       RowHeight="150" ItemTapped="listView_ItemTapped" 
                       ItemsSource="{Binding PoliciesCollection}"  HasUnevenRows="True" >
