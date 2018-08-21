@@ -12,16 +12,18 @@ using Android.Views;
 using Android.Widget;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(CloseApplication))]
+[assembly: Dependency(typeof(ScreenAndroid))]
 namespace Agent_App.Droid
 {
-    public class CloseApplication : ICloseApplication
+    class ScreenAndroid : Java.Lang.Object, IScreen
     {
-        public void CloseApp()
+        public string Version
         {
-            //var activity = (Activity)Forms.Context;
-            //activity.FinishAffinity();
-            Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+            get
+            {
+                var context = Forms.Context;
+                return context.PackageManager.GetPackageInfo(context.PackageName, 0).VersionCode.ToString();
+            }
         }
     }
 }

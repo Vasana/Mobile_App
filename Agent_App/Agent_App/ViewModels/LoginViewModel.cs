@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Agent_App.Views;
 using Agent_App.Models;
+using System.Threading.Tasks;
 
 namespace Agent_App.ViewModels
 {
@@ -120,6 +121,13 @@ namespace Agent_App.ViewModels
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public async Task<AppVersions> CheckVersion (string build_number)
+        {            
+            AppVersions release = await _apiServices.GetAppVersionAsync(build_number);            
+
+            return release;
         }
     }
 }

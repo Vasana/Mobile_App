@@ -121,13 +121,13 @@
             <Button Grid.Row="2" x:Name="btnClaimHist"
                 BackgroundColor="DeepPink"
                 Text="View Claim History"
-                TextColor="White" 
+                TextColor="White" BorderRadius="10"
                 Clicked="btnClaimHist_Clicked"/>
                 
             <Button Grid.Row="0" x:Name="btnPayHist"
                 BackgroundColor="SkyBlue"
                 Text="View Premium (NB/ Renewal) History"
-                TextColor="White" 
+                TextColor="White" BorderRadius="10"
                 Clicked="btnPayHist_Clicked"/>                
 
             <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 

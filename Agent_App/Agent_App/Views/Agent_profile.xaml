@@ -82,7 +82,7 @@
             <StackLayout Padding="20" Spacing="20">
                 <Label x:Name="lblSuccessMsg" TextColor="Green" HorizontalOptions="Center"/>
                 <Image x:Name="ProfileImage" HeightRequest="150" WidthRequest="150" Source="{Binding ImagePath}" />
-                <Button x:Name="btnPickPhoto" Text="Pick Photo" Clicked="btnPickPhoto_Clicked" HorizontalOptions="FillAndExpand" BackgroundColor="SkyBlue"/>
+                <Button x:Name="btnPickPhoto" Text="Pick Photo" Clicked="btnPickPhoto_Clicked" HorizontalOptions="FillAndExpand" BackgroundColor="SkyBlue" BorderRadius="10"/>
             </StackLayout>
         </StackLayout>
     </ScrollView>

@@ -322,6 +322,28 @@ namespace Agent_App.Services
 
         }
 
+        public async Task<AppVersions> GetAppVersionAsync(string buildNumber)
+        {
+            AppVersions _appVersion = new AppVersions();
+            try
+            {
+                var client = new HttpClient();
+
+                var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/GetVersionInfo?BuildNo=" + buildNumber.Trim());
+
+                _appVersion = JsonConvert.DeserializeObject<AppVersions>(json);
+
+            }
+            catch (Exception e)
+            {
+
+            }
+            return _appVersion;
+
+            //-----------------------------------------------------------------------------------
+
+        }
+
         public async Task<LifePolicy> GetLifePolicyAsync(string accessToken, string dept, string policyNumber)
         {
             /* var client = new HttpClient();
