@@ -16,6 +16,7 @@ namespace Agent_App.Views
         {
             InitializeComponent();
             Title = "Personal Sales Performance";
+            BarBackgroundColor = Color.FromHex("#00adbb");
         }
 
         
