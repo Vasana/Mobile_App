@@ -21,9 +21,8 @@ namespace Agent_App.Views
 		{            
 			InitializeComponent ();
             Title = "Login";
-                  
-           
-            //ProfileImage.BackgroundColor = Color.AntiqueWhite;
+            //NavigationPage.SetHasBackButton(this, false); we are removing the bar from log in page, below line
+            NavigationPage.SetHasNavigationBar(this, false);
             LoadProfilePic();
            
         }  

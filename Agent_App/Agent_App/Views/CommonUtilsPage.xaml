@@ -8,22 +8,28 @@
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="80" />
+            <RowDefinition Height="2" />
+            <RowDefinition Height="0" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="2" />
+            <RowDefinition Height="20" />
         </Grid.RowDefinitions>
 
         <!--  row background colors  -->
-        <BoxView Grid.Row="0" Color="#3A444D" />
-        <BoxView Grid.Row="1" Color="#FFFFFF" />
-        <BoxView Grid.Row="2" Color="#3A444D" />
+        <BoxView Grid.Row="0" Color="#FFFFFF" />
+        <BoxView Grid.Row="1" Color="DarkGray" />
+        <BoxView Grid.Row="2" Color="#FFFFFF" />
+        <BoxView Grid.Row="3" Color="#FFFFFF" />
+        <BoxView Grid.Row="4" Color="DarkGray" />
+        <BoxView Grid.Row="5" Color="#00adbb" />
 
         <!--  title  -->
-        <Label FontSize="Large" HorizontalOptions="Center" Text="Common"
-               TextColor="White" VerticalOptions="Center" />
+        <Label FontSize="Large" HorizontalOptions="Center" Text="Common Utilities"
+               TextColor="#00adbb" VerticalOptions="Center" />
 
         <!--  inner grid for button layouts  -->
 
-        <Grid Grid.Row="1" ColumnSpacing="30" HorizontalOptions="Center"
+        <Grid Grid.Row="3" ColumnSpacing="30" HorizontalOptions="Center"
               RowSpacing="30" VerticalOptions="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -37,10 +43,10 @@
 
             <!--<Button Grid.Row="0" Grid.Column="0" x:Name="BtnCusprof" Command="{Binding CustomersProfilesCommand}" BorderColor="LightGray" BorderWidth="1" BackgroundColor="White"  Image="customer.png"  />
             <Button Grid.Row="0" Grid.Column="1" x:Name="BtnQuote" Command="{Binding GetQuotationCommand}" BackgroundColor="White"  BorderColor="LightGray" BorderWidth="1" Image="policy.png" />-->
-            <Button Grid.Row="0" Grid.Column="0" x:Name="BtnProfile" Clicked="BtnProfile_Clicked" BackgroundColor="White" BorderColor="LightGray" BorderWidth="1"  Image="user.png" />
-            <Button Grid.Row="1" Grid.Column="0" x:Name="BtnBranches" Clicked="BtnBranches_Clicked"  BorderColor="LightGray" BorderWidth="1" BackgroundColor="White"  Image="phone.png"  />
-            <Button Grid.Row="1" Grid.Column="1" x:Name="BtnPromotions" Clicked="BtnPromotions_Clicked" BackgroundColor="White"  BorderColor="LightGray" BorderWidth="1" Image="products.png" />
-            <Button Grid.Row="0" Grid.Column="1" x:Name="btnSettings" Clicked="btnSettings_Clicked" BorderColor="LightGray" BorderWidth="1" BackgroundColor="White"  Image="settings.png" />
+            <Button Grid.Row="0" Grid.Column="0" x:Name="BtnProfile" Clicked="BtnProfile_Clicked" BackgroundColor="White" BorderColor="#00adbb" BorderWidth="1"  Image="user.png" />
+            <Button Grid.Row="1" Grid.Column="0" x:Name="BtnBranches" Clicked="BtnBranches_Clicked"  BorderColor="#00adbb" BorderWidth="1" BackgroundColor="White"  Image="phone.png"  />
+            <Button Grid.Row="1" Grid.Column="1" x:Name="BtnPromotions" Clicked="BtnPromotions_Clicked" BackgroundColor="White"  BorderColor="#00adbb" BorderWidth="1" Image="products.png" />
+            <Button Grid.Row="0" Grid.Column="1" x:Name="btnSettings" Clicked="btnSettings_Clicked" BorderColor="#00adbb" BorderWidth="1" BackgroundColor="White"  Image="settings.png" />
 
         </Grid>
 

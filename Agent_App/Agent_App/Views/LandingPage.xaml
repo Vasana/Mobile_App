@@ -1,11 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Agent_App.Views"
              x:Class="Agent_App.Views.LandingPage"
               Title="Sales App">
     
-    <!--<local:LifeMenuPage />-->
-    <local:GeneralMenuPage />
-    <local:CommonUtilsPage />
-</CarouselPage>
+    <!--<local:LifeMenuPage />
+    <local:GeneralMenuPage  />
+    <local:CommonUtilsPage />-->
+
+    <local:GeneralMenuPage Title="General Insurance"   />
+    <local:CommonUtilsPage Title="Common utilities"  />
+
+    
+    
+</TabbedPage>

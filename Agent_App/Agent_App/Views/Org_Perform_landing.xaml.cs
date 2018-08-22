@@ -18,10 +18,11 @@ namespace Agent_App.Views
         {
             InitializeComponent();
             Title = "Team Performance";
+            BarBackgroundColor = Color.FromHex("#00adbb");
             //On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
             //On<Android>().SetBarSelectedItemColor(Color.YellowGreen); //--> To change the selected color tabitem
             //On<Android>().SetBarItemColor(Color.Gray); //--->Default one but you can also change this
-            
+
         }
     }
 }

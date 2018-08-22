@@ -6,8 +6,9 @@
 
 
 
-    <NavigationPage Title="Team Statistics" Icon="car.png">
+    <!--<NavigationPage Title="Team Statistics" Icon="car.png" >
         <x:Arguments>
+            
             <local:org_team_performance Title="Team Statistics" Icon="car.png" />
         </x:Arguments>
     </NavigationPage>
@@ -22,10 +23,10 @@
         <x:Arguments>
             <local:Agent_team_perfomance_Prem Title="Current Year Performance" />
         </x:Arguments>
-    </NavigationPage>
+    </NavigationPage>-->
 
-    <!--<local:org_team_performance Title="Team Statistics" Icon="car.png" />
+    <local:org_team_performance Title="Team Statistics" />
     <local:Agents_team_Performance Title="Current Month Performance" />
-    <local:Agent_team_perfomance_Prem Title="Current Year Performance" />-->
-    
+    <local:Agent_team_perfomance_Prem Title="Current Year Performance" />
+
 </TabbedPage>

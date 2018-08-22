@@ -95,8 +95,10 @@ namespace Agent_App.ViewModels
                        
                        Message = "Logged in Successfully";
                        LoginSuccess = true;
-                       Application.Current.MainPage = new NavigationPage(new LandingPage());
-
+                       
+                       var nav = new NavigationPage(new LandingPage());
+                       nav.BarBackgroundColor = Color.FromHex("#00adbb");
+                       Application.Current.MainPage = nav;
                        AgentProfile agentProfile = new AgentProfile();
                        agentProfile = await _apiServices.GetAgentProfile(accessToken);
                        Settings.jobRole = agentProfile.Role;
