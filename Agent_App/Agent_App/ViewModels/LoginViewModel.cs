@@ -51,7 +51,7 @@ namespace Agent_App.ViewModels
                 OnPropertyChanged();
             }
         }
-        public bool _loginEnabled = true;
+        public bool _loginEnabled;
 
         public string Message
         {
