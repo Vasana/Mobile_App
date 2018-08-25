@@ -78,7 +78,7 @@ namespace Agent_App.Views
                         var answer = await DisplayAlert("Alert", message, "Yes", "No");
                         if (answer)
                         {
-                            Device.OpenUri(new System.Uri("http://www.srilankainsurance.lk/apk/english.pdf"));
+                            Device.OpenUri(new System.Uri("http://www.srilankainsurance.lk/apk/AgentApp.apk"));
                             var closer = DependencyService.Get<ICloseApplication>();
                             if (closer != null)
                                 closer.CloseApp();
