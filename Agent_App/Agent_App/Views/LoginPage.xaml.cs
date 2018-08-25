@@ -101,5 +101,48 @@ namespace Agent_App.Views
 
         }
 
+        private async void BtnLogin_Clicked(object sender, EventArgs e)
+        {
+            if (entUsername.Text != "" || entPassword.Text != "")
+            {
+                var vm = BindingContext as LoginViewModel;
+
+                await vm.Login();
+
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    if (vm.Message == "Logged in Successfully")
+                    {
+                        if (Settings.Username == "")
+                        {
+                            var answer = await DisplayAlert("Alert", "Do you want to save your Login Credentials?", "Yes", "No");
+                            if (answer)
+                            {
+                                if (Settings.Username == "" && Settings.Password == "")
+                                {
+                                    Settings.Username = entUsername.Text;
+                                    Settings.Password = entPassword.Text;
+                                }
+                            }
+                            else
+                            {
+                                Settings.AccessToken = null;
+                                Settings.Username = null;
+                                Settings.Password = null;
+                            }
+                        }
+                    }
+
+                });
+
+                var nav = new NavigationPage(new LandingPage());
+                nav.BarBackgroundColor = Color.FromHex("#00adbb");
+                Application.Current.MainPage = nav;
+            }
+            else
+            {
+               await DisplayAlert("Alert", "Please enter both Username and Password", "OK");
+            }
+        }
     }
 }

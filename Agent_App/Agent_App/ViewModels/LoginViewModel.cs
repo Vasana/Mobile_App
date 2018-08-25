@@ -83,15 +83,13 @@ namespace Agent_App.ViewModels
                        Message = "Login failed";                       
                    }
                    else
-                   {                       
+                   {
                        Settings.AccessToken = accessToken;
-                       if (Settings.Password != Password)
-                       {
-                           if (Settings.Username == Username)
-                           {
-                               Settings.Password = Password;
-                           }
-                       }
+                       //if (Settings.Username ==  "" && Settings.Password == "")
+                       //{
+                       //    Settings.Username = Username;
+                       //    Settings.Password = Password;                          
+                       //}
                        
                        Message = "Logged in Successfully";
                        LoginSuccess = true;
@@ -110,6 +108,35 @@ namespace Agent_App.ViewModels
                });
             }
 
+        }
+
+        public async Task Login()
+        {
+            IsBusy = true;
+            LoginEnabled = false;
+            var accessToken = await _apiServices.LoginAsync(Username, Password);
+
+            LoginEnabled = true;
+            if (accessToken == null)
+            {
+                IsBusy = false;
+                LoginSuccess = false;
+                Message = "Login failed";
+            }
+            else
+            {
+                Settings.AccessToken = accessToken;                
+
+                Message = "Logged in Successfully";
+                LoginSuccess = true;
+                
+                AgentProfile agentProfile = new AgentProfile();
+                agentProfile = await _apiServices.GetAgentProfile(accessToken);
+                Settings.jobRole = agentProfile.Role;
+                Settings.agentCode = (agentProfile.Role == "Organizer" ? agentProfile.Organizer_code.ToString() : agentProfile.Agent_code.ToString());
+                Settings.orgTeamCode = (agentProfile.Role == "Organizer" ? agentProfile.Organizer_codeTeam.ToString() : "");
+                IsBusy = false;
+            }
         }
 
         public LoginViewModel()

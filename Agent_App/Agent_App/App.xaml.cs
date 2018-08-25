@@ -12,12 +12,12 @@ namespace Agent_App
 		public App ()
 		{
 			InitializeComponent();
-            
+
             //Settings.Username = "virajb@slic.lk";
             //Settings.Password = "Slic@1234";
 
             //setMainPage(); 
-			MainPage = new NavigationPage(new LoginPage());
+            MainPage = new NavigationPage(new LoginPage());
 		}
 
         private void setMainPage()
