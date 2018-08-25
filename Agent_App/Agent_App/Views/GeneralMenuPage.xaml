@@ -17,7 +17,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="80" />
                 <RowDefinition Height="2" />
-                <RowDefinition Height="20" />
+                <RowDefinition Height="40" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="2" />
                 <RowDefinition Height="20" />
@@ -40,7 +40,7 @@
             <Grid Grid.Row="3" ColumnSpacing="30" HorizontalOptions="Center"
               RowSpacing="30" VerticalOptions="Center">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="300" />
+                    <RowDefinition Height="220" />
                     <RowDefinition Height="0" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
@@ -50,8 +50,8 @@
                 </Grid.ColumnDefinitions>
 
 
-                <Button Grid.Row="0" Grid.Column="0" x:Name="BtnCusprof" Command="{Binding CustomersPoliciesCommand}" BorderColor="#00adbb" BorderWidth="1" BackgroundColor="White"  Image="customer.png"  />
-                <Button Grid.Row="0" Grid.Column="1" x:Name="BtnQuote" Command="{Binding GetPerformanceCommand}" BackgroundColor="White"  BorderColor="#00adbb" BorderWidth="1" Image="graph.png" />
+                <Button Grid.Row="0"  WidthRequest="200" VerticalOptions="Center"  HorizontalOptions="Center"  Grid.Column="0" x:Name="BtnCusprof" Command="{Binding CustomersPoliciesCommand}" BorderColor="#00adbb" BorderWidth="0"  BackgroundColor="White"   Image="customer.png"  />
+                <Button Grid.Row="0" WidthRequest="200" VerticalOptions="Center"  HorizontalOptions="Center" Grid.Column="1" x:Name="BtnQuote" Command="{Binding GetPerformanceCommand}"   BorderColor="#00adbb" BorderWidth="0" BackgroundColor="White" Image="graph.png" />
 
                 
 
