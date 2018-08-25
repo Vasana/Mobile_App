@@ -18,6 +18,7 @@
                 <RowDefinition Height="80" />
                 <RowDefinition Height="2" />
                 <RowDefinition Height="40" />
+                <RowDefinition Height="220" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="2" />
                 <RowDefinition Height="20" />
@@ -28,8 +29,9 @@
             <BoxView Grid.Row="1" Color="Red" />
             <BoxView Grid.Row="2" Color="#FFFFFF" />
             <BoxView Grid.Row="3" Color="#FFFFFF" />
-            <BoxView Grid.Row="4" Color="Red" />
-            <BoxView Grid.Row="5" Color="#00adbb" />
+            <BoxView Grid.Row="4" Color="#FFFFFF" />
+            <BoxView Grid.Row="5" Color="Red" />
+            <BoxView Grid.Row="6" Color="#00adbb" />
 
             <!--  title  -->
             <Label x:Name="lblTitle" FontSize="Large" HorizontalOptions="Center" Text="General Insurance"
@@ -53,9 +55,20 @@
                 <Button Grid.Row="0"  WidthRequest="200" VerticalOptions="Center"  HorizontalOptions="Center"  Grid.Column="0" x:Name="BtnCusprof" Command="{Binding CustomersPoliciesCommand}" BorderColor="#00adbb" BorderWidth="0"  BackgroundColor="White"   Image="customer.png"  />
                 <Button Grid.Row="0" WidthRequest="200" VerticalOptions="Center"  HorizontalOptions="Center" Grid.Column="1" x:Name="BtnQuote" Command="{Binding GetPerformanceCommand}"   BorderColor="#00adbb" BorderWidth="0" BackgroundColor="White" Image="graph.png" />
 
-                
+            </Grid>
 
-                <StackLayout Grid.Row="2" Grid.ColumnSpan="2">                    
+            <Grid Grid.Row="4" ColumnSpacing="30" HorizontalOptions="Center"
+              RowSpacing="30" VerticalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition Width="300" />
+                </Grid.ColumnDefinitions>
+                
+                <StackLayout Grid.Row="1" Grid.ColumnSpan="2">
                     <ListView x:Name="listView" 
                       RowHeight="150" ItemTapped="listView_ItemTapped" 
                       ItemsSource="{Binding PoliciesCollection}"  HasUnevenRows="True" >
@@ -69,7 +82,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    
+
                 </StackLayout>
 
             </Grid>
