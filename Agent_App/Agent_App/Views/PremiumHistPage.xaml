@@ -127,7 +127,7 @@
                                                 FontSize="14" FontAttributes="None"
                                                 Text="{Binding CLAIM_COUNT}" TextColor="Black">
                                             </Label>
-                                            <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
+                                            <!--<Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                                                HorizontalTextAlignment="Start"
                                                VerticalTextAlignment="Center"
                                                FontSize="14" FontAttributes="None"
@@ -138,26 +138,26 @@
                                                VerticalTextAlignment="Center"
                                                FontSize="14" FontAttributes="None"
                                                Text="{Binding NCB_ADJ_PREMIUM, StringFormat='Rs. {0:N2}'}" TextColor="Black" >
-                                            </Label>                                            
-                                            <Label Grid.Row="3" Grid.Column="1"
+                                            </Label>-->                                            
+                                            <Label Grid.Row="2" Grid.Column="1"
                                                HorizontalTextAlignment="Start"
                                                VerticalTextAlignment="Center"
                                                FontSize="14" FontAttributes="None"
                                                Text="Premium Paid:" TextColor="Black" >
                                             </Label>
-                                            <Label Grid.Row="3" Grid.Column="2"
+                                            <Label Grid.Row="2" Grid.Column="2"
                                                HorizontalTextAlignment="Start"
                                                VerticalTextAlignment="Center"
                                                FontSize="14" FontAttributes="None"
                                                Text="{Binding PAID_PREMIUM, StringFormat='Rs. {0:N2}'}" TextColor="Black" >
                                             </Label>
-                                            <Label Grid.Row="3" Grid.Column="3"
+                                            <Label Grid.Row="2" Grid.Column="3"
                                                 HorizontalTextAlignment="Start"
                                                 VerticalTextAlignment="Center"
                                                 FontSize="14" FontAttributes="None"
                                                 Text="Paid Date:" TextColor="Black">
                                             </Label>
-                                            <Label Grid.Row="3" Grid.Column="4"
+                                            <Label Grid.Row="2" Grid.Column="4"
                                                HorizontalTextAlignment="Start"
                                                VerticalTextAlignment="Center"
                                                FontSize="14" FontAttributes="None"

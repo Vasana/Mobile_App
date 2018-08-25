@@ -83,11 +83,21 @@ namespace Agent_App.Views
                             if (closer != null)
                                 closer.CloseApp();
                         }
+                        else
+                        {
+                            BtnLogin.IsEnabled = true;
+                            BtnLogin.Text = "Login";
+                        }
 
                     }
 
                 });
-            }                                  
+            }    
+            else
+            {
+                BtnLogin.IsEnabled = true;
+                BtnLogin.Text = "Login";
+            }
 
         }
 

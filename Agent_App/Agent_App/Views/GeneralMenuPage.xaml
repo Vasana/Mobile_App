@@ -55,9 +55,7 @@
 
                 
 
-                <StackLayout Grid.Row="2" Grid.ColumnSpan="2">
-                    <Label FontSize="Medium" HorizontalOptions="Center" Text="Today's Reminders"
-                   TextColor="Black" VerticalOptions="Center"  />
+                <StackLayout Grid.Row="2" Grid.ColumnSpan="2">                    
                     <ListView x:Name="listView" 
                       RowHeight="150" ItemTapped="listView_ItemTapped" 
                       ItemsSource="{Binding PoliciesCollection}"  HasUnevenRows="True" >
