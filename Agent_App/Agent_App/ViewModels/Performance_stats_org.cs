@@ -401,16 +401,16 @@ namespace Agent_App.ViewModels
                 indYearPolTotal_Dbt = year.TOT_DEBIT_MOTOR + year.TOT_DEBIT_NON_MOTOR,
 
                 indMonthPremTotal = month.TOT_CASH_MOTOR_PRM + month.TOT_DEBIT_MOTOR_PRM + month.TOT_CASH_NON_MOTOR_PRM + month.TOT_DEBIT_NON_MOTOR_PRM ,
-                indMonthPremTotal_str = (month.TOT_CASH_MOTOR_PRM + month.TOT_DEBIT_MOTOR_PRM + month.TOT_CASH_NON_MOTOR_PRM + month.TOT_DEBIT_NON_MOTOR_PRM).ToString("N2"),
+                indMonthPremTotal_str = (month.TOT_CASH_MOTOR_PRM + month.TOT_DEBIT_MOTOR_PRM + month.TOT_CASH_NON_MOTOR_PRM + month.TOT_DEBIT_NON_MOTOR_PRM).ToString("N0"),
                 indMonthPrem_refund = (month.TOT_MOTOR_REFUND_PRM + month.TOT_NON_MOTOR_REFUND_PRM),
-                indMonthPrem_refund_str = (month.TOT_MOTOR_REFUND_PRM + month.TOT_NON_MOTOR_REFUND_PRM).ToString("N2"),
+                indMonthPrem_refund_str = (month.TOT_MOTOR_REFUND_PRM + month.TOT_NON_MOTOR_REFUND_PRM).ToString("N0"),
                 indMonthPremTotal_cash = month.TOT_CASH_MOTOR_PRM + month.TOT_CASH_NON_MOTOR_PRM,
                 indMonthPremTotal_Dbt = month.TOT_DEBIT_MOTOR_PRM + month.TOT_DEBIT_NON_MOTOR_PRM,
 
                 indYearPremTotal = year.TOT_CASH_MOTOR_PRM + year.TOT_DEBIT_MOTOR_PRM + year.TOT_CASH_NON_MOTOR_PRM + year.TOT_DEBIT_NON_MOTOR_PRM ,
-                indYearPremTotal_str = (year.TOT_CASH_MOTOR_PRM + year.TOT_DEBIT_MOTOR_PRM + year.TOT_CASH_NON_MOTOR_PRM + year.TOT_DEBIT_NON_MOTOR_PRM).ToString("N2"),
+                indYearPremTotal_str = (year.TOT_CASH_MOTOR_PRM + year.TOT_DEBIT_MOTOR_PRM + year.TOT_CASH_NON_MOTOR_PRM + year.TOT_DEBIT_NON_MOTOR_PRM).ToString("N0"),
                 indYearPrem_refund = (year.TOT_MOTOR_REFUND_PRM + year.TOT_NON_MOTOR_REFUND_PRM),
-                indYearPrem_refund_str = (year.TOT_MOTOR_REFUND_PRM + year.TOT_NON_MOTOR_REFUND_PRM).ToString("N2"),
+                indYearPrem_refund_str = (year.TOT_MOTOR_REFUND_PRM + year.TOT_NON_MOTOR_REFUND_PRM).ToString("N0"),
                 indYearPremTotal_cash = year.TOT_CASH_MOTOR_PRM + year.TOT_CASH_NON_MOTOR_PRM,
                 indYearPremTotal_Dbt = year.TOT_DEBIT_MOTOR_PRM + year.TOT_DEBIT_NON_MOTOR_PRM,
 
@@ -423,12 +423,12 @@ namespace Agent_App.ViewModels
                 indYearPol_New_Dbt = year.DEBIT_NEW_MOTOR + year.DEBIT_NEW_NON_MOTOR,
 
                 indMonthPrem_New = month.CASH_NEW_MOTOR_PRM + month.DEBIT_NEW_MOTOR_PRM + month.CASH_NEW_NON_MOTOR_PRM + month.DEBIT_NEW_NON_MOTOR_PRM,
-                indMonthPrem_New_str = (month.CASH_NEW_MOTOR_PRM + month.DEBIT_NEW_MOTOR_PRM + month.CASH_NEW_NON_MOTOR_PRM + month.DEBIT_NEW_NON_MOTOR_PRM).ToString("N2"),
+                indMonthPrem_New_str = (month.CASH_NEW_MOTOR_PRM + month.DEBIT_NEW_MOTOR_PRM + month.CASH_NEW_NON_MOTOR_PRM + month.DEBIT_NEW_NON_MOTOR_PRM).ToString("N0"),
                 indMonthPrem_New_Cash = month.CASH_NEW_MOTOR_PRM + month.CASH_NEW_NON_MOTOR_PRM,
                 indMonthPrem_New_Dbt = month.DEBIT_NEW_MOTOR_PRM + month.DEBIT_NEW_NON_MOTOR_PRM,
 
                 indYearPrem_New = year.CASH_NEW_MOTOR_PRM + year.DEBIT_NEW_MOTOR_PRM + year.CASH_NEW_NON_MOTOR_PRM + year.DEBIT_NEW_NON_MOTOR_PRM,
-                indYearPrem_New_str = (year.CASH_NEW_MOTOR_PRM + year.DEBIT_NEW_MOTOR_PRM + year.CASH_NEW_NON_MOTOR_PRM + year.DEBIT_NEW_NON_MOTOR_PRM).ToString("N2"),
+                indYearPrem_New_str = (year.CASH_NEW_MOTOR_PRM + year.DEBIT_NEW_MOTOR_PRM + year.CASH_NEW_NON_MOTOR_PRM + year.DEBIT_NEW_NON_MOTOR_PRM).ToString("N0"),
                 indYearPrem_New_Cash = year.CASH_NEW_MOTOR_PRM + year.CASH_NEW_NON_MOTOR_PRM,
                 indYearPrem_New_Dbt = year.DEBIT_NEW_MOTOR_PRM + year.DEBIT_NEW_NON_MOTOR_PRM,
 
@@ -441,12 +441,12 @@ namespace Agent_App.ViewModels
                 indYearPol_Renewal_Dbt = year.DEBIT_REN_MOTOR + year.DEBIT_REN_NON_MOTOR,
 
                 indMonthPrem_Renewal = month.CASH_REN_MOTOR_PRM + month.DEBIT_REN_MOTOR_PRM + month.CASH_REN_NON_MOTOR_PRM + month.DEBIT_REN_NON_MOTOR_PRM,
-                indMonthPrem_Renewal_str = (month.CASH_REN_MOTOR_PRM + month.DEBIT_REN_MOTOR_PRM + month.CASH_REN_NON_MOTOR_PRM + month.DEBIT_REN_NON_MOTOR_PRM).ToString("N2"),
+                indMonthPrem_Renewal_str = (month.CASH_REN_MOTOR_PRM + month.DEBIT_REN_MOTOR_PRM + month.CASH_REN_NON_MOTOR_PRM + month.DEBIT_REN_NON_MOTOR_PRM).ToString("N0"),
                 indMonthPrem_Renewal_cash = month.CASH_REN_MOTOR_PRM + month.CASH_REN_NON_MOTOR_PRM,
                 indMonthPrem_Renewal_Dbt = month.DEBIT_REN_MOTOR_PRM + month.DEBIT_REN_NON_MOTOR_PRM,
 
                 indYearPrem_Renewal = year.CASH_REN_MOTOR_PRM + year.DEBIT_REN_MOTOR_PRM + year.CASH_REN_NON_MOTOR_PRM + year.DEBIT_REN_NON_MOTOR_PRM,
-                indYearPrem_Renewal_str = (year.CASH_REN_MOTOR_PRM + year.DEBIT_REN_MOTOR_PRM + year.CASH_REN_NON_MOTOR_PRM + year.DEBIT_REN_NON_MOTOR_PRM).ToString("N2"),
+                indYearPrem_Renewal_str = (year.CASH_REN_MOTOR_PRM + year.DEBIT_REN_MOTOR_PRM + year.CASH_REN_NON_MOTOR_PRM + year.DEBIT_REN_NON_MOTOR_PRM).ToString("N0"),
                 indYearPrem_Renewal_cash = year.CASH_REN_MOTOR_PRM + year.CASH_REN_NON_MOTOR_PRM,
                 indYearPrem_Renewal_Dbt = year.DEBIT_REN_MOTOR_PRM + year.DEBIT_REN_NON_MOTOR_PRM,
 
@@ -464,20 +464,24 @@ namespace Agent_App.ViewModels
         {
             double t = ownAgt.indMonthNoPol_Renewal;
 
-            var model = new PlotModel { Title = "Number of Policies for " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Convert.ToInt32(ownAgt.month)) };
+            var model = new PlotModel { Title = "No. of Policies for " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Convert.ToInt32(ownAgt.month)) };
 
             var ps = new PieSeries
             {
                 StrokeThickness = .25,
                 InsideLabelPosition = .25,
+                TickRadialLength = 0.8,
                 AngleSpan = 360,
-                StartAngle = 0
+                StartAngle = 0,
+
+                Diameter = 0.9,
+                InnerDiameter = .4
             };
 
-            ps.Slices.Add(new PieSlice("Cash - New ", ownAgt.indMonthNoPol_New_Cash) { IsExploded = false, Fill = OxyColor.FromRgb(130, 177, 185) });
-            ps.Slices.Add(new PieSlice("Debit - New", ownAgt.indMonthNoPol_New_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(54, 139, 193) });
-            ps.Slices.Add(new PieSlice("Cash - Renewals", ownAgt.indMonthNoPol_Renewal_cash) { IsExploded = false, Fill = OxyColor.FromRgb(235, 199, 170) });
-            ps.Slices.Add(new PieSlice("Debit - Renewals", ownAgt.indMonthNoPol_Renewal_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(195, 159, 130) });
+            ps.Slices.Add(new PieSlice("", ownAgt.indMonthNoPol_New_Cash) { IsExploded = false, Fill = OxyColor.FromRgb(130, 177, 185) });
+            ps.Slices.Add(new PieSlice("", ownAgt.indMonthNoPol_New_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(54, 139, 193) });
+            ps.Slices.Add(new PieSlice("", ownAgt.indMonthNoPol_Renewal_cash) { IsExploded = false, Fill = OxyColor.FromRgb(235, 199, 170) });
+            ps.Slices.Add(new PieSlice("", ownAgt.indMonthNoPol_Renewal_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(195, 159, 130) });
             model.Series.Add(ps);
             return model;
         }
@@ -485,20 +489,24 @@ namespace Agent_App.ViewModels
         private PlotModel Indvidual_year_no_of_pol()
         {
 
-            var model = new PlotModel { Title = "Number of Policies for " + ownAgt.year };
+            var model = new PlotModel { Title = "No. of Policies for " + ownAgt.year };
 
             var ps = new PieSeries
             {
                 StrokeThickness = .25,
                 InsideLabelPosition = .25,
+                TickRadialLength = 0.8,
                 AngleSpan = 360,
-                StartAngle = 0
+                StartAngle = 0,
+
+                Diameter = 0.9,
+                InnerDiameter = .4
             };
 
-            ps.Slices.Add(new PieSlice("Cash - New", ownAgt.indYearPol_New_Cash) { IsExploded = false, Fill = OxyColor.FromRgb(130, 177, 185) });
-            ps.Slices.Add(new PieSlice("Debit - New", ownAgt.indYearPol_New_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(54, 139, 193) });
-            ps.Slices.Add(new PieSlice("Cash - Renewals", ownAgt.indYearPol_Renewal_cash) { IsExploded = false, Fill = OxyColor.FromRgb(235, 199, 170) });
-            ps.Slices.Add(new PieSlice("Debit - Renewals", ownAgt.indYearPol_Renewal_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(195, 159, 130) });
+            ps.Slices.Add(new PieSlice("", ownAgt.indYearPol_New_Cash) { IsExploded = false, Fill = OxyColor.FromRgb(130, 177, 185) });
+            ps.Slices.Add(new PieSlice("", ownAgt.indYearPol_New_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(54, 139, 193) });
+            ps.Slices.Add(new PieSlice("", ownAgt.indYearPol_Renewal_cash) { IsExploded = false, Fill = OxyColor.FromRgb(235, 199, 170) });
+            ps.Slices.Add(new PieSlice("", ownAgt.indYearPol_Renewal_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(195, 159, 130) });
             model.Series.Add(ps);
             return model;
         }
@@ -512,14 +520,18 @@ namespace Agent_App.ViewModels
             {
                 StrokeThickness = .25,
                 InsideLabelPosition = .25,
+                TickRadialLength = 0.8,
                 AngleSpan = 360,
-                StartAngle = 0
+                StartAngle = 0,
+
+                Diameter = 0.9,
+                InnerDiameter = .4
             };
 
-            ps.Slices.Add(new PieSlice("Cash - New", ownAgt.indMonthPrem_New_Cash) { IsExploded = false, Fill = OxyColor.FromRgb(130, 177, 185) });
-            ps.Slices.Add(new PieSlice("Debit - New", ownAgt.indMonthPrem_New_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(54, 139, 193) });
-            ps.Slices.Add(new PieSlice("Cash - Renewals", ownAgt.indMonthPrem_Renewal_cash) { IsExploded = false, Fill = OxyColor.FromRgb(235, 199, 170) });
-            ps.Slices.Add(new PieSlice("Debit - Renewals", ownAgt.indMonthPrem_Renewal_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(195, 159, 130) });
+            ps.Slices.Add(new PieSlice("", ownAgt.indMonthPrem_New_Cash) { IsExploded = false, Fill = OxyColor.FromRgb(130, 177, 185) });
+            ps.Slices.Add(new PieSlice("", ownAgt.indMonthPrem_New_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(54, 139, 193) });
+            ps.Slices.Add(new PieSlice("", ownAgt.indMonthPrem_Renewal_cash) { IsExploded = false, Fill = OxyColor.FromRgb(235, 199, 170) });
+            ps.Slices.Add(new PieSlice("", ownAgt.indMonthPrem_Renewal_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(195, 159, 130) });
             model.Series.Add(ps);
             return model;
         }
@@ -533,14 +545,18 @@ namespace Agent_App.ViewModels
             {
                 StrokeThickness = .25,
                 InsideLabelPosition = .25,
+                TickRadialLength = 0.8,
                 AngleSpan = 360,
-                StartAngle = 0
+                StartAngle = 0,
+
+                Diameter = 0.9,
+                InnerDiameter = .4
             };
 
-            ps.Slices.Add(new PieSlice("Cash - New", ownAgt.indYearPrem_New_Cash) { IsExploded = false, Fill = OxyColor.FromRgb(130, 177, 185) });
-            ps.Slices.Add(new PieSlice("Debit - New", ownAgt.indYearPrem_New_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(54, 139, 193) });
-            ps.Slices.Add(new PieSlice("Cash - Renewals", ownAgt.indYearPrem_Renewal_cash) { IsExploded = false, Fill = OxyColor.FromRgb(235, 199, 170) });
-            ps.Slices.Add(new PieSlice("Debit - Renewals", ownAgt.indYearPrem_Renewal_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(195, 159, 130) });
+            ps.Slices.Add(new PieSlice("", ownAgt.indYearPrem_New_Cash) { IsExploded = false, Fill = OxyColor.FromRgb(130, 177, 185) });
+            ps.Slices.Add(new PieSlice("", ownAgt.indYearPrem_New_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(54, 139, 193) });
+            ps.Slices.Add(new PieSlice("", ownAgt.indYearPrem_Renewal_cash) { IsExploded = false, Fill = OxyColor.FromRgb(235, 199, 170) });
+            ps.Slices.Add(new PieSlice("", ownAgt.indYearPrem_Renewal_Dbt) { IsExploded = false, Fill = OxyColor.FromRgb(195, 159, 130) });
             model.Series.Add(ps);
             return model;
         }
@@ -553,8 +569,8 @@ namespace Agent_App.ViewModels
         private void Populate_controls(Models.AgentPerformance monthPerf, Models.AgentPerformance yearPerf, string month, string year)
         {
             inq_year = Convert.ToInt32(year);
-            lbl_mon_NOP = "Number of Policies for " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Convert.ToInt32(month));
-            lbl_yr_NOP = "Number of Policies for " + inq_year;
+            lbl_mon_NOP = "No. of Policies for " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Convert.ToInt32(month));
+            lbl_yr_NOP = "No. of Policies for " + inq_year;
             lbl_mon_prem = "Total Premium for " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Convert.ToInt32(month));
             lbl_yr_prem = "Total Premium for " + inq_year;
 
