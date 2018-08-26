@@ -111,7 +111,7 @@ namespace Agent_App.Views
 
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    if (vm.Message == "Logged in Successfully")
+                    if (vm.LoginSuccess)
                     {
                         if (Settings.Username == "")
                         {

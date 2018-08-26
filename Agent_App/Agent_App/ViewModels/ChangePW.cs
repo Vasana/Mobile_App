@@ -16,13 +16,23 @@ namespace Agent_App.ViewModels
     {
         private ApiServices _apiServices = new ApiServices();
         private ChangePasswordBindingModel changepwd_mdl = new ChangePasswordBindingModel();
-
-
-        public Color textcolor { get; set; }
+                       
         public string old_password { get; set; }
         public string new_password { get; set; }
         public string confirm_password { get; set; }
         public bool _loginSuccess;
+
+        public Color Textcolor
+        {
+            get { return _textColor; }
+            set
+            {
+                _textColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Color _textColor;
 
         public bool IsBusy
         {
@@ -61,7 +71,7 @@ namespace Agent_App.ViewModels
         public ChangePW()
         {
             PwdChanged = false;
-            textcolor = Color.Black;
+            Textcolor = Color.Black;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -108,15 +118,17 @@ namespace Agent_App.ViewModels
                                 
                                 if (response == "Successful")
                                 {
-                                    textcolor = Color.Green;
+                                    Textcolor = Color.Green;
                                     IsBusy = false;
                                     PwdChanged = true;
+                                    Settings.Username = null;
+                                    Settings.Password = null;
                                     Message = "Password Successfully Updated.";
                                     
                                 }
                                 else
                                 {
-                                    textcolor = Color.Red;
+                                    Textcolor = Color.Red;
                                     IsBusy = false;
                                     Message = "Failed to Change Password. Please retry.";
                                     
@@ -128,15 +140,15 @@ namespace Agent_App.ViewModels
                             }
                             else
                             {
-                                textcolor = Color.Red;
+                                Textcolor = Color.Red;
                                 IsBusy = false;
                                 Message = "New password cannot be the current password.";
-                                textcolor = Color.Red;
+                                Textcolor = Color.Red;
                             }
                         }
                         else
                         {
-                            textcolor = Color.Red;
+                            Textcolor = Color.Red;
                             IsBusy = false;
                             Message = "New Password didn't match with confirmation";
 
@@ -144,7 +156,7 @@ namespace Agent_App.ViewModels
                     }
                     else
                     {
-                        textcolor = Color.Red;
+                        Textcolor = Color.Red;
                         IsBusy = false;
                         Message = "Please Enter Correct Values";
                     }

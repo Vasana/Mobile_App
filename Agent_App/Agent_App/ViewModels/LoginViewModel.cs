@@ -65,50 +65,50 @@ namespace Agent_App.ViewModels
 
         public string _message;
        
-        public ICommand LoginCommand
-        {
-            get
-            {
-                return new Command(async() =>
-               {
-                   IsBusy = true;
-                   LoginEnabled = false; 
-                   var accessToken =  await _apiServices.LoginAsync(Username, Password);
+        //public ICommand LoginCommand
+        //{
+        //    get
+        //    {
+        //        return new Command(async() =>
+        //       {
+        //           IsBusy = true;
+        //           LoginEnabled = false; 
+        //           var accessToken =  await _apiServices.LoginAsync(Username, Password);
 
-                   LoginEnabled = true;
-                   if (accessToken == null)
-                   {                       
-                       IsBusy = false;
-                       LoginSuccess = false;
-                       Message = "Login failed";                       
-                   }
-                   else
-                   {
-                       Settings.AccessToken = accessToken;
-                       //if (Settings.Username ==  "" && Settings.Password == "")
-                       //{
-                       //    Settings.Username = Username;
-                       //    Settings.Password = Password;                          
-                       //}
+        //           LoginEnabled = true;
+        //           if (accessToken == null)
+        //           {                       
+        //               IsBusy = false;
+        //               LoginSuccess = false;
+        //               Message = "Login failed";                       
+        //           }
+        //           else
+        //           {
+        //               Settings.AccessToken = accessToken;
+        //               //if (Settings.Username ==  "" && Settings.Password == "")
+        //               //{
+        //               //    Settings.Username = Username;
+        //               //    Settings.Password = Password;                          
+        //               //}
                        
-                       Message = "Logged in Successfully";
-                       LoginSuccess = true;
+        //               Message = "Logged in Successfully";
+        //               LoginSuccess = true;
                        
-                       var nav = new NavigationPage(new LandingPage());
-                       nav.BarBackgroundColor = Color.FromHex("#00adbb");
-                       Application.Current.MainPage = nav;
-                       AgentProfile agentProfile = new AgentProfile();
-                       agentProfile = await _apiServices.GetAgentProfile(accessToken);
-                       Settings.jobRole = agentProfile.Role;
-                       Settings.agentCode = (agentProfile.Role == "Organizer" ? agentProfile.Organizer_code.ToString() : agentProfile.Agent_code.ToString());
-                       Settings.orgTeamCode = (agentProfile.Role == "Organizer" ? agentProfile.Organizer_codeTeam.ToString():"");
-                       IsBusy = false;
+        //               var nav = new NavigationPage(new LandingPage());
+        //               nav.BarBackgroundColor = Color.FromHex("#00adbb");
+        //               Application.Current.MainPage = nav;
+        //               AgentProfile agentProfile = new AgentProfile();
+        //               agentProfile = await _apiServices.GetAgentProfile(accessToken);
+        //               Settings.jobRole = agentProfile.Role;
+        //               Settings.agentCode = (agentProfile.Role == "Organizer" ? agentProfile.Organizer_code.ToString() : agentProfile.Agent_code.ToString());
+        //               Settings.orgTeamCode = (agentProfile.Role == "Organizer" ? agentProfile.Organizer_codeTeam.ToString():"");
+        //               IsBusy = false;
 
-                   }
-               });
-            }
+        //           }
+        //       });
+        //    }
 
-        }
+        //}
 
         public async Task Login()
         {
@@ -127,7 +127,7 @@ namespace Agent_App.ViewModels
             {
                 Settings.AccessToken = accessToken;                
 
-                Message = "Logged in Successfully";
+                //Message = "Logged in Successfully";
                 LoginSuccess = true;
                 
                 AgentProfile agentProfile = new AgentProfile();
