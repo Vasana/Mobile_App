@@ -75,7 +75,7 @@
     <EmbeddedResource Update="Views\ChangePwd.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ClaimHistoryPage.xaml">
+    <EmbeddedResource Update="Views\Policy_Management\ClaimHistoryPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\CommonUtilsPage.xaml">
@@ -84,7 +84,7 @@
     <EmbeddedResource Update="Views\GeneralMenuPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\GenPolicyDetails.xaml">
+    <EmbeddedResource Update="Views\Policy_Management\GenPolicyDetails.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\GenRemindsTemplate.xaml">
@@ -114,10 +114,10 @@
     <EmbeddedResource Update="Views\Performance\Individual\performance_stats.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\PolicyFlagView.xaml">
+    <EmbeddedResource Update="Views\Policy_Management\PolicyFlagView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\PolicySearchView.xaml">
+    <EmbeddedResource Update="Views\Policy_Management\PolicySearchView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\CardViewTemplate.xaml">
@@ -132,16 +132,16 @@
     <EmbeddedResource Update="Views\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\PolicyList.xaml">
+    <EmbeddedResource Update="Views\Policy_Management\PolicyList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\PolicyViewTemplate.xaml">
+    <EmbeddedResource Update="Views\Policy_Management\PolicyViewTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\PopUp_Perform.xaml">
+    <EmbeddedResource Update="Views\Policy_Management\PopUp_Perform.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\PremiumHistPage.xaml">
+    <EmbeddedResource Update="Views\Policy_Management\PremiumHistPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Products\PortfolioLanding.xaml">
