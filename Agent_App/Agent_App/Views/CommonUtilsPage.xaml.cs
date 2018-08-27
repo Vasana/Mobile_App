@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Agent_App.Views.Products;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,7 +31,7 @@ namespace Agent_App.Views
 
         private void BtnPromotions_Clicked(object sender, EventArgs e)
         {
-
+            Navigation.PushAsync(new PortfolioLanding());
         }
 
         private void btnSettings_Clicked(object sender, EventArgs e)
