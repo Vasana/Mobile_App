@@ -66,7 +66,7 @@ namespace Agent_App.Views
                         var answer = await DisplayAlert("Alert", message, "Yes", "No");
                         if (answer)
                         {
-                            Device.OpenUri(new System.Uri("http://www.srilankainsurance.lk/apk/english.pdf"));
+                            Device.OpenUri(new System.Uri("http://www.srilankainsurance.lk/apk/SLICAgent.apk"));
                         }
                         var closer = DependencyService.Get<ICloseApplication>();
                         if (closer != null)
@@ -78,7 +78,7 @@ namespace Agent_App.Views
                         var answer = await DisplayAlert("Alert", message, "Yes", "No");
                         if (answer)
                         {
-                            Device.OpenUri(new System.Uri("http://www.srilankainsurance.lk/apk/AgentApp.apk"));
+                            Device.OpenUri(new System.Uri("http://www.srilankainsurance.lk/apk/SLICAgent.apk"));
                             var closer = DependencyService.Get<ICloseApplication>();
                             if (closer != null)
                                 closer.CloseApp();
@@ -131,13 +131,14 @@ namespace Agent_App.Views
                                 Settings.Password = null;
                             }
                         }
+
+                        var nav = new NavigationPage(new LandingPage());
+                        nav.BarBackgroundColor = Color.FromHex("#00adbb");
+                        Application.Current.MainPage = nav;
                     }
 
                 });
-
-                var nav = new NavigationPage(new LandingPage());
-                nav.BarBackgroundColor = Color.FromHex("#00adbb");
-                Application.Current.MainPage = nav;
+                                
             }
             else
             {
