@@ -118,7 +118,7 @@ namespace Agent_App.Views
                             var answer = await DisplayAlert("Alert", "Do you want to save your Login Credentials?", "Yes", "No");
                             if (answer)
                             {
-                                if (Settings.Username == "" && Settings.Password == "")
+                                if (Settings.Username == "" && Settings.Password == "") 
                                 {
                                     Settings.Username = entUsername.Text;
                                     Settings.Password = entPassword.Text;
