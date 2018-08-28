@@ -7,7 +7,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Color x:Key="profileBorderColor">#1fa6bc</Color>
+            <Color x:Key="profileBorderColor">#8fd2dd</Color>
             <Color x:Key="profileBgColor">#ffffff</Color>
             <Color x:Key="titleTopColor">#434444</Color>
             <Color x:Key="titleBottomColor">#a3a3a3</Color>
@@ -85,7 +85,7 @@
 
 
                 <BoxView  BackgroundColor="{StaticResource profileBorderColor}"/>
-                <Image Opacity="0.5" Source="coverbg.png" Aspect="Fill" HeightRequest="120"/>
+                <Image Opacity="1" Source="coverbg.png" Aspect="Fill" HeightRequest="100"/>
                 <Image Opacity="1" Margin="0, -1" Source="curvebg.png" Aspect="Fill" VerticalOptions="End" HeightRequest="120"/>
 
                 <StackLayout Grid.Row="1" Padding="0,70,0,0">
