@@ -2,88 +2,162 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Agent_App.ViewModels"
-             x:Class="Agent_App.Views.Agent_profile">
+             xmlns:local="clr-namespace:Agent_App"
+             x:Class="Agent_App.Views.Agent_profile" BackgroundColor="White">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="profileBorderColor">#8fd2dd</Color>
+            <Color x:Key="profileBgColor">#ffffff</Color>
+            <Color x:Key="titleTopColor">#434444</Color>
+            <Color x:Key="titleBottomColor">#a3a3a3</Color>
+            <Color x:Key="buttonTextColor">#ffffff</Color>
+            <Color x:Key="buttonBorder">#048ca2</Color>
+            <Color x:Key="butonBgColor">#1fa6bc</Color>
+            <Color x:Key="LabelTxtColor">#0fdc44</Color>
+
+            <x:Double x:Key="titleTopFontSize">16</x:Double>
+            <x:Double x:Key="titleBottomFontSize">14</x:Double>
+            <x:Double x:Key="buttonFontSize">15</x:Double>
+
+            <OnPlatform x:Key="titleFont" x:TypeArguments="x:String">
+                <On Platform="iOS">HelveticaNeue-Light</On>
+                <On Platform="Android">sans-serif-light</On>
+            </OnPlatform>
+            <Style x:Key="profileFrameStyle" TargetType="Frame">
+                <Setter Property="OutlineColor" Value="{StaticResource buttonTextColor}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource profileBgColor}"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="0,60,0,0"/>
+                <Setter Property="Padding" Value="5"/>
+            </Style>
+
+            <Style x:Key="titleTop" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource titleFont}"/>
+                <Setter Property="FontSize" Value="{StaticResource titleTopFontSize}"/>
+                <Setter Property="TextColor" Value="{StaticResource titleTopColor}" />
+            </Style>
+
+            <Style x:Key="titleBottom" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource titleFont}"/>
+                <Setter Property="FontSize" Value="{StaticResource titleBottomFontSize}"/>
+                <Setter Property="TextColor" Value="{StaticResource titleBottomColor}" />
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+            <Style x:Key="uploadBtn" TargetType="Button">
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="20"/>
+                <Setter Property="TextColor" Value="{StaticResource buttonTextColor}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource butonBgColor}"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="BorderColor" Value="{StaticResource buttonBorder}"/>
+                <Setter Property="WidthRequest" Value="350"/>
+                <Setter Property="BorderRadius" Value="20"/>
+                <Setter Property="FontSize" Value="{StaticResource buttonFontSize}"/>
+            </Style>
+
+            <Style x:Key="infoLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource LabelTxtColor}"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="TranslationX" Value="0"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.BindingContext>
         <viewmodels:AgentProfileVM/>
     </ContentPage.BindingContext>
 
-    <ScrollView>
-        <StackLayout>
-            <Grid>
-
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid RowSpacing="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="20"/>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="20"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="20"/>
-                </Grid.ColumnDefinitions>
 
 
-                <Label HorizontalTextAlignment="Center" FontSize="Large" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Text="Profile" />
+                <BoxView  BackgroundColor="{StaticResource profileBorderColor}"/>
+                <Image Opacity="1" Source="coverbg.png" Aspect="Fill" HeightRequest="100"/>
+                <Image Opacity="1" Margin="0, -1" Source="curvebg.png" Aspect="Fill" VerticalOptions="End" HeightRequest="120"/>
 
-                <Label Text="Initials"  Grid.Row="3" FontSize="Medium" Grid.Column="1" />
-                <Label  Text="{Binding AgentProf.initials}" FontSize="Medium" Grid.Row="3" Grid.Column="3"    />
+                <StackLayout Grid.Row="1" Padding="0,70,0,0">
+                    <Grid HorizontalOptions="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" x:Name="agentInitial_id" Text="{Binding AgentProf.initials}" Style="{StaticResource titleTop}"/>
+                        <Label Grid.Column="1" x:Name="agentName_id" Text="{Binding AgentProf.last_name}" Style="{StaticResource titleTop}"/>
+                    </Grid>
+                    <Label HorizontalOptions="Center" x:Name="roll_lbl_id" Text="{Binding AgentProf.Role}" Style="{StaticResource titleBottom}"/>
 
-                <Label Text="Last Name"  Grid.Row="4" FontSize="Medium" Grid.Column="1" />
-                <Label  Text="{Binding AgentProf.last_name}" FontSize="Medium" Grid.Row="4" Grid.Column="3"    />
 
-                <Label Text="Role"  Grid.Row="5" FontSize="Medium" Grid.Column="1" />
-                <Label  Text="{Binding AgentProf.Role}" FontSize="Medium" Grid.Row="5" Grid.Column="3"    />
+                </StackLayout>
 
-                <Label Text="Agent Code"  Grid.Row="6" FontSize="Medium" Grid.Column="1" />
-                <Label  Text="{Binding AgentProf.Agent_code}" FontSize="Medium" Grid.Row="6" Grid.Column="3"    />
-
-                <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="5" 
-                        BackgroundColor="Transparent"
-                        IsVisible="{Binding AgentProf.Is_org}">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                    </Grid.RowDefinitions>
+                <Grid Grid.Row="2" Margin="0,20,0,0" ColumnSpacing="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="20"/>
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="20"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0">
+                        <Label Text="NIC No."   HorizontalOptions="Center"  Style="{StaticResource titleTop}"/>
+                        <Label Text="{Binding AgentProf.NIC_number}"  HorizontalOptions="Center" Style="{StaticResource titleBottom}"/>
+                    </StackLayout>
 
-                    <Label Text="Personal Code" FontSize="Medium"  Grid.Row="0" Grid.Column="1" />
-                    <Label  Text="{Binding AgentProf.Organizer_code}" FontSize="Medium" Grid.Row="0" Grid.Column="3"    />
+                    <StackLayout Grid.Column="1">
+                        <Label Text="Agent Code"  HorizontalOptions="Center"  Style="{StaticResource titleTop}" />
+                        <Label x:Name="agentCode_id" Text="{Binding AgentProf.Agent_code}"   HorizontalOptions="Center" Style="{StaticResource titleBottom}"/>
+                    </StackLayout>
 
+                    <StackLayout Grid.Column="2">
+                        <Label Text="Personal Code"   HorizontalOptions="Center"  Style="{StaticResource titleTop}"/>
+                        <Label x:Name="persoanlCode_id" Text="{Binding AgentProf.Organizer_code}"   HorizontalOptions="Center" Style="{StaticResource titleBottom}"/>
+                    </StackLayout>
                 </Grid>
 
-                <Label Text="Email" FontSize="Medium" Grid.Row="8" Grid.Column="1" />
-                <Label  FontSize="Medium" Text="{Binding AgentProf.email}" Grid.Row="8" Grid.Column="3"    />
+                <Grid Grid.Row="3" Margin="0,30,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
 
-                <Label FontSize="Medium" Text="Mobile No."  Grid.Row="9" Grid.Column="1" />
-                <Label  FontSize="Medium" Text="{Binding AgentProf.mobileNo}" Grid.Row="9" Grid.Column="3"    />
+                    </Grid.ColumnDefinitions>
 
-                <Label FontSize="Medium" Text="Residential No."  Grid.Row="10" Grid.Column="1" />
-                <Label FontSize="Medium" Text="{Binding AgentProf.residentialNo}" Grid.Row="10" Grid.Column="3"    />
+                    <StackLayout Grid.Column="0">
+                        <Label Text="Email"   HorizontalOptions="Center"  Style="{StaticResource titleTop}"/>
+                        <Label Text="{Binding AgentProf.email}"  HorizontalOptions="Center" Style="{StaticResource titleBottom}"/>
+                    </StackLayout>
 
-                <Label FontSize="Medium" Text="NIC No."  Grid.Row="11" Grid.Column="1" />
-                <Label FontSize="Medium" Text="{Binding AgentProf.NIC_number}" Grid.Row="11" Grid.Column="3"    />
+                    <StackLayout Grid.Column="1">
+                        <Label Text="Mobile No."  HorizontalOptions="Center"  Style="{StaticResource titleTop}" />
+                        <Label Text="{Binding AgentProf.mobileNo}"   HorizontalOptions="Center" Style="{StaticResource titleBottom}"/>
+                    </StackLayout>
 
+                    <StackLayout Grid.Column="2">
+                        <Label Text="Contact No"   HorizontalOptions="Center"  Style="{StaticResource titleTop}"/>
+                        <Label Text="{Binding AgentProf.residentialNo}"   HorizontalOptions="Center" Style="{StaticResource titleBottom}"/>
+                    </StackLayout>
+                </Grid>
+                <StackLayout Grid.Row="4">
+                    <Label Margin="0,100,0,0" Style="{StaticResource infoLabelStyle}"  x:Name="lblSuccessMsg"/>
+                    <Button x:Name="btnPickPhoto" Clicked="btnPickPhoto_Clicked" Style="{StaticResource uploadBtn}" Text="Upload Profile Image"/>
+                </StackLayout>
+
+                <!--profile image-->
+                <Frame  Style="{StaticResource profileFrameStyle}" TranslationY="90">
+                    <Image x:Name="ProfileImage" Source="{Binding ImagePath}" HorizontalOptions="Center" Margin="0,0,0,0" VerticalOptions="Start" BackgroundColor="White"  WidthRequest="150" HeightRequest="150" Aspect="AspectFill"/>
+                </Frame>
             </Grid>
-            <StackLayout Padding="20" Spacing="20">
-                <Label x:Name="lblSuccessMsg" TextColor="Green" HorizontalOptions="Center"/>
-                <Image x:Name="ProfileImage" HeightRequest="150" WidthRequest="150" Source="{Binding ImagePath}" />
-                <Button x:Name="btnPickPhoto" Text="Pick Photo" Clicked="btnPickPhoto_Clicked" HorizontalOptions="FillAndExpand" BackgroundColor="SkyBlue" BorderRadius="10"/>
-            </StackLayout>
-        </StackLayout>
-    </ScrollView>
+        </ScrollView>
+    </ContentPage.Content>
+
 </ContentPage>
