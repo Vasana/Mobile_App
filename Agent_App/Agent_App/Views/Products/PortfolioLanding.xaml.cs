@@ -16,6 +16,7 @@ namespace Agent_App.Views.Products
 		public PortfolioLanding ()
 		{
 			InitializeComponent ();
+            Title = "Company & Product Details";
 		}
 
         private void listofCommon_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -23,6 +24,13 @@ namespace Agent_App.Views.Products
             var vm = BindingContext as ProductViewModel;
             var product = e.Item as Agent_App.Models.Products;
             vm.ShowDetails(product);
+        }
+
+        private void listofGeneral_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var vm = BindingContext as ProductViewModel;
+            var product = e.Item as Agent_App.Models.Products;
+            vm.ShowDetailsGen(product);
         }
     }
 }

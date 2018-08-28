@@ -1,17 +1,25 @@
-﻿using Agent_App.Models;
+﻿using Agent_App.Helpers;
+using Agent_App.Models;
+using Agent_App.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Agent_App.ViewModels
 {
     public class ProductViewModel : INotifyPropertyChanged
     {
+        private ApiServices _apiServices = new ApiServices();
         public ObservableCollection <Products> productList { get; set; }
+        public ObservableCollection<Products> GeneralproductList { get; set; }
+        public int commonHeight { get; set; }
+        public int GeneralHeight { get; set; }
         public Products _oldProduct;
+        public Products _oldGenProduct;
 
 
         public bool IsBusy
@@ -27,14 +35,41 @@ namespace Agent_App.ViewModels
 
         public ProductViewModel()
         {
-            productList = GetProductList();
+            getProductListAsync();
         }
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void ShowDetailsGen(Products product)
+        {
+
+            if (_oldGenProduct == product)
+            {
+                product.IsSelected = !product.IsSelected;
+                UpdateProductsGen(product);
+            }
+            else
+            {
+                if (_oldGenProduct != null)
+                {
+                    _oldGenProduct.IsSelected = false;
+                    UpdateProductsGen(_oldGenProduct);
+                }
+                product.IsSelected = true;
+                UpdateProductsGen(product);
+            }
+            _oldGenProduct = product;
+        }
+        private void UpdateProductsGen(Products product)
+        {
+            var index = GeneralproductList.IndexOf(product);
+            GeneralproductList.Remove(product);
+            GeneralproductList.Insert(index, product);
         }
 
         public void ShowDetails(Products product)
@@ -74,8 +109,8 @@ namespace Agent_App.ViewModels
                     productName = "Company Profile",
                     shortDesc = "Company Profile",
                     longDesc = "longDesc",
-                    imageName = "logo.png",
-                    imageUrl = "logo.png",
+                    imageName = "customer.png",
+                    imageUrl = "customer.png",
                     stream = "Common",
                     IsSelected = false
 
@@ -84,10 +119,10 @@ namespace Agent_App.ViewModels
                 {
                     productID = "C002",
                     productName = "Company Profile",
-                    shortDesc = "Company Profile",
+                    shortDesc = "Company\n Profile\nCompany\n Profile",
                     longDesc = "longDesc",
-                    imageName = "logo.png",
-                    imageUrl = "logo.png",
+                    imageName = "settings.png",
+                    imageUrl = "settings.png",
                     stream = "Common",
                     IsSelected = false
 
@@ -95,6 +130,21 @@ namespace Agent_App.ViewModels
             };
 
             return prodcuts;
+        }
+
+        public async Task getProductListAsync()
+        {
+            IsBusy = true;
+            
+            var commonList = await _apiServices.GetProducts("Common", Settings.AccessToken);
+            productList = new ObservableCollection<Products>(commonList);
+
+            var generalList = await _apiServices.GetProducts("General", Settings.AccessToken);
+            generalList = new ObservableCollection<Products>(generalList);
+
+            IsBusy = false;
+            //return items2;
+
         }
     }
 }

@@ -14,5 +14,7 @@ namespace Agent_App.Models
         public string imageUrl { get; set; }
         public string stream { get; set; }
         public bool IsSelected { get; set; }
+        public int orderNo { get; set; }
+        public string active_flag { get; set; }
     }
 }
