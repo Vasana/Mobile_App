@@ -126,7 +126,7 @@ namespace Agent_App.Views
                             }
                             else
                             {
-                                Settings.AccessToken = null;
+                                //Settings.AccessToken = null;
                                 Settings.Username = null;
                                 Settings.Password = null;
                             }
