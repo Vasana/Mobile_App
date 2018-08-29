@@ -11,26 +11,17 @@ using Xamarin.Forms.Xaml;
 namespace Agent_App.Views.Products
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class PortfolioLanding : ContentPage
+	public partial class CommonPortfolio : ContentPage
 	{
-		public PortfolioLanding ()
+		public CommonPortfolio ()
 		{
 			InitializeComponent ();
-            Title = "Company & Product Details";
 		}
-
         private void listofCommon_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var vm = BindingContext as ProductViewModel;
             var product = e.Item as Agent_App.Models.Products;
             vm.ShowDetails(product);
-        }
-
-        private void listofGeneral_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            var vm = BindingContext as ProductViewModel;
-            var product = e.Item as Agent_App.Models.Products;
-            vm.ShowDetailsGen(product);
         }
     }
 }

@@ -4,32 +4,27 @@
              xmlns:vm="clr-namespace:Agent_App.ViewModels"
              x:Class="Agent_App.Views.Products.PortfolioLanding">
     <ContentPage.BindingContext>
-        <vm:ProductViewModel/>
+        <vm:ProductsGenViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        
+        <ScrollView>
         <StackLayout Spacing="10" Padding="10">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="40"/>
-                    <RowDefinition Height="10"/>
-                    <RowDefinition Height="auto"/>
-
-                    <RowDefinition Height="20"/>
                     <RowDefinition Height="40"/>
-                    <RowDefinition Height="10"/>
-                    <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
 
-                </Grid.RowDefinitions>
+                    </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-
-                <BoxView Grid.Row="1" BackgroundColor="Gray"/>
-                <Label Grid.Row="1" TextColor="White" VerticalTextAlignment="Center"  HorizontalOptions="Center" FontAttributes="Bold" BackgroundColor="Gray" Text="Common"/>
-
-                <ListView Grid.Row="3" x:Name="listofCommon" HasUnevenRows="True" HeightRequest="{Binding commonHeight}" ItemsSource="{Binding productList}" ItemTapped="listofCommon_ItemTapped" >
+                    
+                    <BoxView Grid.Row="1" BackgroundColor="Red"/>
+                <Label Grid.Row="1" TextColor="White" VerticalTextAlignment="Center"  HorizontalOptions="Center" FontAttributes="Bold" BackgroundColor="Red" Text="General Insurance"/>
+                    <Entry Grid.Row="2" Grid.Column="0" HorizontalOptions="End"  Placeholder="Search General Products" x:Name="txtGenproduct" TextChanged="txtGenproduct_TextChanged" />
+                    <ListView Grid.Row="3" x:Name="listofGeneral" HasUnevenRows="True" HeightRequest="{Binding GeneralHeight}" ItemsSource="{Binding GeneralproductList}" ItemTapped="listofCommon_ItemTapped" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -45,15 +40,15 @@
                                                 <RowDefinition Height="auto"/>
                                             </Grid.RowDefinitions>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="80"/>
+                                                <ColumnDefinition Width="150"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <Image Source="{Binding imageUrl}" HorizontalOptions="Start" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" WidthRequest="100" HeightRequest="100"/>
-                                            <Label Text="{Binding productID}" Grid.Row="1" Grid.Column="1"/>
+                                            <Image Source="{Binding imageUrl}" HorizontalOptions="Start" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" WidthRequest="150" HeightRequest="150"/>
+                                            <Label FontSize="Large" FontAttributes="Bold" Text="{Binding productName}" Grid.Row="1" Grid.Column="1"/>
                                             <Label Text="{Binding shortDesc}" Grid.Row="2" Grid.Column="1" />
 
-                                            <Button Text="Test" Grid.Row="4" HeightRequest="40" WidthRequest="100" IsVisible="{Binding IsSelected}" />
+                                            <Button Text="Test" Grid.Row="4" Grid.Column="1" TextColor="White" HeightRequest="40" WidthRequest="100"  HorizontalOptions="End"  BackgroundColor="SkyBlue" IsVisible="{Binding IsSelected}" />
                                             <BoxView HeightRequest="10" IsVisible="{Binding IsSelected}" Grid.Row="5"/>
                                         </Grid>
                                         
@@ -66,12 +61,22 @@
                     </ListView.ItemTemplate>
                 </ListView>
 
-                <BoxView Grid.Row="5" BackgroundColor="Red"/>
+                <!--<BoxView Grid.Row="5" BackgroundColor="Red"/>
                 <Label Grid.Row="5" TextColor="White" VerticalTextAlignment="Center" HorizontalOptions="Center" FontAttributes="Bold" BackgroundColor="Red" Text="General"/>
 
-                <ListView Grid.Row="7" x:Name="listofGeneral" HasUnevenRows="True" HeightRequest="{Binding GeneralHeight}" ItemsSource="{Binding GeneralproductList}" ItemTapped="listofGeneral_ItemTapped" >
-                    <ListView.ItemTemplate>
+                <ListView Grid.Row="7" x:Name="listofGeneral" HasUnevenRows="True" HeightRequest="{Binding GeneralHeight}" ItemsSource="{Binding GeneralproductList}"  ItemTapped="listofGeneral_ItemTapped" >
+
+                        --><!--<ListView.GroupHeaderTemplate>
+                            <DataTemplate>
+                                <ViewCell Height="200">
+                                    <Label Text="{Binding stream}" TextColor="Black" HeightRequest="200"/>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.GroupHeaderTemplate>--><!--
+
+                        <ListView.ItemTemplate>
                         <DataTemplate>
+                            
                             <ViewCell>
                                 <ViewCell.View>
                                     <StackLayout Spacing="0">
@@ -85,29 +90,36 @@
                                                 <RowDefinition Height="auto"/>
                                             </Grid.RowDefinitions>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="80"/>
+                                                <ColumnDefinition Width="150"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <Image Source="{Binding imageUrl}" HorizontalOptions="Start" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" WidthRequest="100" HeightRequest="100"/>
-                                            <Label Text="{Binding productID}" Grid.Row="1" Grid.Column="1"/>
+                                            <Image Source="{Binding imageUrl}" HorizontalOptions="Start" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" WidthRequest="150" HeightRequest="150"/>
+                                            <Label FontSize="Large" FontAttributes="Bold" Text="{Binding productName}" Grid.Row="1" Grid.Column="1"/>
                                             <Label Text="{Binding shortDesc}" Grid.Row="2" Grid.Column="1" />
 
-                                            <Button Text="Test" Grid.Row="4" HeightRequest="40" WidthRequest="100" IsVisible="{Binding IsSelected}" />
+                                            <Button Text="Test" Grid.Row="4" HeightRequest="40" Grid.Column="1" TextColor="White"  HorizontalOptions="End"  BackgroundColor="SkyBlue" WidthRequest="100" IsVisible="{Binding IsSelected}" />
                                             <BoxView HeightRequest="10" IsVisible="{Binding IsSelected}" Grid.Row="5"/>
                                         </Grid>
 
                                     </StackLayout>
                                 </ViewCell.View>
                             </ViewCell>
-                            <!--<ImageCell Text="{Binding productName}" TextColor="Purple" Detail="{Binding shortDesc}" DetailColor="Navy" ImageSource="{Binding imageName}"/>-->
+                            --><!--<ImageCell Text="{Binding productName}" TextColor="Purple" Detail="{Binding shortDesc}" DetailColor="Navy" ImageSource="{Binding imageName}"/>--><!--
 
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                </ListView>
+                </ListView>-->
 
+                <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
+                            HorizontalOptions="Center" VerticalOptions="Center">
+                    <ActivityIndicator.Scale>
+                        <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
+                    </ActivityIndicator.Scale>
+                </ActivityIndicator>
             </Grid>
 
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

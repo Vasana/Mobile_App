@@ -36,6 +36,9 @@
     <Compile Update="Views\Performance\Team\Agents_team_Performance.xaml.cs">
       <DependentUpon>Agents_team_Performance.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Products\GeneralProducts.xaml.cs">
+      <DependentUpon>GeneralProducts.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -144,7 +147,13 @@
     <EmbeddedResource Update="Views\Policy_Management\PremiumHistPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Products\PortfolioLanding.xaml">
+    <EmbeddedResource Update="Views\Products\CommonPortfolio.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Products\GeneralProducts.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Products\Product_Landing.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\RegisterPage.xaml">
