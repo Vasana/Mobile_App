@@ -11,36 +11,30 @@ using System.Threading.Tasks;
 
 namespace Agent_App.ViewModels
 {
-    public class ProductViewModel : INotifyPropertyChanged
+    public class ProductsGenViewModel : INotifyPropertyChanged
     {
         private ApiServices _apiServices = new ApiServices();
-        public ObservableCollection<Products> _productList;
-        public ObservableCollection <Products> productList
+        public ObservableCollection<Products> _GeneralproductList;
+        public ObservableCollection<Products> GeneralproductList
         {
-            get { return _productList; }
+            get { return _GeneralproductList; }
             set
             {
-                _productList = value;
+                _GeneralproductList = value;
                 OnPropertyChanged();
             }
         }
-
-        
-        public int _commonHeight;
-        public int commonHeight
+        public int _GeneralHeight;
+        public int GeneralHeight
         {
-            get { return _commonHeight; }
+            get { return _GeneralHeight; }
             set
             {
-                _commonHeight = value;
+                _GeneralHeight = value;
                 OnPropertyChanged();
             }
         }
-       
-
-        public Products _oldProduct;
-        
-
+        public Products _oldGenProduct;
 
         public bool IsBusy
         {
@@ -53,67 +47,62 @@ namespace Agent_App.ViewModels
         }
         private bool _isBusy;
 
-        public ProductViewModel()
+        public ProductsGenViewModel()
         {
             DataLoad();
         }
 
+
         private async Task DataLoad()
         {
-            var clist = await getCommonProductListAsync();
-            foreach (Products item in clist)
+
+            var genlist = await getGenerealProductListAsync();
+            foreach (Products item in genlist)
             {
                 item.shortDesc = item.shortDesc.Replace("\\n", "\n");
             }
-            commonHeight = (clist.Count * 180) + 40;
-            productList = new ObservableCollection<Products>(clist);
-            
-           
+            GeneralHeight = (genlist.Count * 180) + 40;
+            GeneralproductList = new ObservableCollection<Products>(genlist);
         }
-        
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        
-
-        public void ShowDetails(Products product)
+        public void ShowDetailsGen(Products product)
         {
 
-            if (_oldProduct == product)
+            if (_oldGenProduct == product)
             {
                 product.IsSelected = !product.IsSelected;
-                UpdateProducts(product);
+                UpdateProductsGen(product);
             }
             else
             {
-                if (_oldProduct != null)
+                if (_oldGenProduct != null)
                 {
-                    _oldProduct.IsSelected = false;
-                    UpdateProducts(_oldProduct);
+                    _oldGenProduct.IsSelected = false;
+                    UpdateProductsGen(_oldGenProduct);
                 }
                 product.IsSelected = true;
-                UpdateProducts(product);
+                UpdateProductsGen(product);
             }
-            _oldProduct = product;
+            _oldGenProduct = product;
         }
-        private void UpdateProducts(Products product)
+        private void UpdateProductsGen(Products product)
         {
-            var index = productList.IndexOf(product);
-            productList.Remove(product);
-            productList.Insert(index, product);
+            var index = GeneralproductList.IndexOf(product);
+            GeneralproductList.Remove(product);
+            GeneralproductList.Insert(index, product);
         }
-        
-        public async Task<IList<Products>> getCommonProductListAsync()
+
+        public async Task<IList<Products>> getGenerealProductListAsync()
         {
             IsBusy = true;
-            var commonList = await _apiServices.GetProducts("Common", Settings.AccessToken);
+            var GeneralList = await _apiServices.GetProducts("General", Settings.AccessToken);
             IsBusy = false;
-            return commonList;
+            return GeneralList;
         }
-        
     }
 }

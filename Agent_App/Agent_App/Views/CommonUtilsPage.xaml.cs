@@ -31,7 +31,7 @@ namespace Agent_App.Views
 
         private void BtnPromotions_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new PortfolioLanding());
+            Navigation.PushAsync(new Product_Landing());
         }
 
         private void btnSettings_Clicked(object sender, EventArgs e)

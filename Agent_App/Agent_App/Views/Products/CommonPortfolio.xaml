@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Agent_App.ViewModels"
+             x:Class="Agent_App.Views.Products.CommonPortfolio">
+    <ContentPage.BindingContext>
+        <vm:ProductViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="10" Padding="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="auto"/>
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <BoxView Grid.Row="1" BackgroundColor="Gray"/>
+                    <Label Grid.Row="1" TextColor="White" VerticalTextAlignment="Center"  HorizontalOptions="Center" FontAttributes="Bold" BackgroundColor="Gray" Text="Common"/>
+
+                    <ListView Grid.Row="3" x:Name="listofCommon" HasUnevenRows="True" HeightRequest="{Binding commonHeight}" ItemsSource="{Binding productList}" ItemTapped="listofCommon_ItemTapped" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.View>
+                                        <StackLayout Spacing="0">
+                                            <Grid >
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="150"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Image Source="{Binding imageUrl}" HorizontalOptions="Start" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" WidthRequest="150" HeightRequest="150"/>
+                                                <Label FontSize="Large" FontAttributes="Bold" Text="{Binding productName}" Grid.Row="1" Grid.Column="1"/>
+                                                <Label Text="{Binding shortDesc}" Grid.Row="2" Grid.Column="1" />
+
+                                                <Button Text="Test" Grid.Row="4" Grid.Column="1" TextColor="White" HeightRequest="40" WidthRequest="100"  HorizontalOptions="End"  BackgroundColor="SkyBlue" IsVisible="{Binding IsSelected}" />
+                                                <BoxView HeightRequest="10" IsVisible="{Binding IsSelected}" Grid.Row="5"/>
+                                            </Grid>
+
+                                        </StackLayout>
+                                    </ViewCell.View>
+                                </ViewCell>
+                                <!--<ImageCell Text="{Binding productName}" TextColor="Purple" Detail="{Binding shortDesc}" DetailColor="Navy" ImageSource="{Binding imageName}"/>-->
+
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
