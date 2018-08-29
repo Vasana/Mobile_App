@@ -11,7 +11,7 @@
     <StackLayout>
         <!--<Entry Text="{Binding AccessToken}" />-->
 
-        <Button Command="{Binding GetIdeasCommand}" Text="Get All Ideas"/>
+        <Button Command="{Binding GetIdeasCommand}" Text="Get All Ideas"/> 
 
         <ListView ItemsSource="{Binding Ideas}" HasUnevenRows="True">
             <ListView.ItemTemplate>
