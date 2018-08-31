@@ -16,5 +16,6 @@ namespace Agent_App.Models
         public bool IsSelected { get; set; }
         public int orderNo { get; set; }
         public string active_flag { get; set; }
+        public string documentUrl { get; set; }
     }
 }
