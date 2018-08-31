@@ -23,7 +23,12 @@
                     
                     <BoxView Grid.Row="1" BackgroundColor="Red"/>
                 <Label Grid.Row="1" TextColor="White" VerticalTextAlignment="Center"  HorizontalOptions="Center" FontAttributes="Bold" BackgroundColor="Red" Text="General Insurance"/>
-                    <Entry Grid.Row="2" Grid.Column="0" HorizontalOptions="End"  Placeholder="Search General Products" x:Name="txtGenproduct" TextChanged="txtGenproduct_TextChanged" />
+                    <StackLayout Grid.Row="2" Orientation="Horizontal" Grid.Column="0" HorizontalOptions="End" VerticalOptions="Center">
+                        <Image Source="search_ico.png" HorizontalOptions="End" VerticalOptions="Center" HeightRequest="30" />
+                        <Entry   HorizontalOptions="End" VerticalOptions="Center"  Placeholder="Search General Products" x:Name="txtGenproduct" TextChanged="txtGenproduct_TextChanged" />
+                        
+                    </StackLayout>
+                    
                     <ListView Grid.Row="3" x:Name="listofGeneral" HasUnevenRows="True" HeightRequest="{Binding GeneralHeight}" ItemsSource="{Binding GeneralproductList}" ItemTapped="listofCommon_ItemTapped" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -48,8 +53,9 @@
                                             <Label FontSize="Large" FontAttributes="Bold" Text="{Binding productName}" Grid.Row="1" Grid.Column="1"/>
                                             <Label Text="{Binding shortDesc}" Grid.Row="2" Grid.Column="1" />
 
-                                            <Button Text="Test" Grid.Row="4" Grid.Column="1" TextColor="White" HeightRequest="40" WidthRequest="100"  HorizontalOptions="End"  BackgroundColor="SkyBlue" IsVisible="{Binding IsSelected}" />
-                                            <BoxView HeightRequest="10" IsVisible="{Binding IsSelected}" Grid.Row="5"/>
+                                            <!--<Button Text="Test" Grid.Row="4" Grid.Column="1" TextColor="White" HeightRequest="40" WidthRequest="100"  HorizontalOptions="End"  BackgroundColor="SkyBlue" IsVisible="{Binding IsSelected}" />-->
+                                                <Label   Grid.Row="4" Grid.Column="1" HorizontalOptions="Start" Text="{Binding longDesc}" IsVisible="False" />
+                                                <BoxView HeightRequest="10" IsVisible="False" Grid.Row="5"/>
                                         </Grid>
                                         
                                     </StackLayout>

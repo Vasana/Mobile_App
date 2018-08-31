@@ -23,6 +23,12 @@ namespace Agent_App.Views.Products
             var vm = BindingContext as ProductsGenViewModel;
             var product = e.Item as Agent_App.Models.Products;
             vm.ShowDetailsGen(product);
+
+            var keyword = txtGenproduct.Text;
+            if (!String.IsNullOrEmpty(keyword))
+            {
+                listofGeneral.ItemsSource = vm.GeneralproductList.Where(x => (x.productName.ToLower()).Contains(keyword.ToLower()) || (x.shortDesc.ToLower()).Contains(keyword.ToLower()));
+            }
         }
         private void txtGenproduct_TextChanged(object sender, TextChangedEventArgs e)
         {

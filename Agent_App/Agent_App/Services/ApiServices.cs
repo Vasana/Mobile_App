@@ -344,9 +344,9 @@ namespace Agent_App.Services
 
         }
 
-        public async Task<IList<Products>> GetProducts(string stream, string accessToken)
+        public async Task<List<Products>> GetProducts(string stream, string accessToken)
         {
-            IList<Products> _ProductList;
+            List<Products> _ProductList;
            // _ProductList = new IList<Products>();
             try
             {
@@ -356,7 +356,7 @@ namespace Agent_App.Services
 
                 var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/GetProductList?businessStream=" + stream.Trim());
 
-                _ProductList = JsonConvert.DeserializeObject<IList<Products>>(json);
+                _ProductList = JsonConvert.DeserializeObject<List<Products>>(json);
 
             }
             catch (Exception e)

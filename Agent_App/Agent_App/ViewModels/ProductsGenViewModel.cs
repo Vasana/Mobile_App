@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms.Extended;
 
 namespace Agent_App.ViewModels
 {
@@ -50,7 +51,43 @@ namespace Agent_App.ViewModels
         public ProductsGenViewModel()
         {
             DataLoad();
+           // DownloadPoliciesAsync();
         }
+        /*
+        public async Task DownloadPoliciesAsync()
+        {
+            GeneralproductList = new InfiniteScrollCollection<Products>
+            {
+                OnLoadMore = async () =>
+                {
+                    IsBusy = true;
+
+                    // load the next page
+                    //var page = GeneralproductList.Count / PageSize;
+
+                    var items = await _apiServices.GetProducts("General", Settings.AccessToken);
+                    GeneralHeight = (items.Count * 180) + 40;
+
+                    IsBusy = false;
+
+                    // return the items that need to be added
+                    return items;
+                },
+                OnCanLoadMore = () =>
+                {
+                    return GeneralproductList.Count < _apiServices.policyCount;
+                }
+            };
+            _oldGenProduct = null;
+            //IsBusy2 = true;
+            var items2 = await _apiServices.GetProducts("General", Settings.AccessToken);
+           // IsBusy2 = false;
+            GeneralproductList.AddRange(items2);
+            GeneralHeight = (items2.Count * 180) + 40;
+            //PoliciesCollection = new InfiniteScrollCollection<CustPolicy>(items);
+
+        }*/
+
 
 
         private async Task DataLoad()

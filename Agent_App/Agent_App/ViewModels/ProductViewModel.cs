@@ -1,6 +1,7 @@
 ﻿using Agent_App.Helpers;
 using Agent_App.Models;
 using Agent_App.Services;
+using Agent_App.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,11 +9,15 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Agent_App.ViewModels
 {
     public class ProductViewModel : INotifyPropertyChanged
     {
+       // public ICommand onProductSelect { get; private set; }
+        
         private ApiServices _apiServices = new ApiServices();
         public ObservableCollection<Products> _productList;
         public ObservableCollection <Products> productList
@@ -55,7 +60,14 @@ namespace Agent_App.ViewModels
 
         public ProductViewModel()
         {
+          //  onProductSelect = new Command<Products>(openUrl);
             DataLoad();
+            
+        }
+
+        void openUrl(Products value)
+        {
+            Products i = value;
         }
 
         private async Task DataLoad()
@@ -78,7 +90,21 @@ namespace Agent_App.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        
+        public ICommand onProductSelect
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    //Application.Current.MainPage = new NavigationPage(new ExampleList());
+
+                    await Application.Current.MainPage.Navigation.PushAsync(new PolicyList());
+                });
+            }
+        }
+
+
+
 
         public void ShowDetails(Products product)
         {
