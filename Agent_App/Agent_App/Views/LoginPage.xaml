@@ -22,6 +22,7 @@
                     <Entry x:Name="entPassword" Text="{Binding Password}" Placeholder="Enter Password" IsPassword="True" FontSize="20" PlaceholderColor="#CCC" TextColor="#555"/>
                     <Label x:Name="lblMesg" Text="{Binding Message}" HorizontalOptions="Center" TextColor="Green" FontSize="20" />
                     <Button x:Name="BtnLogin" Clicked="BtnLogin_Clicked" IsEnabled="{Binding LoginEnabled}" Text="Checking for Updates.. Please wait." BorderColor="#C89400" BackgroundColor="SkyBlue" BorderRadius="10"/>
+                    <Label x:Name="lblTest"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

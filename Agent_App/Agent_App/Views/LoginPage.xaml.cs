@@ -32,7 +32,7 @@ namespace Agent_App.Views
             //NavigationPage.SetHasBackButton(this, false); we are removing the bar from log in page, below line
             NavigationPage.SetHasNavigationBar(this, false);
             LoadProfilePic();
-           
+            lblTest.Text = "Our Basic fire policy will insure your house, whether completed or under construction against following fire and related perils. \n \u2022 Fire and lightning \n \u2022 Riots and strikes \n \u2022 Malicious damage \n \u2022 Explosions \n \u2022 Cyclone/Storm/Tempest and Flood \n \u2022 Earthquake \n \u2022 Natural disasters \n \u2022 Terrorism \n \u2022 Impact \n Electrical extra \n \u2022 Aircraft damage \n \u2022 Bursting and overflowing of water tanks";
         }  
         
         public void LoadProfilePic()
