@@ -14,7 +14,7 @@ namespace Agent_App.Views
 	{
 		public IdeasPage ()
 		{
-			InitializeComponent ();
+			InitializeComponent (); 
 		}
 	}
 }
