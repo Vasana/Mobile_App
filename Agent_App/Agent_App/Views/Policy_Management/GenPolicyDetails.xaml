@@ -21,13 +21,13 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="100" />
+                    <RowDefinition Height="auto" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="100" />
+                    <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
@@ -51,7 +51,7 @@
             <Label Grid.Row="1" Grid.Column="0" VerticalTextAlignment="End" Text="Insured Name" FontSize="Medium"/>
                 <Label Grid.Row="1" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" LineBreakMode="TailTruncation" Text="{Binding GenPolicy.InsuredName}" FontSize="Medium"/>
                 <Label Grid.Row="2" Grid.Column="0" VerticalTextAlignment="Start" Text="Address" FontSize="Medium"/>                
-                <ListView Grid.Row="2" Grid.Column="2" ItemsSource="{Binding GenPolicy.Address}" RowHeight="30">
+                <ListView Grid.Row="2" Grid.Column="2" ItemsSource="{Binding GenPolicy.Address}" RowHeight="30" HeightRequest="120">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -76,7 +76,7 @@
                 <Label Grid.Row="7" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.SumInsured, StringFormat='Rs. {0:N2}'}" FontSize="Medium"/>
                 <Label Grid.Row="8" Grid.Column="0" VerticalTextAlignment="Start" Text="Additional covers" FontSize="Medium"/>
 
-            <ListView Grid.Row="8" Grid.Column="2" ItemsSource="{Binding GenPolicy.AdditionalCovers}" RowHeight="30">
+            <ListView Grid.Row="8" Grid.Column="2" ItemsSource="{Binding GenPolicy.AdditionalCovers}" RowHeight="30" HeightRequest="150">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
