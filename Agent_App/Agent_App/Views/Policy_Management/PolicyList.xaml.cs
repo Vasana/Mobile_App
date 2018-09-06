@@ -44,7 +44,11 @@ namespace Agent_App.Views
 
             PolicySearchView searchView = new PolicySearchView();
             searchView.Disappearing += SearchView_Disappearing;
+            var vm = BindingContext as PoliciesViewModel;
+            if (!String.IsNullOrEmpty(SearchCriteria.Instance.ListDesc))
+                vm.PolicyListDesc = SearchCriteria.Instance.ListDesc;
             PopupNavigation.Instance.PushAsync(searchView);
+
         }
 
         private void btnPayPend_Clicked(object sender1, EventArgs e)
@@ -52,6 +56,8 @@ namespace Agent_App.Views
             SearchCriteria.Instance.NewSearch = true;
             SearchCriteria.Instance.PremiumsPending = true;
             var vm = BindingContext as PoliciesViewModel;
+            vm.PolicyListDesc = "Pending Premiums Policy List";
+            SearchCriteria.Instance.ListDesc = "";
             vm.DownloadPoliciesAsync();
         }
 
@@ -60,6 +66,8 @@ namespace Agent_App.Views
             SearchCriteria.Instance.NewSearch = true;
             SearchCriteria.Instance.ClaimPending = true;
             var vm = BindingContext as PoliciesViewModel;
+            SearchCriteria.Instance.ListDesc = "";
+            vm.PolicyListDesc = "Claims Pending Policy List";
             vm.DownloadPoliciesAsync();
         }
 
@@ -68,6 +76,8 @@ namespace Agent_App.Views
             SearchCriteria.Instance.NewSearch = true;
             SearchCriteria.Instance.Flagged = true;
             var vm = BindingContext as PoliciesViewModel;
+            SearchCriteria.Instance.ListDesc = "";
+            vm.PolicyListDesc = "Reminders Set Policy List";
             vm.DownloadPoliciesAsync();
         }
 
@@ -84,6 +94,8 @@ namespace Agent_App.Views
             SearchCriteria.Instance.BusinessType = "M";
             SearchCriteria.Instance.DebitOutstanding = true;
             var vm = BindingContext as PoliciesViewModel;
+            SearchCriteria.Instance.ListDesc = "";
+            vm.PolicyListDesc = "Debit Outstanding Policy List";
             vm.DownloadPoliciesAsync();
         }
 
@@ -101,6 +113,8 @@ namespace Agent_App.Views
             SearchCriteria.Instance.AllPolicies = true;
             SearchCriteria.Instance.BusinessType = "M";
             var vm = BindingContext as PoliciesViewModel;
+            vm.PolicyListDesc = "Motor Policy List";
+            SearchCriteria.Instance.ListDesc = "";
             vm.DownloadPoliciesAsync();
         }
 
@@ -110,6 +124,8 @@ namespace Agent_App.Views
             SearchCriteria.Instance.AllPolicies = true; //Policies in any policy status
             SearchCriteria.Instance.BusinessType = "G";
             var vm = BindingContext as PoliciesViewModel;
+            vm.PolicyListDesc = "Non-Motor Policy List";
+            SearchCriteria.Instance.ListDesc = "";
             vm.DownloadPoliciesAsync();
         }
     }
