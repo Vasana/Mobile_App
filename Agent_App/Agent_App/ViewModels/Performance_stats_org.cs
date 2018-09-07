@@ -182,7 +182,8 @@ namespace Agent_App.ViewModels
         {
             try
             {
-                month_performance = _apiServices.GetTeamPerformance(Settings.AccessToken, Settings.orgTeamCode, DateTime.Today.ToString("yyyy-MM-01"), DateTime.Today.ToString("yyyy-MM-dd"));
+                //month_performance = _apiServices.GetTeamPerformance(Settings.AccessToken, Settings.orgTeamCode, DateTime.Today.ToString("yyyy-MM-01"), DateTime.Today.ToString("yyyy-MM-dd"));
+                month_performance = _apiServices.GetTeamPerformance(Settings.AccessToken, Settings.orgTeamCode, DateTime.Today.AddYears(-1).ToString("yyyy-MM-01"), DateTime.Today.AddYears(-1).ToString("yyyy-MM-dd"));
                 month_performance_comb.CASH_NEW_MOTOR = month_performance.Sum(x => x.CASH_NEW_MOTOR);
                 month_performance_comb.CASH_NEW_MOTOR_PRM = month_performance.Sum(x => x.CASH_NEW_MOTOR_PRM);
                 month_performance_comb.CASH_NEW_NON_MOTOR = month_performance.Sum(x => x.CASH_NEW_NON_MOTOR);
@@ -214,8 +215,8 @@ namespace Agent_App.ViewModels
 
 
 
-                //year_performance = _apiServices.GetTeamPerformance(Settings.AccessToken, Settings.orgTeamCode, DateTime.Today.ToString("yyyy-01-01"), DateTime.Today.ToString("yyyy-MM-dd"));
-                year_performance = _apiServices.GetTeamPerformance(Settings.AccessToken, Settings.orgTeamCode, DateTime.Today.ToString("yyyy-MM-01"), DateTime.Today.ToString("yyyy-MM-dd"));
+                year_performance = _apiServices.GetTeamPerformance(Settings.AccessToken, Settings.orgTeamCode, DateTime.Today.AddYears(-1).ToString("yyyy-01-01"), DateTime.Today.AddYears(-1).ToString("yyyy-MM-dd"));
+                //year_performance = _apiServices.GetTeamPerformance(Settings.AccessToken, Settings.orgTeamCode, DateTime.Today.ToString("yyyy-MM-01"), DateTime.Today.ToString("yyyy-MM-dd"));
                 year_performance_comb.CASH_NEW_MOTOR = year_performance.Sum(x => x.CASH_NEW_MOTOR);
                 year_performance_comb.CASH_NEW_MOTOR_PRM = year_performance.Sum(x => x.CASH_NEW_MOTOR_PRM);
                 year_performance_comb.CASH_NEW_NON_MOTOR = year_performance.Sum(x => x.CASH_NEW_NON_MOTOR);
@@ -289,8 +290,8 @@ namespace Agent_App.ViewModels
             month_performance_comb.TOT_NON_MOTOR_REFUND_PRM = month_performance.Sum(x => x.TOT_NON_MOTOR_REFUND_PRM);
 
 
-            //year_performance = _apiServices.GetTeamPerformance(Settings.AccessToken, Settings.orgTeamCode, fromDateYear, DateTime.Today.ToString("yyyy-MM-dd"));
-            year_performance = _apiServices.GetTeamPerformance(Settings.AccessToken, Settings.orgTeamCode, fromDateMonth, toDateMonth);
+            year_performance = _apiServices.GetTeamPerformance(Settings.AccessToken, Settings.orgTeamCode, fromDateYear, DateTime.Today.ToString("yyyy-MM-dd"));
+            //year_performance = _apiServices.GetTeamPerformance(Settings.AccessToken, Settings.orgTeamCode, fromDateMonth, toDateMonth);
             year_performance_comb.CASH_NEW_MOTOR = year_performance.Sum(x => x.CASH_NEW_MOTOR);
             year_performance_comb.CASH_NEW_MOTOR_PRM = year_performance.Sum(x => x.CASH_NEW_MOTOR_PRM);
             year_performance_comb.CASH_NEW_NON_MOTOR = year_performance.Sum(x => x.CASH_NEW_NON_MOTOR);
@@ -592,7 +593,7 @@ namespace Agent_App.ViewModels
                     year_performance_comb = new Models.AgentPerformance();
 
                     IsBusy = true;
-                    Task.Delay(5000);
+                    //Task.Delay(5000);
                     month_performance = null;
                     year_performance = null;
                     fetchData((_getMoth.number.ToString().Length == 1 ? "0" + _getMoth.number.ToString() : _getMoth.number.ToString()), _getYear.yearVal.ToString());

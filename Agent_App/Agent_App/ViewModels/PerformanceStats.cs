@@ -473,7 +473,7 @@ namespace Agent_App.ViewModels
                     }
                     //OnPropertyChanged();
 
-                    await Task.Delay(2000);
+                   // await Task.Delay(2000);
                     IsBusy = false;
                 });
             }

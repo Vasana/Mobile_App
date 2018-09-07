@@ -70,6 +70,7 @@ namespace Agent_App.ViewModels
             PolicyListDesc = "Latest 10";
             SearchCriteria.Instance.NewSearch = true;
             SearchCriteria.Instance.TopTen = true;
+            SearchCriteria.Instance.ListDesc = "Latest 10";
             DownloadPoliciesAsync();
         }
 
