@@ -72,7 +72,8 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <ScrollView>
+
+        <Grid>
             <Grid RowSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -80,7 +81,6 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
-
                 </Grid.RowDefinitions>
 
 
@@ -156,8 +156,16 @@
                 <Frame  Style="{StaticResource profileFrameStyle}" TranslationY="90">
                     <Image x:Name="ProfileImage" Source="{Binding ImagePath}" HorizontalOptions="Center" Margin="0,0,0,0" VerticalOptions="Start" BackgroundColor="White"  WidthRequest="150" HeightRequest="150" Aspect="AspectFill"/>
                 </Frame>
+                
             </Grid>
-        </ScrollView>
+            <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
+                            HorizontalOptions="Center" VerticalOptions="Center">
+                <ActivityIndicator.Scale>
+                    <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
+                </ActivityIndicator.Scale>
+            </ActivityIndicator>
+        </Grid>
+
     </ContentPage.Content>
 
 </ContentPage>

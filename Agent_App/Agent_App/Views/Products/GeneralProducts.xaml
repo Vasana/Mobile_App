@@ -15,7 +15,8 @@
         <vm:ProductsGenViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-                
+
+        <Grid>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
@@ -23,20 +24,20 @@
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="auto"/>
 
-                    </Grid.RowDefinitions>
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                    
-                    <BoxView Grid.Row="1" BackgroundColor="Red"/>
+
+                <BoxView Grid.Row="1" BackgroundColor="Red"/>
                 <Label Grid.Row="1" TextColor="White" VerticalTextAlignment="Center"  HorizontalOptions="Center" FontAttributes="Bold" BackgroundColor="Red" Text="General Insurance"/>
-                    <StackLayout Grid.Row="2" Orientation="Horizontal" Grid.Column="0" HorizontalOptions="End" VerticalOptions="Center">
-                        <Image Source="search_ico.png" HorizontalOptions="End" VerticalOptions="Center" HeightRequest="30" />
-                        <Entry   HorizontalOptions="End" VerticalOptions="Center"  Placeholder="Search General Products" x:Name="txtGenproduct" TextChanged="txtGenproduct_TextChanged" />
-                        
-                    </StackLayout>
-                    
-                    <ListView Grid.Row="3" x:Name="listofGeneral" Margin="10,0,0,0" HasUnevenRows="True" ItemsSource="{Binding GeneralproductList}" ItemTapped="listofCommon_ItemTapped" >
+                <StackLayout Grid.Row="2" Orientation="Horizontal" Grid.Column="0" HorizontalOptions="End" VerticalOptions="Center">
+                    <Image Source="search_ico.png" HorizontalOptions="End" VerticalOptions="Center" HeightRequest="30" />
+                    <Entry   HorizontalOptions="End" VerticalOptions="Center"  Placeholder="Search General Products" x:Name="txtGenproduct" TextChanged="txtGenproduct_TextChanged" />
+
+                </StackLayout>
+
+                <ListView Grid.Row="3" x:Name="listofGeneral" Margin="10,0,0,0" HasUnevenRows="True" ItemsSource="{Binding GeneralproductList}" ItemTapped="listofCommon_ItemTapped" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -61,31 +62,33 @@
                                             <Label Text="{Binding shortDesc, Converter= {StaticResource ValueToString}}" Grid.Row="2" Grid.Column="1" />
 
                                             <!--<Button Text="Test" Grid.Row="4" Grid.Column="1" TextColor="White" HeightRequest="40" WidthRequest="100"  HorizontalOptions="End"  BackgroundColor="SkyBlue" IsVisible="{Binding IsSelected}" />-->
-                                                <Label   Grid.Row="4" Grid.Column="1" HorizontalOptions="Start" Text="{Binding longDesc, Converter= {StaticResource ValueToString}}" IsVisible="{Binding IsSelected}" />
-                                                <BoxView HeightRequest="10" IsVisible="{Binding IsSelected}" Grid.Row="5"/>
+                                            <Label   Grid.Row="4" Grid.Column="1" HorizontalOptions="Start" Text="{Binding longDesc, Converter= {StaticResource ValueToString}}" IsVisible="{Binding IsSelected}" />
+                                            <BoxView HeightRequest="10" IsVisible="{Binding IsSelected}" Grid.Row="5"/>
                                         </Grid>
-                                        
+
                                     </StackLayout>
                                 </ViewCell.View>
                             </ViewCell>
-                          <!--<ImageCell Text="{Binding productName}" TextColor="Purple" Detail="{Binding shortDesc}" DetailColor="Navy" ImageSource="{Binding imageName}"/>-->
+                            <!--<ImageCell Text="{Binding productName}" TextColor="Purple" Detail="{Binding shortDesc}" DetailColor="Navy" ImageSource="{Binding imageName}"/>-->
 
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-               
-                    <!--<BoxView Grid.Row="5" BackgroundColor="Red"/>
+
+                <!--<BoxView Grid.Row="5" BackgroundColor="Red"/>
                 <Label Grid.Row="5" TextColor="White" VerticalTextAlignment="Center" HorizontalOptions="Center" FontAttributes="Bold" BackgroundColor="Red" Text="General"/>
 
                 <ListView Grid.Row="7" x:Name="listofGeneral" HasUnevenRows="True" HeightRequest="{Binding GeneralHeight}" ItemsSource="{Binding GeneralproductList}"  ItemTapped="listofGeneral_ItemTapped" >
 
-                        --><!--<ListView.GroupHeaderTemplate>
+                        -->
+                <!--<ListView.GroupHeaderTemplate>
                             <DataTemplate>
                                 <ViewCell Height="200">
                                     <Label Text="{Binding stream}" TextColor="Black" HeightRequest="200"/>
                                 </ViewCell>
                             </DataTemplate>
-                        </ListView.GroupHeaderTemplate>--><!--
+                        </ListView.GroupHeaderTemplate>-->
+                <!--
 
                         <ListView.ItemTemplate>
                         <DataTemplate>
@@ -118,19 +121,24 @@
                                     </StackLayout>
                                 </ViewCell.View>
                             </ViewCell>
-                            --><!--<ImageCell Text="{Binding productName}" TextColor="Purple" Detail="{Binding shortDesc}" DetailColor="Navy" ImageSource="{Binding imageName}"/>--><!--
+                            -->
+                <!--<ImageCell Text="{Binding productName}" TextColor="Purple" Detail="{Binding shortDesc}" DetailColor="Navy" ImageSource="{Binding imageName}"/>-->
+                <!--
 
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>-->
 
-                <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
-                            HorizontalOptions="Center" VerticalOptions="Center">
-                    <ActivityIndicator.Scale>
-                        <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
-                    </ActivityIndicator.Scale>
-                </ActivityIndicator>
+
+
             </Grid>
-       
+            <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
+                            HorizontalOptions="Center" VerticalOptions="Center">
+                <ActivityIndicator.Scale>
+                    <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
+                </ActivityIndicator.Scale>
+            </ActivityIndicator>
+        </Grid>
+
     </ContentPage.Content>
 </ContentPage>
