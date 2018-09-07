@@ -336,7 +336,7 @@ namespace Agent_App.Services
             }
             catch (Exception e)
             {
-
+                _appVersion = null;
             }
             return _appVersion;
 

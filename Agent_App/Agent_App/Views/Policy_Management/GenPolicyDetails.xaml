@@ -51,7 +51,7 @@
             <Label Grid.Row="1" Grid.Column="0" VerticalTextAlignment="End" Text="Insured Name" FontSize="Medium"/>
                 <Label Grid.Row="1" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" LineBreakMode="TailTruncation" Text="{Binding GenPolicy.InsuredName}" FontSize="Medium"/>
                 <Label Grid.Row="2" Grid.Column="0" VerticalTextAlignment="Start" Text="Address" FontSize="Medium"/>                
-                <ListView Grid.Row="2" Grid.Column="2" ItemsSource="{Binding GenPolicy.Address}" RowHeight="30" HeightRequest="120">
+                <ListView Grid.Row="2" Grid.Column="2" ItemsSource="{Binding GenPolicy.Address}" RowHeight="30" HeightRequest="{Binding AddressWidth}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -76,7 +76,7 @@
                 <Label Grid.Row="7" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.SumInsured, StringFormat='Rs. {0:N2}'}" FontSize="Medium"/>
                 <Label Grid.Row="8" Grid.Column="0" VerticalTextAlignment="Start" Text="Additional covers" FontSize="Medium"/>
 
-            <ListView Grid.Row="8" Grid.Column="2" ItemsSource="{Binding GenPolicy.AdditionalCovers}" RowHeight="30" HeightRequest="150">
+            <ListView Grid.Row="8" Grid.Column="2" ItemsSource="{Binding GenPolicy.AdditionalCovers}" RowHeight="30" HeightRequest="{Binding CoversWidth}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -87,7 +87,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 <Label Grid.Row="9" Grid.ColumnSpan="3" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
-                       Text="Vehicle Details" FontSize="Medium"/>
+                       Text="Vehicle Details:" FontSize="Medium"/>
                 <Label Grid.Row="10" Grid.Column="0" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
                        Text="Make Year" FontSize="Medium"/>
                 <Label Grid.Row="10" Grid.Column="2" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
@@ -108,10 +108,15 @@
                            Text="Engine Capacity" FontSize="Medium"/>
                 <Label Grid.Row="14" Grid.Column="2" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
                            TextColor="#336699" Text="{Binding GenPolicy.EngineCapacity}" FontSize="Medium"/>
-
+            
         </Grid>
-
-            <Grid Padding="4">
+        <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
+                            HorizontalOptions="Center" VerticalOptions="Center">
+            <ActivityIndicator.Scale>
+                <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
+            </ActivityIndicator.Scale>
+        </ActivityIndicator>
+        <Grid Padding="4">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
@@ -128,14 +133,8 @@
                 BackgroundColor="SkyBlue"
                 Text="View Premium (NB/ Renewal) History"
                 TextColor="White" BorderRadius="10"
-                Clicked="btnPayHist_Clicked"/>                
-
-            <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
-                            HorizontalOptions="Center" VerticalOptions="Center">
-                <ActivityIndicator.Scale>
-                    <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
-                </ActivityIndicator.Scale>
-            </ActivityIndicator>
+                Clicked="btnPayHist_Clicked"/>              
+            
         </Grid>
         </StackLayout>
 
