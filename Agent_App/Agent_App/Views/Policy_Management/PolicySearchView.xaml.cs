@@ -114,7 +114,8 @@ namespace Agent_App
                 {
                     SearchCriteria.Instance.AllPolicies = true;
                 }
-                SearchCriteria.Instance.NewSearch = true;                
+                SearchCriteria.Instance.NewSearch = true;
+                SearchCriteria.Instance.ListDesc = "Search Result List";
 
                 //MessagingCenter.Send<MainPage, string>(, "SearchPolicy", "John");
                 PopupNavigation.Instance.PopAsync(true);

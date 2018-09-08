@@ -95,7 +95,7 @@ namespace Agent_App.ViewModels
 
             teamList = new List<AgtPerfmStat>();
             _previousAgentRec = null;  // this should be done whenever policy collection regenerated.
-            AgentPerfList = _apiServices.GetTeamPerformance(Settings.AccessToken, Settings.orgTeamCode, DateTime.Today.ToString("yyyy-MM-01"), DateTime.Today.ToString("yyyy-MM-dd"));
+            AgentPerfList = _apiServices.GetTeamPerformance(Settings.AccessToken, Settings.orgTeamCode, DateTime.Today.ToString("yyyy-01-01"), DateTime.Today.ToString("yyyy-MM-dd"));
 
 
             foreach (Agent_App.Models.AgentPerformance item in AgentPerfList)

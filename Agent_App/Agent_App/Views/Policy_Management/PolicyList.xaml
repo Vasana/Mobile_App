@@ -18,14 +18,14 @@
         <ToolbarItem Icon="filledStar.png" Text="Flagged" Clicked="btnFlagged_Clicked"/>
         <ToolbarItem Icon="search_cl.png" Text="Search" Clicked="btnSearch_Clicked"/>
     </ContentPage.ToolbarItems>
-    <Grid>       
-        <Label Text="Policy List"
+    <Grid>
+        <Label Text="{Binding PolicyListDesc}" 
              VerticalOptions="Start"
              HorizontalTextAlignment="Center"
              VerticalTextAlignment="Center"
              BackgroundColor="Transparent"
              HorizontalOptions="CenterAndExpand" />
-        <ListView x:Name="listView" SelectedItem="{Binding SelcetedItem,Mode=TwoWay}" 
+        <ListView x:Name="listView" SelectedItem="{Binding SelcetedItem,Mode=TwoWay}"  Refreshing="listView_Refreshing" ItemAppearing="listView_ItemAppearing"
               RowHeight="150" ItemTapped="listView_ItemTapped" 
               ItemsSource="{Binding PoliciesCollection}"  HasUnevenRows="True"  >
 

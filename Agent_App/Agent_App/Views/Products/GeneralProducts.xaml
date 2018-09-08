@@ -31,13 +31,13 @@
 
                 <BoxView Grid.Row="1" BackgroundColor="Red"/>
                 <Label Grid.Row="1" TextColor="White" VerticalTextAlignment="Center"  HorizontalOptions="Center" FontAttributes="Bold" BackgroundColor="Red" Text="General Insurance"/>
-                <StackLayout Grid.Row="2" Orientation="Horizontal" Grid.Column="0" HorizontalOptions="End" VerticalOptions="Center">
-                    <Image Source="search_ico.png" HorizontalOptions="End" VerticalOptions="Center" HeightRequest="30" />
-                    <Entry   HorizontalOptions="End" VerticalOptions="Center"  Placeholder="Search General Products" x:Name="txtGenproduct" TextChanged="txtGenproduct_TextChanged" />
-
-                </StackLayout>
-
-                <ListView Grid.Row="3" x:Name="listofGeneral" Margin="10,0,0,0" HasUnevenRows="True" ItemsSource="{Binding GeneralproductList}" ItemTapped="listofCommon_ItemTapped" >
+                    <StackLayout Grid.Row="2" Orientation="Horizontal" Grid.Column="0" HorizontalOptions="End" VerticalOptions="Center">
+                        <Image Source="search_ico.png" HorizontalOptions="End" VerticalOptions="Center" HeightRequest="30" />
+                        <Entry   HorizontalOptions="End" VerticalOptions="Center"  Placeholder="Search General Products" x:Name="txtGenproduct" TextChanged="txtGenproduct_TextChanged" />
+                        
+                    </StackLayout>
+                    
+                    <ListView Grid.Row="3" x:Name="listofGeneral" Margin="10,0,0,0" HasUnevenRows="True" ItemsSource="{Binding GeneralproductList}" ItemTapped="listofCommon_ItemTapped" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
