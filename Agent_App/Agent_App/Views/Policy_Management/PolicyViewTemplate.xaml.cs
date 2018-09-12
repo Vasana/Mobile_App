@@ -104,6 +104,7 @@ namespace Agent_App.Views
 
         private async void btnPolicy_Clicked(object sender, EventArgs e)
         {
+            btnPolicy.IsEnabled = false;
             var policy = BindingContext as CustPolicy;
             var genPolVM = new GenPolViewModel(policy.Department, policy.PolicyNumber);
 
@@ -116,7 +117,7 @@ namespace Agent_App.Views
             {
                 await (App.Current.MainPage as NavigationPage).PushAsync(genPolicyPage);
             }
-                       
+            btnPolicy.IsEnabled = true;
         }
     }
 }

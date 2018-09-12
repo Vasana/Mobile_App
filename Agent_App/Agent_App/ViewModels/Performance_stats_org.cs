@@ -176,6 +176,8 @@ namespace Agent_App.ViewModels
             }
             MonthList = getMonths();
             YearList = getYears();
+            IsBusy = true;
+            IsBusy = false;
         }
 
         private void fetchData()
@@ -320,7 +322,7 @@ namespace Agent_App.ViewModels
             year_performance_comb.TOT_NON_MOTOR_REFUND = year_performance.Sum(x => x.TOT_NON_MOTOR_REFUND);
             year_performance_comb.TOT_MOTOR_REFUND_PRM = year_performance.Sum(x => x.TOT_MOTOR_REFUND_PRM);
             year_performance_comb.TOT_NON_MOTOR_REFUND_PRM = year_performance.Sum(x => x.TOT_NON_MOTOR_REFUND_PRM);
-
+            
         }
 
         private List<Year> getYears()
@@ -371,6 +373,19 @@ namespace Agent_App.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private bool _isEnabled = true;
+
+        public bool IsEnabled
+        {
+            get => _isEnabled;
+            set
+            {
+                _isEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+
         public async Task GetAgentStats()
         {
            // hardCoded();            
@@ -588,22 +603,26 @@ namespace Agent_App.ViewModels
             {
                 return new Command(async () =>
                 {
-                    
-                    month_performance_comb = new Models.AgentPerformance();
-                    year_performance_comb = new Models.AgentPerformance();
-
+                    IsEnabled = false;
                     IsBusy = true;
+                    month_performance_comb = new Models.AgentPerformance();
+                    year_performance_comb = new Models.AgentPerformance();                    
+                    
                     //Task.Delay(5000);
                     month_performance = null;
                     year_performance = null;
+                   
                     fetchData((_getMoth.number.ToString().Length == 1 ? "0" + _getMoth.number.ToString() : _getMoth.number.ToString()), _getYear.yearVal.ToString());
+                    
                     if (month_performance.Count > 0 && year_performance.Count > 0)
                     {
                         await GetAgentStats(month_performance_comb, year_performance_comb, (_getMoth.number.ToString().Length == 1 ? "0" + _getMoth.number.ToString() : _getMoth.number.ToString()), _getYear.yearVal);
                         Populate_controls(month_performance_comb, year_performance_comb, (_getMoth.number.ToString().Length == 1 ? "0" + _getMoth.number.ToString() : _getMoth.number.ToString()), _getYear.yearVal.ToString());
                     }
                     //OnPropertyChanged();
+                    //await Task.Delay(2000);
                     IsBusy = false;
+                    IsEnabled = true;
                 });
             }
         }

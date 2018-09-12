@@ -87,7 +87,8 @@ namespace Agent_App.Views
                             }
                             else
                             {
-                                BtnLogin.IsEnabled = true;
+                                //BtnLogin.IsEnabled = true;
+                                vm.LoginEnabled = true;
                                 BtnLogin.Text = "Login";
                             }
 
@@ -97,7 +98,8 @@ namespace Agent_App.Views
                 }
                 else
                 {
-                    BtnLogin.IsEnabled = true;
+                    //BtnLogin.IsEnabled = true;
+                    vm.LoginEnabled = true;
                     BtnLogin.Text = "Login";
                 }
             }

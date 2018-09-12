@@ -115,13 +115,13 @@ namespace Agent_App.ViewModels
             IsBusy = true;
             LoginEnabled = false;
             var accessToken = await _apiServices.LoginAsync(Username, Password);
-
-            LoginEnabled = true;
+                        
             if (accessToken == null)
             {
                 IsBusy = false;
                 LoginSuccess = false;
                 Message = "Login failed";
+                LoginEnabled = true;
             }
             else
             {
@@ -154,8 +154,7 @@ namespace Agent_App.ViewModels
 
         public async Task<AppVersions> CheckVersion (string build_number)
         {            
-            AppVersions release = await _apiServices.GetAppVersionAsync(build_number);            
-
+            AppVersions release = await _apiServices.GetAppVersionAsync(build_number);
             return release;
         }
     }
