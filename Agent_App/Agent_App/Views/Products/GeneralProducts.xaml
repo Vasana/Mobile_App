@@ -36,8 +36,8 @@
                         <Entry   HorizontalOptions="End" VerticalOptions="Center"  Placeholder="Search General Products" x:Name="txtGenproduct" TextChanged="txtGenproduct_TextChanged" />
                         
                     </StackLayout>
-                    
-                    <ListView Grid.Row="3" x:Name="listofGeneral" Margin="10,0,0,0" HasUnevenRows="True" ItemsSource="{Binding GeneralproductList}" ItemTapped="listofCommon_ItemTapped" >
+
+                <ListView Grid.Row="3" x:Name="listofGeneral" Margin="10,0,0,0"  HeightRequest="{Binding GeneralHeight}" HasUnevenRows="True" ItemsSource="{Binding GeneralproductList}" ItemTapped="listofCommon_ItemTapped" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
