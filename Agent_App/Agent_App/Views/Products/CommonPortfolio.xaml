@@ -8,7 +8,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Spacing="10" Padding="10">
+            <StackLayout>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="20"/>
@@ -24,7 +24,7 @@
                     <BoxView Grid.Row="1" BackgroundColor="Gray"/>
                     <Label Grid.Row="1" TextColor="White" VerticalTextAlignment="Center"  HorizontalOptions="Center" FontAttributes="Bold" BackgroundColor="Gray" Text="Common"/>
 
-                    <ListView Grid.Row="3" x:Name="listofCommon" HasUnevenRows="True" HeightRequest="{Binding commonHeight}" ItemsSource="{Binding productList}" ItemTapped="listofCommon_ItemTapped" >
+                    <ListView Grid.Row="3" x:Name="listofCommon" Margin="10,0,0,0" HasUnevenRows="True" HeightRequest="{Binding commonHeight}" ItemsSource="{Binding productList}" ItemTapped="listofCommon_ItemTapped" >
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>

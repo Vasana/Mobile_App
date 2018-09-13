@@ -141,7 +141,7 @@
     <EmbeddedResource Update="Views\Policy_Management\PolicyViewTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Policy_Management\PopUp_Perform.xaml">
+    <EmbeddedResource Update="Views\Performance\PopUp_Perform.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Policy_Management\PremiumHistPage.xaml">

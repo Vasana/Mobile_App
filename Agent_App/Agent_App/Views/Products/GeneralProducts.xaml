@@ -29,8 +29,8 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <BoxView Grid.Row="1" BackgroundColor="Red"/>
-                <Label Grid.Row="1" TextColor="White" VerticalTextAlignment="Center"  HorizontalOptions="Center" FontAttributes="Bold" BackgroundColor="Red" Text="General Insurance"/>
+                <BoxView Grid.Row="1" BackgroundColor="#f05269"/>
+                <Label Grid.Row="1" TextColor="White" VerticalTextAlignment="Center"  HorizontalOptions="Center" FontAttributes="Bold" BackgroundColor="#f05269" Text="General Insurance"/>
                     <StackLayout Grid.Row="2" Orientation="Horizontal" Grid.Column="0" HorizontalOptions="End" VerticalOptions="Center">
                         <Image Source="search_ico.png" HorizontalOptions="End" VerticalOptions="Center" HeightRequest="30" />
                         <Entry   HorizontalOptions="End" VerticalOptions="Center"  Placeholder="Search General Products" x:Name="txtGenproduct" TextChanged="txtGenproduct_TextChanged" />
