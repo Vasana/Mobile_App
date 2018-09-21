@@ -22,13 +22,13 @@ namespace Agent_App.Views
 			InitializeComponent ();
             Title = "Login";
 
-            if (Device.Idiom == TargetIdiom.Phone)
-            {
-                DisplayAlert("Alert", "Application does not support mobile phones.", "Ok");
-                var closer = DependencyService.Get<ICloseApplication>();
-                if (closer != null)
-                    closer.CloseApp();
-            }
+            //if (Device.Idiom == TargetIdiom.Phone)
+            //{
+            //    DisplayAlert("Alert", "Application does not support mobile phones.", "Ok");
+            //    var closer = DependencyService.Get<ICloseApplication>();
+            //    if (closer != null)
+            //        closer.CloseApp();
+            //}
             //NavigationPage.SetHasBackButton(this, false); we are removing the bar from log in page, below line
             NavigationPage.SetHasNavigationBar(this, false);
             LoadProfilePic();

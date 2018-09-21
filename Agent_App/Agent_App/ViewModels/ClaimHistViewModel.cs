@@ -51,7 +51,14 @@ namespace Agent_App.ViewModels
         public ClaimHistViewModel(string polNumber, string vehiNumber)
         {
             getClaimHistoryAsync(polNumber);
-            VehiNum = vehiNumber;
+            if (vehiNumber != null)
+            {
+                VehiNum = vehiNumber;
+            }
+            else
+            {
+                VehiNum = polNumber;
+            }
         }
 
         public async Task getClaimHistoryAsync(string policyNum)

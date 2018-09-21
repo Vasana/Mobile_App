@@ -36,6 +36,15 @@ namespace Agent_App
             //entMobileNumber.IsEnabled = false;
             //entStartFromDt.Keyboard = null;
             //entStartToDt.Keyboard = null;
+
+            var closeImage = new TapGestureRecognizer();
+            closeImage.Tapped += CloseImage_Tapped;
+            btnExit.GestureRecognizers.Add(closeImage);
+        }
+
+        private void CloseImage_Tapped(object sender, EventArgs e)
+        {
+            PopupNavigation.Instance.PopAsync(true);
         }
 
         private void btnSubmit_Clicked(object sender, EventArgs e)
