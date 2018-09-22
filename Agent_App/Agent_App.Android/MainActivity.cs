@@ -41,6 +41,13 @@ namespace Agent_App.Droid
                 RequestedOrientation = ScreenOrientation.Unspecified;
             });
 
+            //allowing the device to change the screen orientation based on the rotation
+            MessagingCenter.Subscribe<GeneralMenuPage>(this, "preventPortrait", sender =>
+            {
+
+                RequestedOrientation = ScreenOrientation.Landscape;
+            });
+
             //during page close setting back to portrait
             MessagingCenter.Subscribe<GenPolicyDetails>(this, "preventLandScape", sender =>
             {

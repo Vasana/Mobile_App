@@ -67,7 +67,7 @@ namespace Agent_App.ViewModels
 
         public async Task GetPolicyDetailsAsync(string dept, string policyNumber)
         {
-            IsBusy = true;
+            IsBusy = true;            
             GenPolicy = await _apiServices.GetGenPolicyAsync(accessToken: Settings.AccessToken, dept: dept, policyNumber: policyNumber);
             if (GenPolicy.Address != null)
             {

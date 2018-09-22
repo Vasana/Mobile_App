@@ -9,115 +9,116 @@
             <local:StringToBoolConverter x:Key="StringToBool" />
             <local:BoolToStringConverter x:Key="BoolToString" />
         </ResourceDictionary>
-    </ContentPage.Resources>
-        
+    </ContentPage.Resources>    
+        <ScrollView>
         <StackLayout Margin="30"
                  Padding="8"
                  BackgroundColor="White"
                  HorizontalOptions="Center"
                  VerticalOptions="StartAndExpand">
-        <ScrollView>
-            <Grid VerticalOptions="End" HorizontalOptions="Center" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="*" />
+            <Grid>
+                <Grid VerticalOptions="End" HorizontalOptions="Center" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
 
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="15" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-            
-                <Label Grid.Row="0" Grid.Column="0" VerticalTextAlignment="End" Text="Policy Number" FontSize="Medium" />
-            <StackLayout Grid.Row="0" Grid.Column="2" Orientation="Horizontal" >
-                <Label  VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.PolicyNumber}" FontSize="Medium"/>
-                <Label VerticalTextAlignment="End" Text="{Binding GenPolicy.isCancelled, Converter={StaticResource BoolToString}}" TextColor="Red" FontSize="Medium" />
-            </StackLayout>
-            <Label Grid.Row="1" Grid.Column="0" VerticalTextAlignment="End" Text="Insured Name" FontSize="Medium"/>
-                <Label Grid.Row="1" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" LineBreakMode="TailTruncation" Text="{Binding GenPolicy.InsuredName}" FontSize="Medium"/>
-                <Label Grid.Row="2" Grid.Column="0" VerticalTextAlignment="Start" Text="Address" FontSize="Medium"/>                
-                <ListView Grid.Row="2" Grid.Column="2" ItemsSource="{Binding GenPolicy.Address}" RowHeight="30" HeightRequest="{Binding AddressWidth}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Label FontSize="Medium"  TextColor="#336699"  Text="{Binding .}" 
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="15" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" VerticalTextAlignment="End" Text="Policy Number" FontSize="Medium" />
+                    <StackLayout Grid.Row="0" Grid.Column="2" Orientation="Horizontal" >
+                        <Label  VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.PolicyNumber}" FontSize="Medium"/>
+                        <Label VerticalTextAlignment="End" Text="{Binding GenPolicy.isCancelled, Converter={StaticResource BoolToString}}" TextColor="Red" FontSize="Medium" />
+                    </StackLayout>
+                    <Label Grid.Row="1" Grid.Column="0" VerticalTextAlignment="End" Text="Insured Name" FontSize="Medium"/>
+                    <Label Grid.Row="1" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" LineBreakMode="TailTruncation" Text="{Binding GenPolicy.InsuredName}" FontSize="Medium"/>
+                    <Label Grid.Row="2" Grid.Column="0" VerticalTextAlignment="Start" Text="Address" FontSize="Medium"/>
+                    <ListView Grid.Row="2" Grid.Column="2" ItemsSource="{Binding GenPolicy.Address}" RowHeight="30" HeightRequest="{Binding AddressWidth}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Label FontSize="Medium"  TextColor="#336699"  Text="{Binding .}" 
                             LineBreakMode="TailTruncation"></Label>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>                
-                </ListView>
-                <Label Grid.Row="3" Grid.Column="0" VerticalTextAlignment="End" Text="Mobile Number" FontSize="Medium"/>
-                <Label Grid.Row="3" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.MobileNumber}" FontSize="Medium"/>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Label Grid.Row="3" Grid.Column="0" VerticalTextAlignment="End" Text="Mobile Number" FontSize="Medium"/>
+                    <Label Grid.Row="3" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.MobileNumber}" FontSize="Medium"/>
 
-                <Label Grid.Row="4" Grid.Column="0" VerticalTextAlignment="End" Text="Vehicle Number" 
+                    <Label Grid.Row="4" Grid.Column="0" VerticalTextAlignment="End" Text="Vehicle Number" 
                        FontSize="Medium" FontAttributes="Bold" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}" />
-                <Label Grid.Row="4" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
+                    <Label Grid.Row="4" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
                        Text="{Binding GenPolicy.VehicleNumber}" FontAttributes="Bold" FontSize="Medium"/>
-                <Label Grid.Row="5" Grid.Column="0" VerticalTextAlignment="End" Text="Start Date" FontSize="Medium"/>
-                <Label Grid.Row="5" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.StartDate}" FontSize="Medium"/>
-                <Label Grid.Row="6" Grid.Column="0" VerticalTextAlignment="End" Text="End Date" FontSize="Medium"/>
-                <Label Grid.Row="6" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.EndDate}" FontSize="Medium"/>
-                <Label Grid.Row="7" Grid.Column="0" VerticalTextAlignment="End" Text="Sum Insured" FontSize="Medium"/>
-                <Label Grid.Row="7" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.SumInsured, StringFormat='Rs. {0:N2}'}" FontSize="Medium"/>
-                <Label Grid.Row="8" Grid.Column="0" VerticalTextAlignment="Start" Text="Additional covers" FontSize="Medium"/>
+                    <Label Grid.Row="5" Grid.Column="0" VerticalTextAlignment="End" Text="Start Date" FontSize="Medium"/>
+                    <Label Grid.Row="5" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.StartDate}" FontSize="Medium"/>
+                    <Label Grid.Row="6" Grid.Column="0" VerticalTextAlignment="End" Text="End Date" FontSize="Medium"/>
+                    <Label Grid.Row="6" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.EndDate}" FontSize="Medium"/>
+                    <Label Grid.Row="7" Grid.Column="0" VerticalTextAlignment="End" Text="Sum Insured" FontSize="Medium"/>
+                    <Label Grid.Row="7" Grid.Column="2" VerticalTextAlignment="End" TextColor="#336699" Text="{Binding GenPolicy.SumInsured, StringFormat='Rs. {0:N2}'}" FontSize="Medium"/>
+                    <Label Grid.Row="8" Grid.Column="0" VerticalTextAlignment="Start" Text="Additional covers" FontSize="Medium"/>
 
-            <ListView Grid.Row="8" Grid.Column="2" ItemsSource="{Binding GenPolicy.AdditionalCovers}" RowHeight="30" HeightRequest="{Binding CoversWidth}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                            <Label FontSize="Medium"  TextColor="#336699"  Text="{Binding COVER_TYPE_NAME}" 
+                    <ListView Grid.Row="8" Grid.Column="2" ItemsSource="{Binding GenPolicy.AdditionalCovers}" RowHeight="30" HeightRequest="{Binding CoversWidth}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Label FontSize="Medium"  TextColor="#336699"  Text="{Binding COVER_TYPE_NAME}" 
                             LineBreakMode="TailTruncation"></Label>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <Label Grid.Row="9" Grid.ColumnSpan="3" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Label Grid.Row="9" Grid.ColumnSpan="3" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
                        Text="Vehicle Details:" FontSize="Medium"/>
-                <Label Grid.Row="10" Grid.Column="0" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
+                    <Label Grid.Row="10" Grid.Column="0" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
                        Text="Make Year" FontSize="Medium"/>
-                <Label Grid.Row="10" Grid.Column="2" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
+                    <Label Grid.Row="10" Grid.Column="2" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
                        TextColor="#336699" Text="{Binding GenPolicy.MakeYear}" FontSize="Medium"/>
-                <Label Grid.Row="11" Grid.Column="0" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
+                    <Label Grid.Row="11" Grid.Column="0" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
                        Text="Make" FontSize="Medium"/>
-                <Label Grid.Row="11" Grid.Column="2" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
+                    <Label Grid.Row="11" Grid.Column="2" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
                        TextColor="#336699" Text="{Binding GenPolicy.Make}" FontSize="Medium"/>
-                <Label Grid.Row="12" Grid.Column="0" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
+                    <Label Grid.Row="12" Grid.Column="0" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
                        Text="Chassis No" FontSize="Medium"/>
-                <Label Grid.Row="12" Grid.Column="2" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
+                    <Label Grid.Row="12" Grid.Column="2" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
                        TextColor="#336699" Text="{Binding GenPolicy.ChassisNo}" FontSize="Medium"/>
-                <Label Grid.Row="13" Grid.Column="0" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
+                    <Label Grid.Row="13" Grid.Column="0" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
                        Text="Engine No" FontSize="Medium"/>
-                <Label Grid.Row="13" Grid.Column="2" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
+                    <Label Grid.Row="13" Grid.Column="2" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
                        TextColor="#336699" Text="{Binding GenPolicy.EngineNo}" FontSize="Medium"/>
-                <Label Grid.Row="14" Grid.Column="0" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
+                    <Label Grid.Row="14" Grid.Column="0" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
                            Text="Engine Capacity" FontSize="Medium"/>
-                <Label Grid.Row="14" Grid.Column="2" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
+                    <Label Grid.Row="14" Grid.Column="2" VerticalTextAlignment="End" IsVisible="{Binding GenPolicy.VehicleNumber, Converter={StaticResource StringToBool}}"
                            TextColor="#336699" Text="{Binding GenPolicy.EngineCapacity}" FontSize="Medium"/>
-            
-        </Grid>
-        </ScrollView>
-        <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
+                    
+                </Grid>
+                <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
                             HorizontalOptions="Center" VerticalOptions="Center">
-            <ActivityIndicator.Scale>
-                <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
-            </ActivityIndicator.Scale>
-        </ActivityIndicator>
-        <Grid Padding="4">
+                    <ActivityIndicator.Scale>
+                        <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
+                    </ActivityIndicator.Scale>
+                </ActivityIndicator>
+            </Grid>
+
+            <Grid Padding="4">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
@@ -136,8 +137,8 @@
                 TextColor="White" BorderRadius="10"
                 Clicked="btnPayHist_Clicked"/>              
             
-        </Grid>
-        </StackLayout>
+        </Grid>            
+        </StackLayout>        
+    </ScrollView>
 
-       
 </ContentPage>

@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
+using System.Linq;
 
 namespace Agent_App.ViewModels
 {
@@ -72,7 +73,8 @@ namespace Agent_App.ViewModels
             SearchCriteria.Instance.NewSearch = true;
             SearchCriteria.Instance.TodayReminders = true;
             DownloadPoliciesAsync();
-            GetNotifExistAsync();
+            GetNotifExistAsync();                     
+
         }
 
         public async Task DownloadPoliciesAsync()

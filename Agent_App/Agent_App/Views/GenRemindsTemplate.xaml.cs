@@ -29,6 +29,11 @@ namespace Agent_App.Views
             var flagImage = new TapGestureRecognizer();
             flagImage.Tapped += flagImage_Tapped;
             btnReminder.GestureRecognizers.Add(flagImage);
+
+            //if (Device.Idiom == TargetIdiom.Phone)
+            //{
+            //    hiddenGrid.IsVisible = true;
+            //}
         }
 
         private void flagImage_Tapped(object sender, EventArgs e)

@@ -141,6 +141,10 @@ namespace Agent_App.Views
                             }
                         }
 
+                        if (Device.Idiom == TargetIdiom.Phone)
+                        {
+                            await DisplayAlert("Alert", "On this device, App will run on landscape mode", "OK");
+                        }
                         var nav = new NavigationPage(new LandingPage());
                         nav.BarBackgroundColor = Color.FromHex("#00adbb");
                         Application.Current.MainPage = nav;

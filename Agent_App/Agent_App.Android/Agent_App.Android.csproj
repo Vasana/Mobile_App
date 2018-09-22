@@ -119,7 +119,6 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Agent_App\Agent_App.csproj">
       <Project>{983DD9D3-225F-4E21-B3C5-C51208475747}</Project>

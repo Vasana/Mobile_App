@@ -17,8 +17,18 @@ namespace Agent_App.Views
 		public GeneralMenuPage ()
 		{
             InitializeComponent();
-        }        
+        }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (Device.Idiom == TargetIdiom.Phone)
+            {
+                MessagingCenter.Send(this, "preventPortrait");
+            }
+        
+        }
+        
         private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var vm = BindingContext as GeneralMenuViewModel;
