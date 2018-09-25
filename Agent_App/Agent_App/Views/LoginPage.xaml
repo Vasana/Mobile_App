@@ -12,7 +12,7 @@
     <Grid>
         <ScrollView>
             <StackLayout Spacing="20" Padding="20">
-                <Image Source="app_logo.png" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="200" />
+                <Image Source="app_logo.png" x:Name="AppLogo" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="200" />
                 <StackLayout Padding="15" Spacing="2" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
                     <controls:CircleImage x:Name="ProfileImage"
                                       VerticalOptions="Start" HorizontalOptions="Center" HeightRequest="200" WidthRequest="200">

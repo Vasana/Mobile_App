@@ -11,9 +11,9 @@
             <StackLayout>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="20"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="20" x:Name="firstRow"/>
+                        <RowDefinition Height="40" x:Name="secondRow"/>
+                        <RowDefinition Height="10" x:Name="thirdRow"/>
                         <RowDefinition Height="auto"/>
 
                     </Grid.RowDefinitions>

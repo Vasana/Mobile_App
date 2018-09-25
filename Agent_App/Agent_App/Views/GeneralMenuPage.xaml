@@ -17,10 +17,10 @@
                 <!--  main page grid  -->
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="80" />
+                <RowDefinition  x:Name="HeadingRow1" Height="80" />
                 <RowDefinition Height="2" />
                 <RowDefinition Height="40" />
-                <RowDefinition Height="220" />
+                <RowDefinition Height="220" x:Name="veryFirst" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="2" />
                 <RowDefinition Height="20" />
@@ -41,10 +41,10 @@
 
             <!--  inner grid for button layouts  -->
 
-            <Grid Grid.Row="3" ColumnSpacing="30" HorizontalOptions="Center"
+                <Grid Grid.Row="3" ColumnSpacing="30" HorizontalOptions="Center" x:Name="ourGrid"
               RowSpacing="30" VerticalOptions="Center">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="220" />
+                        <RowDefinition x:Name="firstRow" Height="220" />
                     <RowDefinition Height="0" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
@@ -62,7 +62,7 @@
                     <Grid Grid.Row="4" ColumnSpacing="30" HorizontalOptions="Center"
               RowSpacing="30" VerticalOptions="Center">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" x:Name="breaker" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
