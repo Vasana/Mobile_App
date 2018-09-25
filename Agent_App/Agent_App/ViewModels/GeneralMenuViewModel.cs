@@ -68,6 +68,18 @@ namespace Agent_App.ViewModels
 
         private bool _isEmpty;
 
+        public int ListHeight
+        {
+            get => _listHeight;
+            set
+            {
+                _listHeight = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _listHeight = 800;
+
         public GeneralMenuViewModel()
         {
             SearchCriteria.Instance.NewSearch = true;
@@ -114,7 +126,7 @@ namespace Agent_App.ViewModels
             }
             IsBusy = false;
             PoliciesCollection.AddRange(items2);
-            
+            ListHeight = PoliciesCollection.Count * 200;
             //PoliciesCollection = new InfiniteScrollCollection<CustPolicy>(items);
         }
 
