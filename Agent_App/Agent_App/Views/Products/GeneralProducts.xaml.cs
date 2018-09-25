@@ -16,6 +16,10 @@ namespace Agent_App.Views.Products
         public PortfolioLanding()
         {
             InitializeComponent();
+            if (Device.Idiom == TargetIdiom.Phone)
+            {
+                firstRow.Height  = secondRow.Height = 0;
+            }
         }
 
         private void listofCommon_ItemTapped(object sender, ItemTappedEventArgs e)

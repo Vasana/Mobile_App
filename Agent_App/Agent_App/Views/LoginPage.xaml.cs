@@ -17,9 +17,9 @@ namespace Agent_App.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class LoginPage : ContentPage
 	{
-		public LoginPage ()
-		{            
-			InitializeComponent ();
+        public LoginPage()
+        {
+            InitializeComponent();
             Title = "Login";
 
             //if (Device.Idiom == TargetIdiom.Phone)
@@ -32,8 +32,12 @@ namespace Agent_App.Views
             //NavigationPage.SetHasBackButton(this, false); we are removing the bar from log in page, below line
             NavigationPage.SetHasNavigationBar(this, false);
             LoadProfilePic();
-            
-        }  
+            if (Device.Idiom == TargetIdiom.Phone)
+            {
+
+                AppLogo.WidthRequest = AppLogo.HeightRequest = ProfileImage.HeightRequest = ProfileImage.WidthRequest = 120;
+            }
+        }
         
         public void LoadProfilePic()
         {

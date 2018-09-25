@@ -7,7 +7,7 @@
     <!--  main page grid  -->
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="80" />
+            <RowDefinition x:Name="HeadingRow1" Height="80" />
             <RowDefinition Height="2" />
             <RowDefinition Height="0" />
             <RowDefinition Height="*" />
@@ -29,14 +29,15 @@
 
         <!--  inner grid for button layouts  -->
 
-        <Grid Grid.Row="3" ColumnSpacing="30" HorizontalOptions="Center"
+            <Grid Grid.Row="3" ColumnSpacing="30" HorizontalOptions="Center" x:Name="ourGrid"
               RowSpacing="30" VerticalOptions="StartAndExpand">
             <Grid.RowDefinitions>
-                <RowDefinition Height="60" />
-                <RowDefinition Height="200" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="200" />
-            </Grid.RowDefinitions>
+                <RowDefinition x:Name="firstRow" Height="60" />
+                <RowDefinition x:Name="secondRow" Height="200" />
+                <RowDefinition x:Name="thirdRow"  Height="20" />
+                <RowDefinition x:Name="fourthRow"  Height="200" />
+                <RowDefinition x:Name="fifthRow"  Height="20" />
+                </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="20" />
