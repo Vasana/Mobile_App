@@ -85,7 +85,7 @@ namespace Agent_App.ViewModels
             SearchCriteria.Instance.NewSearch = true;
             SearchCriteria.Instance.TodayReminders = true;
             DownloadPoliciesAsync();
-            GetNotifExistAsync();                     
+            GetNotifExistAsync();                      
 
         }
 
