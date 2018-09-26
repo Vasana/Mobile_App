@@ -7,7 +7,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Color x:Key="profileBorderColor">#8fd2dd</Color>
+            <Color x:Key="profileBorderColor">#8fd2dd</Color> 
             <Color x:Key="profileBgColor">#ffffff</Color>
             <Color x:Key="titleTopColor">#434444</Color>
             <Color x:Key="titleBottomColor">#a3a3a3</Color>
@@ -29,7 +29,7 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource profileBgColor}"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="Margin" Value="0,60,0,0"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
                 <Setter Property="Padding" Value="5"/>
             </Style>
 
