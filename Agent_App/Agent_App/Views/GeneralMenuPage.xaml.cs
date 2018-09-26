@@ -32,10 +32,11 @@ namespace Agent_App.Views
                 BtnCusprof.WidthRequest = BtnQuote.WidthRequest = 200;
                 BtnCusprof.BackgroundColor = BtnQuote.BackgroundColor = Color.SkyBlue;
                 BtnCusprof.BorderColor = BtnQuote.BorderColor = Color.FromHex("#C89400");
-                BtnCusprof.BorderRadius = BtnQuote.BorderRadius = 10;
-
+                BtnCusprof.CornerRadius = BtnQuote.CornerRadius = 10;
+               
             }
         }
+            
 
         protected override void OnAppearing()
         {
@@ -59,6 +60,12 @@ namespace Agent_App.Views
         private void btnNotif_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new NotificationsList());
+        }
+
+        private void btnRefresh_Clicked(object sender, EventArgs e)
+        {
+            var vm = new GeneralMenuViewModel();
+            this.BindingContext = vm;
         }
     }
 }

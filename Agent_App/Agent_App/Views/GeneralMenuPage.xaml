@@ -9,6 +9,7 @@
         <viewModel:GeneralMenuViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btnRefresh" Icon="refreshIcon.png" Clicked="btnRefresh_Clicked" />
         <ToolbarItem x:Name="btnNotif" Icon="{Binding NotifExist}" Clicked="btnNotif_Clicked"/>
     </ContentPage.ToolbarItems>
 
@@ -71,7 +72,8 @@
                         </Grid.ColumnDefinitions>
 
                         <StackLayout Grid.Row="1" Grid.ColumnSpan="2">
-                            <ListView x:Name="listView" 
+                        
+                        <ListView x:Name="listView" 
                       RowHeight="150" ItemTapped="listView_ItemTapped" 
                       ItemsSource="{Binding PoliciesCollection}"  HasUnevenRows="True" HeightRequest="{Binding ListHeight}">
                                 <ListView.ItemTemplate>
@@ -84,15 +86,26 @@
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
-
-                        </StackLayout>
+                        <!--<Image x:Name="btnRefreshList" Source="refreshIcon.png" WidthRequest="30" HeightRequest="30" IsVisible= "{Binding ListExist}" /> -->
+                    </StackLayout>
 
                     </Grid>
                 </Grid>
-
-            <Label x:Name="lblEmptyText" Text="No Reminders for Today!" FontAttributes="Italic" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding IsEmpty}"/>
-
-        <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
+            
+               <!-- <Grid VerticalOptions="Center" HorizontalOptions="Center" Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="35" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions> -->
+            <Label VerticalOptions="Center" HorizontalOptions="Center" x:Name="lblEmptyText" Text="No Reminders for Today!" FontAttributes="Italic" FontSize="Medium" IsVisible="{Binding IsEmpty}"/>
+                   <!--     <Image x:Name="btnRefreshEmpty" Grid.Row="0" Grid.Column="2" VerticalOptions="Start" Source="refreshIcon.png"  IsVisible="{Binding IsEmpty}"/>
+                </Grid> -->
+            
+            <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
                             HorizontalOptions="Center" VerticalOptions="Center">
             <ActivityIndicator.Scale>
                 <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />

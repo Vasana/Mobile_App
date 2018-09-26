@@ -66,6 +66,18 @@ namespace Agent_App.ViewModels
             }
         }
 
+        private bool _listExist;
+
+        public bool ListExist
+        {
+            get => _listExist;
+            set
+            {
+                _listExist = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool _isEmpty;
 
         public int ListHeight
@@ -119,14 +131,20 @@ namespace Agent_App.ViewModels
             if (items2 != null)
             {
                 IsEmpty = false;
+                ListExist = true;
             }
             else
             {
                 IsEmpty = true;
+                ListExist = false;
             }
             IsBusy = false;
             PoliciesCollection.AddRange(items2);
-            ListHeight = PoliciesCollection.Count * 200;
+            var newListHeight = PoliciesCollection.Count * 200;
+            if (newListHeight > ListHeight)
+            {
+                ListHeight = newListHeight;
+            }
             //PoliciesCollection = new InfiniteScrollCollection<CustPolicy>(items);
         }
 
