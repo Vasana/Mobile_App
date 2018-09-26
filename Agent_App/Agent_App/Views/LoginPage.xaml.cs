@@ -17,23 +17,27 @@ namespace Agent_App.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class LoginPage : ContentPage
 	{
-		public LoginPage ()
-		{            
-			InitializeComponent ();
+        public LoginPage()
+        {
+            InitializeComponent();
             Title = "Login";
 
-            if (Device.Idiom == TargetIdiom.Phone)
-            {
-                DisplayAlert("Alert", "Application does not support mobile phones.", "Ok");
-                var closer = DependencyService.Get<ICloseApplication>();
-                if (closer != null)
-                    closer.CloseApp();
-            }
+            //if (Device.Idiom == TargetIdiom.Phone)
+            //{
+            //    DisplayAlert("Alert", "Application does not support mobile phones.", "Ok");
+            //    var closer = DependencyService.Get<ICloseApplication>();
+            //    if (closer != null)
+            //        closer.CloseApp();
+            //}
             //NavigationPage.SetHasBackButton(this, false); we are removing the bar from log in page, below line
             NavigationPage.SetHasNavigationBar(this, false);
             LoadProfilePic();
-           
-        }  
+            if (Device.Idiom == TargetIdiom.Phone)
+            {
+
+                AppLogo.WidthRequest = AppLogo.HeightRequest = ProfileImage.HeightRequest = ProfileImage.WidthRequest = 120;
+            }
+        }
         
         public void LoadProfilePic()
         {
@@ -56,47 +60,56 @@ namespace Agent_App.Views
 
             string message = "";
 
-            if (release.BuildNo != int.Parse(buildNum))
+            if (release != null)
             {
-                Device.BeginInvokeOnMainThread(async () =>
+                if (release.BuildNo != int.Parse(buildNum))
                 {
-                    if (release.IsMajorUpdate == "Y")
+                    Device.BeginInvokeOnMainThread(async () =>
                     {
-                        message = "Current version is no longer supported. Please get the latest version (" + release.VersionNo + "). Do you want to install latest version now?.";
-                        var answer = await DisplayAlert("Alert", message, "Yes", "No");
-                        if (answer)
+                        if (release.IsMajorUpdate == "Y")
                         {
-                            Device.OpenUri(new System.Uri("http://www.srilankainsurance.lk/apk/SLICAgent.apk"));
-                        }
-                        var closer = DependencyService.Get<ICloseApplication>();
-                        if (closer != null)
-                            closer.CloseApp();
-                    }
-                    else if (release.IsMajorUpdate == "N")
-                    {
-                        message = "A new update is available. Please get the latest version (" + release.VersionNo + ") for improved functionality. Do you want to install latest version now?";
-                        var answer = await DisplayAlert("Alert", message, "Yes", "No");
-                        if (answer)
-                        {
-                            Device.OpenUri(new System.Uri("http://www.srilankainsurance.lk/apk/SLICAgent.apk"));
+                            message = "Current version is no longer supported. Please get the latest version (" + release.VersionNo + "). Do you want to install latest version now?.";
+                            var answer = await DisplayAlert("Alert", message, "Yes", "No");
+                            if (answer)
+                            {
+                                Device.OpenUri(new System.Uri("http://www.srilankainsurance.lk/apk/SLICAgent.apk"));
+                            }
                             var closer = DependencyService.Get<ICloseApplication>();
                             if (closer != null)
                                 closer.CloseApp();
                         }
-                        else
+                        else if (release.IsMajorUpdate == "N")
                         {
-                            BtnLogin.IsEnabled = true;
-                            BtnLogin.Text = "Login";
+                            message = "A new update is available. Please get the latest version (" + release.VersionNo + ") for improved functionality. Do you want to install latest version now?";
+                            var answer = await DisplayAlert("Alert", message, "Yes", "No");
+                            if (answer)
+                            {
+                                Device.OpenUri(new System.Uri("http://www.srilankainsurance.lk/apk/SLICAgent.apk"));
+                                var closer = DependencyService.Get<ICloseApplication>();
+                                if (closer != null)
+                                    closer.CloseApp();
+                            }
+                            else
+                            {
+                                //BtnLogin.IsEnabled = true;
+                                vm.LoginEnabled = true;
+                                BtnLogin.Text = "Login";
+                            }
+
                         }
 
-                    }
-
-                });
-            }    
+                    });
+                }
+                else
+                {
+                    //BtnLogin.IsEnabled = true;
+                    vm.LoginEnabled = true;
+                    BtnLogin.Text = "Login";
+                }
+            }
             else
             {
-                BtnLogin.IsEnabled = true;
-                BtnLogin.Text = "Login";
+                BtnLogin.Text = "Update Check failed. Please check your Network Connection.";
             }
 
         }
@@ -132,6 +145,10 @@ namespace Agent_App.Views
                             }
                         }
 
+                        if (Device.Idiom == TargetIdiom.Phone)
+                        {
+                            await DisplayAlert("Alert", "On this device, App will run on landscape mode", "OK");
+                        }
                         var nav = new NavigationPage(new LandingPage());
                         nav.BarBackgroundColor = Color.FromHex("#00adbb");
                         Application.Current.MainPage = nav;

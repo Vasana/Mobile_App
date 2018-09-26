@@ -11,26 +11,28 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="btnNotif" Icon="{Binding NotifExist}" Clicked="btnNotif_Clicked"/>
     </ContentPage.ToolbarItems>
-    <Grid>
-        <!--  main page grid  -->
+
+    <ScrollView>
+    <Grid>            
+                <!--  main page grid  -->
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="80" />
+                <RowDefinition  x:Name="HeadingRow1" Height="80" />
                 <RowDefinition Height="2" />
                 <RowDefinition Height="40" />
-                <RowDefinition Height="220" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="220" x:Name="veryFirst" />
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="2" />
                 <RowDefinition Height="20" />
             </Grid.RowDefinitions>
 
             <!--  row background colors  -->
             <BoxView Grid.Row="0" Color="#FFFFFF" />
-            <BoxView Grid.Row="1" Color="Red" />
+            <BoxView Grid.Row="1" Color="DarkGray" />
             <BoxView Grid.Row="2" Color="#FFFFFF" />
             <BoxView Grid.Row="3" Color="#FFFFFF" />
             <BoxView Grid.Row="4" Color="#FFFFFF" />
-            <BoxView Grid.Row="5" Color="Red" />
+            <BoxView Grid.Row="5" Color="DarkGray" />
             <BoxView Grid.Row="6" Color="#00adbb" />
 
             <!--  title  -->
@@ -39,10 +41,10 @@
 
             <!--  inner grid for button layouts  -->
 
-            <Grid Grid.Row="3" ColumnSpacing="30" HorizontalOptions="Center"
+                <Grid Grid.Row="3" ColumnSpacing="30" HorizontalOptions="Center" x:Name="ourGrid"
               RowSpacing="30" VerticalOptions="Center">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="220" />
+                        <RowDefinition x:Name="firstRow" Height="220" />
                     <RowDefinition Height="0" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
@@ -57,38 +59,38 @@
 
             </Grid>
 
-            <Grid Grid.Row="4" ColumnSpacing="30" HorizontalOptions="Center"
+                    <Grid Grid.Row="4" ColumnSpacing="30" HorizontalOptions="Center"
               RowSpacing="30" VerticalOptions="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300" />
-                    <ColumnDefinition Width="300" />
-                </Grid.ColumnDefinitions>
-                
-                <StackLayout Grid.Row="1" Grid.ColumnSpan="2">
-                    <ListView x:Name="listView" 
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" x:Name="breaker" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="300" />
+                            <ColumnDefinition Width="300" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout Grid.Row="1" Grid.ColumnSpan="2">
+                            <ListView x:Name="listView" 
                       RowHeight="150" ItemTapped="listView_ItemTapped" 
-                      ItemsSource="{Binding PoliciesCollection}"  HasUnevenRows="True" >
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <ContentView Padding="10" BackgroundColor="{Binding BackgroundColor}">
-                                        <views:GenRemindsTemplate/>
-                                    </ContentView>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                      ItemsSource="{Binding PoliciesCollection}"  HasUnevenRows="True" HeightRequest="{Binding ListHeight}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <ContentView Padding="10" BackgroundColor="{Binding BackgroundColor}">
+                                                <views:GenRemindsTemplate/>
+                                            </ContentView>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
 
-                </StackLayout>
+                        </StackLayout>
 
-            </Grid>
-        </Grid>
+                    </Grid>
+                </Grid>
 
-        <Label x:Name="lblEmptyText" Text="No Reminders for Today!" FontAttributes="Italic" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding IsEmpty}"/>
+            <Label x:Name="lblEmptyText" Text="No Reminders for Today!" FontAttributes="Italic" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding IsEmpty}"/>
 
         <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
                             HorizontalOptions="Center" VerticalOptions="Center">
@@ -97,4 +99,5 @@
             </ActivityIndicator.Scale>
         </ActivityIndicator>
     </Grid>
+    </ScrollView>
 </ContentPage>

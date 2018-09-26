@@ -77,7 +77,7 @@
                                             FontSize="Small" VerticalOptions="Center" />
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal">
-                                            <Label Text="Br. Admin:" TextColor="Navy" VerticalOptions="Center" FontSize="20" IsVisible="{Binding BrnAdminContactNo, Converter={StaticResource StringToBool}}" />
+                                            <Label Text="Branch Admin:" TextColor="Navy" VerticalOptions="Center" FontSize="20" IsVisible="{Binding BrnAdminContactNo, Converter={StaticResource StringToBool}}" />
                                             <Label x:Name="BrnAdmnCntNum" 
                                             Text="{Binding BrnAdminContactNo}" 
                                             IsVisible="{Binding BrnAdminContactNo, Converter={StaticResource StringToBool}}"

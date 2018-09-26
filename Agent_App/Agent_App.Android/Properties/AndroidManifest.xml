@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0.0" package="com.companyname.SLICAgent" android:installLocation="auto" android:versionCode="1">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0.0" package="com.SLIC.Connect" android:installLocation="auto" android:versionCode="1">
 	<uses-sdk android:minSdkVersion="16" android:targetSdkVersion="25" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-	<application android:label="SLIC Agent" android:icon="@drawable/LaunchIcon"></application>
+	<application android:label="Connect" android:icon="@drawable/LaunchIcon"></application>
 </manifest>

@@ -23,13 +23,13 @@ namespace Agent_App.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            MessagingCenter.Send(this, "preventLandScape");
+           // MessagingCenter.Send(this, "preventLandScape");
         }
         //during page close setting back to portrait
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            MessagingCenter.Send(this, "allowLandScapePortrait");
+           // MessagingCenter.Send(this, "allowLandScapePortrait");
         }
 
         private async void btnPayHist_Clicked(object sender, EventArgs e)

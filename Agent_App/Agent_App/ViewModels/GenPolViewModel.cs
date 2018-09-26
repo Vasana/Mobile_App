@@ -36,6 +36,30 @@ namespace Agent_App.ViewModels
         }
         private bool _isBusy;
 
+        public int AddressWidth
+        {
+            get => _addressWidth;
+            set
+            {
+                _addressWidth = value;
+                OnPropertyChanged();
+            }            
+        }
+
+        public int _addressWidth;
+
+        public int CoversWidth
+        {
+            get => _coversWidth;
+            set
+            {
+                _coversWidth = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int _coversWidth;
+
         public GenPolViewModel(string dept, string policyNum)
         {
             GetPolicyDetailsAsync(dept, policyNum);
@@ -43,8 +67,26 @@ namespace Agent_App.ViewModels
 
         public async Task GetPolicyDetailsAsync(string dept, string policyNumber)
         {
-            IsBusy = true;
+            IsBusy = true;            
             GenPolicy = await _apiServices.GetGenPolicyAsync(accessToken: Settings.AccessToken, dept: dept, policyNumber: policyNumber);
+            if (GenPolicy.Address != null)
+            {
+                AddressWidth = GenPolicy.Address.Count * 30;
+            }
+            else
+            {
+                AddressWidth = 0;
+            }
+                        
+            if (GenPolicy.AdditionalCovers != null)
+            {
+                CoversWidth = GenPolicy.AdditionalCovers.Count * 30;
+            }
+            else
+            {
+                CoversWidth = 0;
+            }
+
             IsBusy = false;
         }
 

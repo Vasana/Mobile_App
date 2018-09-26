@@ -33,6 +33,18 @@ namespace Agent_App.ViewModels
             }
         }
 
+        private bool _isEnabled = true;
+
+        public bool IsEnabled
+        {
+            get => _isEnabled;
+            set
+            {
+                _isEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+
         private AgtPerfmStat _ownAgt;
 
         public AgtPerfmStat ownAgt
@@ -463,6 +475,7 @@ namespace Agent_App.ViewModels
                 return new Command(async () =>
                 {
                     IsBusy = true;
+                    IsEnabled = false;
                     month_performance = null;
                     year_performance = null;
                     fetchData((_getMoth.number.ToString().Length == 1 ? "0" + _getMoth.number.ToString() : _getMoth.number.ToString()), _getYear.yearVal.ToString());
@@ -473,8 +486,9 @@ namespace Agent_App.ViewModels
                     }
                     //OnPropertyChanged();
 
-                    await Task.Delay(2000);
+                   // await Task.Delay(2000);
                     IsBusy = false;
+                    IsEnabled = true;
                 });
             }
         }

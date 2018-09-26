@@ -16,7 +16,17 @@ namespace Agent_App.Views
 		public PopUp_Perform()
 		{
 			InitializeComponent ();
-		}
+
+            var closeImage = new TapGestureRecognizer();
+            closeImage.Tapped += CloseImage_Tapped;
+            btnExit.GestureRecognizers.Add(closeImage);
+        }
+
+        private void CloseImage_Tapped(object sender, EventArgs e)
+        {
+            PopupNavigation.Instance.PopAsync(true);
+        }
+
         private async Task btnInd_Clicked(object sender, EventArgs e)
         {
             btnIndvidual.IsEnabled = false;

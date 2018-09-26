@@ -8,8 +8,7 @@
         <viewmodels:ChangePW/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-
+        <ScrollView>
             <Grid ColumnSpacing="5" RowSpacing="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
@@ -19,6 +18,7 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="40"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions >
@@ -55,54 +55,54 @@
 
                 <Button Text="Re-Login" TextColor="White" BackgroundColor="SkyBlue" BorderColor="Navy" HeightRequest="40" BorderRadius="10"
                         Grid.Row="6" IsVisible="{Binding PwdChanged}" Grid.Column="1" Command="{Binding loginCommand}" WidthRequest="125" HorizontalOptions="Start" VerticalOptions="Start"/>
-            </Grid>
 
-            <Frame IsClippedToBounds="True"
+                <Frame Grid.Row="7" Grid.ColumnSpan="4" IsClippedToBounds="True"
          HasShadow="True"
          BackgroundColor="White" >
-                <Frame.OutlineColor>
-                    <OnPlatform x:TypeArguments="Color"
+                    <Frame.OutlineColor>
+                        <OnPlatform x:TypeArguments="Color"
                   Android="LightGray"
                   iOS="LightGray" WinPhone="LightGray" />
-                </Frame.OutlineColor>
-                <Frame.Margin>
-                    <OnPlatform x:TypeArguments="Thickness"
+                    </Frame.OutlineColor>
+                    <Frame.Margin>
+                        <OnPlatform x:TypeArguments="Thickness"
                   Android="7" iOS="7"/>
-                </Frame.Margin>
-                <Frame.Padding>
-                    <OnPlatform x:TypeArguments="Thickness"
+                    </Frame.Margin>
+                    <Frame.Padding>
+                        <OnPlatform x:TypeArguments="Thickness"
                   Android="5" iOS="5"/>
-                </Frame.Padding>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="10"/>
-                        <RowDefinition Height="25"/>
-                        <RowDefinition Height="25"/>
-                        <RowDefinition Height="25"/>
-                        <RowDefinition Height="25"/>
-                        <RowDefinition Height="25"/>
-                        <RowDefinition Height="25"/>
-                        <RowDefinition Height="10"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="10"/>
-                    </Grid.ColumnDefinitions>
+                    </Frame.Padding>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="10"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10"/>
+                        </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="1" Grid.Column="1" Text="Password Rules" HorizontalTextAlignment="Center" TextColor="White" BackgroundColor="Gray"></Label>
+                        <Label Grid.Row="1" Grid.Column="1" Text="Password Rules" HorizontalTextAlignment="Center" TextColor="White" BackgroundColor="Gray"></Label>
 
-                    <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="Password should be 8-20 characters long" TextColor="DarkGray" BackgroundColor="White"></Label>
-                    <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="Contain one or more lower case characters" TextColor="DarkGray" BackgroundColor="White"></Label>
-                    <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="Contain one or more upper case characters" TextColor="DarkGray" BackgroundColor="White"></Label>
-                    <Label Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="Contain one or more numerics" TextColor="DarkGray" BackgroundColor="White"></Label>
-                    <Label Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Text="Contain one or more special characters ([ &lt; &gt; % # @ ])" TextColor="DarkGray" BackgroundColor="White"></Label>
+                        <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="Password should be 8-20 characters long" TextColor="DarkGray" BackgroundColor="White"></Label>
+                        <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="Contain one or more lower case characters" TextColor="DarkGray" BackgroundColor="White"></Label>
+                        <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="Contain one or more upper case characters" TextColor="DarkGray" BackgroundColor="White"></Label>
+                        <Label Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="Contain one or more numerics" TextColor="DarkGray" BackgroundColor="White"></Label>
+                        <Label Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Text="Contain one or more special characters ([ &lt; &gt; % # @ ])" TextColor="DarkGray" BackgroundColor="White"></Label>
 
 
-                </Grid>
-            </Frame>
+                    </Grid>
+                </Frame>
 
-        </StackLayout>
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -336,9 +336,34 @@ namespace Agent_App.Services
             }
             catch (Exception e)
             {
-
+                _appVersion = null;
             }
             return _appVersion;
+
+            //-----------------------------------------------------------------------------------
+
+        }
+
+        public async Task<List<Products>> GetProducts(string stream, string accessToken)
+        {
+            List<Products> _ProductList;
+           // _ProductList = new IList<Products>();
+            try
+            {
+                var client = new HttpClient();
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+                var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/GetProductList?businessStream=" + stream.Trim());
+
+                _ProductList = JsonConvert.DeserializeObject<List<Products>>(json);
+
+            }
+            catch (Exception e)
+            {
+                _ProductList = null;
+            }
+            return _ProductList;
 
             //-----------------------------------------------------------------------------------
 

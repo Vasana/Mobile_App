@@ -73,89 +73,98 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <Grid RowSpacing="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
+            <Grid>
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                </Grid.RowDefinitions>
+
+                    <BoxView  BackgroundColor="{StaticResource profileBorderColor}"/>
+                    <Image Opacity="1" Source="coverbg.png" Aspect="Fill" HeightRequest="100"/>
+                    <Image Opacity="1" Margin="0, -1" Source="curvebg.png" Aspect="Fill" VerticalOptions="End" HeightRequest="120"/>
+
+                    <StackLayout Grid.Row="1" Padding="0,70,0,0">
+                        <Grid HorizontalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" x:Name="agentInitial_id" Text="{Binding AgentProf.initials}" Style="{StaticResource titleTop}"/>
+                            <Label Grid.Column="1" x:Name="agentName_id" Text="{Binding AgentProf.last_name}" Style="{StaticResource titleTop}"/>
+                        </Grid>
+                        <Label HorizontalOptions="Center" x:Name="roll_lbl_id" Text="{Binding AgentProf.Role}" Style="{StaticResource titleBottom}"/>
 
 
-                <BoxView  BackgroundColor="{StaticResource profileBorderColor}"/>
-                <Image Opacity="1" Source="coverbg.png" Aspect="Fill" HeightRequest="100"/>
-                <Image Opacity="1" Margin="0, -1" Source="curvebg.png" Aspect="Fill" VerticalOptions="End" HeightRequest="120"/>
+                    </StackLayout>
 
-                <StackLayout Grid.Row="1" Padding="0,70,0,0">
-                    <Grid HorizontalOptions="Center">
+                    <Grid Grid.Row="2" Margin="0,20,0,0" ColumnSpacing="0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" x:Name="agentInitial_id" Text="{Binding AgentProf.initials}" Style="{StaticResource titleTop}"/>
-                        <Label Grid.Column="1" x:Name="agentName_id" Text="{Binding AgentProf.last_name}" Style="{StaticResource titleTop}"/>
+                        <StackLayout Grid.Column="0">
+                            <Label Text="NIC No."   HorizontalOptions="Center"  Style="{StaticResource titleTop}"/>
+                            <Label Text="{Binding AgentProf.NIC_number}"  HorizontalOptions="Center" Style="{StaticResource titleBottom}"/>
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="1">
+                            <Label Text="Agent Code"  HorizontalOptions="Center"  Style="{StaticResource titleTop}" />
+                            <Label x:Name="agentCode_id" Text="{Binding AgentProf.Agent_code}"   HorizontalOptions="Center" Style="{StaticResource titleBottom}"/>
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="2">
+                            <Label Text="Personal Code"   HorizontalOptions="Center"  Style="{StaticResource titleTop}"/>
+                            <Label x:Name="persoanlCode_id" Text="{Binding AgentProf.Organizer_code}"   HorizontalOptions="Center" Style="{StaticResource titleBottom}"/>
+                        </StackLayout>
                     </Grid>
-                    <Label HorizontalOptions="Center" x:Name="roll_lbl_id" Text="{Binding AgentProf.Role}" Style="{StaticResource titleBottom}"/>
 
+                    <Grid Grid.Row="3" Margin="0,30,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
 
-                </StackLayout>
+                        </Grid.ColumnDefinitions>
 
-                <Grid Grid.Row="2" Margin="0,20,0,0" ColumnSpacing="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <StackLayout Grid.Column="0">
-                        <Label Text="NIC No."   HorizontalOptions="Center"  Style="{StaticResource titleTop}"/>
-                        <Label Text="{Binding AgentProf.NIC_number}"  HorizontalOptions="Center" Style="{StaticResource titleBottom}"/>
+                        <StackLayout Grid.Column="0">
+                            <Label Text="Email"   HorizontalOptions="Center"  Style="{StaticResource titleTop}"/>
+                            <Label Text="{Binding AgentProf.email}"  HorizontalOptions="Center" Style="{StaticResource titleBottom}"/>
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="1">
+                            <Label Text="Mobile No."  HorizontalOptions="Center"  Style="{StaticResource titleTop}" />
+                            <Label Text="{Binding AgentProf.mobileNo}"   HorizontalOptions="Center" Style="{StaticResource titleBottom}"/>
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="2">
+                            <Label Text="Contact No"   HorizontalOptions="Center"  Style="{StaticResource titleTop}"/>
+                            <Label Text="{Binding AgentProf.residentialNo}"   HorizontalOptions="Center" Style="{StaticResource titleBottom}"/>
+                        </StackLayout>
+                    </Grid>
+                    <StackLayout Grid.Row="4">
+                        <Label Margin="0,100,0,0" Style="{StaticResource infoLabelStyle}"  x:Name="lblSuccessMsg"/>
+                        <Button x:Name="btnPickPhoto" Clicked="btnPickPhoto_Clicked" Style="{StaticResource uploadBtn}" Text="Upload Profile Image"/>
                     </StackLayout>
 
-                    <StackLayout Grid.Column="1">
-                        <Label Text="Agent Code"  HorizontalOptions="Center"  Style="{StaticResource titleTop}" />
-                        <Label x:Name="agentCode_id" Text="{Binding AgentProf.Agent_code}"   HorizontalOptions="Center" Style="{StaticResource titleBottom}"/>
-                    </StackLayout>
-
-                    <StackLayout Grid.Column="2">
-                        <Label Text="Personal Code"   HorizontalOptions="Center"  Style="{StaticResource titleTop}"/>
-                        <Label x:Name="persoanlCode_id" Text="{Binding AgentProf.Organizer_code}"   HorizontalOptions="Center" Style="{StaticResource titleBottom}"/>
-                    </StackLayout>
+                    <!--profile image-->
+                    <Frame  Style="{StaticResource profileFrameStyle}" TranslationY="90">
+                        <Image x:Name="ProfileImage" Source="{Binding ImagePath}" HorizontalOptions="Center" Margin="0,0,0,0" VerticalOptions="Start" BackgroundColor="White"  WidthRequest="150" HeightRequest="150" Aspect="AspectFill"/>
+                    </Frame>
                 </Grid>
 
-                <Grid Grid.Row="3" Margin="0,30,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
+                            HorizontalOptions="Center" VerticalOptions="Center">
+                    <ActivityIndicator.Scale>
+                        <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
+                    </ActivityIndicator.Scale>
+                </ActivityIndicator>
 
-                    </Grid.ColumnDefinitions>
-
-                    <StackLayout Grid.Column="0">
-                        <Label Text="Email"   HorizontalOptions="Center"  Style="{StaticResource titleTop}"/>
-                        <Label Text="{Binding AgentProf.email}"  HorizontalOptions="Center" Style="{StaticResource titleBottom}"/>
-                    </StackLayout>
-
-                    <StackLayout Grid.Column="1">
-                        <Label Text="Mobile No."  HorizontalOptions="Center"  Style="{StaticResource titleTop}" />
-                        <Label Text="{Binding AgentProf.mobileNo}"   HorizontalOptions="Center" Style="{StaticResource titleBottom}"/>
-                    </StackLayout>
-
-                    <StackLayout Grid.Column="2">
-                        <Label Text="Contact No"   HorizontalOptions="Center"  Style="{StaticResource titleTop}"/>
-                        <Label Text="{Binding AgentProf.residentialNo}"   HorizontalOptions="Center" Style="{StaticResource titleBottom}"/>
-                    </StackLayout>
-                </Grid>
-                <StackLayout Grid.Row="4">
-                    <Label Margin="0,100,0,0" Style="{StaticResource infoLabelStyle}"  x:Name="lblSuccessMsg"/>
-                    <Button x:Name="btnPickPhoto" Clicked="btnPickPhoto_Clicked" Style="{StaticResource uploadBtn}" Text="Upload Profile Image"/>
-                </StackLayout>
-
-                <!--profile image-->
-                <Frame  Style="{StaticResource profileFrameStyle}" TranslationY="90">
-                    <Image x:Name="ProfileImage" Source="{Binding ImagePath}" HorizontalOptions="Center" Margin="0,0,0,0" VerticalOptions="Start" BackgroundColor="White"  WidthRequest="150" HeightRequest="150" Aspect="AspectFill"/>
-                </Frame>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

@@ -28,6 +28,17 @@ namespace Agent_App.ViewModels
             }
         }
 
+        public string PolicyListDesc
+        {
+            get => _PolicyListDesc;
+            set
+            {
+                _PolicyListDesc = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _PolicyListDesc;
+
         public bool IsBusy
         {
             get => _isBusy;
@@ -56,8 +67,10 @@ namespace Agent_App.ViewModels
                 
         public PoliciesViewModel()
         {
+            PolicyListDesc = "Latest 10";
             SearchCriteria.Instance.NewSearch = true;
             SearchCriteria.Instance.TopTen = true;
+            SearchCriteria.Instance.ListDesc = "Latest 10";
             DownloadPoliciesAsync();
         }
 

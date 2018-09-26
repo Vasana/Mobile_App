@@ -25,57 +25,60 @@
                  BackgroundColor="White"
                  HorizontalOptions="Center"
                  VerticalOptions="Center">
+        <ScrollView>
+            <Grid VerticalOptions="End" HorizontalOptions="Start">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
 
-        <Grid VerticalOptions="End" HorizontalOptions="Start" Padding="15">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-            </Grid.ColumnDefinitions>
-
-            <Label Grid.Row="0" Grid.Column="0" VerticalTextAlignment="End" Text="Business Type" FontSize="Medium"></Label>
-            <Picker Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="BusiTypePicker" VerticalOptions="End" SelectedIndexChanged="BusiTypePicker_SelectedIndexChanged">
-                <Picker.Items>
-                    <x:String>All</x:String>
-                    <x:String>Motor</x:String>
-                    <x:String>Non-Motor</x:String>                   
-                </Picker.Items>
-            </Picker>
-            <Label Grid.Row="1" Grid.Column="0" VerticalTextAlignment="End" Text="Policy Status" FontSize="Medium"></Label>
-            <Picker Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" x:Name="typePicker" VerticalOptions="End" Title="Search by Type" SelectedIndexChanged="typePicker_SelectedIndexChanged">
-                <Picker.Items>                    
-                    <x:String>Premiums Pending</x:String>
-                    <x:String>Debit Outstanding</x:String>
-                    <x:String>Claims Pending</x:String>
-                    <x:String>Flagged by Me</x:String>
-                    <!--<x:String>Bad Claims</x:String>   -->                
-                </Picker.Items>
-            </Picker>
-            <Label Grid.Row="2" Grid.Column="0" VerticalTextAlignment="End" Text="Policy Number" FontSize="Medium"/>
-            <Entry Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" x:Name="entPolicyNumber" TextChanged="entPolicyNumber_TextChanged" Focused="entPolicyNumber_Focused" VerticalOptions="End"/>
-            <Label Grid.Row="3" Grid.Column="0" VerticalTextAlignment="End" Text="Vehicle Number" FontSize="Medium"/>
-            <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
-                <Entry x:Name="entVehiNum1" Placeholder="XXX" TextChanged="entVehiNum1_TextChanged" VerticalOptions="End"/>
-                <Entry x:Name="entVehiNum2" Placeholder="9999" TextChanged="entVehiNum2_TextChanged" VerticalOptions="End"/>
-            </StackLayout>
-            <Label Grid.Row="4" Grid.Column="0" VerticalTextAlignment="End" Text="Start Date" FontSize="Medium"/>
-            <Entry Grid.Row="4" Grid.Column="1" WidthRequest="125" x:Name="entStartFromDt" Focused="entStartFromDt_Focused" TextChanged="entStartFromDt_TextChanged" VerticalOptions="End"/>
-            <DatePicker x:Name="stFromDtPicker"  VerticalOptions="End" IsVisible="False" DateSelected="stFromDtPicker_DateSelected"/>
-            <Label Grid.Row="4" Grid.Column="2" VerticalTextAlignment="End" Text="To" FontSize="Medium"/>
-            <Entry Grid.Row="4" Grid.Column="3" WidthRequest="125" x:Name="entStartToDt" Focused="entStartToDt_Focused" TextChanged="entStartToDt_TextChanged" VerticalOptions="End"/>
-            <DatePicker x:Name="stToDtPicker" VerticalOptions="End" IsVisible="False" DateSelected="stToDtPicker_DateSelected"/>
-            <Label Grid.Row="5" Grid.Column="0" VerticalTextAlignment="End" Text="Mobile Number" FontSize="Medium"/>
-            <Entry Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" x:Name="entMobileNumber" Keyboard="Numeric" TextChanged="entMobileNumber_TextChanged" Focused="entMobileNumber_Focused" VerticalOptions="End"/>
-        </Grid>
+                <Image x:Name="btnExit" Grid.Row="0" Grid.ColumnSpan="4" HorizontalOptions="End"  VerticalOptions="Start" Source="close.png" HeightRequest="30" WidthRequest="30"></Image>
+                <Label Grid.Row="1" Grid.Column="0" VerticalTextAlignment="End" Text="Business Type" FontSize="Medium"></Label>
+                <Picker Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" x:Name="BusiTypePicker" VerticalOptions="End" SelectedIndexChanged="BusiTypePicker_SelectedIndexChanged">
+                    <Picker.Items>
+                        <x:String>All</x:String>
+                        <x:String>Motor</x:String>
+                        <x:String>Non-Motor</x:String>
+                    </Picker.Items>
+                </Picker>
+                <Label Grid.Row="2" Grid.Column="0" VerticalTextAlignment="End" Text="Policy Status" FontSize="Medium"></Label>
+                <Picker Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" x:Name="typePicker" VerticalOptions="End" Title="Search by Type" SelectedIndexChanged="typePicker_SelectedIndexChanged">
+                    <Picker.Items>
+                        <x:String>Premiums Pending</x:String>
+                        <x:String>Debit Outstanding</x:String>
+                        <x:String>Claims Pending</x:String>
+                        <x:String>Flagged by Me</x:String>
+                        <!--<x:String>Bad Claims</x:String>   -->
+                    </Picker.Items>
+                </Picker>
+                <Label Grid.Row="3" Grid.Column="0" VerticalTextAlignment="End" Text="Policy Number" FontSize="Medium"/>
+                <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" x:Name="entPolicyNumber" TextChanged="entPolicyNumber_TextChanged" Focused="entPolicyNumber_Focused" VerticalOptions="End"/>
+                <Label Grid.Row="4" Grid.Column="0" VerticalTextAlignment="End" Text="Vehicle Number" FontSize="Medium"/>
+                <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
+                    <Entry x:Name="entVehiNum1" Placeholder="XXX" TextChanged="entVehiNum1_TextChanged" VerticalOptions="End"/>
+                    <Entry x:Name="entVehiNum2" Placeholder="9999" TextChanged="entVehiNum2_TextChanged" VerticalOptions="End"/>
+                </StackLayout>
+                <Label Grid.Row="5" Grid.Column="0" VerticalTextAlignment="End" Text="Start Date" FontSize="Medium"/>
+                <Entry Grid.Row="5" Grid.Column="1" WidthRequest="125" x:Name="entStartFromDt" Focused="entStartFromDt_Focused" TextChanged="entStartFromDt_TextChanged" VerticalOptions="End"/>
+                <DatePicker x:Name="stFromDtPicker"  VerticalOptions="End" IsVisible="False" DateSelected="stFromDtPicker_DateSelected"/>
+                <Label Grid.Row="5" Grid.Column="2" VerticalTextAlignment="End" Text="To" FontSize="Medium"/>
+                <Entry Grid.Row="5" Grid.Column="3" WidthRequest="125" x:Name="entStartToDt" Focused="entStartToDt_Focused" TextChanged="entStartToDt_TextChanged" VerticalOptions="End"/>
+                <DatePicker x:Name="stToDtPicker" VerticalOptions="End" IsVisible="False" DateSelected="stToDtPicker_DateSelected"/>
+                <Label Grid.Row="6" Grid.Column="0" VerticalTextAlignment="End" Text="Mobile Number" FontSize="Medium"/>
+                <Entry Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" x:Name="entMobileNumber" Keyboard="Numeric" TextChanged="entMobileNumber_TextChanged" Focused="entMobileNumber_Focused" VerticalOptions="End"/>
+            </Grid>
+        </ScrollView>
         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="10">
             <Button x:Name="btnSubmit"
                     BackgroundColor="SkyBlue"

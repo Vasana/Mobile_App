@@ -14,11 +14,39 @@ namespace Agent_App.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class GeneralMenuPage : ContentPage
 	{
-		public GeneralMenuPage ()
-		{
+        public GeneralMenuPage()
+        {
             InitializeComponent();
-        }        
+            if (Device.Idiom == TargetIdiom.Phone)
+            {
+                HeadingRow1.Height = 0;
+                ourGrid.RowSpacing = 10;
+                veryFirst.Height = firstRow.Height = 50;
+                breaker.Height = 0;
 
+                BtnCusprof.Text = "Policy Details";
+                BtnQuote.Text = "Sales Performance";
+
+                BtnCusprof.Image = BtnQuote.Image = null;
+                BtnCusprof.HeightRequest = BtnQuote.HeightRequest = 50;
+                BtnCusprof.WidthRequest = BtnQuote.WidthRequest = 200;
+                BtnCusprof.BackgroundColor = BtnQuote.BackgroundColor = Color.SkyBlue;
+                BtnCusprof.BorderColor = BtnQuote.BorderColor = Color.FromHex("#C89400");
+                BtnCusprof.BorderRadius = BtnQuote.BorderRadius = 10;
+
+            }
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (Device.Idiom == TargetIdiom.Phone)
+            {
+                MessagingCenter.Send(this, "preventPortrait");
+            }
+        
+        }
+        
         private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var vm = BindingContext as GeneralMenuViewModel;
