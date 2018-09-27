@@ -7,7 +7,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Color x:Key="profileBorderColor">#8fd2dd</Color> 
+            <Color x:Key="profileBorderColor">#8fd2dd</Color>
             <Color x:Key="profileBgColor">#ffffff</Color>
             <Color x:Key="titleTopColor">#434444</Color>
             <Color x:Key="titleBottomColor">#a3a3a3</Color>
@@ -24,13 +24,20 @@
                 <On Platform="iOS">HelveticaNeue-Light</On>
                 <On Platform="Android">sans-serif-light</On>
             </OnPlatform>
+
+            <!--<Style x:Key="marginForTitleName" TargetType="x:String">
+                <OnIdiom x:TypeArguments="Thickness" Tablet="0,0,0,0" Phone="0,50,0,0" />
+            </Style>-->
+            
             <Style x:Key="profileFrameStyle" TargetType="Frame">
                 <Setter Property="OutlineColor" Value="{StaticResource buttonTextColor}"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource profileBgColor}"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="Margin" Value="0,0,0,0"/>
                 <Setter Property="Padding" Value="5"/>
+                <Setter Property="Margin">
+                        <OnIdiom x:TypeArguments="Thickness"  Tablet="0,60,0,0" Phone="0,0,0,0" />
+                        </Setter>
             </Style>
 
             <Style x:Key="titleTop" TargetType="Label">
@@ -94,8 +101,8 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" x:Name="agentInitial_id" Text="{Binding AgentProf.initials}" Style="{StaticResource titleTop}"/>
-                            <Label Grid.Column="1" x:Name="agentName_id" Text="{Binding AgentProf.last_name}" Style="{StaticResource titleTop}"/>
+                            <Label Grid.Column="0"  x:Name="agentInitial_id" Text="{Binding AgentProf.initials}" Style="{StaticResource titleTop}"/>
+                            <Label Grid.Column="1"  x:Name="agentName_id" Text="{Binding AgentProf.last_name}" Style="{StaticResource titleTop}"/>
                         </Grid>
                         <Label HorizontalOptions="Center" x:Name="roll_lbl_id" Text="{Binding AgentProf.Role}" Style="{StaticResource titleBottom}"/>
 

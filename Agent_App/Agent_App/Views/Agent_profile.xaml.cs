@@ -19,6 +19,11 @@ namespace Agent_App.Views
 		{
 			InitializeComponent ();
             Title = "Profile";
+            //if (Device.Idiom == TargetIdiom.Phone)
+            //{
+            //    //int[] marks = new int[] { 12,12,2,45 };
+            //    //proFrame.
+            //}
         }
        
         private async Task btnPickPhoto_Clicked(object sender, EventArgs e)
