@@ -131,7 +131,7 @@ namespace Agent_App.ViewModels
             if (notifList != null)
             {
                 List<Notification> notifs = notifList.ToList();
-                _previousNotif = null;
+                //_previousNotif = null;
                 //notifs.Where(w => w.MarkedImage == null).ToList().ForEach(s => s.MarkedImage = "selected.png");
                 //notifs.Where(w => w.MarkedImage == null).ToList().ForEach(s => s.MarkedImage = "selected.png");
                 notifs.ToList().ForEach(s => s.IsMarked = true);
