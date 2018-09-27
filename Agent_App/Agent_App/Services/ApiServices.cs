@@ -488,7 +488,7 @@ namespace Agent_App.Services
             
             if (_notifList != null)
             {
-                notifCount = _notifList.Count;
+                notifCount = _notifList.Count;               
             }
             else
             {
