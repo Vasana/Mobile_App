@@ -59,32 +59,42 @@
                                            TextColor="Navy"
                                             FontSize="Small" VerticalOptions="Center" />
                                     </StackLayout>
-                                        <StackLayout Orientation="Horizontal" Spacing="20" Padding="5" IsVisible="{Binding IsSelected}" BackgroundColor="{Binding BackgroundColor}">
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="SM:" TextColor="Navy" VerticalOptions="Center" FontSize="20" IsVisible="{Binding SMContactNumber, Converter={StaticResource StringToBool}}" />
-                                            <Label x:Name="SMCntNum" 
+                                    <StackLayout IsVisible="{Binding IsSelected}">
+                                        <StackLayout Orientation="Horizontal" Spacing="20" Padding="5" BackgroundColor="{Binding BackgroundColor}">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="SM:" TextColor="Navy" VerticalOptions="Center" FontSize="20" IsVisible="{Binding SMContactNumber, Converter={StaticResource StringToBool}}" />
+                                                <Label x:Name="SMCntNum" 
                                             Text="{Binding SMContactNumber}" 
                                             IsVisible="{Binding SMContactNumber, Converter={StaticResource StringToBool}}"
                                            TextColor="Navy"
                                             FontSize="Small" VerticalOptions="Center" />
-                                        </StackLayout>
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="RSM:" TextColor="Navy" VerticalOptions="Center" FontSize="20" IsVisible="{Binding RSMContactNumber, Converter={StaticResource StringToBool}}" />
-                                            <Label x:Name="RSMCntNum" 
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="RSM:" TextColor="Navy" VerticalOptions="Center" FontSize="20" IsVisible="{Binding RSMContactNumber, Converter={StaticResource StringToBool}}" />
+                                                <Label x:Name="RSMCntNum" 
                                             Text="{Binding RSMContactNumber}" 
                                             IsVisible="{Binding RSMContactNumber, Converter={StaticResource StringToBool}}"
                                            TextColor="Navy"
                                             FontSize="Small" VerticalOptions="Center" />
-                                        </StackLayout>
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="Branch Admin:" TextColor="Navy" VerticalOptions="Center" FontSize="20" IsVisible="{Binding BrnAdminContactNo, Converter={StaticResource StringToBool}}" />
-                                            <Label x:Name="BrnAdmnCntNum" 
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Branch Admin:" TextColor="Navy" VerticalOptions="Center" FontSize="20" IsVisible="{Binding BrnAdminContactNo, Converter={StaticResource StringToBool}}" />
+                                                <Label x:Name="BrnAdmnCntNum" 
                                             Text="{Binding BrnAdminContactNo}" 
                                             IsVisible="{Binding BrnAdminContactNo, Converter={StaticResource StringToBool}}"
                                            TextColor="Navy"
                                             FontSize="Small" VerticalOptions="Center" />
+                                            </StackLayout>
                                         </StackLayout>
-                                    </StackLayout>                                    
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Email:" TextColor="Navy" VerticalOptions="Center" FontSize="20" IsVisible="{Binding Email, Converter={StaticResource StringToBool}}" />
+                                            <Label x:Name="Email" 
+                                            Text="{Binding Email}" 
+                                            IsVisible="{Binding Email, Converter={StaticResource StringToBool}}"
+                                           TextColor="Navy"
+                                            FontSize="Small" VerticalOptions="Center" />
+                                        </StackLayout>
+                                    </StackLayout>
                                 </StackLayout>
                             </Frame>                           
                         </ViewCell>

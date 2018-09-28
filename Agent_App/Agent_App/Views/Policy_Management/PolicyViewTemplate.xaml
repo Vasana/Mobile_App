@@ -161,6 +161,7 @@
                     <Grid Grid.Column="0" Padding="4">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="*" />                            
                         </Grid.ColumnDefinitions>
@@ -169,8 +170,9 @@
                         </Grid.RowDefinitions>
                         <Image x:Name="btnCall" Grid.Column="0" HorizontalOptions="Center" Source="call.png"></Image>
                        <!-- <Image x:Name="btnEmail" Grid.Column="1" HorizontalOptions="Center" Source="email.png"></Image> -->
-                        <Button x:Name="btnPolicy" Clicked="btnPolicy_Clicked" Grid.Column="1"  HorizontalOptions="Center" Text="Go to Policy" BackgroundColor="SkyBlue" HeightRequest="30" BorderRadius="10"/>
-                        <Image x:Name="btnReminder" Grid.Column="2" HorizontalOptions="Center" Source="{Binding FlagImage}"></Image>
+                        <Image x:Name="btnSMS" Grid.Column="1" HorizontalOptions="Center" Source="sms.png"></Image>
+                        <Button x:Name="btnPolicy" Clicked="btnPolicy_Clicked" Grid.Column="2"  HorizontalOptions="Center" Text="Go to Policy" BackgroundColor="SkyBlue" HeightRequest="30" BorderRadius="10"/>
+                        <Image x:Name="btnReminder" Grid.Column="3" HorizontalOptions="Center" Source="{Binding FlagImage}"></Image>
                     </Grid>
                     <Label x:Name="lblMobileNo" Grid.Column="2" Text="{Binding MobileNumber}" IsVisible="False" />
                     

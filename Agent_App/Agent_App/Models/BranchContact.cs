@@ -17,7 +17,8 @@ namespace Agent_App.Models
         public string SMContactNumber { get; set; } = "";
         public string RSMContactNumber { get; set; } = "";
         public string BrnAdminContactNo { get; set; } = "";
-        public bool IsSelected { get; set; }
+        public string Email { get; set; } = "";
+        public bool IsSelected { get; set; }        
 
         public Color BackgroundColor
         {

@@ -30,10 +30,35 @@ namespace Agent_App.Views
             flagImage.Tapped += flagImage_Tapped;
             btnReminder.GestureRecognizers.Add(flagImage);
 
+            var smsImage = new TapGestureRecognizer();
+            smsImage.Tapped += SmsImage_Tapped;
+            btnSMS.GestureRecognizers.Add(smsImage);
+
             //if (Device.Idiom == TargetIdiom.Phone)
             //{
             //    hiddenGrid.IsVisible = true;
             //}
+        }
+
+        private void SmsImage_Tapped(object sender, EventArgs e)
+        {
+            string mobileNumber = lblMobileNo.Text;
+            try
+            {
+                if (mobileNumber != "")
+                {
+                    Device.OpenUri(new Uri("sms:" + mobileNumber));
+                }
+                else
+                {
+                    Application.Current.MainPage.DisplayAlert("Alert", "No information found", "OK");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Application.Current.MainPage.DisplayAlert("Alert", "Error occured while performing function", "OK");
+            }
         }
 
         private void flagImage_Tapped(object sender, EventArgs e)
