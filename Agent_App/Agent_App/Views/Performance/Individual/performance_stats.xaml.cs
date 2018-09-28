@@ -19,6 +19,14 @@ namespace Agent_App.Views
 			InitializeComponent ();
             PMonth.SelectedIndex = Convert.ToInt32( DateTime.Today.ToString("MM"))-1;
             PYear.SelectedIndex = 0;
+
+            if (Device.Idiom == TargetIdiom.Phone)
+            {
+                foreach (Label i in GridStats.Children)
+                {
+                    i.FontSize = 12;
+                }
+            }
         }
 
         //private async void BtnLoad_Clicked(object sender, EventArgs e)
