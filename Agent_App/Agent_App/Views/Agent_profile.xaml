@@ -25,9 +25,6 @@
                 <On Platform="Android">sans-serif-light</On>
             </OnPlatform>
 
-            <!--<Style x:Key="marginForTitleName" TargetType="x:String">
-                <OnIdiom x:TypeArguments="Thickness" Tablet="0,0,0,0" Phone="0,50,0,0" />
-            </Style>-->
             
             <Style x:Key="profileFrameStyle" TargetType="Frame">
                 <Setter Property="OutlineColor" Value="{StaticResource buttonTextColor}"/>
@@ -36,7 +33,7 @@
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="Padding" Value="5"/>
                 <Setter Property="Margin">
-                        <OnIdiom x:TypeArguments="Thickness"  Tablet="0,60,0,0" Phone="0,0,0,0" />
+                        <OnIdiom x:TypeArguments="Thickness"  Tablet="0,40,0,0" Phone="0,0,0,0" />
                         </Setter>
             </Style>
 
@@ -44,6 +41,15 @@
                 <Setter Property="FontFamily" Value="{StaticResource titleFont}"/>
                 <Setter Property="FontSize" Value="{StaticResource titleTopFontSize}"/>
                 <Setter Property="TextColor" Value="{StaticResource titleTopColor}" />
+            </Style>
+
+            <Style x:Key="titleTop_center" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource titleFont}"/>
+                <Setter Property="FontSize" Value="{StaticResource titleTopFontSize}"/>
+                <Setter Property="TextColor" Value="{StaticResource titleTopColor}" />
+                <Setter Property="Margin">
+                    <OnIdiom x:TypeArguments="Thickness" Tablet="0,50,0,0" Phone="0,30,0,0" />
+                </Setter>
             </Style>
 
             <Style x:Key="titleBottom" TargetType="Label">
@@ -70,6 +76,9 @@
                 <Setter Property="TextColor" Value="{StaticResource LabelTxtColor}"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="TranslationX" Value="0"/>
+                <Setter Property="Margin">
+                    <OnIdiom x:TypeArguments="Thickness" Phone="0,20,0,0" Tablet="0,80,0,0"/>
+                </Setter>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -101,8 +110,8 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0"  x:Name="agentInitial_id" Text="{Binding AgentProf.initials}" Style="{StaticResource titleTop}"/>
-                            <Label Grid.Column="1"  x:Name="agentName_id" Text="{Binding AgentProf.last_name}" Style="{StaticResource titleTop}"/>
+                            <Label Grid.Column="0"  x:Name="agentInitial_id" Text="{Binding AgentProf.initials}" Style="{StaticResource titleTop_center}"/>
+                            <Label Grid.Column="1"  x:Name="agentName_id" Text="{Binding AgentProf.last_name}" Style="{StaticResource titleTop_center}"/>
                         </Grid>
                         <Label HorizontalOptions="Center" x:Name="roll_lbl_id" Text="{Binding AgentProf.Role}" Style="{StaticResource titleBottom}"/>
 
@@ -155,7 +164,7 @@
                         </StackLayout>
                     </Grid>
                     <StackLayout Grid.Row="4">
-                        <Label Margin="0,100,0,0" Style="{StaticResource infoLabelStyle}"  x:Name="lblSuccessMsg"/>
+                        <Label Style="{StaticResource infoLabelStyle}"  x:Name="lblSuccessMsg"/>
                         <Button x:Name="btnPickPhoto" Clicked="btnPickPhoto_Clicked" Style="{StaticResource uploadBtn}" Text="Upload Profile Image"/>
                     </StackLayout>
 
