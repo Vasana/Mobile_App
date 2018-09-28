@@ -56,7 +56,7 @@ namespace Agent_App.ViewModels
 
         public NotificsViewModel()
         {
-            DownloadNotifsAsync();
+            DownloadNotifsAsync();           
         }
 
         public async Task DownloadNotifsAsync()
@@ -84,13 +84,14 @@ namespace Agent_App.ViewModels
             };
             _previousNotif = null;
             IsBusy2 = true;
-            var items2 = await _apiServices.GetNotificationsAsync(accessToken: Settings.AccessToken, pageIndex: 0, pageSize: PageSize);            
+            var items2 = await _apiServices.GetNotificationsAsync(accessToken: Settings.AccessToken, pageIndex: 0, pageSize: PageSize);
             IsBusy2 = false;
             NotifCollection.AddRange(items2);
+            
             //PoliciesCollection = new InfiniteScrollCollection<CustPolicy>(items);
         }
 
-        public async Task ClearNotifAsync()
+        public async Task ClearNotifsAsync()
         {
             /* IsBusy2 = true;
              bool ret = await _apiServices.ClearNotifAsync_1(Settings.AccessToken, notif);            
@@ -111,7 +112,33 @@ namespace Agent_App.ViewModels
                 IsBusy2 = false;
                 NotifCollection.Clear();
                 NotifCollection.AddRange(items);
-            }           
+            }          
+
+        }
+
+        public void MarkAllNotifsAsync()
+        {
+            /* IsBusy2 = true;
+             bool ret = await _apiServices.ClearNotifAsync_1(Settings.AccessToken, notif);            
+             if (ret)
+             {
+                 NotifCollection.Remove(notif);
+             }
+             IsBusy2 = false;
+             return ret;
+             */
+            IEnumerable<Notification> notifList = NotifCollection;
+            if (notifList != null)
+            {
+                List<Notification> notifs = notifList.ToList();
+                //_previousNotif = null;
+                //notifs.Where(w => w.MarkedImage == null).ToList().ForEach(s => s.MarkedImage = "selected.png");
+                //notifs.Where(w => w.MarkedImage == null).ToList().ForEach(s => s.MarkedImage = "selected.png");
+                notifs.ToList().ForEach(s => s.IsMarked = true);
+                notifs.ToList().ForEach(s => s.MarkedImage = "selected.png");
+                NotifCollection.Clear();
+                NotifCollection.AddRange(notifs);
+            }
 
         }
 

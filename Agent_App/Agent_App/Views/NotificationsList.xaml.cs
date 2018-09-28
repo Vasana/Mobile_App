@@ -58,8 +58,8 @@ namespace Agent_App.Views
         private async void btnDelete_Clicked(object sender, EventArgs e)
         {
             var vm = BindingContext as NotificsViewModel;
-            
-            await vm.ClearNotifAsync();
+
+            await vm.ClearNotifsAsync();
 
             //if (!ret)
             //{
@@ -69,15 +69,19 @@ namespace Agent_App.Views
 
         private async void btnClear_Clicked(object sender, EventArgs e)
         {
-            var button = sender as Button;
-            var notif = button.BindingContext as Notification;
-            var vm = BindingContext as NotificsViewModel;
-            await vm.ClearNotifAsync();
+            var rst = await DisplayAlert("Notification", "Are you sure you want to Delete ???", "Yes", "No");
+            if (rst)
+            {
+                var button = sender as Button;
+                var notif = button.BindingContext as Notification;
+                var vm = BindingContext as NotificsViewModel;
+                await vm.ClearNotifsAsync();
 
-            //if (!ret)
-            //{
-            //    await DisplayAlert("Delete Error", "Error occured while removing.", "OK");
-            //}
+                //if (!ret)
+                //{
+                //    await DisplayAlert("Delete Error", "Error occured while removing.", "OK");
+                //}
+            }
         }
 
         private async void btnNotif_Clicked(object sender, EventArgs e)
@@ -150,6 +154,12 @@ namespace Agent_App.Views
                 button.Image = "";
             }        
            
+        }
+
+        private void btnMarkAll_Clicked(object sender, EventArgs e)
+        {
+            var vm = BindingContext as NotificsViewModel;
+            vm.MarkAllNotifsAsync();
         }
     }
 

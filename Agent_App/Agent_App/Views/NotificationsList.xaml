@@ -12,63 +12,73 @@
         <viewModel:NotificsViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnSearch" Icon="trashbin.png" Text="Delete" Clicked="btnDelete_Clicked"/>
+        <ToolbarItem x:Name="btnSearch" Icon="trashbin.png" Text="Delete" Clicked="btnDelete_Clicked" />
     </ContentPage.ToolbarItems>
-    <Grid>        
-        <ListView x:Name="listView" SelectedItem="{Binding SelcetedItem,Mode=TwoWay}" 
+    <Grid>
+        <StackLayout>
+            <Button x:Name="btnMarkAll" 
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    Clicked="btnMarkAll_Clicked"
+                    Text="Mark All"
+                    BackgroundColor="SkyBlue" BorderRadius="10"
+                    HeightRequest="35" >
+            </Button>
+
+            <ListView x:Name="listView" SelectedItem="{Binding SelcetedItem,Mode=TwoWay}" 
               RowHeight="150" ItemTapped="listView_ItemTapped" 
               ItemsSource="{Binding NotifCollection}"  HasUnevenRows="True">
 
-            <ListView.Behaviors>
-                <extended:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}" />
-            </ListView.Behaviors>
+                <ListView.Behaviors>
+                    <extended:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}" />
+                </ListView.Behaviors>
 
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Frame IsClippedToBounds="True"
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame IsClippedToBounds="True"
          HasShadow="True"
          BackgroundColor="White" >
-                            <Frame.OutlineColor>
-                                <OnPlatform x:TypeArguments="Color"
+                                <Frame.OutlineColor>
+                                    <OnPlatform x:TypeArguments="Color"
                   Android="Gray"
                   iOS="Gray"/>
-                            </Frame.OutlineColor>
-                            <Frame.Margin>
-                                <OnPlatform x:TypeArguments="Thickness"
+                                </Frame.OutlineColor>
+                                <Frame.Margin>
+                                    <OnPlatform x:TypeArguments="Thickness"
                   Android="7" iOS="7"/>
-                            </Frame.Margin>
-                            <Frame.Padding>
-                                <OnPlatform x:TypeArguments="Thickness"
+                                </Frame.Margin>
+                                <Frame.Padding>
+                                    <OnPlatform x:TypeArguments="Thickness"
                   Android="5" iOS="5"/>
-                            </Frame.Padding>
+                                </Frame.Padding>
 
-                            <StackLayout Orientation="Horizontal">
-                                <Grid VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" 
+                                <StackLayout Orientation="Horizontal">
+                                    <Grid VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" 
             Padding="0"
             HorizontalOptions="FillAndExpand"
             >
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto"/>
-                                        <RowDefinition Height="auto"/>
-                                        <RowDefinition Height="auto"/>
-                                    </Grid.RowDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
 
-                                    <StackLayout Orientation="Horizontal" VerticalOptions="Start">
-                                        <controls:CircleImage Source="{Binding EventImage}" 
+                                        <StackLayout Orientation="Horizontal" VerticalOptions="Start">
+                                            <controls:CircleImage Source="{Binding EventImage}" 
                                       VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="30" WidthRequest="30">
 
-                                        </controls:CircleImage>
+                                            </controls:CircleImage>
 
-                                        <Label Grid.Row="0" 
+                                            <Label Grid.Row="0" 
                                             HorizontalTextAlignment="Start"
                                             VerticalTextAlignment="Center"
                                             FontSize="16" FontAttributes="Bold"
                                             Text="{Binding EventName}" TextColor="Black" >
-                                        </Label>
+                                            </Label>
 
-                                    </StackLayout>
-                                    <Button x:Name="btnMark" Grid.Row="0" 
+                                        </StackLayout>
+                                        <Button x:Name="btnMark" Grid.Row="0" 
                                             HorizontalOptions="End"
                                             VerticalOptions="Center"
                                             FontSize="14" FontAttributes="None"
@@ -76,115 +86,115 @@
                                             BackgroundColor="White"
                                             Image="{Binding MarkedImage}"
                                             BorderColor="Black" BorderWidth="1" WidthRequest="30" HeightRequest="30">
-                                    </Button>
+                                        </Button>
 
-                                    <Grid Grid.Row="1" VerticalOptions="CenterAndExpand" 
+                                        <Grid Grid.Row="1" VerticalOptions="CenterAndExpand" 
                                         Padding="0"  HorizontalOptions="FillAndExpand">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="auto"/>
-                                            <RowDefinition Height="auto"/>
-                                            <RowDefinition Height="auto"/>
-                                            <RowDefinition Height="auto"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="15" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="2*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="15" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="2*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"
                                             HorizontalTextAlignment="Start"
                                             VerticalTextAlignment="Center"
                                             FontSize="14" FontAttributes="None"
                                             Text="{Binding EventDescription}" TextColor="Black">
-                                        </Label>
-                                        <Label Grid.Row="1" Grid.Column="1"
+                                            </Label>
+                                            <Label Grid.Row="1" Grid.Column="1"
                             HorizontalTextAlignment="Start"
                             VerticalTextAlignment="Center"
                             FontSize="14" FontAttributes="None"
                             Text="Notified Date: " TextColor="Black">
-                                        </Label>
-                                        <Label x:Name="lblNotifDate" Grid.Row="1" Grid.Column="2"
+                                            </Label>
+                                            <Label x:Name="lblNotifDate" Grid.Row="1" Grid.Column="2"
                             HorizontalTextAlignment="Start"
                             VerticalTextAlignment="Center"
                             FontSize="14" FontAttributes="None"
                             Text="{Binding NotifiedDate}" TextColor="Black">
-                                        </Label>
-                                        <Label Grid.Row="2" Grid.Column="1"
+                                            </Label>
+                                            <Label Grid.Row="2" Grid.Column="1"
                             HorizontalTextAlignment="Start"
                             VerticalTextAlignment="Center"
                             FontSize="14" FontAttributes="None"
                             Text="Policy Number: " TextColor="Black">
-                                        </Label>
-                                        <Label x:Name="lblPolicyNumber" Grid.Row="2" Grid.Column="2"
+                                            </Label>
+                                            <Label x:Name="lblPolicyNumber" Grid.Row="2" Grid.Column="2"
                             HorizontalTextAlignment="Start"
                             VerticalTextAlignment="Center"
                             FontSize="14" FontAttributes="None"
                             Text="{Binding PolicyNumber}" TextColor="Black">
-                                        </Label>
-                                        <Label Grid.Row="3" Grid.Column="1"
+                                            </Label>
+                                            <Label Grid.Row="3" Grid.Column="1"
                             HorizontalTextAlignment="Start"
                             VerticalTextAlignment="Center"
                             FontSize="14" FontAttributes="None"
                             Text="Insured Name: " TextColor="Black" >
-                                        </Label>
-                                        <Label Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3"
+                                            </Label>
+                                            <Label Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3"
                            HorizontalTextAlignment="Start"
                            VerticalTextAlignment="Center"
                            FontSize="14" FontAttributes="None"
                            Text="{Binding InsuredName}" TextColor="Black">
-                                        </Label>
-
-                                    </Grid>                                    
-
-                                    <Grid Grid.Row="3" HorizontalOptions="Center"
-                        BackgroundColor="Transparent"
-                        Padding="7" IsVisible="{Binding IsSelected}">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="0.5*" />
-                                            <ColumnDefinition Width="0.5*" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <Grid Grid.Column="0" Padding="5">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="auto" />                                                
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="40" />
-                                            </Grid.RowDefinitions>
-                                            <Button x:Name="btnCall" Clicked="btnCall_Clicked" Grid.Column="0" HorizontalOptions="Center" Text="Call" BackgroundColor="DodgerBlue" BorderRadius="10"/>
-                                           <!-- <Button x:Name="btnEmail" Clicked="btnEmail_Clicked" Grid.Column="1" HorizontalOptions="Center" Text="Email"></Button> -->
-                                            <Button x:Name="btnNotif" Clicked="btnNotif_Clicked"  Grid.Column="1"  HorizontalOptions="Center" Text="Go to Policy" HeightRequest="30" BackgroundColor="DodgerBlue" BorderRadius="10"/>
+                                            </Label>
 
                                         </Grid>
-                                        <Label x:Name="lblMobileNo" Grid.Column="2" Text="{Binding ContactNumber}" IsVisible="False" />
 
+                                        <Grid Grid.Row="3" HorizontalOptions="Center"
+                        BackgroundColor="Transparent"
+                        Padding="7" IsVisible="{Binding IsSelected}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="0.5*" />
+                                                <ColumnDefinition Width="0.5*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid Grid.Column="0" Padding="5">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="40" />
+                                                </Grid.RowDefinitions>
+                                                <Button x:Name="btnCall" Clicked="btnCall_Clicked" Grid.Column="0" HorizontalOptions="Center" Text="Call" BackgroundColor="SkyBlue" BorderRadius="10" HeightRequest="30"/>
+                                                <!-- <Button x:Name="btnEmail" Clicked="btnEmail_Clicked" Grid.Column="1" HorizontalOptions="Center" Text="Email"></Button> -->
+                                                <Button x:Name="btnNotif" Clicked="btnNotif_Clicked"  Grid.Column="1"  HorizontalOptions="Center" Text="Go to Policy" HeightRequest="30" BackgroundColor="SkyBlue" BorderRadius="10"/>
+
+                                            </Grid>
+                                            <Label x:Name="lblMobileNo" Grid.Column="2" Text="{Binding ContactNumber}" IsVisible="False" />
+
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                            </StackLayout>
+                                </StackLayout>
 
-                        </Frame>
+                            </Frame>
 
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
 
-            <ListView.Footer>
-                <Grid Padding="6" IsVisible="{Binding IsBusy}">
-                    <!-- set the footer to have a zero height when invisible -->
-                    <Grid.Triggers>
-                        <Trigger TargetType="Grid" Property="IsVisible" Value="False">
-                            <Setter Property="HeightRequest" Value="0" />
-                        </Trigger>
-                    </Grid.Triggers>
-                    <!-- the loading content -->
-                    <Label Text="Loading..." TextColor="DeepPink" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" />
-                </Grid>
-            </ListView.Footer>
-        </ListView>
-
+                <ListView.Footer>
+                    <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                        <!-- set the footer to have a zero height when invisible -->
+                        <Grid.Triggers>
+                            <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                <Setter Property="HeightRequest" Value="0" />
+                            </Trigger>
+                        </Grid.Triggers>
+                        <!-- the loading content -->
+                        <Label Text="Loading..." TextColor="DeepPink" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" />
+                    </Grid>
+                </ListView.Footer>
+            </ListView>
+        </StackLayout>
         <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy2}" Color="Green" 
                             HorizontalOptions="Center" VerticalOptions="Center">
             <ActivityIndicator.Scale>
