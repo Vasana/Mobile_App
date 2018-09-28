@@ -75,11 +75,11 @@ namespace Agent_App.ViewModels
                 var s1 = new LineSeries()
                 {
                     Title = "Number of policies in this year",
-                    Color = OxyColors.LightPink,
+                    Color = OxyColors.SkyBlue,
                     MarkerType = MarkerType.Circle,
                     MarkerSize = 6,
                     MarkerStroke = OxyColors.White,
-                    MarkerFill = OxyColors.LightPink,
+                    MarkerFill = OxyColors.SkyBlue,
                     MarkerStrokeThickness = 1.5
                 };
 
@@ -98,11 +98,11 @@ namespace Agent_App.ViewModels
                 var s3 = new LineSeries()
                 {
                     Title = "Maximum No. of policies in Branch",
-                    Color = OxyColors.Aqua,
+                    Color = OxyColors.LightPink,
                     MarkerType = MarkerType.Square,
                     MarkerSize = 6,
                     MarkerStroke = OxyColors.White,
-                    MarkerFill = OxyColors.Aqua,
+                    MarkerFill = OxyColors.LightPink,
                     MarkerStrokeThickness = 1.5
                 };
 
@@ -164,25 +164,25 @@ namespace Agent_App.ViewModels
 
         public PlotModel AreaChart_PremiumInc()
         {
-            var plotModel1 = new PlotModel { Title = "Premium Income" };
+            var plotModel1 = new PlotModel { Title = "Premium Collection" };
 
             plotModel1.InvalidatePlot(true);
             try
             {
                 var s1 = new LineSeries()
                 {
-                    Title = "Premium in this year",
-                    Color = OxyColors.LightPink,
+                    Title = "Premium Collection in this year",
+                    Color = OxyColors.SkyBlue,
                     MarkerType = MarkerType.Circle,
                     MarkerSize = 6,
                     MarkerStroke = OxyColors.White,
-                    MarkerFill = OxyColors.LightPink,
+                    MarkerFill = OxyColors.SkyBlue,
                     MarkerStrokeThickness = 1.5
                 };
 
                 var s2 = new LineSeries()
                 {
-                    Title = "Average Premium in Branch",
+                    Title = "Average Premium Collection in Branch",
                     Color = OxyColors.Teal,
                     MarkerType = MarkerType.Diamond,
                     MarkerSize = 6,
@@ -194,12 +194,12 @@ namespace Agent_App.ViewModels
 
                 var s3 = new LineSeries()
                 {
-                    Title = "Maximum Premium in Branch",
-                    Color = OxyColors.Aqua,
+                    Title = "Maximum Premium Collection in Branch",
+                    Color = OxyColors.LightPink,
                     MarkerType = MarkerType.Square,
                     MarkerSize = 6,
                     MarkerStroke = OxyColors.White,
-                    MarkerFill = OxyColors.Aqua,
+                    MarkerFill = OxyColors.LightPink,
                     MarkerStrokeThickness = 1.5
                 };
 

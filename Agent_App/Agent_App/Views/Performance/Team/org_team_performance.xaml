@@ -30,7 +30,7 @@
                     <Picker x:Name="PYear"   Title="Select Year" Grid.Row="1" SelectedItem="{Binding _getYear}"  Grid.Column="1" ItemsSource="{Binding YearList}" ItemDisplayBinding="{Binding yearVal}" />
                     <Button x:Name="BtnLoad" Grid.Row="1" Grid.Column="2" IsEnabled="{Binding IsEnabled}" BackgroundColor="SkyBlue" BorderRadius="10" Command="{Binding FilterPerformanceDate}" Text="Load"/>
                 </Grid>
-                <Grid RowSpacing="2" ColumnSpacing="2">
+                <Grid RowSpacing="2" ColumnSpacing="2" x:Name="GridStats">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50" />
                         <RowDefinition Height="50" />

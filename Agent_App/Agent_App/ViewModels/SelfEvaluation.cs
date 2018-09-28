@@ -75,11 +75,11 @@ namespace Agent_App.Models
                 var s1 = new LineSeries()
                 {
                     Title = "Number of policies in last year",
-                    Color = OxyColors.LightPink,
+                    Color = OxyColors.SkyBlue,
                     MarkerType = MarkerType.Circle,
                     MarkerSize = 6,
                     MarkerStroke = OxyColors.White,
-                    MarkerFill = OxyColors.LightPink,
+                    MarkerFill = OxyColors.SkyBlue,
                     MarkerStrokeThickness = 2.5
                 };
 
@@ -168,12 +168,12 @@ namespace Agent_App.Models
 
         public PlotModel AreaChart_PremiumInc()
         {
-            var model = new PlotModel { Title = "Annual Premium Income" };
+            var model = new PlotModel { Title = "Annual Premium Collection" };
             
 
             var s1 = new LineSeries()
             {
-                Title = "Annual Income last year",
+                Title = "Annual premium collection in last year",
                 Color = OxyColors.SkyBlue,
                 MarkerType = MarkerType.Circle,
                 MarkerSize = 6,
@@ -210,7 +210,7 @@ namespace Agent_App.Models
 
             var s2 = new LineSeries()
             {
-                Title = "Annual Income current year",
+                Title = "Annual premium collection in current year",
                 Color = OxyColors.Teal,
                 MarkerType = MarkerType.Diamond,
                 MarkerSize = 6,
