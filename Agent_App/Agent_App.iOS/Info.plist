@@ -27,7 +27,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.slic.Agent_App</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
@@ -39,6 +39,6 @@
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Assets.xcassets/LaunchImages.launchimage</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 </dict>
 </plist>

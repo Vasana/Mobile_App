@@ -24,6 +24,8 @@ namespace Agent_App.Models
         public bool TodayReminders { get; set; }
         public string MobileNumber { get; set; } = "";
         public string ListDesc { get; set; } = "";
+        public string NicNumber { get; set; } = "";
+        public string BusiRegNo { get; set; } = "";
 
         //---- when adding a field update the apiServices.GetPoliciesAsync method to re-initilize the field
 

@@ -64,7 +64,8 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>                        
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="15" />
@@ -145,6 +146,31 @@
                            VerticalTextAlignment="Center"
                            FontSize="14" FontAttributes="None"
                            Text="{Binding EndDate}" TextColor="Black" >
+                    </Label>
+
+                    <Label Grid.Row="3" Grid.Column="1" IsVisible="{Binding DebitNoteNumber, Converter={StaticResource StringToBool}}"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"
+                            FontSize="14" FontAttributes="None"
+                            Text="Deb. Note No: " TextColor="Black" >
+                    </Label>
+                    <Label Grid.Row="3" Grid.Column="2" IsVisible="{Binding DebitNoteNumber, Converter={StaticResource StringToBool}}"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Center"
+                           FontSize="14" FontAttributes="None"
+                           Text="{Binding DebitNoteNumber}" TextColor="Black" >
+                    </Label>
+                    <Label Grid.Row="3" Grid.Column="3" IsVisible="{Binding DebitOutstAmt, Converter={StaticResource StringToBool}}"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"
+                            FontSize="14" FontAttributes="None"
+                            Text="Deb. Outst Amt: " TextColor="Black">
+                    </Label>
+                    <Label Grid.Row="3" Grid.Column="4" IsVisible="{Binding DebitOutstAmt, Converter={StaticResource StringToBool}}"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Center"
+                           FontSize="14" FontAttributes="None"
+                           Text="{Binding DebitOutstAmt}" TextColor="Black" >
                     </Label>
 
                 </Grid>

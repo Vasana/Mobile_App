@@ -35,6 +35,8 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
@@ -77,6 +79,10 @@
                 <DatePicker x:Name="stToDtPicker" VerticalOptions="End" IsVisible="False" DateSelected="stToDtPicker_DateSelected"/>
                 <Label Grid.Row="6" Grid.Column="0" VerticalTextAlignment="End" Text="Mobile Number" FontSize="Medium"/>
                 <Entry Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" x:Name="entMobileNumber" Keyboard="Numeric" TextChanged="entMobileNumber_TextChanged" Focused="entMobileNumber_Focused" VerticalOptions="End"/>
+                <Label Grid.Row="7" Grid.Column="0" VerticalTextAlignment="End" Text="NIC Number" FontSize="Medium"/>
+                <Entry Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" x:Name="entNicNumber" TextChanged="entNicNumber_TextChanged" Focused="entNicNumber_Focused" VerticalOptions="End"/>
+                <Label Grid.Row="8" Grid.Column="0" VerticalTextAlignment="End" Text="Bus. Reg. No" FontSize="Medium"/>
+                <Entry Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" x:Name="entBusRegNo" TextChanged="entBusRegNo_TextChanged"  Focused="entBusRegNo_Focused"  VerticalOptions="End"/>
             </Grid>
         </ScrollView>
         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="10">

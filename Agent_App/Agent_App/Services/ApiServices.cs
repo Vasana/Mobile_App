@@ -201,6 +201,9 @@ namespace Agent_App.Services
                 SearchCriteria.Instance.TopTen = false;
                 SearchCriteria.Instance.TodayReminders = false;
                 SearchCriteria.Instance.MobileNumber = "";
+                SearchCriteria.Instance.NicNumber = "";
+                SearchCriteria.Instance.BusiRegNo = "";
+
             }
             if (policyCount >= pageSize)
             {

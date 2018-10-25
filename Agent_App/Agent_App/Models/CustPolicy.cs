@@ -32,6 +32,8 @@ namespace Agent_App.Models
         public string CommentCreatedDate { get; set; } = "";
         public string PremiumTypeImg { get; set; } = "";
         public string DebitCancelDate { get; set; } = "";
+        public string DebitNoteNumber { get; set; } = "";
+        public string DebitOutstAmt { get; set; } = "";
 
         ApiServices _apiServices = new ApiServices();
 
