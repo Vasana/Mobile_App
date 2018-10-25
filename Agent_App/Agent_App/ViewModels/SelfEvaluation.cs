@@ -52,6 +52,7 @@ namespace Agent_App.Models
         {
             last_year = _apiServices.GetMonthlyPerformance(Settings.AccessToken, Settings.agentCode, DateTime.Today.AddYears(-1).ToString("yyyy"));
             //last_year = last_year.FindAll(x => x.BUSS_TYPE == "Total");
+            if (last_year !=null)
             last_year.Sort((x, y) => x.YEAR_MONTH.CompareTo(y.YEAR_MONTH));
 
 
@@ -92,26 +93,28 @@ namespace Agent_App.Models
                
                 running_month = 1;
                 s1.Points.Add(new DataPoint(0, 0));
-                foreach (MonthlyPerformance item in last_year)
+                if (last_year != null)
                 {
-                    if (running_month < 10)
-                        running_month_str = "0" + running_month.ToString();
-                    else
-                        running_month_str = running_month.ToString();
+                    foreach (MonthlyPerformance item in last_year)
+                    {
+                        if (running_month < 10)
+                            running_month_str = "0" + running_month.ToString();
+                        else
+                            running_month_str = running_month.ToString();
 
-                    running_month_str = year_str + running_month_str;
+                        running_month_str = year_str + running_month_str;
 
-                    if (item.YEAR_MONTH.ToString() == running_month_str)
-                        s1.Points.Add(new DataPoint(running_month, item.NO_OF_TOTAL_BUSINESS));
-                    else
-                        s1.Points.Add(new DataPoint(running_month, 0));
+                        if (item.YEAR_MONTH.ToString() == running_month_str)
+                            s1.Points.Add(new DataPoint(running_month, item.NO_OF_TOTAL_BUSINESS));
+                        else
+                            s1.Points.Add(new DataPoint(running_month, 0));
 
-                    if (running_month == 10)
-                        running_month_str = "";
+                        if (running_month == 10)
+                            running_month_str = "";
 
-                    running_month++;
+                        running_month++;
+                    }
                 }
-
                 plotModel1.Series.Add(s1);
 
                 var s2 = new LineSeries()
@@ -187,6 +190,8 @@ namespace Agent_App.Models
             string running_month_str;
             running_month = 1;
             s1.Points.Add(new DataPoint(0, 0));
+            if (last_year != null)
+            { 
             foreach (MonthlyPerformance item in last_year)
             {
                 if (running_month < 10)
@@ -205,6 +210,7 @@ namespace Agent_App.Models
                     running_month_str = "";
 
                 running_month++;
+            }
             }
             model.Series.Add(s1);
 
