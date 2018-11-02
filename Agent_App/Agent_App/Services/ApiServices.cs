@@ -688,7 +688,7 @@ namespace Agent_App.Services
                     wc.Headers.Add("Content-Type", "text");
                     wc.Headers[HttpRequestHeader.Authorization] = "Bearer " + accessToken;
                     var json = wc.DownloadString("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getMonthlyPreformance?agentCode=" + agentCode.Trim() + "&year=" + year);
-                    claimsList = JsonConvert.DeserializeObject<List<MonthlyPerformance>>(json);
+                    claimsList = JsonConvert.DeserializeObject<List<MonthlyPerformance>>(json); 
                 }
             }
             catch (Exception e)
