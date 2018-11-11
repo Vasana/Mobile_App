@@ -181,12 +181,6 @@
     <ImageAsset Include="Assets.xcassets\car.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\car_cl.imageset\car_cl.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\car_cl.imageset\car_cl1.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\claim_pending.imageset\claim_pending.png">
       <Visible>false</Visible>
     </ImageAsset>
@@ -280,22 +274,19 @@
     <ImageAsset Include="Assets.xcassets\alert_yellow_cl.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\car_cl.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\claim_pending_cl.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\debitOutstd.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\alert_red.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\hospitalized.imageset\hospitalized.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\alert_red.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>    
-    <ImageAsset Include="Assets.xcassets\LaunchImages.launchimage\Contents.json">
+    <ImageAsset Include="Assets.xcassets\Non_Motor.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\LaunchImages.launchimage\LaunchImages.png">
@@ -308,9 +299,6 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\Non_Motor.imageset\Non_Motor1.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\notifAlert.imageset\notifAlert.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\phone.imageset\phone.png">
@@ -328,9 +316,6 @@
     <ImageAsset Include="Assets.xcassets\products.imageset\products1.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\ProfileImage.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\ProfileImage.imageset\ProfileImage.png">
       <Visible>false</Visible>
     </ImageAsset>
@@ -341,6 +326,21 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\settings.imageset\settings1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\sms.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchImages.launchimage\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ProfileImage.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\sms.imageset\sms.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\sms.imageset\sms1.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\starFrame.imageset\starFrame.png">
@@ -368,12 +368,6 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\life.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\Non_Motor.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\notifAlert.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\phone.imageset\Contents.json">
@@ -441,5 +435,11 @@
       <Project>{983DD9D3-225F-4E21-B3C5-C51208475747}</Project>
       <Name>Agent_App</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\notifAlert.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\car_cl.png" />
   </ItemGroup>
 </Project>

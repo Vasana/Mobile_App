@@ -38,15 +38,15 @@ namespace Agent_App.Views
         }
             
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            if (Device.Idiom == TargetIdiom.Phone)
-            {
-                MessagingCenter.Send(this, "preventPortrait");
-            }
+        //protected override void OnAppearing()
+        //{
+        //    base.OnAppearing();
+        //    if (Device.Idiom == TargetIdiom.Phone)
+        //    {
+        //        MessagingCenter.Send(this, "preventPortrait");
+        //    }
         
-        }
+        //}
         
         private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
         {

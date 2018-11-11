@@ -72,7 +72,7 @@ namespace Agent_App.Views
                             var answer = await DisplayAlert("Alert", message, "Yes", "No");
                             if (answer)
                             {
-                                Device.OpenUri(new System.Uri("http://www.srilankainsurance.lk/apk/SLICAgent.apk"));
+                                Device.OpenUri(new System.Uri("http://www.srilankainsurance.lk/apk/home.html"));
                             }
                             var closer = DependencyService.Get<ICloseApplication>();
                             if (closer != null)
@@ -84,7 +84,7 @@ namespace Agent_App.Views
                             var answer = await DisplayAlert("Alert", message, "Yes", "No");
                             if (answer)
                             {
-                                Device.OpenUri(new System.Uri("http://www.srilankainsurance.lk/apk/SLICAgent.apk"));
+                                Device.OpenUri(new System.Uri("http://www.srilankainsurance.lk/apk/home.html"));
                                 var closer = DependencyService.Get<ICloseApplication>();
                                 if (closer != null)
                                     closer.CloseApp();

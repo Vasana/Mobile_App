@@ -1,27 +1,21 @@
 ﻿using Agent_App.Helpers;
 using Agent_App.Models;
 using Agent_App.Services;
-using Agent_App.Views;
-using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using Xamarin.Forms;
 using Xamarin.Forms.Extended;
 
 namespace Agent_App.ViewModels
 {
-    class LifeMenuViewModel : INotifyPropertyChanged
+    class LifePoliciesVwModel : INotifyPropertyChanged
     {
         private const int PageSize = 10;
         ApiServicesLife _apiServices = new ApiServicesLife();
         public LifePolicy _previousPolicy;
-
         public InfiniteScrollCollection<LifePolicy> PoliciesCollection
         {
             get { return _policies; }
@@ -31,7 +25,17 @@ namespace Agent_App.ViewModels
                 OnPropertyChanged();
             }
         }
-        public InfiniteScrollCollection<LifePolicy> _policies;
+
+        public string PolicyListDesc
+        {
+            get => _PolicyListDesc;
+            set
+            {
+                _PolicyListDesc = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _PolicyListDesc;
 
         public bool IsBusy
         {
@@ -44,65 +48,32 @@ namespace Agent_App.ViewModels
         }
         private bool _isBusy;
 
-        public string NotifExist
+        public bool IsBusy2
         {
-            get => _notifExist;
+            get { return _isBusy2; }
             set
             {
-                _notifExist = value;
+                _isBusy2 = value;
                 OnPropertyChanged();
             }
         }
-        private string _notifExist;
+        public bool _isBusy2;
 
-        public bool IsEmpty
+        public InfiniteScrollCollection<LifePolicy> _policies;
+
+        public object SelectedItem { get; set; }
+
+        public LifePoliciesVwModel()
         {
-            get => _isEmpty;
-            set
-            {
-                _isEmpty = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool _listExist;
-
-        public bool ListExist
-        {
-            get => _listExist;
-            set
-            {
-                _listExist = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool _isEmpty;
-
-        public int ListHeight
-        {
-            get => _listHeight;
-            set
-            {
-                _listHeight = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private int _listHeight = 800;
-
-
-        public LifeMenuViewModel()
-        {
+            PolicyListDesc = "Latest 10";
             SearchCriteriaLife.Instance.NewSearch = true;
-            SearchCriteriaLife.Instance.TodayReminders = true;
+            SearchCriteriaLife.Instance.TopTen = true;
+            SearchCriteriaLife.Instance.ListDesc = "Latest 10";
             DownloadPoliciesAsync();
-            GetNotifExistAsync();
         }
 
         public async Task DownloadPoliciesAsync()
         {
-
             PoliciesCollection = new InfiniteScrollCollection<LifePolicy>
             {
                 OnLoadMore = async () =>
@@ -113,7 +84,7 @@ namespace Agent_App.ViewModels
                     var page = PoliciesCollection.Count / PageSize;
 
                     var items = await _apiServices.GetLifePoliciesAsync(Settings.AccessToken, page, PageSize);
-
+                    
                     IsBusy = false;
 
                     // return the items that need to be added
@@ -125,45 +96,13 @@ namespace Agent_App.ViewModels
                 }
             };
             _previousPolicy = null;
-            IsBusy = true;
+            IsBusy2 = true;
             var items2 = await _apiServices.GetLifePoliciesAsync(accessToken: Settings.AccessToken, pageIndex: 0, pageSize: PageSize);
-
-            if (items2 != null)
-            {
-                IsEmpty = false;
-                ListExist = true;
-            }
-            else
-            {
-                IsEmpty = true;
-                ListExist = false;
-            }
-            IsBusy = false;
-            var newListHeight = PoliciesCollection.Count * 200;
-            if (newListHeight > ListHeight)
-            {
-                ListHeight = newListHeight;
-            }
+            IsBusy2 = false;
             PoliciesCollection.AddRange(items2);
-            
-
             //PoliciesCollection = new InfiniteScrollCollection<CustPolicy>(items);
 
         }
-
-        public async Task GetNotifExistAsync()
-        {
-            bool ret = await _apiServices.NotificsExistAsync(Settings.AccessToken);
-            if (ret)
-            {
-                NotifExist = "notifAlert.png";
-            }
-            else
-            {
-                NotifExist = "";
-            }
-        }
-
 
         public void HideOrShowPolicy(LifePolicy policy)
         {
@@ -197,37 +136,6 @@ namespace Agent_App.ViewModels
             PoliciesCollection.Insert(index, policy);
         }
 
-        public ICommand CustomersPoliciesCommand
-        {
-            get
-            {
-                return new Command(async () =>
-                {
-                    //Application.Current.MainPage = new NavigationPage(new ExampleList());
-
-                    await Application.Current.MainPage.Navigation.PushAsync(new LifePoliciesList());
-                });
-            }
-        }
-
-        //public ICommand GetQuotationCommand
-        //{
-        //    get
-        //    {
-        //        return new Command(async () =>
-        //        {
-        //            //Application.Current.MainPage = new NavigationPage(new ExampleList());
-
-        //            //await Application.Current.MainPage.Navigation.PushAsync(new Org_Perform_landing());
-                    
-        //            if (Settings.jobRole == "Organizer")
-        //                await PopupNavigation.Instance.PushAsync(new PopUp_Perform());
-        //            else
-        //                await Application.Current.MainPage.Navigation.PushAsync(new Agent_performance());
-        //        });
-        //    }
-        //}
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -235,8 +143,5 @@ namespace Agent_App.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-       
     }
-
-
 }

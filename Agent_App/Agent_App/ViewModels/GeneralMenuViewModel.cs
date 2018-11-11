@@ -139,12 +139,13 @@ namespace Agent_App.ViewModels
                 ListExist = false;
             }
             IsBusy = false;
-            PoliciesCollection.AddRange(items2);
             var newListHeight = PoliciesCollection.Count * 200;
             if (newListHeight > ListHeight)
             {
                 ListHeight = newListHeight;
             }
+            PoliciesCollection.AddRange(items2);
+            
             //PoliciesCollection = new InfiniteScrollCollection<CustPolicy>(items);
         }
 

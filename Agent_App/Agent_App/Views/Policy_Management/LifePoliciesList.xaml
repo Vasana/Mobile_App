@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Agent_App.Views.PolicyList"
+             x:Class="Agent_App.Views.LifePoliciesList"
              xmlns:views="clr-namespace:Agent_App.Views"
              xmlns:viewModel="clr-namespace:Agent_App.ViewModels"
              xmlns:extended="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling">
-    
+
     <ContentPage.BindingContext>
-        <viewModel:PoliciesViewModel/>
+        <viewModel:LifePoliciesVwModel/>
     </ContentPage.BindingContext>
+
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="car_cl.png" Text="Non-Motor" Clicked="btnMotor_Clicked"/>
-        <ToolbarItem Icon="Non_Motor.png" Text="Non-Motor" Clicked="btnNonMotor_Clicked"/>
-        <ToolbarItem Icon="alert_yellow_cl.png" Text="Premium Pending" Clicked="btnPayPend_Clicked"/>
-        <ToolbarItem Icon="debitOutstd.png" Text="Debit Outstanding" Clicked="btnDbitOuts_Clicked"/>
-        <ToolbarItem Icon="claim_pending_cl.png" Text="Claim Pending" Clicked="btnClaimPend_Clicked"/>
+        <ToolbarItem Icon="inforce.png" Text="Inforce Policies" Clicked="btnInforce_Clicked"/>
+        <ToolbarItem Icon="lapsed.png" Text="Lapsed Policies" Clicked="btnLapsed_Clicked"/>
+        <ToolbarItem Icon="tempLapsed.png" Text="Temp. Lapsed" Clicked="btnTempLapsed_Clicked"/>
         <ToolbarItem Icon="filledStar.png" Text="Flagged" Clicked="btnFlagged_Clicked"/>
         <ToolbarItem Icon="search_cl.png" Text="Search" Clicked="btnSearch_Clicked"/>
     </ContentPage.ToolbarItems>
+
     <Grid>
         <Label Text="{Binding PolicyListDesc}" 
              VerticalOptions="Start"
@@ -26,18 +26,18 @@
              BackgroundColor="Transparent"
              HorizontalOptions="CenterAndExpand" />
         <ListView x:Name="listView" SelectedItem="{Binding SelcetedItem,Mode=TwoWay}"  Refreshing="listView_Refreshing" ItemAppearing="listView_ItemAppearing"
-               ItemTapped="listView_ItemTapped" 
+              ItemTapped="listView_ItemTapped" 
               ItemsSource="{Binding PoliciesCollection}"  HasUnevenRows="True"  >
 
             <ListView.Behaviors>
                 <extended:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}" />
             </ListView.Behaviors>
-            
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <ContentView Padding="10" BackgroundColor="{Binding BackgroundColor}">
-                            <views:PolicyViewTemplate/>
+                            <views:LifePolViewTemplate/>
                         </ContentView>
                     </ViewCell>
                 </DataTemplate>
@@ -64,7 +64,4 @@
             </ActivityIndicator.Scale>
         </ActivityIndicator>
     </Grid>
-
-    
-
 </ContentPage>

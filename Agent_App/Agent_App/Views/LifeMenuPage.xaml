@@ -8,69 +8,105 @@
     <ContentPage.BindingContext>
         <viewModel:LifeMenuViewModel/>
     </ContentPage.BindingContext>
-    <Grid>
-        <!--  main page grid  -->
-        <Grid RowSpacing="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="80" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="50" />
-            </Grid.RowDefinitions>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btnRefresh" Icon="refreshIcon.png" Clicked="btnRefresh_Clicked" />
+        <!--<ToolbarItem x:Name="btnNotif" Icon="{Binding NotifExist}" Clicked="btnNotif_Clicked"/> -->
+    </ContentPage.ToolbarItems>
 
-            <!--  row background colors  -->
-            <BoxView Grid.Row="0" Color="#3A444D" />
-            <BoxView Grid.Row="1" Color="#FFFFFF" />
-            <BoxView Grid.Row="2" Color="#3A444D" />
-
-            <!--  title  -->
-            <Label x:Name="lblTitle" FontSize="Large" HorizontalOptions="Center" Text="Life"
-               TextColor="White" VerticalOptions="Center" />
-
-            <!--  inner grid for button layouts  -->
-
-            <Grid Grid.Row="1" ColumnSpacing="20" HorizontalOptions="Center"
-              RowSpacing="20" VerticalOptions="Center">
+    <ScrollView>
+        <Grid>
+            <!--  main page grid  -->
+            <Grid RowSpacing="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="300" />
-                    <RowDefinition Height="*" />
-                    <!--<RowDefinition Height="*" />-->
+                    <RowDefinition  x:Name="HeadingRow1" Height="80" />
+                    <RowDefinition Height="2" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="220" x:Name="veryFirst" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="2" />
+                    <RowDefinition Height="20" />
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
 
+                <!--  row background colors  -->
+                <BoxView Grid.Row="0" Color="#FFFFFF" />
+                <BoxView Grid.Row="1" Color="DarkGray" />
+                <BoxView Grid.Row="2" Color="#FFFFFF" />
+                <BoxView Grid.Row="3" Color="#FFFFFF" />
+                <BoxView Grid.Row="4" Color="#FFFFFF" />
+                <BoxView Grid.Row="5" Color="DarkGray" />
+                <BoxView Grid.Row="6" Color="#00adbb" />
 
-                <Button Grid.Row="0" Grid.Column="0" x:Name="BtnCusprof" Command="{Binding CustomersProfilesCommand}" BorderColor="LightGray" BorderWidth="1" BackgroundColor="White"  Image="customer.png" HeightRequest="200"  />
-                <Button Grid.Row="0" Grid.Column="1" x:Name="BtnQuote" Command="{Binding GetQuotationCommand}" BackgroundColor="White"  BorderColor="LightGray" BorderWidth="1" Image="policy.png" HeightRequest="200"/>
-                <!--<Button Grid.Row="0" Grid.Column="1" Clicked="Button_Clicked" BackgroundColor="White"  BorderColor="LightGray" BorderWidth="1" Image="policy.png" HeightRequest="200"/>-->
+                <!--  title  -->
+                <Label x:Name="lblTitle" FontSize="Large" HorizontalOptions="Center" Text="Life Insurance"
+               TextColor="#00adbb" VerticalOptions="Center" />
 
-                <StackLayout Grid.Row="1" Grid.ColumnSpan="2">
-                    <Label FontSize="Medium" HorizontalOptions="Center" Text="Today's Reminders"
-                   TextColor="Black" VerticalOptions="Center" />
-                    <ListView x:Name="listView"   
+                <!--  inner grid for button layouts  -->
+
+                <Grid Grid.Row="3" ColumnSpacing="30" HorizontalOptions="Center" x:Name="ourGrid"
+              RowSpacing="30" VerticalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition x:Name="firstRow" Height="220" />
+                        <RowDefinition Height="0" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    
+
+                    <Button Grid.Row="0"  WidthRequest="200" VerticalOptions="Center"  HorizontalOptions="Center" x:Name="BtnCusprof" Command="{Binding CustomersPoliciesCommand}" BorderColor="#00adbb" BorderWidth="0"  BackgroundColor="White"   Image="customer.png"  />
+                   <!-- <Button Grid.Row="0" WidthRequest="200" VerticalOptions="Center"  HorizontalOptions="Center" Grid.Column="1" x:Name="BtnQuote" Command="{Binding GetPerformanceCommand}"   BorderColor="#00adbb" BorderWidth="0" BackgroundColor="White" Image="graph.png" /> -->
+
+                </Grid>
+
+                <Grid Grid.Row="4" ColumnSpacing="30" HorizontalOptions="Center"
+              RowSpacing="30" VerticalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" x:Name="breaker" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300" />
+                        <ColumnDefinition Width="300" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Row="1" Grid.ColumnSpan="2">
+
+                        <ListView x:Name="listView" 
                       RowHeight="150" ItemTapped="listView_ItemTapped" 
-                      ItemsSource="{Binding PoliciesCollection}"  HasUnevenRows="True" >
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <ContentView Padding="10" BackgroundColor="{Binding BackgroundColor}">
-                                        <views:GenRemindsTemplate/>
-                                    </ContentView>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
+                      ItemsSource="{Binding PoliciesCollection}"  HasUnevenRows="True" HeightRequest="{Binding ListHeight}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <ContentView Padding="10" BackgroundColor="{Binding BackgroundColor}">
+                                            <views:LifeRemindsTemplate/>
+                                        </ContentView>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <!--<Image x:Name="btnRefreshList" Source="refreshIcon.png" WidthRequest="30" HeightRequest="30" IsVisible= "{Binding ListExist}" /> -->
+                    </StackLayout>
 
+                </Grid>
             </Grid>
-        </Grid>
 
-        <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
+            <!-- <Grid VerticalOptions="Center" HorizontalOptions="Center" Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="35" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions> -->
+            <Label VerticalOptions="Center" HorizontalOptions="Center" x:Name="lblEmptyText" Text="No Reminders for Today!" FontAttributes="Italic" FontSize="Medium" IsVisible="{Binding IsEmpty}"/>
+            <!--     <Image x:Name="btnRefreshEmpty" Grid.Row="0" Grid.Column="2" VerticalOptions="Start" Source="refreshIcon.png"  IsVisible="{Binding IsEmpty}"/>
+                </Grid> -->
+
+            <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
                             HorizontalOptions="Center" VerticalOptions="Center">
-            <ActivityIndicator.Scale>
-                <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
-            </ActivityIndicator.Scale>
-        </ActivityIndicator>
-    </Grid>
+                <ActivityIndicator.Scale>
+                    <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
+                </ActivityIndicator.Scale>
+            </ActivityIndicator>
+        </Grid>
+    </ScrollView>
 </ContentPage>

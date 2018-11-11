@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Agent_App.Views.GenRemindsTemplate"
+             x:Class="Agent_App.Views.LifePolViewTemplate"
              xmlns:local="clr-namespace:Agent_App.Helpers"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
-    
+
     <ContentView.Resources>
         <ResourceDictionary>
             <local:StringToBoolConverter x:Key="StringToBool" />
             <local:ImgStringToWidth x:Key="StrToWidth" />
+            <local:PayModeToPolStatusConverter x:Key="ModeToStatus" />
         </ResourceDictionary>
     </ContentView.Resources>
 
@@ -50,11 +51,12 @@
                    HorizontalTextAlignment="Start"
                    VerticalTextAlignment="Center"
                    FontSize="16" FontAttributes="Bold"
-                   Text="{Binding PolTypeDesc}" TextColor="Black" >
+                   Text="{Binding PolTypeDesc}" TextColor="Black">
                     </Label>
 
-                    <controls:CircleImage Source="{Binding PolStatusImage}" VerticalOptions="End" HeightRequest="30" WidthRequest="30"></controls:CircleImage>
-                    <controls:CircleImage Source="{Binding ClaimStatusImage}" VerticalOptions="End" HeightRequest="30" WidthRequest="30"></controls:CircleImage>
+                    <Image x:Name="imgPremType" Source="{Binding PremiumTypeImg}" IsVisible="{Binding PremiumTypeImg, Converter={StaticResource StringToBool}}" VerticalOptions="End" HeightRequest="30" WidthRequest="{Binding PremiumTypeImg, Converter={StaticResource StrToWidth}}"></Image>
+                    <controls:CircleImage Source="{Binding PolStatusImage}" IsVisible="{Binding PayMode, Converter={StaticResource ModeToStatus}}" VerticalOptions="End" HeightRequest="30" WidthRequest="30"></controls:CircleImage>
+                    <controls:CircleImage Source="{Binding ClaimStatusImage}" IsVisible="{Binding ClaimStatusImage, Converter={StaticResource StringToBool}}" VerticalOptions="End" HeightRequest="30" WidthRequest="30"></controls:CircleImage>
 
                 </StackLayout>
 
@@ -68,68 +70,109 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="15" />
-                        <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="*" />
-                        
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" 
-                           HorizontalTextAlignment="Start" TextColor="DarkMagenta"
-                           VerticalTextAlignment="Center"
-                           FontSize="14" FontAttributes="None"
-                           IsVisible="{Binding AgentComment, Converter={StaticResource StringToBool}}"
-                           Text="{Binding AgentComment}" >
-                    </Label>
-                    <Label Grid.Row="1" Grid.Column="1"
+
+                    <Label Grid.Row="0" Grid.Column="1"
                             HorizontalTextAlignment="Start"
                             VerticalTextAlignment="Center"
                             FontSize="14" FontAttributes="None"
                             Text="Policy Number: " TextColor="Black">
                     </Label>
-                    <Label x:Name="lblPolicyNumber" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3"
+                    <Label x:Name="lblPolicyNumber" Grid.Row="0" Grid.Column="2"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"
+                            FontSize="14" FontAttributes="Bold"
+                            Text="{Binding PolicyNumber}" TextColor="Black">
+                    </Label>
+                    <Label Grid.Row="0" Grid.Column="3"
                             HorizontalTextAlignment="Start"
                             VerticalTextAlignment="Center"
                             FontSize="14" FontAttributes="None"
-                            Text="{Binding PolicyNumber}" TextColor="Black">
-                    </Label>                    
-                    
-                    <Label Grid.Row="2" Grid.Column="1"
+                            Text="Premium: " TextColor="Black" >
+                    </Label>
+                    <Label Grid.Row="0" Grid.Column="4"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"
+                            FontSize="14" FontAttributes="None"
+                            Text="{Binding Premium}" TextColor="Black" >
+                    </Label>
+                    <Label Grid.Row="1" Grid.Column="1" 
                             HorizontalTextAlignment="Start"
                             VerticalTextAlignment="Center"
                             FontSize="14" FontAttributes="None"
                             Text="Insured Name: " TextColor="Black" >
                     </Label>
-                    <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3"
+                    <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"
                            HorizontalTextAlignment="Start"
                            VerticalTextAlignment="Center"
                            FontSize="14" FontAttributes="None"
                            Text="{Binding InsuredName}" TextColor="Black">
                     </Label>
+                    <Label Grid.Row="1" Grid.Column="3"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"
+                            FontSize="14" FontAttributes="None" 
+                            Text="Last Pd. Due Dt.:" TextColor="Black">
+                    </Label>
+                    <Label Grid.Row="1" Grid.Column="4"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"
+                            FontSize="14" FontAttributes="None"
+                            Text="{Binding LastPaidDueDate}" >
+                    </Label>
+                    <Label Grid.Row="2" Grid.Column="1"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"
+                            FontSize="14" FontAttributes="None"
+                            Text="Policy Status: " TextColor="Black" >
+                    </Label>
+                    <Label Grid.Row="2" Grid.Column="2"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Center"
+                           FontSize="14" FontAttributes="None"
+                           Text="{Binding PolicyStatus}" TextColor="Black" >
+                    </Label>
+                    <Label Grid.Row="2" Grid.Column="3"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"
+                            FontSize="14" FontAttributes="None"
+                            Text="# of O.Installs: " TextColor="Black">
+                    </Label>
+                    <Label Grid.Row="2" Grid.Column="4"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Center"
+                           FontSize="14" FontAttributes="None"
+                           Text="{Binding NoOfOutstandings}" TextColor="Black" >
+                    </Label>
+
                     <Label Grid.Row="3" Grid.Column="1"
                             HorizontalTextAlignment="Start"
                             VerticalTextAlignment="Center"
                             FontSize="14" FontAttributes="None"
-                            Text="Start Date: " TextColor="Black" >
+                            Text="Table/Term: " TextColor="Black" >
                     </Label>
                     <Label Grid.Row="3" Grid.Column="2"
                            HorizontalTextAlignment="Start"
                            VerticalTextAlignment="Center"
                            FontSize="14" FontAttributes="None"
-                           Text="{Binding StartDate}" TextColor="Black" >
+                           Text="{Binding PolTableTerm}" TextColor="Black" >
                     </Label>
                     <Label Grid.Row="3" Grid.Column="3"
                             HorizontalTextAlignment="Start"
                             VerticalTextAlignment="Center"
                             FontSize="14" FontAttributes="None"
-                            Text="End Date: " TextColor="Black">
+                            Text="Payment Mode: " TextColor="Black" >
                     </Label>
                     <Label Grid.Row="3" Grid.Column="4"
                            HorizontalTextAlignment="Start"
                            VerticalTextAlignment="Center"
                            FontSize="14" FontAttributes="None"
-                           Text="{Binding EndDate}" TextColor="Black" >
-                    </Label>                   
+                           Text="{Binding PayMode}" TextColor="Black" >
+                    </Label>
 
                 </Grid>
 
@@ -153,11 +196,12 @@
                             <RowDefinition Height="40" />
                         </Grid.RowDefinitions>
                         <Image x:Name="btnCall" Grid.Column="0" HorizontalOptions="Center" Source="call.png"></Image>
+                        <!-- <Image x:Name="btnEmail" Grid.Column="1" HorizontalOptions="Center" Source="email.png"></Image> -->
                         <Image x:Name="btnSMS" Grid.Column="1" HorizontalOptions="Center" Source="sms.png"></Image>
-                        <Button x:Name="btnPolicy" Clicked="btnPolicy_Clicked" Grid.Column="2"  HorizontalOptions="Center" Text="Go to Policy" BackgroundColor="SkyBlue" HeightRequest="30" BorderRadius="10"/>
-                        <Image x:Name="btnReminder" Grid.Column="3" HorizontalOptions="Center" Source="{Binding FlagImage}"></Image>
+                      <!--  <Button x:Name="btnPolicy" Clicked="btnPolicy_Clicked" Grid.Column="2"  HorizontalOptions="Center" Text="Go to Policy" BackgroundColor="SkyBlue" HeightRequest="30" BorderRadius="10"/> -->
+                        <Image x:Name="btnReminder" Grid.Column="2" HorizontalOptions="Center" Source="{Binding FlagImage}"></Image>
                     </Grid>
-                    <Label x:Name="lblMobileNo" Grid.Column="2" Text="{Binding MobileNumber}" IsVisible="False" />
+                    <Label x:Name="lblMobileNo" Grid.Column="3" Text="{Binding MobileNumber}" IsVisible="False" />
 
                 </Grid>
             </Grid>
