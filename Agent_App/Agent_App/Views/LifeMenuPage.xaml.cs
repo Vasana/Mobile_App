@@ -46,7 +46,14 @@ namespace Agent_App.Views
             {
                 MessagingCenter.Send(this, "preventPortrait");
             }
-
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                var vm = BindingContext as LifeMenuViewModel;
+                SearchCriteriaLife.Instance.NewSearch = true;
+                SearchCriteriaLife.Instance.TodayReminders = true;
+                vm.DownloadPoliciesAsync();
+            }
+            
         }
 
         private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -65,8 +72,14 @@ namespace Agent_App.Views
 
         private void btnRefresh_Clicked(object sender, EventArgs e)
         {
-            var vm = new LifeMenuViewModel();
-            this.BindingContext = vm;
+            //var vm = new LifeMenuViewModel();
+            //this.BindingContext = vm;
+
+
+            var vm = BindingContext as LifeMenuViewModel;
+            SearchCriteriaLife.Instance.NewSearch = true;
+            SearchCriteriaLife.Instance.TodayReminders = true;
+            vm.DownloadPoliciesAsync();
         }
     }
 }

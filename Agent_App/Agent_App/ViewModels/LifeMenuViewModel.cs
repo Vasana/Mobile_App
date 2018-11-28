@@ -94,9 +94,13 @@ namespace Agent_App.ViewModels
 
         public LifeMenuViewModel()
         {
-            SearchCriteriaLife.Instance.NewSearch = true;
-            SearchCriteriaLife.Instance.TodayReminders = true;
-            DownloadPoliciesAsync();
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                SearchCriteriaLife.Instance.NewSearch = true;
+                SearchCriteriaLife.Instance.TodayReminders = true;
+                DownloadPoliciesAsync();
+            }
+
             GetNotifExistAsync();
         }
 
@@ -129,7 +133,7 @@ namespace Agent_App.ViewModels
             var items2 = await _apiServices.GetLifePoliciesAsync(accessToken: Settings.AccessToken, pageIndex: 0, pageSize: PageSize);
 
             if (items2 != null)
-            {
+            {                
                 IsEmpty = false;
                 ListExist = true;
             }
@@ -139,13 +143,14 @@ namespace Agent_App.ViewModels
                 ListExist = false;
             }
             IsBusy = false;
-            var newListHeight = PoliciesCollection.Count * 200;
+                        
+            var newListHeight = items2.Count * 200;
             if (newListHeight > ListHeight)
             {
                 ListHeight = newListHeight;
             }
+
             PoliciesCollection.AddRange(items2);
-            
 
             //PoliciesCollection = new InfiniteScrollCollection<CustPolicy>(items);
 

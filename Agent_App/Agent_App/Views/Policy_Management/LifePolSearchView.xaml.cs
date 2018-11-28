@@ -58,10 +58,10 @@ namespace Agent_App.Views
                 {
                     SearchCriteriaLife.Instance.NicNumber = entNicNumber.Text.Trim();
                 }
-                //if (entTable.Text != null)
-                //{
-                //    SearchCriteriaLife.Instance.TableId = entTable.Text.Trim();
-                //}
+                if (entTable.Text != null)
+                {
+                    SearchCriteriaLife.Instance.TableId = entTable.Text.Trim();
+                }
                 if (policyStatus == -1)
                 {
                     SearchCriteriaLife.Instance.AllPolicies = true;
@@ -96,18 +96,18 @@ namespace Agent_App.Views
             {
                 entPolicyNumber.Text = null;
                 entNicNumber.Text = null;
-                //entTable.Text = null;
+                entTable.Text = null;
                 
                 entPolicyNumber.IsEnabled = false;                
                 entNicNumber.IsEnabled = false;
-               // entTable.IsEnabled = false;
+                entTable.IsEnabled = false;
                 
             }
             else
             {
                 entPolicyNumber.IsEnabled = true;
                 entNicNumber.IsEnabled = true;
-               // entTable.IsEnabled = true;
+                entTable.IsEnabled = true;
             }
         }
 
@@ -118,8 +118,8 @@ namespace Agent_App.Views
             entPolicyNumber.IsEnabled = true;
             entNicNumber.Text = null;
             entNicNumber.IsEnabled = true;
-            //entTable.Text = null;
-            //entTable.IsEnabled = true;
+            entTable.Text = null;
+            entTable.IsEnabled = true;
         }
 
         private void entPolicyNumber_TextChanged(object sender, TextChangedEventArgs e)
@@ -127,12 +127,12 @@ namespace Agent_App.Views
             if (entPolicyNumber.Text != "")
             {
                 entNicNumber.IsEnabled = false;
-                //entTable.IsEnabled = false;
+                entTable.IsEnabled = false;
             }
             else
             {
                 entNicNumber.IsEnabled = true;
-                //entTable.IsEnabled = true;
+                entTable.IsEnabled = true;
             }
         }
 
@@ -141,27 +141,27 @@ namespace Agent_App.Views
             if (entNicNumber.Text != "")
             {
                 entPolicyNumber.IsEnabled = false;
-                //entTable.IsEnabled = false;
+                entTable.IsEnabled = false;
             }
             else
             {
                 entPolicyNumber.IsEnabled = true;
-                //entTable.IsEnabled = true;
+                entTable.IsEnabled = true;
             }
         }
 
-        //private void entTable_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    if (entTable.Text != "")
-        //    {
-        //        entPolicyNumber.IsEnabled = false;
-        //        entNicNumber.IsEnabled = false;
-        //    }
-        //    else
-        //    {
-        //        entPolicyNumber.IsEnabled = true;
-        //        entNicNumber.IsEnabled = true;
-        //    }
-        //}
+        private void entTable_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (entTable.Text != "")
+            {
+                entPolicyNumber.IsEnabled = false;
+                entNicNumber.IsEnabled = false;
+            }
+            else
+            {
+                entPolicyNumber.IsEnabled = true;
+                entNicNumber.IsEnabled = true;
+            }
+        }
     }
 }

@@ -32,7 +32,7 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
-                    <!--<RowDefinition Height="*" /> -->
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
@@ -48,15 +48,15 @@
                         <x:String>Lapsed</x:String>
                         <x:String>Temp. Lapsed</x:String>
                         <x:String>Flagged by Me</x:String>
-                        <!--<x:String>Bad Claims</x:String>   -->
+                       
                     </Picker.Items>
                 </Picker>
                 <Label Grid.Row="2" Grid.Column="0" VerticalTextAlignment="End" Text="Policy Number" FontSize="Medium"/>
                 <Entry Grid.Row="2" Grid.Column="1" x:Name="entPolicyNumber" TextChanged="entPolicyNumber_TextChanged" VerticalOptions="End"/>                
                 <Label Grid.Row="3" Grid.Column="0" VerticalTextAlignment="End" Text="NIC Number" FontSize="Medium"/>
                 <Entry Grid.Row="3" Grid.Column="1" x:Name="entNicNumber" TextChanged="entNicNumber_TextChanged" VerticalOptions="End"/>
-             <!--   <Label Grid.Row="4" Grid.Column="0" VerticalTextAlignment="End" Text="Table" FontSize="Medium"/>
-                <Entry Grid.Row="4" Grid.Column="1" x:Name="entTable" Keyboard="Numeric" TextChanged="entTable_TextChanged" VerticalOptions="End"/>  -->  
+                <Label Grid.Row="4" Grid.Column="0" VerticalTextAlignment="End" Text="Table" FontSize="Medium"/>
+                <Entry Grid.Row="4" Grid.Column="1" x:Name="entTable" Keyboard="Numeric" TextChanged="entTable_TextChanged" VerticalOptions="End"/>  
             </Grid>
         </ScrollView>
         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="10">

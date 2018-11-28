@@ -70,7 +70,7 @@
                     <StackLayout Grid.Row="1" Grid.ColumnSpan="2">
 
                         <ListView x:Name="listView" 
-                      RowHeight="150" ItemTapped="listView_ItemTapped" 
+                       ItemTapped="listView_ItemTapped" 
                       ItemsSource="{Binding PoliciesCollection}"  HasUnevenRows="True" HeightRequest="{Binding ListHeight}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>

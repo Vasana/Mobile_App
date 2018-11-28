@@ -14,7 +14,7 @@
         <ToolbarItem Icon="inforce.png" Text="Inforce Policies" Clicked="btnInforce_Clicked"/>
         <ToolbarItem Icon="lapsed.png" Text="Lapsed Policies" Clicked="btnLapsed_Clicked"/>
         <ToolbarItem Icon="tempLapsed.png" Text="Temp. Lapsed" Clicked="btnTempLapsed_Clicked"/>
-        <ToolbarItem Icon="filledStar.png" Text="Flagged" Clicked="btnFlagged_Clicked"/>
+        <ToolbarItem Icon="filledStar2.png" Text="Flagged" Clicked="btnFlagged_Clicked"/>
         <ToolbarItem Icon="search_cl.png" Text="Search" Clicked="btnSearch_Clicked"/>
     </ContentPage.ToolbarItems>
 

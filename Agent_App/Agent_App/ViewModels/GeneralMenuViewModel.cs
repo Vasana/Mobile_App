@@ -94,9 +94,12 @@ namespace Agent_App.ViewModels
 
         public GeneralMenuViewModel()
         {
-            SearchCriteria.Instance.NewSearch = true;
-            SearchCriteria.Instance.TodayReminders = true;
-            DownloadPoliciesAsync();
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                SearchCriteria.Instance.NewSearch = true;
+                SearchCriteria.Instance.TodayReminders = true;
+                DownloadPoliciesAsync();
+            }
             GetNotifExistAsync();                      
 
         }
@@ -129,7 +132,7 @@ namespace Agent_App.ViewModels
             var items2 = await _apiServices.GetPoliciesAsync(accessToken: Settings.AccessToken, pageIndex: 0, pageSize: PageSize);
             
             if (items2 != null)
-            {
+            {                
                 IsEmpty = false;
                 ListExist = true;
             }
@@ -139,12 +142,14 @@ namespace Agent_App.ViewModels
                 ListExist = false;
             }
             IsBusy = false;
+
+            PoliciesCollection.AddRange(items2);
             var newListHeight = PoliciesCollection.Count * 200;
             if (newListHeight > ListHeight)
             {
                 ListHeight = newListHeight;
             }
-            PoliciesCollection.AddRange(items2);
+
             
             //PoliciesCollection = new InfiniteScrollCollection<CustPolicy>(items);
         }
