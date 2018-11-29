@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Agent_App.Views.LifePoliciesList"
+             xmlns:views="clr-namespace:Agent_App.Views"
+             xmlns:viewModel="clr-namespace:Agent_App.ViewModels"
+             xmlns:extended="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling">
+
+    <ContentPage.BindingContext>
+        <viewModel:LifePoliciesVwModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="inforce.png" Text="Inforce Policies" Clicked="btnInforce_Clicked"/>
+        <ToolbarItem Icon="lapsed.png" Text="Lapsed Policies" Clicked="btnLapsed_Clicked"/>
+        <ToolbarItem Icon="tempLapsed.png" Text="Temp. Lapsed" Clicked="btnTempLapsed_Clicked"/>
+        <ToolbarItem Icon="filledStar2.png" Text="Flagged" Clicked="btnFlagged_Clicked"/>
+        <ToolbarItem Icon="search_cl.png" Text="Search" Clicked="btnSearch_Clicked"/>
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+        <Label Text="{Binding PolicyListDesc}" 
+             VerticalOptions="Start"
+             HorizontalTextAlignment="Center"
+             VerticalTextAlignment="Center"
+             BackgroundColor="Transparent"
+             HorizontalOptions="CenterAndExpand" />
+        <ListView x:Name="listView" SelectedItem="{Binding SelcetedItem,Mode=TwoWay}"  Refreshing="listView_Refreshing" ItemAppearing="listView_ItemAppearing"
+              ItemTapped="listView_ItemTapped" 
+              ItemsSource="{Binding PoliciesCollection}"  HasUnevenRows="True"  >
+
+            <ListView.Behaviors>
+                <extended:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}" />
+            </ListView.Behaviors>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ContentView Padding="10" BackgroundColor="{Binding BackgroundColor}">
+                            <views:LifePolViewTemplate/>
+                        </ContentView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <ListView.Footer>
+                <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                    <!-- set the footer to have a zero height when invisible -->
+                    <Grid.Triggers>
+                        <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                            <Setter Property="HeightRequest" Value="0" />
+                        </Trigger>
+                    </Grid.Triggers>
+                    <!-- the loading content -->
+                    <Label Text="Loading..." TextColor="DeepPink" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" />
+                </Grid>
+            </ListView.Footer>
+        </ListView>
+
+        <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy2}" Color="Green" 
+                            HorizontalOptions="Center" VerticalOptions="Center">
+            <ActivityIndicator.Scale>
+                <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
+            </ActivityIndicator.Scale>
+        </ActivityIndicator>
+    </Grid>
+</ContentPage>

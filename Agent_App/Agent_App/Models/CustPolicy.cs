@@ -30,7 +30,7 @@ namespace Agent_App.Models
         public string FlagImage { get; set; }
         public string RemindOnDate { get; set; } = "";// yyyy/MM/dd
         public string CommentCreatedDate { get; set; } = "";
-        public string PremiumTypeImg { get; set; } = "";
+        public string PremiumTypeImg { get; set; } = ""; //new or renewal
         public string DebitCancelDate { get; set; } = "";
         public string DebitNoteNumber { get; set; } = "";
         public string DebitOutstAmt { get; set; } = "";

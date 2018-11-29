@@ -9,7 +9,8 @@
     <local:GeneralMenuPage  />
     <local:CommonUtilsPage />-->
 
-    <local:GeneralMenuPage Title="General Insurance"   />
+    <local:LifeMenuPage Title="Life Insurance"   />
+    <local:GeneralMenuPage Title="General Insurance"   />    
     <local:CommonUtilsPage Title="Common utilities"  />
 
     

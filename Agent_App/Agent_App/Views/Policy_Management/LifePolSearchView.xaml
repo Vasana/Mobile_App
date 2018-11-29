@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Agent_App.Views.LifePolSearchView"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!--  You can set an animation in the xaml file or in the csharp code behind  -->
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation DurationIn="400"
+                                   DurationOut="300"
+                                   EasingIn="SinOut"
+                                   EasingOut="SinIn"
+                                   HasBackgroundAnimation="True"
+                                   PositionIn="Center"
+                                   PositionOut="Center"
+                                   ScaleIn="1.2"
+                                   ScaleOut="0.8" />
+    </pages:PopupPage.Animation>
+
+    <StackLayout Margin="12"
+                 Padding="24"
+                 BackgroundColor="White"
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center">
+        <ScrollView>
+            <Grid VerticalOptions="End" HorizontalOptions="Start">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    
+                </Grid.ColumnDefinitions>
+
+                <Image x:Name="btnExit" Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="End"  VerticalOptions="Start" Source="close.png" HeightRequest="30" WidthRequest="30"></Image>                
+                <Label Grid.Row="1" Grid.Column="0" VerticalTextAlignment="End" Text="Policy Status" FontSize="Medium"></Label>
+                <Picker Grid.Row="1" Grid.Column="1" x:Name="typePicker" VerticalOptions="End" Title="Search by Type" SelectedIndexChanged="typePicker_SelectedIndexChanged">
+                    <Picker.Items>
+                        <x:String>Inforce</x:String>
+                        <x:String>Lapsed</x:String>
+                        <x:String>Temp. Lapsed</x:String>
+                        <x:String>Flagged by Me</x:String>
+                       
+                    </Picker.Items>
+                </Picker>
+                <Label Grid.Row="2" Grid.Column="0" VerticalTextAlignment="End" Text="Policy Number" FontSize="Medium"/>
+                <Entry Grid.Row="2" Grid.Column="1" x:Name="entPolicyNumber" TextChanged="entPolicyNumber_TextChanged" VerticalOptions="End"/>                
+                <Label Grid.Row="3" Grid.Column="0" VerticalTextAlignment="End" Text="NIC Number" FontSize="Medium"/>
+                <Entry Grid.Row="3" Grid.Column="1" x:Name="entNicNumber" TextChanged="entNicNumber_TextChanged" VerticalOptions="End"/>
+                <Label Grid.Row="4" Grid.Column="0" VerticalTextAlignment="End" Text="Table" FontSize="Medium"/>
+                <Entry Grid.Row="4" Grid.Column="1" x:Name="entTable" Keyboard="Numeric" TextChanged="entTable_TextChanged" VerticalOptions="End"/>  
+            </Grid>
+        </ScrollView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="10">
+            <Button x:Name="btnSubmit"
+                    BackgroundColor="SkyBlue"
+                    Text="Search"
+                    TextColor="White" BorderRadius="10"
+                    Clicked="btnSubmit_Clicked"/>
+            <Button x:Name="btnClear"
+                    BackgroundColor="DeepPink"
+                    Text="Clear"
+                    TextColor="White" BorderRadius="10"
+                    Clicked="btnClear_Clicked"/>
+        </StackLayout>
+    </StackLayout>
+    
+</pages:PopupPage>

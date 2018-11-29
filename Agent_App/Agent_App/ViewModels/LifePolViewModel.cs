@@ -36,15 +36,15 @@ namespace Agent_App.ViewModels
         }
         private bool _isBusy;
 
-        public LifePolViewModel(CustPolicy policy)
+        public LifePolViewModel(LifePolicy policy)
         {
-            GetPolicyDetailsAsync(policy.Department, policy.PolicyNumber);
+            GetPolicyDetailsAsync(policy.PolicyNumber);
         }
 
-        public async Task GetPolicyDetailsAsync(string dept, string policyNumber)
+        public async Task GetPolicyDetailsAsync(string policyNumber)
         {
             IsBusy = true;
-            _lifePolicy = await _apiServices.GetLifePolicyAsync(accessToken: Settings.AccessToken, dept: dept, policyNumber: policyNumber);
+         //   _lifePolicy = await _apiServices.GetLifePoliciesAsync(accessToken: Settings.AccessToken, dept: dept, policyNumber: policyNumber);
             IsBusy = false;
         }
 

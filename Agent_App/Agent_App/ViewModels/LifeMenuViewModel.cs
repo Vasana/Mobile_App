@@ -12,15 +12,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.Extended;
 
 namespace Agent_App.ViewModels
 {
     class LifeMenuViewModel : INotifyPropertyChanged
     {
-        ApiServices _apiServices = new ApiServices();
-        public CustPolicy _previousPolicy;
+        private const int PageSize = 10;
+        ApiServicesLife _apiServices = new ApiServicesLife();
+        public LifePolicy _previousPolicy;
 
-        public ObservableCollection<CustPolicy> PoliciesCollection
+        public InfiniteScrollCollection<LifePolicy> PoliciesCollection
         {
             get { return _policies; }
             set
@@ -29,7 +31,7 @@ namespace Agent_App.ViewModels
                 OnPropertyChanged();
             }
         }
-        public ObservableCollection<CustPolicy> _policies;
+        public InfiniteScrollCollection<LifePolicy> _policies;
 
         public bool IsBusy
         {
@@ -42,24 +44,133 @@ namespace Agent_App.ViewModels
         }
         private bool _isBusy;
 
+        public string NotifExist
+        {
+            get => _notifExist;
+            set
+            {
+                _notifExist = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _notifExist;
+
+        public bool IsEmpty
+        {
+            get => _isEmpty;
+            set
+            {
+                _isEmpty = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _listExist;
+
+        public bool ListExist
+        {
+            get => _listExist;
+            set
+            {
+                _listExist = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isEmpty;
+
+        public int ListHeight
+        {
+            get => _listHeight;
+            set
+            {
+                _listHeight = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _listHeight = 800;
+
+
         public LifeMenuViewModel()
         {
-            DownloadPoliciesAsync();
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                SearchCriteriaLife.Instance.NewSearch = true;
+                SearchCriteriaLife.Instance.TodayReminders = true;
+                DownloadPoliciesAsync();
+            }
+
+            GetNotifExistAsync();
         }
 
         public async Task DownloadPoliciesAsync()
         {
 
+            PoliciesCollection = new InfiniteScrollCollection<LifePolicy>
+            {
+                OnLoadMore = async () =>
+                {
+                    IsBusy = true;
+
+                    // load the next page
+                    var page = PoliciesCollection.Count / PageSize;
+
+                    var items = await _apiServices.GetLifePoliciesAsync(Settings.AccessToken, page, PageSize);
+
+                    IsBusy = false;
+
+                    // return the items that need to be added
+                    return items;
+                },
+                OnCanLoadMore = () =>
+                {
+                    return PoliciesCollection.Count < _apiServices.lifePolCount;
+                }
+            };
             _previousPolicy = null;
             IsBusy = true;
-            PoliciesCollection = await _apiServices.GetTodaysLifeRemindsAsync(accessToken: Settings.AccessToken);
+            var items2 = await _apiServices.GetLifePoliciesAsync(accessToken: Settings.AccessToken, pageIndex: 0, pageSize: PageSize);
+
+            if (items2 != null)
+            {                
+                IsEmpty = false;
+                ListExist = true;
+            }
+            else
+            {
+                IsEmpty = true;
+                ListExist = false;
+            }
             IsBusy = false;
+                        
+            var newListHeight = items2.Count * 200;
+            if (newListHeight > ListHeight)
+            {
+                ListHeight = newListHeight;
+            }
+
+            PoliciesCollection.AddRange(items2);
 
             //PoliciesCollection = new InfiniteScrollCollection<CustPolicy>(items);
 
         }
 
-        public void HideOrShowPolicy(CustPolicy policy)
+        public async Task GetNotifExistAsync()
+        {
+            bool ret = await _apiServices.NotificsExistAsync(Settings.AccessToken);
+            if (ret)
+            {
+                NotifExist = "notifAlert.png";
+            }
+            else
+            {
+                NotifExist = "";
+            }
+        }
+
+
+        public void HideOrShowPolicy(LifePolicy policy)
         {
             if (_previousPolicy == policy)
             {
@@ -84,14 +195,14 @@ namespace Agent_App.ViewModels
             _previousPolicy = policy;
         }
 
-        private void UpdatePolicies(CustPolicy policy)
+        private void UpdatePolicies(LifePolicy policy)
         {
             var index = PoliciesCollection.IndexOf(policy);
             PoliciesCollection.Remove(policy);
             PoliciesCollection.Insert(index, policy);
         }
 
-        public ICommand CustomersProfilesCommand
+        public ICommand CustomersPoliciesCommand
         {
             get
             {
@@ -99,28 +210,28 @@ namespace Agent_App.ViewModels
                 {
                     //Application.Current.MainPage = new NavigationPage(new ExampleList());
 
-                    await Application.Current.MainPage.Navigation.PushAsync(new performance_stats());
+                    await Application.Current.MainPage.Navigation.PushAsync(new LifePoliciesList());
                 });
             }
         }
 
-        public ICommand GetQuotationCommand
-        {
-            get
-            {
-                return new Command(async () =>
-                {
-                    //Application.Current.MainPage = new NavigationPage(new ExampleList());
+        //public ICommand GetQuotationCommand
+        //{
+        //    get
+        //    {
+        //        return new Command(async () =>
+        //        {
+        //            //Application.Current.MainPage = new NavigationPage(new ExampleList());
 
-                    //await Application.Current.MainPage.Navigation.PushAsync(new Org_Perform_landing());
+        //            //await Application.Current.MainPage.Navigation.PushAsync(new Org_Perform_landing());
                     
-                    if (Settings.jobRole == "Organizer")
-                        await PopupNavigation.Instance.PushAsync(new PopUp_Perform());
-                    else
-                        await Application.Current.MainPage.Navigation.PushAsync(new Agent_performance());
-                });
-            }
-        }
+        //            if (Settings.jobRole == "Organizer")
+        //                await PopupNavigation.Instance.PushAsync(new PopUp_Perform());
+        //            else
+        //                await Application.Current.MainPage.Navigation.PushAsync(new Agent_performance());
+        //        });
+        //    }
+        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
 

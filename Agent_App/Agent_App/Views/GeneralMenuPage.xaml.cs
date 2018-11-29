@@ -36,18 +36,25 @@ namespace Agent_App.Views
                
             }
         }
-            
+
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            if (Device.Idiom == TargetIdiom.Phone)
+            //if (Device.Idiom == TargetIdiom.Phone)
+            //{
+            //    MessagingCenter.Send(this, "preventPortrait");
+            //}
+            if (Device.RuntimePlatform == Device.iOS)
             {
-                MessagingCenter.Send(this, "preventPortrait");
+                var vm = BindingContext as GeneralMenuViewModel;
+                SearchCriteria.Instance.NewSearch = true;
+                SearchCriteria.Instance.TodayReminders = true;
+                vm.DownloadPoliciesAsync();
             }
-        
+            
         }
-        
+
         private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var vm = BindingContext as GeneralMenuViewModel;
@@ -64,8 +71,13 @@ namespace Agent_App.Views
 
         private void btnRefresh_Clicked(object sender, EventArgs e)
         {
-            var vm = new GeneralMenuViewModel();
-            this.BindingContext = vm;
+            //var vm = new GeneralMenuViewModel();
+            //this.BindingContext = vm;
+
+            var vm = BindingContext as GeneralMenuViewModel;
+            SearchCriteria.Instance.NewSearch = true;
+            SearchCriteria.Instance.TodayReminders = true;
+            vm.DownloadPoliciesAsync();
         }
     }
 }

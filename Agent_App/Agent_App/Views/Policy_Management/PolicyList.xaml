@@ -15,7 +15,7 @@
         <ToolbarItem Icon="alert_yellow_cl.png" Text="Premium Pending" Clicked="btnPayPend_Clicked"/>
         <ToolbarItem Icon="debitOutstd.png" Text="Debit Outstanding" Clicked="btnDbitOuts_Clicked"/>
         <ToolbarItem Icon="claim_pending_cl.png" Text="Claim Pending" Clicked="btnClaimPend_Clicked"/>
-        <ToolbarItem Icon="filledStar.png" Text="Flagged" Clicked="btnFlagged_Clicked"/>
+        <ToolbarItem Icon="filledStar2.png" Text="Flagged" Clicked="btnFlagged_Clicked"/>
         <ToolbarItem Icon="search_cl.png" Text="Search" Clicked="btnSearch_Clicked"/>
     </ContentPage.ToolbarItems>
     <Grid>
@@ -26,7 +26,7 @@
              BackgroundColor="Transparent"
              HorizontalOptions="CenterAndExpand" />
         <ListView x:Name="listView" SelectedItem="{Binding SelcetedItem,Mode=TwoWay}"  Refreshing="listView_Refreshing" ItemAppearing="listView_ItemAppearing"
-              RowHeight="150" ItemTapped="listView_ItemTapped" 
+               ItemTapped="listView_ItemTapped" 
               ItemsSource="{Binding PoliciesCollection}"  HasUnevenRows="True"  >
 
             <ListView.Behaviors>
