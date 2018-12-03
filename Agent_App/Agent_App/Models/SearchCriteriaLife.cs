@@ -21,6 +21,7 @@ namespace Agent_App.Models
         public string ListDesc { get; set; } = "";
         public string NicNumber { get; set; } = "";
         public string TableId { get; set; } = "";
+        public string policy_year { get; set; } = "";
 
         //---- when adding a field update the apiServices.GetPoliciesAsync method to re-initilize the field
 

@@ -69,7 +69,12 @@ namespace Agent_App.Views
                 SearchCriteriaLife.Instance.NewSearch = true;
                 SearchCriteriaLife.Instance.ListDesc = "Search Result List";
 
-                //MessagingCenter.Send<MainPage, string>(, "SearchPolicy", "John");
+                
+
+                string pol_year = yearPicker.SelectedItem.ToString().Substring(5);
+
+                SearchCriteriaLife.Instance.policy_year = (pol_year == "6-10" ? "6" : pol_year);
+
                 PopupNavigation.Instance.PopAsync(true);
             }
             catch (Exception e2)
@@ -101,10 +106,15 @@ namespace Agent_App.Views
                 entPolicyNumber.IsEnabled = false;                
                 entNicNumber.IsEnabled = false;
                 entTable.IsEnabled = false;
-                
+
+                yearPicker.SelectedIndex = -1;
+                yearPicker.IsEnabled = false;
+
+
             }
             else
             {
+                yearPicker.IsEnabled = true;
                 entPolicyNumber.IsEnabled = true;
                 entNicNumber.IsEnabled = true;
                 entTable.IsEnabled = true;
@@ -161,6 +171,32 @@ namespace Agent_App.Views
             {
                 entPolicyNumber.IsEnabled = true;
                 entNicNumber.IsEnabled = true;
+            }
+        }
+
+        private void yearPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = yearPicker.SelectedIndex;
+            if (selectedIndex != -1)
+            {
+                entPolicyNumber.Text = null;
+                entNicNumber.Text = null;
+                entTable.Text = null;
+
+                entPolicyNumber.IsEnabled = false;
+                entNicNumber.IsEnabled = false;
+                entTable.IsEnabled = false;
+
+                typePicker.SelectedIndex = -1;
+                typePicker.IsEnabled = false;
+
+            }
+            else
+            {
+                entPolicyNumber.IsEnabled = true;
+                entNicNumber.IsEnabled = true;
+                entTable.IsEnabled = true;
+                typePicker.IsEnabled = true;
             }
         }
     }
