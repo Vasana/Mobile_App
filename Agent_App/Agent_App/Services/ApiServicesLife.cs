@@ -19,17 +19,17 @@ namespace Agent_App.Services
 {
     public class ApiServicesLife
     {
-        private List<LifePolicy> _lifePolicyList;
+        private List<CustPolicyLife> _lifePolicyList;
         public int lifePolCount = 0;
 
         private List<Notification> _notifList;
         public int notifCount = 0;
 
-        private LifePolicy _lifePolicy;
+        private CustPolicyLife _lifePolicy;
 
 
 
-        public async Task<List<LifePolicy>> GetLifePoliciesAsync(string accessToken, int pageIndex, int pageSize)
+        public async Task<List<CustPolicyLife>> GetLifePoliciesAsync(string accessToken, int pageIndex, int pageSize)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace Agent_App.Services
                     if (response.IsSuccessStatusCode)
                     {
                         var responseContent = await response.Content.ReadAsStringAsync();
-                        _lifePolicyList = JsonConvert.DeserializeObject<List<LifePolicy>>(responseContent);
+                        _lifePolicyList = JsonConvert.DeserializeObject<List<CustPolicyLife>>(responseContent);
                     }
                     else if (response.StatusCode.ToString() == "Unauthorized")
                     {
@@ -59,11 +59,11 @@ namespace Agent_App.Services
                     //_lifePolicyList = null;
                     //if (SearchCriteriaLife.Instance.lapsed_pol)
                     //{
-                    //    _lifePolicyList = GetLifePolicyList2();
+                    //    _lifePolicyList = GetCustPolicyLifeList2();
                     //}
                     //else
                     //{
-                    //    _lifePolicyList = GetLifePolicyList();
+                    //    _lifePolicyList = GetCustPolicyLifeList();
                     //}
 
                     //GeneratePolicies();
@@ -112,11 +112,11 @@ namespace Agent_App.Services
 
         }
 
-        //public List<LifePolicy> GetLifePolicyList()
+        //public List<CustPolicyLife> GetCustPolicyLifeList()
         //{
-        //    List<LifePolicy> polList = new List<LifePolicy>
+        //    List<CustPolicyLife> polList = new List<CustPolicyLife>
         //        {
-        //            new LifePolicy
+        //            new CustPolicyLife
         //            {
         //                PolicyNumber = "123456",
         //                AgentCode = "923454",
@@ -139,7 +139,7 @@ namespace Agent_App.Services
         //                CommentCreatedDate = "",
         //            },
 
-        //             new LifePolicy
+        //             new CustPolicyLife
         //             {
         //                PolicyNumber = "123456",
         //                AgentCode = "923454",
@@ -162,7 +162,7 @@ namespace Agent_App.Services
         //                CommentCreatedDate = "",
         //             },
 
-        //             new LifePolicy
+        //             new CustPolicyLife
         //             {
         //                PolicyNumber = "123456",
         //                AgentCode = "923454",
@@ -189,11 +189,11 @@ namespace Agent_App.Services
         //    return polList;
         //}
 
-        //public List<LifePolicy> GetLifePolicyList2()
+        //public List<CustPolicyLife> GetCustPolicyLifeList2()
         //{
-        //    List<LifePolicy> polList = new List<LifePolicy>
+        //    List<CustPolicyLife> polList = new List<CustPolicyLife>
         //        {
-        //            new LifePolicy
+        //            new CustPolicyLife
         //            {
         //                PolicyNumber = "123456",
         //                AgentCode = "923454",
@@ -216,7 +216,7 @@ namespace Agent_App.Services
         //                CommentCreatedDate = "",
         //            },
 
-        //             new LifePolicy
+        //             new CustPolicyLife
         //             {
         //                PolicyNumber = "123456",
         //                AgentCode = "923454",

@@ -13,7 +13,7 @@ namespace Agent_App.ViewModels
     class LifePolViewModel : INotifyPropertyChanged
     {
         ApiServices _apiServices = new ApiServices();
-        public LifePolicy GenPolicy
+        public CustPolicyLife GenPolicy
         {
             get => _lifePolicy;
             set
@@ -23,7 +23,7 @@ namespace Agent_App.ViewModels
             }
         }
 
-        private LifePolicy _lifePolicy;
+        private CustPolicyLife _lifePolicy;
 
         public bool IsBusy
         {
@@ -36,7 +36,7 @@ namespace Agent_App.ViewModels
         }
         private bool _isBusy;
 
-        public LifePolViewModel(LifePolicy policy)
+        public LifePolViewModel(CustPolicyLife policy)
         {
             GetPolicyDetailsAsync(policy.PolicyNumber);
         }

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Agent_App.Views.LifePolViewTemplate"
@@ -198,8 +198,8 @@
                         <Image x:Name="btnCall" Grid.Column="0" HorizontalOptions="Center" Source="call.png"></Image>
                         <!-- <Image x:Name="btnEmail" Grid.Column="1" HorizontalOptions="Center" Source="email.png"></Image> -->
                         <Image x:Name="btnSMS" Grid.Column="1" HorizontalOptions="Center" Source="sms.png"></Image>
-                      <!--  <Button x:Name="btnPolicy" Clicked="btnPolicy_Clicked" Grid.Column="2"  HorizontalOptions="Center" Text="Go to Policy" BackgroundColor="SkyBlue" HeightRequest="30" BorderRadius="10"/> -->
-                        <Image x:Name="btnReminder" Grid.Column="2" HorizontalOptions="Center" Source="{Binding FlagImage}"></Image>
+                        <Button x:Name="btnPolicy" Clicked="btnPolicy_Clicked" Grid.Column="2"  HorizontalOptions="Center" Text="Go to Policy" BackgroundColor="SkyBlue" HeightRequest="30" BorderRadius="10"/>
+                        <Image x:Name="btnReminder" Grid.Column="3" HorizontalOptions="Center" Source="{Binding FlagImage}"></Image>
                     </Grid>
                     <Label x:Name="lblMobileNo" Grid.Column="3" Text="{Binding MobileNumber}" IsVisible="False" />
 

@@ -70,7 +70,7 @@ namespace Agent_App.Views
 
         private void flagImage_Tapped(object sender, EventArgs e)
         {
-            var policy = BindingContext as LifePolicy;
+            var policy = BindingContext as CustPolicyLife;
             PolicyFlagView flagView = new PolicyFlagView(policy.PolicyNumber, policy.AgentComment, policy.RemindOnDate);
             flagView.Disappearing += FlagView_DisappearingAsync;
             PopupNavigation.Instance.PushAsync(flagView);
@@ -80,7 +80,7 @@ namespace Agent_App.Views
 
         private async void FlagView_DisappearingAsync(object sender, EventArgs e)
         {
-            var policy = BindingContext as LifePolicy;
+            var policy = BindingContext as CustPolicyLife;
             PolicyFlag.Instance.AgentCode = policy.AgentCode;
             PolicyFlag.Instance.CommentCreatedDate = policy.CommentCreatedDate;
 
@@ -130,7 +130,7 @@ namespace Agent_App.Views
         private async void btnPolicy_Clicked(object sender, EventArgs e)
         {
             //btnPolicy.IsEnabled = false;
-            var policy = BindingContext as LifePolicy;
+            var policy = BindingContext as CustPolicyLife;
             var lifePolVM= new LifePolViewModel(policy);
 
             var lifePolicyPage = new GenPolicyDetails //to be changed

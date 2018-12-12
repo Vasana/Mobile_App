@@ -59,7 +59,7 @@ namespace Agent_App.Views
         private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var vm = BindingContext as LifeMenuViewModel;
-            var policy = e.Item as LifePolicy;
+            var policy = e.Item as CustPolicyLife;
 
             vm.HideOrShowPolicy(policy);
 
