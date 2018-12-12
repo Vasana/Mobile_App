@@ -106,16 +106,16 @@ namespace Agent_App.Views
         private async void btnPolicy_Clicked(object sender, EventArgs e)
         {
             var policy = BindingContext as CustPolicyLife;
-            var genPolVM = new LifePolViewModel(policy);
+            var lifPolVM = new LifePolViewModel(policy);
 
-            var genPolicyPage = new GenPolicyDetails
+            var lifPolicyPage = new LifePolicyDetails
             {
-                BindingContext = genPolVM
+                BindingContext = lifPolVM
             };
 
             if (App.Current.MainPage is NavigationPage)
             {
-                await (App.Current.MainPage as NavigationPage).PushAsync(genPolicyPage);
+                await (App.Current.MainPage as NavigationPage).PushAsync(lifPolicyPage);
             }
 
         }

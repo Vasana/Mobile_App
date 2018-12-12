@@ -391,11 +391,24 @@ namespace Agent_App.Services
             {
                 var client = new HttpClient();
 
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
-                var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getGeneralPolicyInfo?policyNo=" + policyNumber.Trim());
+                //var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getGeneralPolicyInfo?policyNo=" + policyNumber.Trim());
 
-                _lifPolicy = JsonConvert.DeserializeObject<LifePolicy>(json);
+                _lifPolicy.PolicyNumber = "0456544";
+                _lifPolicy.InsuredName = "Saman Perera";
+                _lifPolicy.Address = new List<string> { "No 01", "Hevelock Road", "Colombo 06" };
+                _lifPolicy.ComDate = "2017/02/03";
+                _lifPolicy.PolTable = "19";
+                _lifPolicy.PolTerm = "20";
+                _lifPolicy.PolDesc = "Divi Thilina";
+                _lifPolicy.SumInsured = "5000000";
+                _lifPolicy.PayTypeDesc = "Monthly";
+                _lifPolicy.PolStatus = "Inforce";
+                _lifPolicy.Premium = "20000";
+                _lifPolicy.MobileNumber = "0774567643";
+
+               // _lifPolicy = JsonConvert.DeserializeObject<LifePolicy>(json);
 
             }
             catch (Exception e)

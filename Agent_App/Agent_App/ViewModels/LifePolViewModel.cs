@@ -36,6 +36,18 @@ namespace Agent_App.ViewModels
         }
         private bool _isBusy;
 
+        public int AddressWidth
+        {
+            get => _addressWidth;
+            set
+            {
+                _addressWidth = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int _addressWidth;
+
         public LifePolViewModel(CustPolicyLife policy)
         {
             GetPolicyDetailsAsync(policy.PolicyNumber);
@@ -44,7 +56,17 @@ namespace Agent_App.ViewModels
         public async Task GetPolicyDetailsAsync(string policyNumber)
         {
             IsBusy = true;
-         //   _lifePolicy = await _apiServices.GetLifePoliciesAsync(accessToken: Settings.AccessToken, dept: dept, policyNumber: policyNumber);
+            LifPolicy = await _apiServices.GetLifePolicyAsync(accessToken: Settings.AccessToken, policyNumber: policyNumber);
+
+            if (LifPolicy.Address != null)
+            {
+                AddressWidth = LifPolicy.Address.Count * 30;
+            }
+            else
+            {
+                AddressWidth = 0;
+            }
+
             IsBusy = false;
         }
 
