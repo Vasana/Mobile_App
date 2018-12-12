@@ -16,6 +16,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
     <EmbeddedResource Remove="Views\AgentPerfomance.xaml" />
+    <PackageReference Include="Xamarin.Forms.DataGrid" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup>

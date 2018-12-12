@@ -48,6 +48,18 @@ namespace Agent_App.ViewModels
 
         public int _addressWidth;
 
+        private List<LifeMember> membersList;
+
+        public List<LifeMember> MembersList
+        {
+            get { return membersList; }
+            set
+            {
+                membersList = value;
+                OnPropertyChanged(nameof(MembersList));
+            }
+        }
+
         public LifePolViewModel(CustPolicyLife policy)
         {
             GetPolicyDetailsAsync(policy.PolicyNumber);
@@ -66,6 +78,8 @@ namespace Agent_App.ViewModels
             {
                 AddressWidth = 0;
             }
+
+            MembersList = await _apiServices.GetMemberDetailsAsync(accessToken: Settings.AccessToken, polNumber: policyNumber);
 
             IsBusy = false;
         }
