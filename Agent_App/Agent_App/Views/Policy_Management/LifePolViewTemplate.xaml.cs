@@ -129,11 +129,11 @@ namespace Agent_App.Views
 
         private async void btnPolicy_Clicked(object sender, EventArgs e)
         {
-            //btnPolicy.IsEnabled = false;
+            btnPolicy.IsEnabled = false;
             var policy = BindingContext as CustPolicyLife;
             var lifePolVM= new LifePolViewModel(policy);
 
-            var lifePolicyPage = new GenPolicyDetails //to be changed
+            var lifePolicyPage = new LifePolicyDetails
             {
                 BindingContext = lifePolVM
             };
@@ -142,7 +142,7 @@ namespace Agent_App.Views
             {
                 await (App.Current.MainPage as NavigationPage).PushAsync(lifePolicyPage);
             }
-            //btnPolicy.IsEnabled = true;
+            btnPolicy.IsEnabled = true;
         }
     }
 }

@@ -383,6 +383,33 @@ namespace Agent_App.Services
             return ret;
         }
 
+
+        public async Task<LifePolicy> GetLifePolicyAsync(string accessToken, string policyNumber)
+        {
+            LifePolicy _lifPolicy = new LifePolicy();
+            try
+            {
+                var client = new HttpClient();
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+                var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getGeneralPolicyInfo?policyNo=" + policyNumber.Trim());
+
+                _lifPolicy = JsonConvert.DeserializeObject<LifePolicy>(json);
+
+            }
+            catch (Exception e)
+            {
+
+            }
+            return _lifPolicy;
+
+            //-----------------------------------------------------------------------------------
+
+        }
+
     }
+
+
 
 }
