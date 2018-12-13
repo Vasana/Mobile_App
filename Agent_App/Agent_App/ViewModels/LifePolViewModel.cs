@@ -60,6 +60,31 @@ namespace Agent_App.ViewModels
             }
         }
 
+        private List<LifeCover> coversList;
+
+        public List<LifeCover> CoversList
+        {
+            get { return coversList; }
+            set
+            {
+                coversList = value;
+                OnPropertyChanged(nameof(CoversList));
+            }
+        }
+
+        private List<LifePremiumDue> premiumsList;
+
+        public List<LifePremiumDue> PremiumsList
+        {
+            get { return premiumsList; }
+            set
+            {
+                premiumsList = value;
+                OnPropertyChanged(nameof(PremiumsList));
+            }
+        }
+
+
         public LifePolViewModel(CustPolicyLife policy)
         {
             GetPolicyDetailsAsync(policy.PolicyNumber);
@@ -80,6 +105,10 @@ namespace Agent_App.ViewModels
             }
 
             MembersList = await _apiServices.GetMemberDetailsAsync(accessToken: Settings.AccessToken, polNumber: policyNumber);
+
+            CoversList = await _apiServices.GetCoverDetailsAsync(accessToken: Settings.AccessToken, polNumber: policyNumber);
+
+            PremiumsList = await _apiServices.GetPremiumDuesAsync(accessToken: Settings.AccessToken, polNumber: policyNumber);
 
             IsBusy = false;
         }

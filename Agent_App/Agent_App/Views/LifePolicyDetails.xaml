@@ -100,11 +100,11 @@
                                 </OnIdiom>
                             </dg:DataGrid.HeaderFontSize>
                             <dg:DataGrid.Columns>
-                                <dg:DataGridColumn Title="Member Type" PropertyName="MemberType" Width="*"/>
+                                <dg:DataGridColumn PropertyName="MemberType" Width="0.2*"/>
                                 <dg:DataGridColumn Title="Relationship" PropertyName="Relationship" Width="*"/>
-                                <dg:DataGridColumn Title="Full Name" PropertyName="FullName"  Width="*"/>
+                                <dg:DataGridColumn Title="Full Name" PropertyName="FullName"  Width="1.5*"/>
                                 <dg:DataGridColumn Title="Date Of Birth" PropertyName="DateOfBirth"  Width="*"/>
-                                <dg:DataGridColumn Title="Age" PropertyName="Age"  Width="*"/>
+                                <dg:DataGridColumn Title="Age" PropertyName="Age"  Width="0.5*"/>
                                 <dg:DataGridColumn Title="NIC Number" PropertyName="NicNumber"  Width="*"/>
                             </dg:DataGrid.Columns>
                             <dg:DataGrid.RowsBackgroundColorPalette>
@@ -116,19 +116,94 @@
                         </dg:DataGrid>
                    </ContentView>
               </StackLayout>
-                
-            <Grid Padding="4">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />                   
-                </Grid.RowDefinitions>
-
-            <Button Grid.Row="0" x:Name="btnPayHist"
-                BackgroundColor="DeepPink"
-                Text="View Premium History"
-                TextColor="White" BorderRadius="10"
-                Clicked="btnPayHist_Clicked"/>              
             
-        </Grid>            
+            <StackLayout Padding="4">
+                
+                <Button x:Name="btnCovers"
+                BackgroundColor="SkyBlue"
+                Text="Cover Details"
+                TextColor="White" BorderRadius="10"
+                Clicked="btnCovers_Clicked"/>  
+                
+                <ContentView x:Name="coversView" BackgroundColor="White" Padding="20">
+                        <dg:DataGrid ItemsSource="{Binding CoversList}" 
+                             RowHeight="50" HeaderHeight="50" BorderColor="#CCCCCC" HeaderBackground="#E0E6F8">
+                            <x:Arguments>
+                                <ListViewCachingStrategy>RetainElement</ListViewCachingStrategy>
+                            </x:Arguments>
+                            <dg:DataGrid.HeaderFontSize>
+                                <OnIdiom  x:TypeArguments="x:Double">
+                                    <OnIdiom.Tablet>15</OnIdiom.Tablet>
+                                    <OnIdiom.Phone>12</OnIdiom.Phone>
+                                </OnIdiom>
+                            </dg:DataGrid.HeaderFontSize>
+                            <dg:DataGrid.Columns>
+                                <dg:DataGridColumn Title="Cover" PropertyName="Cover" Width="*"/>
+                                <dg:DataGridColumn Title="Description" PropertyName="Description" Width="2*"/>
+                                <dg:DataGridColumn Title="CommenceDate" PropertyName="CommenceDate"  Width="*"/>
+                                <dg:DataGridColumn Title="SumInsured" PropertyName="SumInsured"  Width="*"/>
+                                <dg:DataGridColumn Title="Term" PropertyName="Term"  Width="*"/>
+                            </dg:DataGrid.Columns>
+                            <dg:DataGrid.RowsBackgroundColorPalette>
+                                <dg:PaletteCollection>
+                                    <Color>#F2F2F2</Color>
+                                    <Color>#FFFFFF</Color>
+                                </dg:PaletteCollection>
+                            </dg:DataGrid.RowsBackgroundColorPalette>
+                        </dg:DataGrid>
+                   </ContentView>
+              </StackLayout>
+            
+              <StackLayout Padding="4">
+                
+                <Button x:Name="btnPremiumDues"
+                BackgroundColor="SkyBlue"
+                Text="Premium Dues"
+                TextColor="White" BorderRadius="10"
+                Clicked="btnPremiumDues_Clicked"/>  
+                
+                <ContentView x:Name="premiumsView" BackgroundColor="White" Padding="20">
+                        <dg:DataGrid ItemsSource="{Binding PremiumsList}" 
+                             RowHeight="50" HeaderHeight="50" BorderColor="#CCCCCC" HeaderBackground="#E0E6F8">
+                            <x:Arguments>
+                                <ListViewCachingStrategy>RetainElement</ListViewCachingStrategy>
+                            </x:Arguments>
+                            <dg:DataGrid.HeaderFontSize>
+                                <OnIdiom  x:TypeArguments="x:Double">
+                                    <OnIdiom.Tablet>15</OnIdiom.Tablet>
+                                    <OnIdiom.Phone>12</OnIdiom.Phone>
+                                </OnIdiom>
+                            </dg:DataGrid.HeaderFontSize>
+                            <dg:DataGrid.Columns>
+                                <dg:DataGridColumn Title="Due Month" PropertyName="DueMonth" Width="*"/>
+                                <dg:DataGridColumn Title="Premium" PropertyName="Premium" Width="*"/>
+                                <dg:DataGridColumn Title="Late Fee" PropertyName="Latefee"  Width="*"/>
+                                <dg:DataGridColumn Title="Total" PropertyName="Total"  Width="*"/>
+                            </dg:DataGrid.Columns>
+                            <dg:DataGrid.RowsBackgroundColorPalette>
+                                <dg:PaletteCollection>
+                                    <Color>#F2F2F2</Color>
+                                    <Color>#FFFFFF</Color>
+                                </dg:PaletteCollection>
+                            </dg:DataGrid.RowsBackgroundColorPalette>
+                        </dg:DataGrid>
+                   </ContentView>
+              </StackLayout>
+              
+            <StackLayout>
+                <Grid Padding="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />                   
+                    </Grid.RowDefinitions>
+
+                <Button Grid.Row="0" x:Name="btnPayHist"
+                    BackgroundColor="DeepPink"
+                    Text="View Premium History"
+                    TextColor="White" BorderRadius="10"
+                    Clicked="btnPayHist_Clicked"/>   
+                </Grid> 
+           </StackLayout>
+            
         </StackLayout>        
     </ScrollView>
 </ContentPage>

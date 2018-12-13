@@ -473,6 +473,60 @@ namespace Agent_App.Services
             //return custPolicies; --- Original code
         }
 
+
+        public async Task<List<LifeCover>> GetCoverDetailsAsync(string accessToken, string polNumber)
+        {
+            List<LifeCover> coverList = new List<LifeCover> { };
+            try
+            {
+                var client = new HttpClient();
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+                var json = await client.GetStringAsync("http://203.115.11.236:10155/MobileAuthWS/api/Life/Get_GET_COVER_DETAILS?polNo=" + polNumber.Trim());
+
+                coverList = JsonConvert.DeserializeObject<List<LifeCover>>(json);
+
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            return coverList;
+
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
+        }
+
+        public async Task<List<LifePremiumDue>> GetPremiumDuesAsync(string accessToken, string polNumber)
+        {
+            List<LifePremiumDue> premiumList = new List<LifePremiumDue> { };
+            try
+            {
+                var client = new HttpClient();
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+                var json = await client.GetStringAsync("http://203.115.11.236:10155/MobileAuthWS/api/Life/Get_GET_PREMIUM_DUES?polNo=" + polNumber.Trim());
+
+                premiumList = JsonConvert.DeserializeObject<List<LifePremiumDue>>(json);
+
+            }
+            catch (Exception e)
+            {
+                //premiumList = null;
+            }
+
+            return premiumList;
+
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
+        }
+
+
     }
 
 
