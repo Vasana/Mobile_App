@@ -140,8 +140,8 @@
                             <dg:DataGrid.Columns>
                                 <dg:DataGridColumn Title="Cover" PropertyName="Cover" Width="*"/>
                                 <dg:DataGridColumn Title="Description" PropertyName="Description" Width="2*"/>
-                                <dg:DataGridColumn Title="CommenceDate" PropertyName="CommenceDate"  Width="*"/>
-                                <dg:DataGridColumn Title="SumInsured" PropertyName="SumInsured"  Width="*"/>
+                                <dg:DataGridColumn Title="Commence. Date" PropertyName="CommenceDate"  Width="*"/>
+                                <dg:DataGridColumn Title="Sum Insured" PropertyName="SumInsured"  Width="*"/>
                                 <dg:DataGridColumn Title="Term" PropertyName="Term"  Width="*"/>
                             </dg:DataGrid.Columns>
                             <dg:DataGrid.RowsBackgroundColorPalette>
