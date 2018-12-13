@@ -25,9 +25,16 @@ namespace Agent_App.Services
         private List<Notification> _notifList;
         public int notifCount = 0;
 
+        string IP = "http://203.115.11.236";
+        string Port = "10455"; //Live 10455     Test 10155
+        string Path = "";
+
         private LifePolicy _lifePolicy;
 
-
+        public ApiServicesLife()
+        {
+            Path = IP+":"+Port;
+        }
 
         public async Task<List<LifePolicy>> GetLifePoliciesAsync(string accessToken, int pageIndex, int pageSize)
         {
@@ -44,7 +51,7 @@ namespace Agent_App.Services
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
                     HttpResponseMessage response = new HttpResponseMessage();
-                    response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/Life/Getpolicies", requestContent);
+                    response = await client.PostAsync(Path+"/MobileAuthWS/api/Life/Getpolicies", requestContent);
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -256,7 +263,7 @@ namespace Agent_App.Services
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
                 HttpResponseMessage response = new HttpResponseMessage();
-                response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/Life/AddComment", requestContent);
+                response = await client.PostAsync(Path+"/MobileAuthWS/api/Life/AddComment", requestContent);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -298,7 +305,7 @@ namespace Agent_App.Services
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
                 HttpResponseMessage response = new HttpResponseMessage();
-                response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/Life/DeleteComment", requestContent);
+                response = await client.PostAsync(Path+"/MobileAuthWS/api/Life/DeleteComment", requestContent);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -332,7 +339,7 @@ namespace Agent_App.Services
 
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
-            var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/GetNotifications");
+            var json = await client.GetStringAsync(Path+"/MobileAuthWS/api/Agent/GetNotifications");
 
             _notifList = JsonConvert.DeserializeObject<List<Notification>>(json);
 
@@ -364,7 +371,7 @@ namespace Agent_App.Services
 
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
                 HttpResponseMessage response = new HttpResponseMessage();
-                response = await client.GetAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/CheckNotifications");
+                response = await client.GetAsync(Path+"/MobileAuthWS/api/Agent/CheckNotifications");
 
                 if (response.IsSuccessStatusCode)
                 {
