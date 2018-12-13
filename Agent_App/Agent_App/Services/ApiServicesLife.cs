@@ -526,6 +526,31 @@ namespace Agent_App.Services
             //return custPolicies; --- Original code
         }
 
+        public async Task<List<LifePrmHistory>> GetPremiumHistory(string accessToken, string polNumber)
+        {
+            List<LifePrmHistory> paidPrmList = new List<LifePrmHistory> { };
+            try
+            {
+                var client = new HttpClient();
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+                var json = await client.GetStringAsync("http://203.115.11.236:10155/MobileAuthWS/api/Life/Get_GET_PREMIUM_HISTORY?polNo=" + polNumber.Trim());
+
+                paidPrmList = JsonConvert.DeserializeObject<List<LifePrmHistory>>(json);
+
+            }
+            catch (Exception e)
+            {
+                //premiumList = null;
+            }
+
+            return paidPrmList;
+
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
+        }
 
     }
 

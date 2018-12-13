@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Agent_App.ViewModels;
 
 using Xamarin.Forms;
 
@@ -17,9 +18,20 @@ namespace Agent_App.Views
             premiumsView.IsVisible = false;
         }
 
-        void btnPayHist_Clicked(object sender, System.EventArgs e)
+        private async void btnPayHist_Clicked(object sender, System.EventArgs e)
         {
-            throw new NotImplementedException();
+            var lifPolVM = BindingContext as LifePolViewModel;
+
+            var premiumHistVM = new LifePrmHistVM(lifPolVM.LifPolicy.PolicyNumber);
+            var premiumHistPage = new LifePrmHistoryPage
+            {
+                BindingContext = premiumHistVM
+            };
+
+            if (App.Current.MainPage is NavigationPage)
+            {
+                await(App.Current.MainPage as NavigationPage).PushAsync(premiumHistPage);
+            }
         }
 
         void btnMembers_Clicked(object sender, System.EventArgs e)
