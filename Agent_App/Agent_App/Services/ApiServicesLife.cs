@@ -391,10 +391,11 @@ namespace Agent_App.Services
             {
                 var client = new HttpClient();
 
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
-                //var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getGeneralPolicyInfo?policyNo=" + policyNumber.Trim());
+                var json = await client.GetStringAsync("http://203.115.11.236:10155/MobileAuthWS/api/Life/Get_GET_POLICY_DETAILS?polNo=" + policyNumber.Trim());
 
+                /*
                 _lifPolicy.PolicyNumber = "0456544";
                 _lifPolicy.InsuredName = "Saman Perera";
                 _lifPolicy.Address = new List<string> { "No 01", "Hevelock Road", "Colombo 06" };
@@ -408,7 +409,9 @@ namespace Agent_App.Services
                 _lifPolicy.Premium = "20000";
                 _lifPolicy.MobileNumber = "0774567643";
 
-               // _lifPolicy = JsonConvert.DeserializeObject<LifePolicy>(json);
+                */
+
+                _lifPolicy = JsonConvert.DeserializeObject<LifePolicy>(json);
 
             }
             catch (Exception e)
@@ -423,36 +426,45 @@ namespace Agent_App.Services
 
         public async Task<List<LifeMember>> GetMemberDetailsAsync(string accessToken, string polNumber)
         {
-            var client = new HttpClient();
-
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
-
-            //var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/GetBranches");
-
-            //var memberList = JsonConvert.DeserializeObject<List<LifeMember>>(json);
-
-            List<LifeMember> memberList = new List<LifeMember>
+            List<LifeMember> memberList = new List<LifeMember> { };
+            try
             {
-                new LifeMember
-                {
-                    MemberType = "1",
-                    Relationship = "Main Life",
-                    FullName = "Saman Perera",
-                    DateOfBirth = "1987/03/02",
-                    Age = "31",
-                    NicNumber = "874567345V",
-                },
-                new LifeMember
-                {
-                    MemberType = "2",
-                    Relationship = "Spouse",
-                    FullName = "Himali Perera",
-                    DateOfBirth = "1988/03/02",
-                    Age = "30",
-                    NicNumber = "884567345V",
-                }
-            };
+                var client = new HttpClient();
 
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+                var json = await client.GetStringAsync("http://203.115.11.236:10155/MobileAuthWS/api/Life/Get_GET_MEM_DETAILS?polNo=" + polNumber.Trim());
+
+                memberList = JsonConvert.DeserializeObject<List<LifeMember>>(json);
+
+                /*
+                List<LifeMember> memberList = new List<LifeMember>
+                {
+                    new LifeMember
+                    {
+                        MemberType = "1",
+                        Relationship = "Main Life",
+                        FullName = "Saman Perera",
+                        DateOfBirth = "1987/03/02",
+                        Age = "31",
+                        NicNumber = "874567345V",
+                    },
+                    new LifeMember
+                    {
+                        MemberType = "2",
+                        Relationship = "Spouse",
+                        FullName = "Himali Perera",
+                        DateOfBirth = "1988/03/02",
+                        Age = "30",
+                        NicNumber = "884567345V",
+                    }
+                };
+                */
+            }
+            catch (Exception e)
+            {
+
+            }
 
             return memberList;
 
