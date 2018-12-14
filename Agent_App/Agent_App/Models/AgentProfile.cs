@@ -29,6 +29,7 @@ namespace Agent_App.Models
         public string ibslNo { get; set; }
         public string ibslPassed { get; set; }
 
+        public bool allowAccess { get; set; }
 
         //private AgentProfile() { }
 
