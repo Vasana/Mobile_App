@@ -340,7 +340,7 @@ namespace Agent_App.Services
                 _appVersion = JsonConvert.DeserializeObject<AppVersions>(json);
 
             }
-            catch (Exception e)
+            catch (Exception e)  
             {
                 _appVersion = null;
             }

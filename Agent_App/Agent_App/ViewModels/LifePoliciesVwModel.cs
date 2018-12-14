@@ -15,8 +15,8 @@ namespace Agent_App.ViewModels
     {
         private const int PageSize = 10;
         ApiServicesLife _apiServices = new ApiServicesLife();
-        public LifePolicy _previousPolicy;
-        public InfiniteScrollCollection<LifePolicy> PoliciesCollection
+        public CustPolicyLife _previousPolicy;
+        public InfiniteScrollCollection<CustPolicyLife> PoliciesCollection
         {
             get { return _policies; }
             set
@@ -59,7 +59,7 @@ namespace Agent_App.ViewModels
         }
         public bool _isBusy2;
 
-        public InfiniteScrollCollection<LifePolicy> _policies;
+        public InfiniteScrollCollection<CustPolicyLife> _policies;
 
         public object SelectedItem { get; set; }
 
@@ -74,7 +74,7 @@ namespace Agent_App.ViewModels
 
         public async Task DownloadPoliciesAsync()
         {
-            PoliciesCollection = new InfiniteScrollCollection<LifePolicy>
+            PoliciesCollection = new InfiniteScrollCollection<CustPolicyLife>
             {
                 OnLoadMore = async () =>
                 {
@@ -104,7 +104,7 @@ namespace Agent_App.ViewModels
 
         }
 
-        public void HideOrShowPolicy(LifePolicy policy)
+        public void HideOrShowPolicy(CustPolicyLife policy)
         {
             if (_previousPolicy == policy)
             {
@@ -129,7 +129,7 @@ namespace Agent_App.ViewModels
             _previousPolicy = policy;
         }
 
-        private void UpdatePolicies(LifePolicy policy)
+        private void UpdatePolicies(CustPolicyLife policy)
         {
             var index = PoliciesCollection.IndexOf(policy);
             PoliciesCollection.Remove(policy);

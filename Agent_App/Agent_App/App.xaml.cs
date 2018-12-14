@@ -17,6 +17,9 @@ namespace Agent_App
             //Settings.Password = "Slic@1234";
 
             //setMainPage(); 
+
+            Xamarin.Forms.DataGrid.DataGridComponent.Init();
+
             MainPage = new NavigationPage(new LoginPage());
 		}
 
