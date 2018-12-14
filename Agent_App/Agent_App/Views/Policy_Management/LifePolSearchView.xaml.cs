@@ -91,6 +91,7 @@ namespace Agent_App.Views
                 SearchCriteriaLife.Instance.TodayReminders = false;
                 SearchCriteriaLife.Instance.NicNumber = "";
                 SearchCriteriaLife.Instance.TableId = "";
+                SearchCriteriaLife.Instance.policy_year = "";
             }
         }
 

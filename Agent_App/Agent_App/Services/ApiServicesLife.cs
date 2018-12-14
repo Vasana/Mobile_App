@@ -26,7 +26,7 @@ namespace Agent_App.Services
         public int notifCount = 0;
 
         string IP = "http://203.115.11.236";
-        string Port = "10455"; //Live 10455     Test 10155
+        string Port = "10155"; //Live 10455     Test 10155
         string Path = "";
 
         private LifePolicy _lifePolicy;
@@ -105,7 +105,8 @@ namespace Agent_App.Services
                 SearchCriteriaLife.Instance.TodayReminders = false;
                 SearchCriteriaLife.Instance.NicNumber = "";
                 SearchCriteriaLife.Instance.TableId = "";
-    }
+                SearchCriteriaLife.Instance.policy_year = "";
+            }
             if (lifePolCount >= pageSize)
             {
                 return _lifePolicyList.Skip(pageIndex * pageSize).Take(pageSize).ToList();
@@ -401,7 +402,7 @@ namespace Agent_App.Services
 
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
-                var json = await client.GetStringAsync("http://203.115.11.236:10155/MobileAuthWS/api/Life/Get_GET_POLICY_DETAILS?polNo=" + policyNumber.Trim());
+                var json = await client.GetStringAsync(Path + "/MobileAuthWS/api/Life/Get_GET_POLICY_DETAILS?polNo=" + policyNumber.Trim());
 
                 /*
                 _lifPolicy.PolicyNumber = "0456544";
@@ -441,7 +442,7 @@ namespace Agent_App.Services
 
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
-                var json = await client.GetStringAsync("http://203.115.11.236:10155/MobileAuthWS/api/Life/Get_GET_MEM_DETAILS?polNo=" + polNumber.Trim());
+                var json = await client.GetStringAsync(Path + "/MobileAuthWS/api/Life/Get_GET_MEM_DETAILS?polNo=" + polNumber.Trim());
 
                 memberList = JsonConvert.DeserializeObject<List<LifeMember>>(json);
 
@@ -491,7 +492,7 @@ namespace Agent_App.Services
 
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
-                var json = await client.GetStringAsync("http://203.115.11.236:10155/MobileAuthWS/api/Life/Get_GET_COVER_DETAILS?polNo=" + polNumber.Trim());
+                var json = await client.GetStringAsync(Path + "/MobileAuthWS/api/Life/Get_GET_COVER_DETAILS?polNo=" + polNumber.Trim());
 
                 coverList = JsonConvert.DeserializeObject<List<LifeCover>>(json);
 
@@ -517,7 +518,7 @@ namespace Agent_App.Services
 
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
-                var json = await client.GetStringAsync("http://203.115.11.236:10155/MobileAuthWS/api/Life/Get_GET_PREMIUM_DUES?polNo=" + polNumber.Trim());
+                var json = await client.GetStringAsync(Path + "/MobileAuthWS/api/Life/Get_GET_PREMIUM_DUES?polNo=" + polNumber.Trim());
 
                 premiumList = JsonConvert.DeserializeObject<List<LifePremiumDue>>(json);
 
@@ -543,7 +544,7 @@ namespace Agent_App.Services
 
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
-                var json = await client.GetStringAsync("http://203.115.11.236:10155/MobileAuthWS/api/Life/Get_GET_PREMIUM_HISTORY?polNo=" + polNumber.Trim());
+                var json = await client.GetStringAsync(Path + "/MobileAuthWS/api/Life/Get_GET_PREMIUM_HISTORY?polNo=" + polNumber.Trim());
 
                 paidPrmList = JsonConvert.DeserializeObject<List<LifePrmHistory>>(json);
 
