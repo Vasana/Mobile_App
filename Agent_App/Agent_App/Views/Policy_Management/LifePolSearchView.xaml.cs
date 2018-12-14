@@ -69,9 +69,16 @@ namespace Agent_App.Views
                 SearchCriteriaLife.Instance.NewSearch = true;
                 SearchCriteriaLife.Instance.ListDesc = "Search Result List";
 
+                string pol_year;
+                try
+                {
+                    pol_year = yearPicker.SelectedItem.ToString().Substring(5);
+                }
+                catch
+                {
+                    pol_year = null;
+                }
                 
-
-                string pol_year = yearPicker.SelectedItem.ToString().Substring(5);
 
                 SearchCriteriaLife.Instance.policy_year = (pol_year == "6-10" ? "6" : pol_year);
 

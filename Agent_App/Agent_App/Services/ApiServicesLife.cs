@@ -94,7 +94,7 @@ namespace Agent_App.Services
             finally
             {
                 SearchCriteriaLife.Instance.NewSearch = false;
-                SearchCriteria.Instance.AllPolicies = false;
+                SearchCriteriaLife.Instance.AllPolicies = false;
                 SearchCriteriaLife.Instance.PolicyTable = "A";
                 SearchCriteriaLife.Instance.inforce_pol = false;
                 SearchCriteriaLife.Instance.templapse_pol = false;
