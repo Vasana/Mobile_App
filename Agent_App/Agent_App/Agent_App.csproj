@@ -10,11 +10,13 @@
   <ItemGroup>
     <Compile Remove="LoginViewModel.cs" />
     <Compile Remove="Views\AgentPerfomance.xaml.cs" />
+    <Compile Remove="Views\Policy_Management\LifePolicyDetails.xaml.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
     <EmbeddedResource Remove="Views\AgentPerfomance.xaml" />
+    <PackageReference Include="Xamarin.Forms.DataGrid" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -162,11 +164,19 @@
     <EmbeddedResource Update="Views\Products\GeneralProducts.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Products\LifeProducts.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Products\Product_Landing.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\RegisterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove=".DS_Store" />
+    <None Remove="Views\.DS_Store" />
+    <None Remove="Views\Life\.DS_Store" />
   </ItemGroup>
 </Project>

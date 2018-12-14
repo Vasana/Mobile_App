@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Agent_App.Views.Products.LifeProducts"
+             xmlns:vm="clr-namespace:Agent_App.ViewModels"
+             xmlns:local="clr-namespace:Agent_App.Helpers">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ValueToStringConverter x:Key="ValueToString" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <vm:ProductsLifeViewModel></vm:ProductsLifeViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" x:Name="firstRow"/>
+                    <RowDefinition Height="40" x:Name="secondRow"/>
+                    <RowDefinition Height="40" x:Name="thirdRow"/>
+                    <RowDefinition Height="auto"/>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <BoxView Grid.Row="1" BackgroundColor="#fcc840"/>
+                <Label Grid.Row="1" TextColor="#404040" VerticalTextAlignment="Center"  HorizontalOptions="Center" FontAttributes="Bold" BackgroundColor="#fcc840" Text="Life Insurance"/>
+                <StackLayout Grid.Row="2" Orientation="Horizontal" Grid.Column="0" HorizontalOptions="End" VerticalOptions="Center">
+                    <Image Source="search_ico.png" HorizontalOptions="End" VerticalOptions="Center" HeightRequest="30" />
+                    <Entry   HorizontalOptions="End" VerticalOptions="Center"  Placeholder="Search Life Products" x:Name="txtGenproduct" TextChanged="txtGenproduct_TextChanged" />
+
+                </StackLayout>
+
+                <ListView Grid.Row="3" x:Name="listofGeneral" Margin="10,0,0,0"  HeightRequest="{Binding GeneralHeight}" HasUnevenRows="True" ItemsSource="{Binding LifeproductList}" ItemTapped="listofCommon_ItemTapped" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout Spacing="0">
+                                        <Grid >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="150"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Image Source="{Binding imageUrl}" HorizontalOptions="Start" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" WidthRequest="150" HeightRequest="150"/>
+                                            <Label FontSize="Large" FontAttributes="Bold" Text="{Binding productName}" Grid.Row="1" Grid.Column="1"/>
+                                            <Label Text="{Binding shortDesc, Converter= {StaticResource ValueToString}}" Grid.Row="2" Grid.Column="1" />
+                                            <Label Text="{Binding productID}" HeightRequest="1" IsVisible="False"/>
+                                            
+                                            <Button Text="Download" Grid.Row="4" Grid.Column="1"  TextColor="White" HeightRequest="40" WidthRequest="100"  HorizontalOptions="End"  BackgroundColor="SkyBlue" IsVisible="{Binding IsSelected}" Command= "{Binding onProductSelect}" CommandParameter ="{Binding}" Clicked="Button_Clicked" />
+                                            <BoxView HeightRequest="10" IsVisible="{Binding IsSelected}" Grid.Row="5"/>
+                                        </Grid>
+
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </ViewCell>
+                            <!--<ImageCell Text="{Binding productName}" TextColor="Purple" Detail="{Binding shortDesc}" DetailColor="Navy" ImageSource="{Binding imageName}"/>-->
+
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </Grid>
+            <ActivityIndicator x:Name="indicator" IsRunning="{Binding IsBusy}" Color="Green" 
+                            HorizontalOptions="Center" VerticalOptions="Center">
+                <ActivityIndicator.Scale>
+                    <OnPlatform x:TypeArguments="x:Double" iOS="4.0" Android="2.0" />
+                </ActivityIndicator.Scale>
+            </ActivityIndicator>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

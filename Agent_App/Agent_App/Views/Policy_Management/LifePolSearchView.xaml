@@ -33,6 +33,7 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
@@ -56,7 +57,18 @@
                 <Label Grid.Row="3" Grid.Column="0" VerticalTextAlignment="End" Text="NIC Number" FontSize="Medium"/>
                 <Entry Grid.Row="3" Grid.Column="1" x:Name="entNicNumber" TextChanged="entNicNumber_TextChanged" VerticalOptions="End"/>
                 <Label Grid.Row="4" Grid.Column="0" VerticalTextAlignment="End" Text="Table" FontSize="Medium"/>
-                <Entry Grid.Row="4" Grid.Column="1" x:Name="entTable" Keyboard="Numeric" TextChanged="entTable_TextChanged" VerticalOptions="End"/>  
+                <Entry Grid.Row="4" Grid.Column="1" x:Name="entTable" Keyboard="Numeric" TextChanged="entTable_TextChanged" VerticalOptions="End"/>
+                <Label Grid.Row="5" Grid.Column="0" VerticalTextAlignment="End" Text="Policy Year" FontSize="Medium"></Label>
+                <Picker Grid.Row="5" Grid.Column="1" x:Name="yearPicker" VerticalOptions="End" Title="Search by Policy Year" SelectedIndexChanged="yearPicker_SelectedIndexChanged">
+                    <Picker.Items>
+                        <x:String>Year 1</x:String>
+                        <x:String>Year 2</x:String>
+                        <x:String>Year 3</x:String>
+                        <x:String>Year 4</x:String>
+                        <x:String>Year 5</x:String>
+                        <x:String>Year 6-10</x:String>
+                    </Picker.Items>
+                </Picker>
             </Grid>
         </ScrollView>
         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="10">

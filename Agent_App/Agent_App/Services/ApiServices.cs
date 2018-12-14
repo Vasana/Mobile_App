@@ -709,5 +709,32 @@ namespace Agent_App.Services
 
             //return custPolicies; --- Original code
         }
+
+
+        public async Task<bool> WritetoAuditLog(Audit_trail au, string accessToken)
+        {
+            bool result = false;
+            HttpClient client = new HttpClient();
+            var json = JsonConvert.SerializeObject(au);
+            HttpContent content = new StringContent(json);
+
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+            HttpResponseMessage response = new HttpResponseMessage();
+            response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/WriteToAuditTrail", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+
+
+            return result;
+        }
     }
 }

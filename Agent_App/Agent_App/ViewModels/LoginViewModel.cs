@@ -135,6 +135,18 @@ namespace Agent_App.ViewModels
                 Settings.jobRole = agentProfile.Role;
                 Settings.agentCode = (agentProfile.Role == "Organizer" ? agentProfile.Organizer_code.ToString() : agentProfile.Agent_code.ToString());
                 Settings.orgTeamCode = (agentProfile.Role == "Organizer" ? agentProfile.Organizer_codeTeam.ToString() : "");
+
+                Audit_trail au = new Audit_trail
+                {
+                    Action = "Log in",
+                    Log_date = DateTime.Now,
+                    Stream = "Common",
+                    App_Id = "B Connect",
+                    User_Id = Username
+                };
+
+               bool successCode = await _apiServices.WritetoAuditLog(au, accessToken);
+
                 IsBusy = false;
             }
         }

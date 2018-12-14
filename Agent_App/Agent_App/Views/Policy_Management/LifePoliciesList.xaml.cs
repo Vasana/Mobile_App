@@ -29,7 +29,7 @@ namespace Agent_App.Views
         private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var vm = BindingContext as LifePoliciesVwModel;
-            var policy = e.Item as LifePolicy;
+            var policy = e.Item as CustPolicyLife;
 
             vm.HideOrShowPolicy(policy);
         }
@@ -96,7 +96,7 @@ namespace Agent_App.Views
             SearchCriteriaLife.Instance.templapse_pol =true;
             SearchCriteriaLife.Instance.AllPolicies = false;
             var vm = BindingContext as LifePoliciesVwModel;
-            SearchCriteriaLife.Instance.ListDesc = "Temp. Lapsed Policy List";
+            SearchCriteriaLife.Instance.ListDesc = "Due Date Exceeded Policy List";
             vm.PolicyListDesc = "Temp. Lapsed Policy List";
             vm.DownloadPoliciesAsync();
         }  
