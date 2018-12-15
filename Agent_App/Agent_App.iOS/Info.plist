@@ -23,22 +23,22 @@
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>Agent_App</string>
+	<string>Connect</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.slic.Agent_App</string>
-	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>com.slic.Connect</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>CFBundleName</key>
-	<string>Ideas</string>
 	<key>XSAppIconAssets</key>
-	<string>Resources/Assets.xcassets/AppIcon.appiconset</string>
+	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Picture Picker uses photo library</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Assets.xcassets/LaunchImages.launchimage</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.3</string>
+	<string>1.0.5</string>
+	<key>CFBundleVersion</key>
+	<string>5</string>
+	<key>CFBundleName</key>
+	<string>Connect</string>
 </dict>
 </plist>
