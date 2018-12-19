@@ -81,6 +81,7 @@
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
     <CodesignKey>iPhone Developer: Vasana Wijesooriya (94H56MS5Q8)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <IpaPackageName>Connect</IpaPackageName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>none</DebugType>
@@ -323,6 +324,8 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-76.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-152.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-167.png" />
+    <ImageAsset Include="Assets.xcassets\newPolicy.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\newPolicy.imageset\newPolicy.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -371,6 +374,7 @@
     <BundleResource Include="Resources\lapsed.png" />
     <BundleResource Include="Resources\tempLapsed.png" />
     <BundleResource Include="Resources\claim_pending_cl.png" />
+    <BundleResource Include="Resources\splash.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\car_cl.png" />
@@ -398,5 +402,12 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\filledStar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets.xcassets\newPolicy.imageset\" />
   </ItemGroup>
 </Project>
