@@ -27,6 +27,7 @@ namespace Agent_App.Views
             PopupNavigation.Instance.PopAsync(true);
         }
 
+        /*
         private async Task btnInd_Clicked(object sender, EventArgs e)
         {
             btnIndvidual.IsEnabled = false;
@@ -35,13 +36,24 @@ namespace Agent_App.Views
             await Application.Current.MainPage.Navigation.PushAsync(new Agent_performance());
             indicator.IsRunning = false;
             await PopupNavigation.Instance.PopAsync(true);
-        }
-        private async Task btnTeam_Clicked(object sender, EventArgs e)
+        }*/
+
+        async void btnTeam_Clicked(object sender, EventArgs e)
         {
             btnIndvidual.IsEnabled = false;
             btnTeam.IsEnabled = false;
             indicator.IsRunning = true;
             await Application.Current.MainPage.Navigation.PushAsync(new Org_Perform_landing());
+            indicator.IsRunning = false;
+            await PopupNavigation.Instance.PopAsync(true);
+        }
+
+        async void btnInd_Clicked(object sender, System.EventArgs e)
+        {
+            btnIndvidual.IsEnabled = false;
+            btnTeam.IsEnabled = false;
+            indicator.IsRunning = true;
+            await Application.Current.MainPage.Navigation.PushAsync(new Agent_performance());
             indicator.IsRunning = false;
             await PopupNavigation.Instance.PopAsync(true);
         }
