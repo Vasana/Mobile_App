@@ -12,8 +12,8 @@ namespace Agent_App.ViewModels
 {
     class LifePolViewModel : INotifyPropertyChanged
     {
-        ApiServices _apiServices = new ApiServices();
-        public LifePolicy GenPolicy
+        ApiServicesLife _apiServices = new ApiServicesLife();
+        public LifePolicy LifPolicy
         {
             get => _lifePolicy;
             set
@@ -36,7 +36,56 @@ namespace Agent_App.ViewModels
         }
         private bool _isBusy;
 
-        public LifePolViewModel(LifePolicy policy)
+        public int AddressWidth
+        {
+            get => _addressWidth;
+            set
+            {
+                _addressWidth = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int _addressWidth;
+
+        private List<LifeMember> membersList;
+
+        public List<LifeMember> MembersList
+        {
+            get { return membersList; }
+            set
+            {
+                membersList = value;
+                OnPropertyChanged(nameof(MembersList));
+            }
+        }
+
+        private List<LifeCover> coversList;
+
+        public List<LifeCover> CoversList
+        {
+            get { return coversList; }
+            set
+            {
+                coversList = value;
+                OnPropertyChanged(nameof(CoversList));
+            }
+        }
+
+        private List<LifePremiumDue> premiumsList;
+
+        public List<LifePremiumDue> PremiumsList
+        {
+            get { return premiumsList; }
+            set
+            {
+                premiumsList = value;
+                OnPropertyChanged(nameof(PremiumsList));
+            }
+        }
+
+
+        public LifePolViewModel(CustPolicyLife policy)
         {
             GetPolicyDetailsAsync(policy.PolicyNumber);
         }
@@ -44,7 +93,23 @@ namespace Agent_App.ViewModels
         public async Task GetPolicyDetailsAsync(string policyNumber)
         {
             IsBusy = true;
-         //   _lifePolicy = await _apiServices.GetLifePoliciesAsync(accessToken: Settings.AccessToken, dept: dept, policyNumber: policyNumber);
+            LifPolicy = await _apiServices.GetLifePolicyAsync(accessToken: Settings.AccessToken, policyNumber: policyNumber);
+
+            if (LifPolicy.Address != null)
+            {
+                AddressWidth = LifPolicy.Address.Count * 30;
+            }
+            else
+            {
+                AddressWidth = 0;
+            }
+
+            MembersList = await _apiServices.GetMemberDetailsAsync(accessToken: Settings.AccessToken, polNumber: policyNumber);
+
+            CoversList = await _apiServices.GetCoverDetailsAsync(accessToken: Settings.AccessToken, polNumber: policyNumber);
+
+            PremiumsList = await _apiServices.GetPremiumDuesAsync(accessToken: Settings.AccessToken, polNumber: policyNumber);
+
             IsBusy = false;
         }
 

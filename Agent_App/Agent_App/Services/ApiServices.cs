@@ -23,7 +23,16 @@ namespace Agent_App.Services
         public int policyCount = 0;
 
         private List<Notification> _notifList;
-        public int notifCount = 0;        
+        public int notifCount = 0;
+
+        string IP = "http://203.115.11.236";
+        string Port = "10455"; //Live 10455     Test 10155
+        string Path = "";
+
+        public ApiServices()
+        {
+            Path = IP + ":" + Port;
+        }
 
         internal async Task<bool> RegisterAsync(string email, string password, string confirmPassword)
         {
@@ -45,7 +54,7 @@ namespace Agent_App.Services
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
                 HttpResponseMessage response = new HttpResponseMessage();
-                response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/Account/Register", content);
+                response = await client.PostAsync(Path+"/MobileAuthWS/api/Account/Register", content);
 
                 ret = response.IsSuccessStatusCode;
             }
@@ -69,7 +78,7 @@ namespace Agent_App.Services
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
             HttpResponseMessage response = new HttpResponseMessage();
-            response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/Account/ChangePassword", content);
+            response = await client.PostAsync(Path+"/MobileAuthWS/api/Account/ChangePassword", content);
 
             if (response.IsSuccessStatusCode)
             {
@@ -96,7 +105,7 @@ namespace Agent_App.Services
                 new KeyValuePair<string, string>("grant_type", "password")
             };
 
-                var request = new HttpRequestMessage(HttpMethod.Post, "http://203.115.11.236:10455/MobileAuthWS/Token");
+                var request = new HttpRequestMessage(HttpMethod.Post, Path+"/MobileAuthWS/Token");
 
                 request.Content = new FormUrlEncodedContent(keyValues);
 
@@ -149,7 +158,7 @@ namespace Agent_App.Services
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
                     HttpResponseMessage response = new HttpResponseMessage();
-                    response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/agent/getpolicies", requestContent);
+                    response = await client.PostAsync(Path+"/MobileAuthWS/api/agent/getpolicies", requestContent);
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -225,7 +234,7 @@ namespace Agent_App.Services
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
                 HttpResponseMessage response = new HttpResponseMessage();
-                response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/AddComment", requestContent);
+                response = await client.PostAsync(Path+"/MobileAuthWS/api/Agent/AddComment", requestContent);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -267,7 +276,7 @@ namespace Agent_App.Services
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
                 HttpResponseMessage response = new HttpResponseMessage();
-                response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/DeleteComment", requestContent);
+                response = await client.PostAsync(Path+"/MobileAuthWS/api/Agent/DeleteComment", requestContent);
                 
                 if (response.IsSuccessStatusCode)
                 {
@@ -304,7 +313,7 @@ namespace Agent_App.Services
 
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
-                var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getGeneralPolicyInfo?policyNo=" + policyNumber.Trim());
+                var json = await client.GetStringAsync(Path+"/MobileAuthWS/api/Agent/getGeneralPolicyInfo?policyNo=" + policyNumber.Trim());
 
                 _genPolicy = JsonConvert.DeserializeObject<GeneralPolicy>(json);
 
@@ -326,12 +335,12 @@ namespace Agent_App.Services
             {
                 var client = new HttpClient();
 
-                var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/GetVersionInfo?BuildNo=" + buildNumber.Trim());
+                var json = await client.GetStringAsync(Path+"/MobileAuthWS/api/Agent/GetVersionInfo?BuildNo=" + buildNumber.Trim());
 
                 _appVersion = JsonConvert.DeserializeObject<AppVersions>(json);
 
             }
-            catch (Exception e)
+            catch (Exception e)  
             {
                 _appVersion = null;
             }
@@ -351,7 +360,7 @@ namespace Agent_App.Services
 
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
-                var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/GetProductList?businessStream=" + stream.Trim());
+                var json = await client.GetStringAsync(Path+"/MobileAuthWS/api/Agent/GetProductList?businessStream=" + stream.Trim());
 
                 _ProductList = JsonConvert.DeserializeObject<List<Products>>(json);
 
@@ -372,7 +381,7 @@ namespace Agent_App.Services
 
              client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
-             var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/GetBranches");
+             var json = await client.GetStringAsync(Path+"/MobileAuthWS/api/Agent/GetBranches");
 
              var branchList = JsonConvert.DeserializeObject<List<BranchContact>>(json);
             
@@ -390,14 +399,14 @@ namespace Agent_App.Services
             {
                 //    var client = new HttpClient();
                 //    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
-                //    var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getAgentPerfomance_byDate?agentCode=" + agentCode.Trim()+ "&year="+year);
+                //    var json = await client.GetStringAsync(Path+"/MobileAuthWS/api/Agent/getAgentPerfomance_byDate?agentCode=" + agentCode.Trim()+ "&year="+year);
                 //    claimsList = JsonConvert.DeserializeObject<List<MonthlyPerformance>>(json);
 
                 using (WebClient wc = new WebClient())
                 {
                     wc.Headers.Add("Content-Type", "text");
                     wc.Headers[HttpRequestHeader.Authorization] = "Bearer " + accessToken;
-                    var json = wc.DownloadString("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getTeamPerfomance_byDate?organizerCode=" + OrgCode.Trim() + "&fromDate=" + fromDate + "&toDate=" + toDate);
+                    var json = wc.DownloadString(Path+"/MobileAuthWS/api/Agent/getTeamPerfomance_byDate?organizerCode=" + OrgCode.Trim() + "&fromDate=" + fromDate + "&toDate=" + toDate);
                     claimsList = JsonConvert.DeserializeObject<List<AgentPerformance>>(json);
                 }
             }
@@ -418,7 +427,7 @@ namespace Agent_App.Services
             {
                     var client = new HttpClient();
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
-                    var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getTeamPerfomance_byDate?organizerCode=" + OrgCode.Trim() + "&fromDate=" + fromDate + "&toDate=" + toDate);
+                    var json = await client.GetStringAsync(Path+"/MobileAuthWS/api/Agent/getTeamPerfomance_byDate?organizerCode=" + OrgCode.Trim() + "&fromDate=" + fromDate + "&toDate=" + toDate);
                  claimsList = JsonConvert.DeserializeObject<List<AgentPerformance>>(json);
 
                 
@@ -428,7 +437,7 @@ namespace Agent_App.Services
                 //{
                 //    wc.Headers.Add("Content-Type", "text");
                 //    wc.Headers[HttpRequestHeader.Authorization] = "Bearer " + accessToken;
-                //    var json = wc.DownloadString(""http://203.115.11.236:10455/MobileAuthWS/api/Agent/getTeamPerfomance_byDate?organizerCode=" + OrgCode.Trim() + "&fromDate=" + fromDate + "&toDate=" + toDate);
+                //    var json = wc.DownloadString("Path+"/MobileAuthWS/api/Agent/getTeamPerfomance_byDate?organizerCode=" + OrgCode.Trim() + "&fromDate=" + fromDate + "&toDate=" + toDate);
                 //    claimsList = JsonConvert.DeserializeObject<List<AgentPerformance>>(json);
                 //}
             }
@@ -447,7 +456,7 @@ namespace Agent_App.Services
 
               var client = new HttpClient();
               client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
-             var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/GetNotifications");
+             var json = await client.GetStringAsync(Path+"/MobileAuthWS/api/Agent/GetNotifications");
 
              _notifList = JsonConvert.DeserializeObject<List<Notification>>(json); 
             
@@ -485,7 +494,7 @@ namespace Agent_App.Services
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
                     HttpResponseMessage response = new HttpResponseMessage();
-                    response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/agent/DeleteNotification", requestContent);
+                    response = await client.PostAsync(Path+"/MobileAuthWS/api/agent/DeleteNotification", requestContent);
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -540,7 +549,7 @@ namespace Agent_App.Services
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
                 HttpResponseMessage response = new HttpResponseMessage();
-                response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/DeleteNotification", requestContent);
+                response = await client.PostAsync(Path+"/MobileAuthWS/api/Agent/DeleteNotification", requestContent);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -574,7 +583,7 @@ namespace Agent_App.Services
 
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
                 HttpResponseMessage response = new HttpResponseMessage();
-                response = await client.GetAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/CheckNotifications");
+                response = await client.GetAsync(Path+"/MobileAuthWS/api/Agent/CheckNotifications");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -600,7 +609,7 @@ namespace Agent_App.Services
             {
                 var client = new HttpClient();   
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
-                var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/GetClaimHistory?policyNo=" + polNumber.Trim());
+                var json = await client.GetStringAsync(Path+"/MobileAuthWS/api/Agent/GetClaimHistory?policyNo=" + polNumber.Trim());
                 claimsList = JsonConvert.DeserializeObject<List<ClaimHistory>>(json);               
             }
             catch(Exception e)
@@ -621,7 +630,7 @@ namespace Agent_App.Services
             {
                 var client = new HttpClient();
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
-                var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/GetPremiumHistory?policyNo=" + polNumber.Trim());
+                var json = await client.GetStringAsync(Path+"/MobileAuthWS/api/Agent/GetPremiumHistory?policyNo=" + polNumber.Trim());
                 premiumsList = JsonConvert.DeserializeObject<List<PremiumHistory>>(json);
             }
             catch (Exception e)
@@ -642,14 +651,14 @@ namespace Agent_App.Services
             {
                 //    var client = new HttpClient();
                 //    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
-                //    var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getMonthlyPreformance?agentCode=" + agentCode.Trim()+ "&year="+year);
+                //    var json = await client.GetStringAsync(Path+"/MobileAuthWS/api/Agent/getMonthlyPreformance?agentCode=" + agentCode.Trim()+ "&year="+year);
                 //    claimsList = JsonConvert.DeserializeObject<List<MonthlyPerformance>>(json);
 
                 using (WebClient wc = new WebClient())
                 {
                     wc.Headers.Add("Content-Type", "text");
                     wc.Headers[HttpRequestHeader.Authorization] = "Bearer " + accessToken;
-                    var json = wc.DownloadString("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getMonthlyPreformance?agentCode=" + agentCode.Trim() + "&year=" + year);
+                    var json = wc.DownloadString(Path+"/MobileAuthWS/api/Agent/getMonthlyPreformance?agentCode=" + agentCode.Trim() + "&year=" + year);
                     claimsList = JsonConvert.DeserializeObject<List<MonthlyPerformance>>(json); 
                 }
             }
@@ -671,14 +680,14 @@ namespace Agent_App.Services
             {
                 //    var client = new HttpClient();
                 //    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
-                //    var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getAgentPerfomance_byDate?agentCode=" + agentCode.Trim()+ "&year="+year);
+                //    var json = await client.GetStringAsync(Path+"/MobileAuthWS/api/Agent/getAgentPerfomance_byDate?agentCode=" + agentCode.Trim()+ "&year="+year);
                 //    claimsList = JsonConvert.DeserializeObject<List<MonthlyPerformance>>(json);
 
                 using (WebClient wc = new WebClient())
                 {
                     wc.Headers.Add("Content-Type", "text");
                     wc.Headers[HttpRequestHeader.Authorization] = "Bearer " + accessToken;
-                    var json = wc.DownloadString("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getAgentPerfomance_byDate?agentCode=" + agentCode.Trim() + "&fromDate=" + fromDate+"&toDate="+toDate);
+                    var json = wc.DownloadString(Path+"/MobileAuthWS/api/Agent/getAgentPerfomance_byDate?agentCode=" + agentCode.Trim() + "&fromDate=" + fromDate+"&toDate="+toDate);
                     claimsList = JsonConvert.DeserializeObject< List<AgentPerformance>>(json);
                 }
             }
@@ -699,7 +708,7 @@ namespace Agent_App.Services
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
-            var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/getAgentProfile");
+            var json = await client.GetStringAsync(Path + "/MobileAuthWS/api/Agent/getAgentProfile");
 
             AgentProfile agentProf = JsonConvert.DeserializeObject<AgentProfile>(json);
 
@@ -722,7 +731,7 @@ namespace Agent_App.Services
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
             HttpResponseMessage response = new HttpResponseMessage();
-            response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/WriteToAuditTrail", content);
+            response = await client.PostAsync(Path+"/MobileAuthWS/api/Agent/WriteToAuditTrail", content);
 
             if (response.IsSuccessStatusCode)
             {

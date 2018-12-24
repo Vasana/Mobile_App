@@ -5,6 +5,7 @@
             x:Class="Agent_App.Views.Products.Product_Landing">
   <!--Pages can be added as references or inline-->
     <local:PortfolioLanding Title="General Insurance" />
+    <local:LifeProducts Title="Life Insurance" />
     <local:CommonPortfolio Title="Common" />
     
 </TabbedPage>

@@ -19,17 +19,25 @@ namespace Agent_App.Services
 {
     public class ApiServicesLife
     {
-        private List<LifePolicy> _lifePolicyList;
+        private List<CustPolicyLife> _lifePolicyList;
         public int lifePolCount = 0;
 
         private List<Notification> _notifList;
         public int notifCount = 0;
 
+        string IP = "http://203.115.11.236";
+        string Port = "10455"; //Live 10455     Test 10155
+        string Path = "";
+
         private LifePolicy _lifePolicy;
 
+        public ApiServicesLife()
+        {
+            Path = IP+":"+Port;
+        }
 
 
-        public async Task<List<LifePolicy>> GetLifePoliciesAsync(string accessToken, int pageIndex, int pageSize)
+        public async Task<List<CustPolicyLife>> GetLifePoliciesAsync(string accessToken, int pageIndex, int pageSize)
         {
             try
             {
@@ -44,12 +52,12 @@ namespace Agent_App.Services
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
                     HttpResponseMessage response = new HttpResponseMessage();
-                    response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/Life/Getpolicies", requestContent);
+                    response = await client.PostAsync(Path+"/MobileAuthWS/api/Life/Getpolicies", requestContent);
 
                     if (response.IsSuccessStatusCode)
                     {
                         var responseContent = await response.Content.ReadAsStringAsync();
-                        _lifePolicyList = JsonConvert.DeserializeObject<List<LifePolicy>>(responseContent);
+                        _lifePolicyList = JsonConvert.DeserializeObject<List<CustPolicyLife>>(responseContent);
                     }
                     else if (response.StatusCode.ToString() == "Unauthorized")
                     {
@@ -59,11 +67,11 @@ namespace Agent_App.Services
                     //_lifePolicyList = null;
                     //if (SearchCriteriaLife.Instance.lapsed_pol)
                     //{
-                    //    _lifePolicyList = GetLifePolicyList2();
+                    //    _lifePolicyList = GetCustPolicyLifeList2();
                     //}
                     //else
                     //{
-                    //    _lifePolicyList = GetLifePolicyList();
+                    //    _lifePolicyList = GetCustPolicyLifeList();
                     //}
 
                     //GeneratePolicies();
@@ -86,7 +94,7 @@ namespace Agent_App.Services
             finally
             {
                 SearchCriteriaLife.Instance.NewSearch = false;
-                SearchCriteria.Instance.AllPolicies = false;
+                SearchCriteriaLife.Instance.AllPolicies = false;
                 SearchCriteriaLife.Instance.PolicyTable = "A";
                 SearchCriteriaLife.Instance.inforce_pol = false;
                 SearchCriteriaLife.Instance.templapse_pol = false;
@@ -97,7 +105,8 @@ namespace Agent_App.Services
                 SearchCriteriaLife.Instance.TodayReminders = false;
                 SearchCriteriaLife.Instance.NicNumber = "";
                 SearchCriteriaLife.Instance.TableId = "";
-    }
+                SearchCriteriaLife.Instance.policy_year = "";
+            }
             if (lifePolCount >= pageSize)
             {
                 return _lifePolicyList.Skip(pageIndex * pageSize).Take(pageSize).ToList();
@@ -112,11 +121,11 @@ namespace Agent_App.Services
 
         }
 
-        //public List<LifePolicy> GetLifePolicyList()
+        //public List<CustPolicyLife> GetCustPolicyLifeList()
         //{
-        //    List<LifePolicy> polList = new List<LifePolicy>
+        //    List<CustPolicyLife> polList = new List<CustPolicyLife>
         //        {
-        //            new LifePolicy
+        //            new CustPolicyLife
         //            {
         //                PolicyNumber = "123456",
         //                AgentCode = "923454",
@@ -139,7 +148,7 @@ namespace Agent_App.Services
         //                CommentCreatedDate = "",
         //            },
 
-        //             new LifePolicy
+        //             new CustPolicyLife
         //             {
         //                PolicyNumber = "123456",
         //                AgentCode = "923454",
@@ -162,7 +171,7 @@ namespace Agent_App.Services
         //                CommentCreatedDate = "",
         //             },
 
-        //             new LifePolicy
+        //             new CustPolicyLife
         //             {
         //                PolicyNumber = "123456",
         //                AgentCode = "923454",
@@ -189,11 +198,11 @@ namespace Agent_App.Services
         //    return polList;
         //}
 
-        //public List<LifePolicy> GetLifePolicyList2()
+        //public List<CustPolicyLife> GetCustPolicyLifeList2()
         //{
-        //    List<LifePolicy> polList = new List<LifePolicy>
+        //    List<CustPolicyLife> polList = new List<CustPolicyLife>
         //        {
-        //            new LifePolicy
+        //            new CustPolicyLife
         //            {
         //                PolicyNumber = "123456",
         //                AgentCode = "923454",
@@ -216,7 +225,7 @@ namespace Agent_App.Services
         //                CommentCreatedDate = "",
         //            },
 
-        //             new LifePolicy
+        //             new CustPolicyLife
         //             {
         //                PolicyNumber = "123456",
         //                AgentCode = "923454",
@@ -256,7 +265,7 @@ namespace Agent_App.Services
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
                 HttpResponseMessage response = new HttpResponseMessage();
-                response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/Life/AddComment", requestContent);
+                response = await client.PostAsync(Path+"/MobileAuthWS/api/Life/AddComment", requestContent);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -298,7 +307,7 @@ namespace Agent_App.Services
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
                 HttpResponseMessage response = new HttpResponseMessage();
-                response = await client.PostAsync("http://203.115.11.236:10455/MobileAuthWS/api/Life/DeleteComment", requestContent);
+                response = await client.PostAsync(Path+"/MobileAuthWS/api/Life/DeleteComment", requestContent);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -332,7 +341,7 @@ namespace Agent_App.Services
 
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
-            var json = await client.GetStringAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/GetNotifications");
+            var json = await client.GetStringAsync(Path+"/MobileAuthWS/api/Agent/GetNotifications");
 
             _notifList = JsonConvert.DeserializeObject<List<Notification>>(json);
 
@@ -364,7 +373,7 @@ namespace Agent_App.Services
 
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
                 HttpResponseMessage response = new HttpResponseMessage();
-                response = await client.GetAsync("http://203.115.11.236:10455/MobileAuthWS/api/Agent/CheckNotifications");
+                response = await client.GetAsync(Path+"/MobileAuthWS/api/Agent/CheckNotifications");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -383,6 +392,177 @@ namespace Agent_App.Services
             return ret;
         }
 
+
+        public async Task<LifePolicy> GetLifePolicyAsync(string accessToken, string policyNumber)
+        {
+            LifePolicy _lifPolicy = new LifePolicy();
+            try
+            {
+                var client = new HttpClient();
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+                var json = await client.GetStringAsync(Path + "/MobileAuthWS/api/Life/Get_GET_POLICY_DETAILS?polNo=" + policyNumber.Trim());
+
+                /*
+                _lifPolicy.PolicyNumber = "0456544";
+                _lifPolicy.InsuredName = "Saman Perera";
+                _lifPolicy.Address = new List<string> { "No 01", "Hevelock Road", "Colombo 06" };
+                _lifPolicy.ComDate = "2017/02/03";
+                _lifPolicy.PolTable = "19";
+                _lifPolicy.PolTerm = "20";
+                _lifPolicy.PolDesc = "Divi Thilina";
+                _lifPolicy.SumInsured = "5000000";
+                _lifPolicy.PayTypeDesc = "Monthly";
+                _lifPolicy.PolStatus = "Inforce";
+                _lifPolicy.Premium = "20000";
+                _lifPolicy.MobileNumber = "0774567643";
+
+                */
+
+                _lifPolicy = JsonConvert.DeserializeObject<LifePolicy>(json);
+
+            }
+            catch (Exception e)
+            {
+
+            }
+            return _lifPolicy;
+
+            //-----------------------------------------------------------------------------------
+
+        }
+
+        public async Task<List<LifeMember>> GetMemberDetailsAsync(string accessToken, string polNumber)
+        {
+            List<LifeMember> memberList = new List<LifeMember> { };
+            try
+            {
+                var client = new HttpClient();
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+                var json = await client.GetStringAsync(Path + "/MobileAuthWS/api/Life/Get_GET_MEM_DETAILS?polNo=" + polNumber.Trim());
+
+                memberList = JsonConvert.DeserializeObject<List<LifeMember>>(json);
+
+                /*
+                List<LifeMember> memberList = new List<LifeMember>
+                {
+                    new LifeMember
+                    {
+                        MemberType = "1",
+                        Relationship = "Main Life",
+                        FullName = "Saman Perera",
+                        DateOfBirth = "1987/03/02",
+                        Age = "31",
+                        NicNumber = "874567345V",
+                    },
+                    new LifeMember
+                    {
+                        MemberType = "2",
+                        Relationship = "Spouse",
+                        FullName = "Himali Perera",
+                        DateOfBirth = "1988/03/02",
+                        Age = "30",
+                        NicNumber = "884567345V",
+                    }
+                };
+                */
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            return memberList;
+
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
+        }
+
+
+        public async Task<List<LifeCover>> GetCoverDetailsAsync(string accessToken, string polNumber)
+        {
+            List<LifeCover> coverList = new List<LifeCover> { };
+            try
+            {
+                var client = new HttpClient();
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+                var json = await client.GetStringAsync(Path + "/MobileAuthWS/api/Life/Get_GET_COVER_DETAILS?polNo=" + polNumber.Trim());
+
+                coverList = JsonConvert.DeserializeObject<List<LifeCover>>(json);
+
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            return coverList;
+
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
+        }
+
+        public async Task<List<LifePremiumDue>> GetPremiumDuesAsync(string accessToken, string polNumber)
+        {
+            List<LifePremiumDue> premiumList = new List<LifePremiumDue> { };
+            try
+            {
+                var client = new HttpClient();
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+                var json = await client.GetStringAsync(Path + "/MobileAuthWS/api/Life/Get_GET_PREMIUM_DUES?polNo=" + polNumber.Trim());
+
+                premiumList = JsonConvert.DeserializeObject<List<LifePremiumDue>>(json);
+
+            }
+            catch (Exception e)
+            {
+                //premiumList = null;
+            }
+
+            return premiumList;
+
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
+        }
+
+        public async Task<List<LifePrmHistory>> GetPremiumHistory(string accessToken, string polNumber)
+        {
+            List<LifePrmHistory> paidPrmList = new List<LifePrmHistory> { };
+            try
+            {
+                var client = new HttpClient();
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+                var json = await client.GetStringAsync(Path + "/MobileAuthWS/api/Life/Get_GET_PREMIUM_HISTORY?polNo=" + polNumber.Trim());
+
+                paidPrmList = JsonConvert.DeserializeObject<List<LifePrmHistory>>(json);
+
+            }
+            catch (Exception e)
+            {
+                //premiumList = null;
+            }
+
+            return paidPrmList;
+
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
+        }
+
     }
 
-}
+
+
+}  

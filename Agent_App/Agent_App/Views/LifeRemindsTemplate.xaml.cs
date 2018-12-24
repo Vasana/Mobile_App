@@ -29,10 +29,36 @@ namespace Agent_App.Views
             var flagImage = new TapGestureRecognizer();
             flagImage.Tapped += flagImage_Tapped;
             btnReminder.GestureRecognizers.Add(flagImage);
+
+            var smsImage = new TapGestureRecognizer();
+            smsImage.Tapped += SmsImage_Tapped;
+            btnSMS.GestureRecognizers.Add(smsImage);
         }
+
+        private void SmsImage_Tapped(object sender, EventArgs e)
+        {
+            string mobileNumber = lblMobileNo.Text;
+            try
+            {
+                if (mobileNumber != "")
+                {
+                    Device.OpenUri(new Uri("sms:" + mobileNumber));
+                }
+                else
+                {
+                    Application.Current.MainPage.DisplayAlert("Alert", "No information found", "OK");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Application.Current.MainPage.DisplayAlert("Alert", "Error occured while performing function", "OK");
+            }
+        }
+
         private void flagImage_Tapped(object sender, EventArgs e)
         {
-            var policy = BindingContext as LifePolicy;
+            var policy = BindingContext as CustPolicyLife;
             PolicyFlagView flagView = new PolicyFlagView(policy.PolicyNumber, policy.AgentComment, policy.RemindOnDate);
             flagView.Disappearing += FlagView_Disappearing;
             PopupNavigation.Instance.PushAsync(flagView);
@@ -42,7 +68,7 @@ namespace Agent_App.Views
 
         private void FlagView_Disappearing(object sender, EventArgs e)
         {
-            var policy = BindingContext as LifePolicy;
+            var policy = BindingContext as CustPolicyLife;
             policy.SetFlag();
             if (policy.Flagged)
             {
@@ -79,17 +105,17 @@ namespace Agent_App.Views
 
         private async void btnPolicy_Clicked(object sender, EventArgs e)
         {
-            var policy = BindingContext as LifePolicy;
-            var genPolVM = new LifePolViewModel(policy);
+            var policy = BindingContext as CustPolicyLife;
+            var lifPolVM = new LifePolViewModel(policy);
 
-            var genPolicyPage = new GenPolicyDetails
+            var lifPolicyPage = new LifePolicyDetails
             {
-                BindingContext = genPolVM
+                BindingContext = lifPolVM
             };
 
             if (App.Current.MainPage is NavigationPage)
             {
-                await (App.Current.MainPage as NavigationPage).PushAsync(genPolicyPage);
+                await (App.Current.MainPage as NavigationPage).PushAsync(lifPolicyPage);
             }
 
         }
