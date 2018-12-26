@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Agent_App.Views.Notifications.Notifications_landing"
+            xmlns:local="clr-namespace:Agent_App.Views.Notifications">
+
+    <local:ComNotifications Title="Common Notifications"/>
+    <local:MarketingTips Title="Marketing Tips"/>
+    <local:CircularsAndMemos Title="Circulars and Memos"/>
+</TabbedPage>

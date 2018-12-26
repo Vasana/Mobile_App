@@ -25,6 +25,7 @@ namespace Agent_App.iOS
             Rg.Plugins.Popup.Popup.Init();
 
             global::Xamarin.Forms.Forms.Init();
+            OxyPlot.Xamarin.Forms.Platform.iOS.PlotViewRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
@@ -33,11 +34,19 @@ namespace Agent_App.iOS
         public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations(UIApplication application, UIWindow forWindow)
         {
             var mainPage = Xamarin.Forms.Application.Current.MainPage;
-            if (mainPage.Navigation.NavigationStack.Last() is GenPolicyDetails)
+            if (mainPage.Navigation.NavigationStack.Last() is LoginPage)
             {
                 return UIInterfaceOrientationMask.Portrait;
             }
-            return UIInterfaceOrientationMask.AllButUpsideDown;
+            else if (UIDevice.CurrentDevice.Model == "iPhone")
+            {
+                return UIInterfaceOrientationMask.Landscape;
+            }
+            else
+            {
+                return UIInterfaceOrientationMask.Portrait;
+            }
+
         }
     }
 }
