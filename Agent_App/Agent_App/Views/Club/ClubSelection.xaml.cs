@@ -16,6 +16,20 @@ namespace Agent_App.Views.Club
         {
             Title = "Club Information";
             InitializeComponent();
+            
+
+        }
+        protected async override void OnAppearing()
+        {
+
+            var answer = await DisplayAlert("Alert", "Your club selection displayed in this page is only a forecast based on primitive data. They could be different from the final club entitlement which is released by \"Sales Support Division\", after processing these data further.", "Accept", "Decline");
+            if (answer)
+            {
+            }
+            else
+            {
+                Navigation.PushAsync(new CommonUtilsPage());
+            }
         }
     }
 }
