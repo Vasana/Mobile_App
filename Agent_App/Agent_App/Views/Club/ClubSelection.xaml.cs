@@ -16,6 +16,7 @@ namespace Agent_App.Views.Club
         {
             Title = "Club Information";
             InitializeComponent();
+            DisplayAlert("Warning !", "You have been alerted", "Accept");
         }
     }
 }
