@@ -1,4 +1,5 @@
-﻿using Agent_App.Views.Notifications;
+﻿using Agent_App.Views.Club;
+using Agent_App.Views.Notifications;
 using Agent_App.Views.Products;
 using System;
 using System.Collections.Generic;
@@ -68,6 +69,11 @@ namespace Agent_App.Views
         private void BtnNotifications_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new Notifications_landing());
+        }
+
+        private void BtnClubInfo_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new ClubSelection());
         }
     }
 }

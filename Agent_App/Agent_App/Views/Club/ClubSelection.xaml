@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Agent_App.Models"
+             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
+             x:Class="Agent_App.Views.Club.ClubSelection">
+    <ContentPage.BindingContext>
+        <viewmodels:ClubVM/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout Padding="10">
+                <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
+                    <Label Text="Club Information" FontAttributes="Bold"  FontSize="Large"></Label>
+                </StackLayout>
+                <Grid IsVisible="{Binding ClubRespons.DateFound}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="400"/>
+
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="5"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label FontSize="Medium" Text="Club Year" Grid.Row="0" Grid.Column="1"></Label>
+                        <Label FontSize="Medium" x:Name="txtClubYear" Grid.Row="0" Grid.Column="3" Text="{Binding ClubRespons.clubYear}" ></Label>
+
+                        <Label FontSize="Medium" Text="Currently Club" Grid.Row="2" Grid.Column="1"></Label>
+                        <Label FontSize="Medium" x:Name="txtCurClub" Grid.Row="2" Grid.Column="3" Text="{Binding ClubRespons.CurrentClub}" ></Label>
+
+                        <Label FontSize="Medium" Text="Currently Club's Limit" Grid.Row="3" Grid.Column="1"></Label>
+                        <Label FontSize="Medium" x:Name="txtCurlimit" Grid.Row="3" Grid.Column="3" Text="{Binding ClubRespons.CurrentLimit, StringFormat='{0:N2}'}" ></Label>
+
+                        <Label FontSize="Medium" Text="Life Appointment Date" Grid.Row="5" Grid.Column="1"></Label>
+                        <Label FontSize="Medium" x:Name="txtLifeApp" Grid.Row="5" Grid.Column="3" Text="{Binding ClubRespons.Life_appointDate}" ></Label>
+
+                        <Label FontSize="Medium" Text="General Appointment Date" Grid.Row="6" Grid.Column="1"></Label>
+                        <Label FontSize="Medium" x:Name="txtGenApp" Grid.Row="6" Grid.Column="3" Text="{Binding ClubRespons.Gen_appointDate}" ></Label>
+
+                        <Label FontSize="Medium" Text="Life Persistency " Grid.Row="8" Grid.Column="1"></Label>
+                        <Label FontSize="Medium" x:Name="txtLifepersistency " Grid.Row="8" Grid.Column="3" Text="{Binding ClubRespons.Life_persistancy, StringFormat='{0:N2}'}" ></Label>
+
+                        <Label FontSize="Medium" Text="General Persistency " Grid.Row="9" Grid.Column="1"></Label>
+                        <Label FontSize="Medium" x:Name="txtGenperc" Grid.Row="9" Grid.Column="3" Text="{Binding ClubRespons.Gen_persistancy, StringFormat='{0:N2}'}" ></Label>
+
+                        <Label FontSize="Medium" Text="Average of last 5 years" Grid.Row="11" Grid.Column="1"></Label>
+                        <Label FontSize="Medium" x:Name="txtavg5 " Grid.Row="11" Grid.Column="3" Text="{Binding ClubRespons.last5yearAvg, StringFormat='{0:N2}'}" ></Label>
+
+                        <Label FontSize="Medium" Text="Minimum amount of last 3 years" Grid.Row="12" Grid.Column="1"></Label>
+                        <Label FontSize="Medium" x:Name="txtmin3" Grid.Row="12" Grid.Column="3" Text="{Binding ClubRespons.last3yearMin, StringFormat='{0:N2}'}" ></Label>
+
+                        <Label FontSize="Medium" Text="Next Club" Grid.Row="14" Grid.Column="1"></Label>
+                        <Label FontSize="Medium" x:Name="txtNextClub" Grid.Row="14" Grid.Column="3" Text="{Binding ClubRespons.NextClub}" ></Label>
+
+                        <Label FontSize="Medium" Text="Next Club's Limit" Grid.Row="15" Grid.Column="1"></Label>
+                        <Label FontSize="Medium" x:Name="txtNextlimit" Grid.Row="15" Grid.Column="3" Text="{Binding ClubRespons.NextLimit, StringFormat='{0:N2}'}" ></Label>
+
+                        <Label FontSize="Medium" Text="Last Updated Date" Grid.Row="17" Grid.Column="1"></Label>
+                        <Label FontSize="Medium" x:Name="txtUpdatedDate" Grid.Row="17" Grid.Column="3" Text="{Binding ClubRespons.LastUpdatedDate}" ></Label>
+
+                        <Grid IsVisible="{Binding ClubRespons.IsSelected}" Grid.Row="19" Grid.ColumnSpan="5" HeightRequest="120">
+                            <Grid.Triggers>
+                                <DataTrigger TargetType="Grid" Binding="{Binding ClubRespons.IsSelected}" Value="True">
+                                    <Setter Property="IsVisible" Value="False" />
+                                </DataTrigger>
+                            </Grid.Triggers>
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <ListView Grid.Row="0" Grid.Column="0" ItemsSource="{Binding ClubRespons.FailedReason}" RowHeight="30" HeightRequest="120">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Label FontSize="Medium"  TextColor="#336699"  Text="{Binding ClubRespons.FailedReason}" LineBreakMode="TailTruncation"></Label>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Grid>
+                        </Grid>
+
+                        
+
+                        <oxy:PlotView Model="{Binding AreaModelNoPol}"
+                   HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand" Grid.Row="21" Grid.Column="0" Grid.ColumnSpan="5" />
+
+
+                    </Grid>
+                </Grid>
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding ClubRespons.DataNotFound}">
+                    <Label FontSize="Large" Text="No Data Found"></Label>
+
+                </StackLayout>
+              
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
