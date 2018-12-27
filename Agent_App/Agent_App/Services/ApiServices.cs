@@ -708,7 +708,7 @@ namespace Agent_App.Services
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
 
-            var json = await client.GetStringAsync("http://203.115.11.236:10155/MobileAuthWS/api/Agent/getAgentProfile");
+            var json = await client.GetStringAsync(Path + "/MobileAuthWS/api/Agent/getAgentProfile");
 
             AgentProfile agentProf = JsonConvert.DeserializeObject<AgentProfile>(json);
 

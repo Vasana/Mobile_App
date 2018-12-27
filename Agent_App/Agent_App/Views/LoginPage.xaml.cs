@@ -84,7 +84,14 @@ namespace Agent_App.Views
                             var answer = await DisplayAlert("Alert", message, "Yes", "No");
                             if (answer)
                             {
-                                Device.OpenUri(new System.Uri("http://www.srilankainsurance.lk/apk/home.html"));
+                                if (Device.RuntimePlatform == Device.iOS)
+                                {
+                                    Device.OpenUri(new System.Uri("https://www.srilankainsurance.lk/apk/ios/bconnect.html"));
+                                }
+                                else if (Device.RuntimePlatform == Device.Android)
+                                {
+                                    Device.OpenUri(new System.Uri("http://www.srilankainsurance.lk/apk/home.html"));
+                                }
                                 var closer = DependencyService.Get<ICloseApplication>();
                                 if (closer != null)
                                     closer.CloseApp();

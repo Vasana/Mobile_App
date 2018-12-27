@@ -26,7 +26,7 @@ namespace Agent_App.Views
             //}
         }
        
-        private async Task btnPickPhoto_Clicked(object sender, EventArgs e)
+       /* private async Task btnPickPhoto_Clicked(object sender, EventArgs e)
         {
             Stream stream = await DependencyService.Get<IPicturePicker>().GetImageStreamAsync();
             if (stream != null)
@@ -51,7 +51,7 @@ namespace Agent_App.Views
                 
                 
             }
-        }
+        }*/
 
         public static byte[] ReadFully(Stream input)
         {
@@ -67,5 +67,31 @@ namespace Agent_App.Views
             }
         }
 
+       async void btnPickPhoto_Clicked(object sender, System.EventArgs e)
+        {
+            Stream stream = await DependencyService.Get<IPicturePicker>().GetImageStreamAsync();
+            if (stream != null)
+            {
+                try
+                {
+                    string filePath = DependencyService.Get<IPhoto>().GetPhotoPath();
+                    byte[] imageData = ReadFully(stream);
+
+                    System.IO.File.WriteAllBytes(filePath, imageData);
+                    ProfileImage.Source = ImageSource.FromFile(filePath);
+                    Settings.ProfileImageSet = true;
+                    lblSuccessMsg.Text = "Successfully Uploaded.";
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(ex.ToString());
+                    lblSuccessMsg.Text = "Upload Failed.";
+                }
+
+                //ProfileImage.Source = ImageSource.FromStream(() => stream);
+
+
+            }
+        }
     }
 }
