@@ -135,6 +135,8 @@ namespace Agent_App.Models
                         s2.Points.Add(new DataPoint((year + 1) - i, ClubRespons.NextLimit));
                         s3.Points.Add(new DataPoint((year + 1) - i, item));
                         s4.Points.Add(new DataPoint((year + 1) - i, ClubRespons.last5yearAvg));
+                    
+
                     //}
                     //else
                     //{
@@ -145,6 +147,14 @@ namespace Agent_App.Models
 
 
                 }
+                List<double> listSorted = new List<double>();
+                listSorted = ClubRespons.Last5yearList;
+                listSorted.Sort();
+
+                double maxVal = listSorted[4];
+
+                if (maxVal < ClubRespons.NextLimit)
+                    maxVal = ClubRespons.NextLimit;
 
                 plotModel1.Series.Add(s1);
                 plotModel1.Series.Add(s2);
@@ -153,7 +163,7 @@ namespace Agent_App.Models
 
                 
 
-                plotModel1.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Title="Commission Income",  StringFormat = "N", Minimum = 0, IsPanEnabled = false, IsZoomEnabled = false });
+                plotModel1.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Title="Commission Income", Maximum= maxVal*1.1,   StringFormat = "N", Minimum = 0, IsPanEnabled = false, IsZoomEnabled = false });
                 plotModel1.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom, MinimumMajorStep = 1d, IsPanEnabled = false, IsZoomEnabled = false });
                 //
                 //AreaModelNoPol = plotModel1;

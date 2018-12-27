@@ -26,7 +26,7 @@ namespace Agent_App.Services
         public int notifCount = 0;
 
         string IP = "http://203.115.11.236";
-        string Port = "10155"; //Live 10455     Test 10155
+        string Port = "10455"; //Live 10455     Test 10155
         string Path = "";
 
         private LifePolicy _lifePolicy;
