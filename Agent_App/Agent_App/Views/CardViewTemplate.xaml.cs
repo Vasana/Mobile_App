@@ -11,7 +11,7 @@ namespace Agent_App.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CardViewTemplate : ContentView
-	{
+	{ 
 		public CardViewTemplate ()
 		{
 			InitializeComponent ();
