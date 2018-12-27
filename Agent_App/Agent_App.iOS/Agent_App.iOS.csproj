@@ -312,6 +312,8 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\club_selections.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\club_selections.png.imageset\club_selections.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -385,5 +387,8 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\filledStar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets.xcassets\club_selections.png.imageset\" />
   </ItemGroup>
 </Project>
