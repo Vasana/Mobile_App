@@ -67,7 +67,7 @@ namespace Agent_App.Views
                     SearchCriteriaLife.Instance.AllPolicies = true;
                 }
                 SearchCriteriaLife.Instance.NewSearch = true;
-                SearchCriteriaLife.Instance.ListDesc = "Search Result List";
+                SearchCriteriaLife.Instance.ListDesc = "Search Result List"; 
 
                 string pol_year;
                 try
