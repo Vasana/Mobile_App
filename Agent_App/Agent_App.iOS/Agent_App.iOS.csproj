@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -313,6 +313,7 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+<<<<<<< HEAD
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-40.png">
       <Visible>false</Visible>
     </ImageAsset>
@@ -352,6 +353,23 @@
     <ImageAsset Include="Assets.xcassets\newPolicy.imageset\newPolicy.png">
       <Visible>false</Visible>
     </ImageAsset>
+=======
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-60.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-58.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-80.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-120.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-180.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-20.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-152.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-167.png" />
+    <ImageAsset Include="Assets.xcassets\newPolicy.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\newPolicy.imageset\newPolicy.png" />
+    <ImageAsset Include="Assets.xcassets\club_selections.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\club_selections.imageset\club_selections.png" />
+>>>>>>> d440fbc... commit
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -438,5 +456,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\newPolicy.imageset\" />
+    <Folder Include="Assets.xcassets\club_selections.imageset\" />
   </ItemGroup>
 </Project>
