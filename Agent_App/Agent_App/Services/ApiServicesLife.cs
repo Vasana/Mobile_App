@@ -26,7 +26,7 @@ namespace Agent_App.Services
         public int notifCount = 0;
 
         string IP = "http://203.115.11.236";
-        string Port = "10455"; //Live 10455     Test 10155
+        string Port = "10155"; //Live 10455     Test 10155
         string Path = "";
 
         private LifePolicy _lifePolicy;
@@ -560,7 +560,69 @@ namespace Agent_App.Services
 
             //return custPolicies; --- Original code
         }
+        public async Task<ClubResponse> GetClubInfo(string accessToken)
+        {
+            try
+            {
+                var client = new HttpClient();
 
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+                var json = await client.GetStringAsync(Path + "/MobileAuthWS/api/Life/GetTheClubSelection");
+
+                ClubResponse Clubinfo = JsonConvert.DeserializeObject<ClubResponse>(json);
+                Clubinfo.DataNotFound = false;
+                return Clubinfo;
+            }
+            catch
+            {
+                ClubResponse Clubinfo = new ClubResponse();
+                Clubinfo.DateFound = false;
+                Clubinfo.DataNotFound = true;
+                return Clubinfo;
+            }
+
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
+        }
+
+        public ClubResponse GetClubInfoT(string accessToken)
+        {
+            try
+            {
+                //var client = new HttpClient();
+
+                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+
+                //var json = await client.GetStringAsync(Path + "/MobileAuthWS/api/Life/GetTheClubSelection");
+
+                //ClubResponse Clubinfo = JsonConvert.DeserializeObject<ClubResponse>(json);
+                //Clubinfo.DataNotFound = false;
+
+                ClubResponse Clubinfo = new ClubResponse();
+                using (WebClient wc = new WebClient())
+                {
+                    //wc.Headers.Add("Content-Type", "text");
+                    wc.Headers[HttpRequestHeader.Authorization] = "Bearer " + accessToken;
+                    var json = wc.DownloadString(Path + "/MobileAuthWS/api/Life/GetTheClubSelection");
+                    Clubinfo = JsonConvert.DeserializeObject<ClubResponse>(json);
+                }
+
+                return Clubinfo;
+            }
+            catch
+            {
+                ClubResponse Clubinfo = new ClubResponse();
+                Clubinfo.DateFound = false;
+                Clubinfo.DataNotFound = true;
+                return Clubinfo;
+            }
+
+            //-----------------------------------------------------------------------------------
+
+            //return custPolicies; --- Original code
+        }
     }
 
 
