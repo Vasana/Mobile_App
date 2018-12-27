@@ -312,8 +312,12 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\club_selections.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\club_selections.png.imageset\club_selections.png" />
+    <ImageAsset Include="Assets.xcassets\club_selections.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\club_selections.png.imageset\club_selections.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

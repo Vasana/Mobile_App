@@ -28,7 +28,8 @@ namespace Agent_App.Views.Club
             }
             else
             {
-                Navigation.PushAsync(new CommonUtilsPage());
+                this.Navigation.RemovePage(this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count-1]);
+                this.Navigation.PopAsync();
             }
         }
     }
