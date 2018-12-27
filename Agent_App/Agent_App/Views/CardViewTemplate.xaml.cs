@@ -15,6 +15,6 @@ namespace Agent_App.Views
 		public CardViewTemplate ()
 		{
 			InitializeComponent ();
-		}
+		} 
 	}
 }
