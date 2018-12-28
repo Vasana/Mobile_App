@@ -34,7 +34,7 @@
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="20"/>
                             <RowDefinition Height="30"/>
-                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="20"/>
                             <RowDefinition Height="400"/>
@@ -82,7 +82,10 @@
                         <Label FontSize="Medium" x:Name="txtNextlimit" Grid.Row="15" Grid.Column="3" Text="{Binding ClubRespons.NextLimit, StringFormat='{0:N2}'}" ></Label>
 
                         <Label FontSize="Medium" Text="Last Updated Date" Grid.Row="17" Grid.Column="1"></Label>
-                        <Label FontSize="Medium" x:Name="txtUpdatedDate" Grid.Row="17" Grid.Column="3" Text="{Binding ClubRespons.LastUpdatedDate}" ></Label>
+                        <Label FontSize="Medium" x:Name="txtUpdatedDate" Grid.Row="17" Grid.Column="3" FontAttributes="Bold" Text="{Binding ClubRespons.LastUpdatedDate}" ></Label>
+
+                        <Label FontSize="Medium" Text="{Binding lbl_latestYear}" Grid.Row="18" Grid.Column="1"></Label>
+                        <Label FontSize="Medium" x:Name="txtUpdatedDate1" Grid.Row="18" Grid.Column="3" FontAttributes="Bold" Text="{Binding currentYearAmount, StringFormat='{0:N2}' }" ></Label>
 
                         <Grid IsVisible="{Binding ClubRespons.IsSelected}" Grid.Row="19" Grid.ColumnSpan="5" HeightRequest="120">
                             <Grid.Triggers>
