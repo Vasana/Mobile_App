@@ -2269,7 +2269,7 @@ namespace Agent_App.Droid
 			public const int close = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int club_selections = 2130837603;
+			public const int clubselect = 2130837603;
 			
 			// aapt resource value: 0x7f020064
 			public const int coverbg = 2130837604;

@@ -16,7 +16,15 @@ namespace Agent_App.Views.Club
         {
             Title = "Club Information";
             InitializeComponent();
-            
+
+            if (Device.Idiom == TargetIdiom.Phone)
+            {
+                firstClmn.Width = 50;
+            }
+
+                
+
+
 
         }
         protected async override void OnAppearing()

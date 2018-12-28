@@ -19,6 +19,12 @@ namespace Agent_App.Models
         ApiServicesLife _apiServices = new ApiServicesLife();
         public PlotModel AreaModelNoPol { get; set; }
         public double avg_line { get; set; }
+        List<double> listAmount = new List<double>();
+        public string lbl_latestYear { get; set; }
+        public double currentYearAmount { get; set; }
+
+        private ClubResponse _amountInLastYear;
+
         //public Dictionary<int, double> AmountsList = new Dictionary<int, double>();
 
         public ClubResponse ClubRespons
@@ -56,6 +62,13 @@ namespace Agent_App.Models
             IsBusy = true;
             ClubRespons =  _apiServices.GetClubInfoT(accessToken: Settings.AccessToken);
             AreaModelNoPol =  AreaChart_NoOfPoliciesAsync(ClubRespons);
+            listAmount = ClubRespons.Last5yearList;
+            listAmount.Sort();
+            currentYearAmount = listAmount[4];
+            var month = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+
+            lbl_latestYear = "Annual income upto : "+ month.AddDays(-1).ToString("yyyy/MM/dd");
+
             IsBusy = false;
         }
 
