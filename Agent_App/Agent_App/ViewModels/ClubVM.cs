@@ -1,6 +1,7 @@
 ﻿using Agent_App.Helpers;
 using Agent_App.Services;
 using OxyPlot;
+using OxyPlot.Annotations;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 using System;
@@ -148,17 +149,9 @@ namespace Agent_App.Models
                         s2.Points.Add(new DataPoint((year + 1) - i, ClubRespons.NextLimit));
                         s3.Points.Add(new DataPoint((year + 1) - i, item));
                         s4.Points.Add(new DataPoint((year + 1) - i, ClubRespons.last5yearAvg));
-                    
 
-                    //}
-                    //else
+                    //foreach (var points in list)
                     //{
-                    //    s1.Points.Add(new DataPoint(running_month, 0));
-                    //    s2.Points.Add(new DataPoint(running_month, 0));
-                    //    s3.Points.Add(new DataPoint(running_month, 0));
-                    //}
-
-
                 }
                 List<double> listSorted = new List<double>();
                 listSorted = ClubRespons.Last5yearList;
