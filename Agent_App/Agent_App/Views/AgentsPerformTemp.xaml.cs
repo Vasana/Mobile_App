@@ -9,12 +9,13 @@ using Xamarin.Forms.Xaml;
 
 namespace Agent_App.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AgentsPerformTemp : ContentView
-	{
-		public AgentsPerformTemp ()
-		{
-			InitializeComponent ();
-		}
-	}
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class AgentsPerformTemp : ContentView
+    {
+        public AgentsPerformTemp()
+        {
+            InitializeComponent();
+        }
+    }
+
 }
