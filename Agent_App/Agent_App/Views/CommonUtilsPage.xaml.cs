@@ -26,22 +26,27 @@ namespace Agent_App.Views
                 secondRow.Height = 50;
                 thirdRow.Height = 30;
                 fourthRow.Height = 50;
+                
+                fifthRow.Height = 30;
+                sixthRow.Height = 50;
+                seventhRow.Height = 30;
                 ourGrid.RowSpacing = 10;
                 //ourGrid.ColumnSpacing = 20;
 
-                
+
                 BtnProfile.Text = "Profile";
                 BtnPromotions.Text = "Product Portfolio";
                 BtnBranches.Text = "Branch Contacts";
                 btnSettings.Text = "Settings";
+                BtnClubInfo.Text = "Club Selection";
                 //BtnNotifications.Text = "Notifications";
 
-                BtnBranches.Image = btnSettings.Image = BtnPromotions.Image = BtnProfile.Image /*= BtnNotifications.Image*/ = null;
-                btnSettings.HeightRequest = BtnBranches.HeightRequest = BtnPromotions.HeightRequest = BtnProfile.HeightRequest /*= BtnNotifications.HeightRequest*/ = 50;
-                btnSettings.WidthRequest = BtnBranches.WidthRequest = BtnPromotions.WidthRequest = BtnProfile.WidthRequest /*= BtnNotifications.WidthRequest*/ = 200;
-                btnSettings.BackgroundColor = BtnBranches.BackgroundColor = BtnPromotions.BackgroundColor = BtnProfile.BackgroundColor /*= BtnNotifications.BackgroundColor*/ = Color.SkyBlue;
-                btnSettings.BorderColor = BtnBranches.BorderColor = BtnPromotions.BorderColor = BtnProfile.BorderColor /*= BtnNotifications.BorderColor*/ = Color.FromHex("#C89400");
-                btnSettings.BorderRadius = BtnBranches.BorderRadius = BtnPromotions.BorderRadius = BtnProfile.BorderRadius /*= BtnNotifications.BorderRadius*/ = 10;
+                BtnBranches.Image = btnSettings.Image = BtnPromotions.Image = BtnProfile.Image = BtnClubInfo.Image /*= BtnNotifications.Image*/ = null;
+                btnSettings.HeightRequest = BtnBranches.HeightRequest = BtnPromotions.HeightRequest = BtnProfile.HeightRequest  = BtnClubInfo.HeightRequest /*= BtnNotifications.HeightRequest*/ = 50;
+                btnSettings.WidthRequest = BtnBranches.WidthRequest = BtnPromotions.WidthRequest = BtnProfile.WidthRequest = BtnClubInfo.WidthRequest /*= BtnNotifications.WidthRequest*/ = 200;
+                btnSettings.BackgroundColor = BtnBranches.BackgroundColor = BtnPromotions.BackgroundColor = BtnProfile.BackgroundColor = BtnClubInfo.BackgroundColor /*= BtnNotifications.BackgroundColor*/ = Color.SkyBlue;
+                btnSettings.BorderColor = BtnBranches.BorderColor = BtnPromotions.BorderColor = BtnProfile.BorderColor = BtnClubInfo.BorderColor /*= BtnNotifications.BorderColor*/ = Color.FromHex("#C89400");
+                btnSettings.BorderRadius = BtnBranches.BorderRadius = BtnPromotions.BorderRadius = BtnProfile.BorderRadius = BtnClubInfo.BorderRadius /*= BtnNotifications.BorderRadius*/ = 10;
                 
             }
         }

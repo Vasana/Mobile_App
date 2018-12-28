@@ -10,7 +10,7 @@
     <ContentPage.Content>
         <ScrollView>
         <StackLayout Padding="10">
-                <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
+                <StackLayout Orientation="Horizontal" Padding="20" Spacing="10" HorizontalOptions="Center">
                     <Label Text="Club Information" FontAttributes="Bold"  FontSize="Large"></Label>
                 </StackLayout>
                 <Grid IsVisible="{Binding ClubRespons.DateFound}">
@@ -41,7 +41,7 @@
 
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition x:Name="firstClmn" Width="100"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="5"/>
                             <ColumnDefinition Width="*"/>
